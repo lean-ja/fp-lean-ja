@@ -1,7 +1,7 @@
 # Functional Programming in Lean
 
 [Functional Programming in Lean](./title.md)
-[Introduction](./introduction.md)
+[イントロダクション](./introduction.md)
 [Acknowledgments](./acknowledgments.md)
 
 - [Getting to Know Lean](./getting-to-know.md)
