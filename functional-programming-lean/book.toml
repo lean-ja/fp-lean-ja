@@ -11,8 +11,8 @@ title = "Functional Programming in Lean"
 # command = "python -X utf8 scripts/build-examples.py"
 # before = ["leanexample", "commands"]
 
-# [preprocessor.leanexample]
-# command = "python -X utf8 scripts/example.py"
+[preprocessor.leanexample]
+command = "python -X utf8 scripts/example.py"
 
 # [preprocessor.commands]
 # command = "python -X utf8 scripts/projects.py"
