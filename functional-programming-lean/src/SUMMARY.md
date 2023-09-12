@@ -4,7 +4,7 @@
 [イントロダクション](./introduction.md)
 [Acknowledgments](./acknowledgments.md)
 
-- [Getting to Know Lean](./getting-to-know.md)
+- [Lean を知る](./getting-to-know.md)
   - [Evaluating Expressions](./getting-to-know/evaluating.md)
   - [Types](./getting-to-know/types.md)
   - [Functions and Definitions](./getting-to-know/functions-and-definitions.md)
