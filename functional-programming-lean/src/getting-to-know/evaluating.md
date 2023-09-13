@@ -9,7 +9,7 @@ To find the value of the latter expression, 3 + 1 is first replaced by 4, yieldi
 Sometimes, mathematical expressions contain variables: the value of _x_ + 1 cannot be computed until we know what the value of _x_ is.
 In Lean, programs are first and foremost expressions, and the primary way to think about computation is as evaluating expressions to find their values. -->
 
-Lean を学ぶプログラマーが理解すべき最も重要なことは，評価の仕組みです．評価とは，算数で行うような式の値を求めるプロセスのことです．例えば，15-6 の値は 9, 2×(3＋1) の値は 8 です．後者の式の値を求めるとき, まず 3＋1 が 4 に置き換えられて 2×4 となります．これは簡約して 8 にできます．数式に変数が含まれることがあります：x+1 の値は, x の値がわかるまで計算できません．Lean では，プログラムはまず第一に式であり，計算を考える第一の方法は，式を評価して値を求めることです．
+Lean を学ぶプログラマが理解すべき最も重要なことは，評価の仕組みです．評価とは，算数で行うような式の値を求めるプロセスのことです．例えば，15-6 の値は 9, 2×(3＋1) の値は 8 です．後者の式の値を求めるとき, まず 3＋1 が 4 に置き換えられて 2×4 となります．これは簡約して 8 にできます．数式に変数が含まれることがあります：x+1 の値は, x の値がわかるまで計算できません．Lean では，プログラムはまず第一に式であり，計算を考える第一の方法は，式を評価して値を求めることです．
 
 <!-- Most programming languages are _imperative_, where a program consists
 of a series of statements that should be carried out in order to find
@@ -40,7 +40,7 @@ editor, which will then report the result back. Typically, the result
 is found by putting the cursor or mouse pointer over `#eval`. For
 instance, -->
 
-Lean に式の評価をしてもらいたいとき，エディターで式の前に `#eval` と書けば結果を報告してくれます．通常，カーソルやマウスポインタを `#eval` の上に置くと結果が表示されます．例えば，
+Lean に式の評価をしてもらいたいとき，エディタで式の前に `#eval` と書けば結果を報告してくれます．通常，カーソルやマウスポインタを `#eval` の上に置くと結果が表示されます．例えば，
 
 ```lean
 #eval {{#example_in Examples/Intro.lean three}}

@@ -14,14 +14,14 @@ _Purity_ means that Lean programs cannot have side effects such as modifying loc
 Lean is a _functional_ language in the sense that functions are first-class values like any other and that the execution model is inspired by the evaluation of mathematical expressions.
 _Dependent types_, which are the most unusual feature of Lean, make types into a first-class part of the language, allowing types to contain programs and programs to compute types. -->
 
-プログラミング言語として見た場合，Lean は従属型を持つ strict (正格)な純粋関数型言語です．Lean でのプログラミングを学ぶには，これらの特徴がそれぞれプログラムの書き方にどのような影響を与えるか，そして関数型プログラマーがどのように考えるかを学ぶ必要があります．正格性は，Lean における関数呼び出しが，ほとんどの言語と同様に機能することを意味します：つまり，関数本体の実行が始まる前に，引数が完全に計算されます．純粋性は，型で明記されていない限り，Lean のプログラムがメモリ内で場所を変更したり，電子メールを送信したり，ファイルを削除したりといった副作用を起こさないことを意味します．Lean は関数型言語であり，ほかの関数型言語と同様，関数は第一級の値であり，数学的な式の評価から実行モデルの着想を得ています．依存型は Lean の最も珍しい特徴であり，型を言語の第一級の部分にすることで，型がプログラムを含み，プログラムが型を計算することを可能にします．
+プログラミング言語として見た場合，Lean は従属型を持つ strict (正格)な純粋関数型言語です．Lean でのプログラミングを学ぶには，これらの特徴がそれぞれプログラムの書き方にどのような影響を与えるか，そして関数型プログラマがどのように考えるかを学ぶ必要があります．正格性は，Lean における関数呼び出しが，ほとんどの言語と同様に機能することを意味します：つまり，関数本体の実行が始まる前に，引数が完全に計算されます．純粋性は，型で明記されていない限り，Lean のプログラムがメモリ内で場所を変更したり，電子メールを送信したり，ファイルを削除したりといった副作用を起こさないことを意味します．Lean は関数型言語であり，ほかの関数型言語と同様，関数は第一級の値であり，数学的な式の評価から実行モデルの着想を得ています．依存型は Lean の最も珍しい特徴であり，型を言語の第一級の部分にすることで，型がプログラムを含み，プログラムが型を計算することを可能にします．
 
 <!-- This book is intended for programmers who want to learn Lean, but who have not necessarily used a functional programming language before.
 Familiarity with functional languages such as Haskell, OCaml, or F# is not required.
 On the other hand, this book does assume knowledge of concepts like loops, functions, and data structures that are common to most programming languages.
 While this book is intended to be a good first book on functional programming, it is not a good first book on programming in general. -->
 
-本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマーを対象としています．Haskell、OCaml、F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
+本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマを対象としています．Haskell、OCaml、F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
 
 <!-- Mathematicians who are using Lean as a proof assistant will likely need to write custom proof automation tools at some point.
 This book is also for them.
@@ -45,7 +45,7 @@ It is also useful to explore Lean as you read the book, finding creative new way
 <!-- Before writing and running programs written in Lean, you'll need to set up Lean on your own computer.
 The Lean tooling consists of the following: -->
 
-Lean でプログラムを書いて実行する前に, 自分のコンピューターに Lean をセットアップする必要があります．Lean のツール構成は下記の通りです：
+Lean でプログラムを書いて実行する前に, 自分のコンピュータに Lean をセットアップする必要があります．Lean のツール構成は下記の通りです：
 
  <!-- * `elan` manages the Lean compiler toolchains, similarly to `rustup` or `ghcup`. -->
  * `elan` は Lean のツールチェーンのインストーラで，`rustup` や `ghcup` と同様です．
@@ -53,7 +53,7 @@ Lean でプログラムを書いて実行する前に, 自分のコンピュー�
  * `lake` は, `cargo` や `make`, Gradle と同様に, Lean パッケージとその依存関係をビルドします．
  <!-- * `lean` type checks and compiles individual Lean files as well as providing information to programmer tools about files that are currently being written.
    Normally, `lean` is invoked by other tools rather than directly by users. -->
- * `Lean` は、個々の Lean ファイルを型チェックし, コンパイルするだけでなく, プログラマー・ツールに現在書かれているファイルに関する情報を提供します. 通常, Lean はユーザーが直接呼び出すのではなく, 他のツールによって呼び出されます.
+ * `Lean` は、個々の Lean ファイルを型チェックし, コンパイルするだけでなく, プログラマ・ツールに現在書かれているファイルに関する情報を提供します. 通常, Lean はユーザが直接呼び出すのではなく, 他のツールによって呼び出されます.
  <!-- * Plugins for editors, such as Visual Studio Code or Emacs, that communicate with `lean` and present its information conveniently. -->
  * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し, lean の情報を便利に表示することができます.
 
