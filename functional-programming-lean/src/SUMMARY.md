@@ -5,7 +5,7 @@
 [Acknowledgments](./acknowledgments.md)
 
 - [Lean を知る](./getting-to-know.md)
-  - [Evaluating Expressions](./getting-to-know/evaluating.md)
+  - [式の評価](./getting-to-know/evaluating.md)
   - [Types](./getting-to-know/types.md)
   - [Functions and Definitions](./getting-to-know/functions-and-definitions.md)
   - [Structures](./getting-to-know/structures.md)
