@@ -6,7 +6,7 @@
 
 - [Lean を知る](./getting-to-know.md)
   - [式の評価](./getting-to-know/evaluating.md)
-  - [Types](./getting-to-know/types.md)
+  - [型](./getting-to-know/types.md)
   - [Functions and Definitions](./getting-to-know/functions-and-definitions.md)
   - [Structures](./getting-to-know/structures.md)
   - [Datatypes, Patterns and Recursion](./getting-to-know/datatypes-and-patterns.md)

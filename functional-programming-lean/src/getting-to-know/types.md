@@ -46,49 +46,65 @@ Lean のすべてのプログラムは型を持たなければなりません．
 #eval {{#example_in Examples/Intro.lean onePlusTwoType}}
 ```
 
-Here, `Nat` is the type of _natural numbers_, which are arbitrary-precision unsigned integers.
+<!-- Here, `Nat` is the type of _natural numbers_, which are arbitrary-precision unsigned integers.
 In Lean, `Nat` is the default type for non-negative integer literals.
 This default type is not always the best choice.
 In C, unsigned integers underflow to the largest representable numbers when subtraction would otherwise yield a result less than zero.
 `Nat`, however, can represent arbitrarily-large unsigned numbers, so there is no largest number to underflow to.
 Thus, subtraction on `Nat` returns `0` when the answer would have otherwise been negative.
-For instance,
+For instance, -->
+
+ここで `Nat` は自然数の型で, 任意精度の符号なし整数です．Lean では，`Nat` は非負整数リテラルのデフォルト型です．このデフォルトの型は必ずしも最良の選択ではありません．C 言語では，符号なし整数は，引き算の結果が0未満になる場合，表現可能な最大の数までアンダーフローします．しかし `Nat` 型は任意の大きさの符号なし整数を表現できますから，アンダーフローすべき最大の数が存在しません．したがって，`Nat` の引き算は，そうでなければ答えが負になるはずのときに0を返します．例えば
 
 ```lean
 #eval {{#example_in Examples/Intro.lean oneMinusTwo}}
 ```
 
-evaluates to `{{#example_out Examples/Intro.lean oneMinusTwo}}` rather
+<!-- evaluates to `{{#example_out Examples/Intro.lean oneMinusTwo}}` rather
 than `-1`. To use a type that can represent the negative integers,
-provide it directly:
+provide it directly: -->
+
+は `-1` ではなく `{{#example_out Examples/Intro.lean oneMinusTwo}}` を返します．負の整数を表現できる型を使うには, 型を直接指定します：
 
 ```lean
 #eval {{#example_in Examples/Intro.lean oneMinusTwoInt}}
 ```
 
-With this type, the result is `{{#example_out Examples/Intro.lean oneMinusTwoInt}}`, as expected.
+<!-- With this type, the result is `{{#example_out Examples/Intro.lean oneMinusTwoInt}}`, as expected. -->
 
-To check the type of an expression without evaluating it, use `#check`
-instead of `#eval`. For instance:
+この型では，結果は予想通り`{{#example_out Examples/Intro.lean oneMinusTwoInt}}`です．
+
+<!-- To check the type of an expression without evaluating it, use `#check`
+instead of `#eval`. For instance: -->
+
+式を評価せずに型を確かめるには、`#eval` の代わりに `#check` を使います．例えば
 
 ```lean
 {{#example_in Examples/Intro.lean oneMinusTwoIntType}}
 ```
 
-reports `{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` without actually performing the subtraction.
+<!-- reports `{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` without actually performing the subtraction. -->
 
-When a program can't be given a type, an error is returned from both
-`#check` and `#eval`. For instance:
+は, 実際の引き算は実行せず，`{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` を報告します．
+
+<!-- When a program can't be given a type, an error is returned from both
+`#check` and `#eval`. For instance: -->
+
+プログラムに型が与えられない場合，`#check` も `#eval` もエラーを返します．例えば：
 
 ```lean
 {{#example_in Examples/Intro.lean stringAppendList}}
 ```
 
-outputs
+<!-- outputs -->
+
+というコードは下記のエラーを出力します．
 
 ```output error
 {{#example_out Examples/Intro.lean stringAppendList}}
 ```
 
-because the second argument to ``String.append`` is expected to be a
-string, but a list of strings was provided instead.
+<!-- because the second argument to ``String.append`` is expected to be a
+string, but a list of strings was provided instead. -->
+
+`String.append` の第2引数は文字列であることが期待されていますが，代わりに文字列のリストが代入されているからです．
