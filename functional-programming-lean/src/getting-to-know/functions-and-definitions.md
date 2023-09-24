@@ -1,38 +1,56 @@
-# Functions and Definitions
+<!-- # Functions and Definitions -->
+# 関数と定義
 
-In Lean, definitions are introduced using the `def` keyword. For instance, to define the name `{{#example_in Examples/Intro.lean helloNameVal}}` to refer to the string `{{#example_out Examples/Intro.lean helloNameVal}}`, write:
+<!-- In Lean, definitions are introduced using the `def` keyword. For instance, to define the name `{{#example_in Examples/Intro.lean helloNameVal}}` to refer to the string `{{#example_out Examples/Intro.lean helloNameVal}}`, write: -->
+
+Lean では，定義は `def` というキーワードを使って導入されます．例えば, 文字列 `{{#example_out Examples/Intro.lean helloNameVal}}` を指す名前として `{{#example_in Examples/Intro.lean helloNameVal}}` を定義するには、こう書きます：
 
 ```lean
 {{#example_decl Examples/Intro.lean hello}}
 ```
 
-In Lean, new names are defined using the colon-equal operator`:=`
+<!-- In Lean, new names are defined using the colon-equal operator`:=`
 rather than `=`. This is because `=` is used to describe equalities
 between existing expressions, and using two different operators helps
-prevent confusion.
+prevent confusion. -->
 
-In the definition of `{{#example_in Examples/Intro.lean helloNameVal}}`, the expression `{{#example_out Examples/Intro.lean helloNameVal}}` is simple enough that Lean is able to determine the definition's type automatically.
+Lean では，新しい名前は `=` ではなくコロンと等号を組み合わせた記号 `:=` を使って定義されます．これは, `=` が既存の式同士の等式を表すのに使われるためで，異なる演算子を使うことで混乱を防ぐことができます．
+
+<!-- In the definition of `{{#example_in Examples/Intro.lean helloNameVal}}`, the expression `{{#example_out Examples/Intro.lean helloNameVal}}` is simple enough that Lean is able to determine the definition's type automatically.
 However, most definitions are not so simple, so it will usually be necessary to add a type.
-This is done using a colon after the name being defined.
+This is done using a colon after the name being defined. -->
+
+`{{#example_in Examples/Intro.lean helloNameVal}}` の定義の場合，`{{#example_out Examples/Intro.lean helloNameVal}}` という式は単純なので，Lean は定義の型を自動的に判断することができます．しかし，ほとんどの定義はそれほど単純ではないので，通常は型を注釈する必要があります．これは，定義する名前の後にコロンを使って行います．
 
 ```lean
 {{#example_decl Examples/Intro.lean lean}}
 ```
 
-Now that the names have been defined, they can be used, so
+<!-- Now that the names have been defined, they can be used, so -->
+
+名前が定義されたら，それを使うことができます．
+
 ``` Lean
 {{#example_in Examples/Intro.lean helloLean}}
 ```
-outputs
+
+<!-- outputs -->
+上のコードは次を出力します．
+
 ``` Lean info
 {{#example_out Examples/Intro.lean helloLean}}
 ```
-In Lean, defined names may only be used after their definitions.
 
-In many languages, definitions of functions use a different syntax than definitions of other values.
+<!-- In Lean, defined names may only be used after their definitions. -->
+
+Lean では，定義されるまである名前を使うことはできません．
+
+<!-- In many languages, definitions of functions use a different syntax than definitions of other values.
 For instance, Python function definitions begin with the `def` keyword, while other definitions are defined with an equals sign.
 In Lean, functions are defined using the same `def` keyword as other values.
-Nonetheless, definitions such as `hello` introduce names that refer _directly_ to their values, rather than to zero-argument functions that return equivalent results each time they are called.
+Nonetheless, definitions such as `hello` introduce names that refer _directly_ to their values, rather than to zero-argument functions that return equivalent results each time they are called. -->
+
+多くの言語では，関数の定義には他の値の定義とは異なる構文を使用します．例えば，Python の関数定義は `def` キーワードで始まりますが，他の定義は等号で定義されます．Lean では，関数も他の値と同じ `def` キーワードを使って定義されます．それにもかかわらず，`hello` のような定義は，呼び出されるたびに同等の結果を返すゼロ引数関数ではなく，その値を**直接**参照する名前を導入しています．
 
 ## Defining Functions
 
