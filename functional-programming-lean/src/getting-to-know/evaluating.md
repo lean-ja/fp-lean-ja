@@ -145,7 +145,7 @@ instance, -->
 ```
 
 <!-- ## Messages You May Meet -->
-## エラーメッセージの予習
+## よくあるエラー
 
 <!-- Asking Lean to evaluate a function application that is missing an argument will lead to an error message.
 In particular, the example -->
