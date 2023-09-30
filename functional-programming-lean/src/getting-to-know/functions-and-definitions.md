@@ -52,27 +52,38 @@ Nonetheless, definitions such as `hello` introduce names that refer _directly_ t
 
 多くの言語では，関数の定義には他の値の定義とは異なる構文を使用します．例えば，Python の関数定義は `def` キーワードで始まりますが，他の定義は等号で定義されます．Lean では，関数も他の値と同じ `def` キーワードを使って定義されます．それにもかかわらず，`hello` のような定義は，呼び出されるたびに同等の結果を返すゼロ引数関数ではなく，その値を**直接**参照する名前を導入しています．
 
-## Defining Functions
+<!-- ## Defining Functions -->
 
-There are a variety of ways to define functions in Lean. The simplest is to place the function's arguments before the definition's type, separated by spaces. For instance, a function that adds one to its argument can be written:
+## 関数の定義
+
+<!-- There are a variety of ways to define functions in Lean. The simplest is to place the function's arguments before the definition's type, separated by spaces. For instance, a function that adds one to its argument can be written: -->
+
+Lean で関数を定義するには様々な方法があります．最もシンプルな方法は，関数の引数を定義型の前にスペースで区切って置くことです．例えば，引数に1を加える関数はこう書けます：
 
 ```lean
 {{#example_decl Examples/Intro.lean add1}}
 ```
 
-Testing this function with `#eval` gives `{{#example_out Examples/Intro.lean add1_7}}`, as expected:
+<!-- Testing this function with `#eval` gives `{{#example_out Examples/Intro.lean add1_7}}`, as expected: -->
+
+この関数を `#eval` でテストすると，予想通り `{{#example_out Examples/Intro.lean add1_7}}` が得られます：
+
 ```lean
 {{#example_in Examples/Intro.lean add1_7}}
 ```
 
+<!-- Just as functions are applied to multiple arguments by writing spaces between each argument, functions that accept multiple arguments are defined with spaces between the arguments' names and types. The function `maximum`, whose result is equal to the greatest of its two arguments, takes two `Nat` arguments `n` and `k` and returns a `Nat`. -->
 
-Just as functions are applied to multiple arguments by writing spaces between each argument, functions that accept multiple arguments are defined with spaces between the arguments' names and types. The function `maximum`, whose result is equal to the greatest of its two arguments, takes two `Nat` arguments `n` and `k` and returns a `Nat`.
+関数が各引数の間にスペースを書くことで複数の引数に適用されるように, 複数の引数を受け付ける関数は, 引数の名前と型の間にスペースを入れることで定義されます．関数 `maximum` は，2つの引数の最大値を返すもので，2つの `Nat` 型引数 `n` と `k` を取り、`Nat` を返します．
 
 ```lean
 {{#example_decl Examples/Intro.lean maximum}}
 ```
 
-When a defined function like `maximum` has been provided with its arguments, the result is determined by first replacing the argument names with the provided values in the body, and then evaluating the resulting body. For example:
+<!-- When a defined function like `maximum` has been provided with its arguments, the result is determined by first replacing the argument names with the provided values in the body, and then evaluating the resulting body. For example: -->
+
+`maximum` のような定義された関数が引数とともに提供されると，結果は，まず引数名を与えられた値に置き換え，次に本体を評価するというように決定されます．例えば：
+
 ```lean
 {{#example_eval Examples/Intro.lean maximum_eval}}
 ```
