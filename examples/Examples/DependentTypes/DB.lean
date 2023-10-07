@@ -137,7 +137,7 @@ message
 "type mismatch
   (v1, r1')
 has type
-  ?m.6674 × ?m.6677 : Type (max ?u.6686 ?u.6685)
+  ?m.6559 × ?m.6562 : Type (max ?u.6571 ?u.6570)
 but is expected to have type
   Row (col :: cols) : Type"
 end expect
@@ -191,10 +191,10 @@ book declaration {{{ Subschema }}}
         Subschema (⟨n, t⟩ :: smaller) bigger
 stop book declaration
 
-
-abbrev travelDiary : Schema :=
-  [⟨"name", .string⟩, ⟨"location", .string⟩, ⟨"lastVisited", .int⟩]
-
+book declaration {{{ travelDiary }}}
+  abbrev travelDiary : Schema :=
+    [⟨"name", .string⟩, ⟨"location", .string⟩, ⟨"lastVisited", .int⟩]
+stop book declaration
 
 book declaration {{{ peakDiarySub }}}
   example : Subschema travelDiary peak :=
@@ -531,7 +531,7 @@ mountains : Query (List.map (fun c => { name := \"mountain\" ++ \".\" ++ c.name,
   prefixWith \"mountain\" (table mountainDiary)
 waterfalls : Query (List.map (fun c => { name := \"waterfall\" ++ \".\" ++ c.name, contains := c.contains }) waterfall) :=
   prefixWith \"waterfall\" (table waterfallDiary)
-⊢ HasCol (List.map (fun c => { name := \"waterfall\" ++ \".\" ++ c.name, contains := c.contains }) []) \"location\" ?m.110696"
+⊢ HasCol (List.map (fun c => { name := \"waterfall\" ++ \".\" ++ c.name, contains := c.contains }) []) \"location\" ?m.109970"
 end expect
 
 expect error {{{ QueryOops2 }}}
