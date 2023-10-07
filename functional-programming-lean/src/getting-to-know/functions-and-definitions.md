@@ -88,27 +88,37 @@ Lean で関数を定義するには様々な方法があります．最もシン
 {{#example_eval Examples/Intro.lean maximum_eval}}
 ```
 
-Expressions that evaluate to natural numbers, integers, and strings have types that say this (`Nat`, `Int`, and `String`, respectively).
+<!-- Expressions that evaluate to natural numbers, integers, and strings have types that say this (`Nat`, `Int`, and `String`, respectively).
 This is also true of functions.
-A function that accepts a `Nat` and returns a `Bool` has type `Nat → Bool`, and a function that accepts two `Nat`s and returns a `Nat` has type `Nat → Nat → Nat`.
+A function that accepts a `Nat` and returns a `Bool` has type `Nat → Bool`, and a function that accepts two `Nat`s and returns a `Nat` has type `Nat → Nat → Nat`. -->
 
-As a special case, Lean returns a function's signature when its name is used directly with `#check`.
+自然数, 整数, 文字列を表す式は, それぞれ `Nat`, `Int`, `String` 型を持ちます．`Nat` を受け取って `Bool` を返す関数は `Nat → Bool` 型を持ち，2つの `Nat` を受け取って `Nat` を返す関数は `Nat → Nat → Nat` 型を持ちます．
+
+<!-- As a special case, Lean returns a function's signature when its name is used directly with `#check`.
 Entering `{{#example_in Examples/Intro.lean add1sig}}` yields `{{#example_out Examples/Intro.lean add1sig}}`.
 However, Lean can be "tricked" into showing the function's type by writing the function's name in parentheses, which causes the function to be treated as an ordinary expression, so `{{#example_in Examples/Intro.lean add1type}}` yields `{{#example_out Examples/Intro.lean add1type}}` and `{{#example_in Examples/Intro.lean maximumType}}` yields `{{#example_out Examples/Intro.lean maximumType}}`.
-This arrow can also be written with an ASCII alternative arrow `->`, so the preceding function types can be written `{{#example_out Examples/Intro.lean add1typeASCII}}` and `{{#example_out Examples/Intro.lean maximumTypeASCII}}`, respectively.
+This arrow can also be written with an ASCII alternative arrow `->`, so the preceding function types can be written `{{#example_out Examples/Intro.lean add1typeASCII}}` and `{{#example_out Examples/Intro.lean maximumTypeASCII}}`, respectively. -->
 
-Behind the scenes, all functions actually expect precisely one argument.
+特別な場合として, Lean は関数名が `#check` で直接使われた場合, その関数のシグネチャを返します．`{{#example_in Examples/Intro.lean add1sig}}` と入力すると，`{{#example_out Examples/Intro.lean add1sig}}` が得られます．しかし，関数名を括弧で囲むことで関数の型を示すように Lean を「騙す」ことができます．したがって `{{#example_in Examples/Intro.lean add1type}}` は `{{#example_out Examples/Intro.lean add1type}}` という出力を返し，`{{#example_in Examples/Intro.lean maximumType}}` は `{{#example_out Examples/Intro.lean maximumType}}` という出力を返します．この矢印は ASCII の代替矢印 `->` で書くこともできるので，先の関数型はそれぞれ `{{#example_out Examples/Intro.lean add1typeASCII}}`，`{{#example_out Examples/Intro.lean maximumTypeASCII}}` と書くことができます．
+
+<!-- Behind the scenes, all functions actually expect precisely one argument.
 Functions like `maximum` that seem to take more than one argument are in fact functions that take one argument and then return a new function.
 This new function takes the next argument, and the process continues until no more arguments are expected.
 This can be seen by providing one argument to a multiple-argument function: `{{#example_in Examples/Intro.lean maximum3Type}}` yields `{{#example_out Examples/Intro.lean maximum3Type}}` and `{{#example_in Examples/Intro.lean stringAppendHelloType}}` yields `{{#example_out Examples/Intro.lean stringAppendHelloType}}`.
 Using a function that returns a function to implement multiple-argument functions is called _currying_ after the mathematician Haskell Curry.
-Function arrows associate to the right, which means that `Nat → Nat → Nat` should be parenthesized `Nat → (Nat → Nat)`.
+Function arrows associate to the right, which means that `Nat → Nat → Nat` should be parenthesized `Nat → (Nat → Nat)`. -->
 
-### Exercises
+舞台裏では，すべての関数は実際にはちょうど1つの引数を受け付けます．複数の引数を取るように見える `max` 関数などは, 実際には1つの引数を取って新しい関数を返す関数です．この新しい関数は次の引数を取り, その処理は引数がなくなるまで続きます．これは, 複数の引数を持つ関数に1つの引数を与えることでわかります：`{{#example_in Examples/Intro.lean maximum3Type}}` は `{{#example_out Examples/Intro.lean maximum3Type}}` を返し，`{{#example_in Examples/Intro.lean stringAppendHelloType}}` は `{{#example_out Examples/Intro.lean stringAppendHelloType}}` を返します.複数引数の関数を実装するために関数を返す関数を使うことを，数学者のハスケル・カリー(Haskell Curry)にちなんで**カリー化**(currying)と呼びます．矢印は右結合です．つまり, `Nat → Nat → Nat` に括弧を付けるなら `Nat → (Nat → Nat)` となります．
 
- * Define the function `joinStringsWith` with type `String -> String -> String -> String` that creates a new string by placing its first argument between its second and third arguments. `{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` should evaluate to `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}`.
- * What is the type of `joinStringsWith ": "`? Check your answer with Lean.
- * Define a function `volume` with type `Nat → Nat → Nat → Nat` that computes the volume of a rectangular prism with the given height, width, and depth.
+<!-- ### Exercises -->
+### 演習
+
+ <!-- * Define the function `joinStringsWith` with type `String -> String -> String -> String` that creates a new string by placing its first argument between its second and third arguments. `{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` should evaluate to `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}`. -->
+ * 関数 `joinStringsWith` を `String -> String -> String` 型の関数であって，その第一引数を第二引数と第三引数の間に配置して新しい文字列を作成するようなものとして定義してください．`{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` は `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}` に等しくなるはずです.
+ <!-- * What is the type of `joinStringsWith ": "`? Check your answer with Lean. -->
+ * `joinStringsWith ": "` の型は何でしょうか？ Lean で答えを確認してください．
+ <!-- * Define a function `volume` with type `Nat → Nat → Nat → Nat` that computes the volume of a rectangular prism with the given height, width, and depth. -->
+ * 与えられた高さ，幅，奥行きを持つ直方体の体積を計算する関数 `volume` を `Nat → Nat → Nat → Nat` 型の関数として定義してください．
 
 ## Defining Types
 
