@@ -120,24 +120,36 @@ Function arrows associate to the right, which means that `Nat → Nat → Nat` s
  <!-- * Define a function `volume` with type `Nat → Nat → Nat → Nat` that computes the volume of a rectangular prism with the given height, width, and depth. -->
  * 与えられた高さ，幅，奥行きを持つ直方体の体積を計算する関数 `volume` を `Nat → Nat → Nat → Nat` 型の関数として定義してください．
 
-## Defining Types
+<!-- ## Defining Types -->
+## 型の定義
 
-Most typed programming languages have some means of defining aliases for types, such as C's `typedef`.
+<!-- Most typed programming languages have some means of defining aliases for types, such as C's `typedef`.
 In Lean, however, types are a first-class part of the language - they are expressions like any other.
-This means that definitions can refer to types just as well as they can refer to other values.
+This means that definitions can refer to types just as well as they can refer to other values. -->
 
-For instance, if ``String`` is too much to type, a shorter abbreviation ``Str`` can be defined:
+ほとんどの型付きプログラミング言語には, C 言語の `typedef` のように, 型のエイリアスを定義する手段があります．しかし Lean では, 型は言語の第一級の部分であり, 他の式と同じように扱われます．これは, 定義が他の値を参照するのと同様に, 型を参照できることを意味します．
+
+<!-- For instance, if ``String`` is too much to type, a shorter abbreviation ``Str`` can be defined: -->
+
+例えば，`String` が入力するには長すぎる場合, より短い省略形 `Str` を定義することができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean StringTypeDef}}
 ```
-It is then possible to use ``Str`` as a definition's type instead of ``String``:
+
+<!-- It is then possible to use ``Str`` as a definition's type instead of ``String``: -->
+
+そうすれば, `String` の代わりに `Str` を定義の型として使うことができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean aStr}}
 ```
 
-The reason this works is that types follow the same rules as the rest of Lean.
+<!-- The reason this works is that types follow the same rules as the rest of Lean.
 Types are expressions, and in an expression, a defined name can be replaced with its definition.
-Because ``Str`` has been defined to mean ``String``, the definition of ``aStr`` makes sense.
+Because ``Str`` has been defined to mean ``String``, the definition of ``aStr`` makes sense. -->
+
+これが機能するのは，型が Lean の他の部分と同じルールに従うからです．型は式であり，式の中では，定義された名前はその定義に置き換えることができます．`Str` は `String` に等しいと定義されているので, `aStr` の定義は意味をなしています．
 
 ### Messages You May Meet
 
