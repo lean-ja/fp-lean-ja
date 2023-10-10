@@ -151,50 +151,77 @@ Because ``Str`` has been defined to mean ``String``, the definition of ``aStr`` 
 
 これが機能するのは，型が Lean の他の部分と同じルールに従うからです．型は式であり，式の中では，定義された名前はその定義に置き換えることができます．`Str` は `String` に等しいと定義されているので, `aStr` の定義は意味をなしています．
 
-### Messages You May Meet
+<!-- ### Messages You May Meet -->
+### よくあるエラー
 
-Experimenting with using definitions for types is made more complicated by the way that Lean supports overloaded integer literals.
-If ``Nat`` is too short, a longer name ``NaturalNumber`` can be defined:
+<!-- Experimenting with using definitions for types is made more complicated by the way that Lean supports overloaded integer literals.
+If ``Nat`` is too short, a longer name ``NaturalNumber`` can be defined: -->
+
+型を定義するとき，Lean がオーバーロードされた整数リテラルをサポートする方法との兼ね合いで，より複雑な挙動をすることがあります．`Nat` が短すぎる場合は，`NaturalNumber` という長い名前を定義することができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean NaturalNumberTypeDef}}
 ```
-However, using ``NaturalNumber`` as a definition's type instead of ``Nat`` does not have the expected effect.
-In particular, the definition:
+
+<!-- However, using ``NaturalNumber`` as a definition's type instead of ``Nat`` does not have the expected effect.
+In particular, the definition: -->
+
+しかし，`Nat` の代わりに `NaturalNumber` を定義の型として使っても，期待した効果は得られません．例えば，以下のように定義したとします：
+
 ```lean
 {{#example_in Examples/Intro.lean thirtyEight}}
 ```
-results in the following error:
+
+<!-- results in the following error: -->
+これは次のようなエラーになります：
+
 ```output error
 {{#example_out Examples/Intro.lean thirtyEight}}
 ```
 
-This error occurs because Lean allows number literals to be _overloaded_.
+<!-- This error occurs because Lean allows number literals to be _overloaded_.
 When it makes sense to do so, natural number literals can be used for new types, just as if those types were built in to the system.
 This is part of Lean's mission of making it convenient to represent mathematics, and different branches of mathematics use number notation for very different purposes.
-The specific feature that allows this overloading does not replace all defined names with their definitions before looking for overloading, which is what leads to the error message above.
+The specific feature that allows this overloading does not replace all defined names with their definitions before looking for overloading, which is what leads to the error message above. -->
 
-One way to work around this limitation is by providing the type `Nat` on the right-hand side of the definition, causing `Nat`'s overloading rules to be used for `38`:
+このエラーは, Lean が数値リテラルのオーバーロード(overload)を許可しているために発生します．自然数リテラルは，あたかもその型がシステムに組み込まれているかのように，新しい型に使用することができます．これは，数学の表現を便利にするという Lean の使命の一部です．数学でも分野によって，数字をまったく異なる概念を表すのに使っています．このオーバーロードを可能にするための機能は，定義された名前をすべてその定義に置き換える前に，オーバーロードを探します．それが上のエラーメッセージを引き起こします．
+
+<!-- One way to work around this limitation is by providing the type `Nat` on the right-hand side of the definition, causing `Nat`'s overloading rules to be used for `38`: -->
+
+このエラーを回避する1つの方法は，定義の右側に `Nat` 型を指定し，`Nat` のオーバーロード・ルールを `38` に使用させることです：
+
 ```lean
 {{#example_decl Examples/Intro.lean thirtyEightFixed}}
 ```
-The definition is still type-correct because `{{#example_eval Examples/Intro.lean NaturalNumberDef 0}}` is the same type as `{{#example_eval Examples/Intro.lean NaturalNumberDef 1}}`—by definition!
+<!-- The definition is still type-correct because `{{#example_eval Examples/Intro.lean NaturalNumberDef 0}}` is the same type as `{{#example_eval Examples/Intro.lean NaturalNumberDef 1}}`—by definition! -->
 
-Another solution is to define an overloading for `NaturalNumber` that works equivalently to the one for `Nat`.
-This requires more advanced features of Lean, however.
+`{{#example_eval Examples/Intro.lean NaturalNumberDef 0}}` は定義から `{{#example_eval Examples/Intro.lean NaturalNumberDef 1}}` と同じ型なので，この定義は正しく型付けされています．
 
-Finally, defining the new name for `Nat` using `abbrev` instead of `def` allows overloading resolution to replace the defined name with its definition.
+<!-- Another solution is to define an overloading for `NaturalNumber` that works equivalently to the one for `Nat`.
+This requires more advanced features of Lean, however. -->
+
+もう一つの解決策は, `Nat` と同等に機能する `NaturalNumber` のオーバーロードを定義することです．しかし, これには Lean のより高度な機能が必要です．
+
+<!-- Finally, defining the new name for `Nat` using `abbrev` instead of `def` allows overloading resolution to replace the defined name with its definition.
 Definitions written using `abbrev` are always unfolded.
-For instance,
+For instance, -->
+
+最後の解決策は，`def` の代わりに `abbrev` を使って `Nat` の新しい名前を定義することです．これで定義された名前をその定義に置き換えるオーバーロード解決が可能になります．`abbrev` を使って書かれた定義は常に展開されます．例えば
+
 ```lean
 {{#example_decl Examples/Intro.lean NTypeDef}}
 ```
-and
+<!-- and -->
+としたとき
 ```lean
 {{#example_decl Examples/Intro.lean thirtyNine}}
 ```
-are accepted without issue.
+<!-- are accepted without issue. -->
+はエラーになりません．
 
-Behind the scenes, some definitions are internally marked as being unfoldable during overload resolution, while others are not.
+<!-- Behind the scenes, some definitions are internally marked as being unfoldable during overload resolution, while others are not.
 Definitions that are to be unfolded are called _reducible_.
 Control over reducibility is essential to allow Lean to scale: fully unfolding all definitions can result in very large types that are slow for a machine to process and difficult for users to understand.
-Definitions produced with `abbrev` are marked as reducible.
+Definitions produced with `abbrev` are marked as reducible. -->
+
+舞台裏では, オーバーロードの解決時に, 内部的に展開できない(unfoldable)であるとマークされる定義もあれば，そうでない定義もあります．展開される定義は reducible と呼ばれます．Lean をスケールさせるためには，reducibility のコントロールが不可欠です：すべての定義を完全に展開すると, 型が非常に大きくなり, 機械が処理するのに時間がかかりますし, ユーザーにとっても理解しづらいものになります．`abbrev` で生成された定義は reducible であるとマークされます．
