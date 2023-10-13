@@ -224,4 +224,4 @@ Definitions that are to be unfolded are called _reducible_.
 Control over reducibility is essential to allow Lean to scale: fully unfolding all definitions can result in very large types that are slow for a machine to process and difficult for users to understand.
 Definitions produced with `abbrev` are marked as reducible. -->
 
-舞台裏では, オーバーロードの解決時に, 展開可能(unfoldable)であると内部でマークされる定義もあれば，そうでない定義もあります．展開される定義は reducible と呼ばれます．Lean をスケールさせるためには，reducibility のコントロールが不可欠です：すべての定義を完全に展開すると, 型が非常に大きくなり, 機械が処理するのに時間がかかりますし, ユーザーにとっても理解しづらいものになります．`abbrev` で生成された定義は reducible であるとマークされます．
+舞台裏では, オーバーロードの解決時に, 展開可能(unfoldable)であると内部でマークされる定義もあれば，そうでない定義もあります．展開される定義は *reducible* と呼ばれます．Lean をスケールさせるためには，定義の展開可能性のコントロールが不可欠です：すべての定義を完全に展開すると, 型が非常に大きくなり, 機械が処理するのに時間がかかりますし, ユーザーにとっても理解しづらいものになります．`abbrev` で生成された定義は reducible であるとマークされます．

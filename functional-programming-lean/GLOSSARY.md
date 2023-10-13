@@ -7,7 +7,7 @@
 | dependent type    | 依存型     |
 | first class       | 第一級     |
 | idiomatic         | 慣用的な   |
-| reducible         | reducible  |
+| reducible         | 簡約可能   |
 | statement         | 文         |
 | strict evaluation | 正格評価   |
 | theorem prover    | 証明支援系 |
