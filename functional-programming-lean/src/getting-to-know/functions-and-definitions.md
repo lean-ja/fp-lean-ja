@@ -114,7 +114,7 @@ Function arrows associate to the right, which means that `Nat → Nat → Nat` s
 ### 演習
 
  <!-- * Define the function `joinStringsWith` with type `String -> String -> String -> String` that creates a new string by placing its first argument between its second and third arguments. `{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` should evaluate to `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}`. -->
- * 関数 `joinStringsWith` を `String -> String -> String` 型の関数であって，その第一引数を第二引数と第三引数の間に配置して新しい文字列を作成するようなものとして定義してください．`{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` は `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}` に等しくなるはずです.
+ * 関数 `joinStringsWith` を `String -> String -> String -> String` 型の関数であって，その第一引数を第二引数と第三引数の間に配置して新しい文字列を作成するようなものとして定義してください．`{{#example_eval Examples/Intro.lean joinStringsWithEx 0}}` は `{{#example_eval Examples/Intro.lean joinStringsWithEx 1}}` に等しくなるはずです.
  <!-- * What is the type of `joinStringsWith ": "`? Check your answer with Lean. -->
  * `joinStringsWith ": "` の型は何でしょうか？ Lean で答えを確認してください．
  <!-- * Define a function `volume` with type `Nat → Nat → Nat → Nat` that computes the volume of a rectangular prism with the given height, width, and depth. -->
