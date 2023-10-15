@@ -1,3 +1,5 @@
 *.js linguist-documentation=true
 *.py linguist-documentation=true
 *.css linguist-documentation=true
+*.el linguist-documentation=true
+*.rst linguist-documentation=true
