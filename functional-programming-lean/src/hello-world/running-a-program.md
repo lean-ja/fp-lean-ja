@@ -72,7 +72,7 @@ A program that performs neither input nor output can't ask a user for data, crea
 Lean is written in itself, and the Lean compiler certainly reads files, creates files, and interacts with text editors.
 How can a language in which the same expression always yields the same result support programs that read files from disk, when the contents of these files might change over time?
 -->
-一方で，有用なプログラムは世界と対話する必要があります．入力や出力を行わないプログラムは，ユーザーからデータを要求したり，ディスクにファイルを作成したり，ネットワーク接続を開いたりすることはできません．LeanはLean自身で記述されていますが，Leanコンパイラはファイルを読み込んだり，ファイルを作成したり，テキストエディタと対話したりします．このような時間の経過とともに内容の変化する可能性があるファイルをディスクから読み込むというプログラムを，同じ式は常に同じ結果を返すという性質を持つ言語ではどのようにサポートするのでしょうか？
+一方で，有用なプログラムは世界と対話する必要があります．入力や出力を行わないプログラムは，ユーザからデータを要求したり，ディスクにファイルを作成したり，ネットワーク接続を開いたりすることはできません．LeanはLean自身で記述されていますが，Leanコンパイラはファイルを読み込んだり，ファイルを作成したり，テキストエディタと対話したりします．このような時間の経過とともに内容の変化する可能性があるファイルをディスクから読み込むというプログラムを，同じ式は常に同じ結果を返すという性質を持つ言語ではどのようにサポートするのでしょうか？
 
 <!--
 This apparent contradiction can be resolved by thinking a bit differently about side effects.
@@ -106,7 +106,7 @@ The RTS executes these actions, delegating to the user's Lean code to carry out 
 From the internal perspective of Lean, programs are free of side effects, and `IO` actions are just descriptions of tasks to be carried out.
 From the external perspective of the program's user, there is a layer of side effects that create an interface to the program's core logic.
 -->
-この副作用のモデルは，Lean言語全体，そのコンパイラ，およびランタイムシステム（RTS）の総合的な動作方法とかなり類似しています．ランタイムシステム内のプリミティブな部分はCで書かれており，すべての基本的な作用を実装しています．プログラムを実行する際，RTSは`main`アクションを呼び出し，新しい`IO`アクションを実行するためにRTSに返します．RTSはこれらのアクションを実行し，ユーザーのLeanコードに計算を実行するよう委任します．Leanの内部の視点からは，プログラムには副作用がなく，`IO`アクションは実行されるべきタスクの説明にすぎません．プログラムのユーザーの外部の視点からは，プログラムのコアロジックへのインターフェースを作成する副作用のレイヤーが存在します．
+この副作用のモデルは，Lean言語全体，そのコンパイラ，およびランタイムシステム（RTS）の総合的な動作方法とかなり類似しています．ランタイムシステム内のプリミティブな部分はCで書かれており，すべての基本的な作用を実装しています．プログラムを実行する際，RTSは`main`アクションを呼び出し，新しい`IO`アクションを実行するためにRTSに返します．RTSはこれらのアクションを実行し，ユーザのLeanコードに計算を実行するよう委任します．Leanの内部の視点からは，プログラムには副作用がなく，`IO`アクションは実行されるべきタスクの説明にすぎません．プログラムのユーザの外部の視点からは，プログラムのコアロジックへのインターフェースを作成する副作用のレイヤーが存在します．
 
 <!--
 ## Real-World Functional Programming
@@ -150,7 +150,7 @@ The following program, called `HelloName.lean`, asks the user for their name and
 -->
 ## `IO`アクションの結合
 
-ほとんどの有用なプログラムは，出力の生成に加えて入力も受け付けます．さらに，それらは入力に基づいて決定を下すことがあり，入力データを計算の一部として使用することがあります．次のプログラム，`HelloName.lean`は，ユーザーに名前を尋ね，それから挨拶をします．
+ほとんどの有用なプログラムは，出力の生成に加えて入力も受け付けます．さらに，それらは入力に基づいて決定を下すことがあり，入力データを計算の一部として使用することがあります．次のプログラム，`HelloName.lean`は，ユーザに名前を尋ね，それから挨拶をします．
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:all}}
 ```
@@ -173,7 +173,7 @@ This program can be run in the same manner as the prior program:
 <!--
 If the user responds with `David`, a session of interaction with the program reads:
 -->
-ユーザーが`David`と応答する場合，プログラムとの対話セッションが次のように表示されます．
+ユーザが`David`と応答する場合，プログラムとの対話セッションが次のように表示されます．
 ```
 {{#command_out {hello-name} {./run} }}
 ```
@@ -214,7 +214,7 @@ If they were global variables as in C, then there would be no meaningful way to 
 <!--
 The next part of the `do` block is responsible for asking the user for their name:
 -->
-`do`ブロックの次の部分は，ユーザーに名前を尋ねます．
+`do`ブロックの次の部分は，ユーザに名前を尋ねます．
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:question}}
 ```
