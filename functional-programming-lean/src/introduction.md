@@ -21,7 +21,7 @@ Familiarity with functional languages such as Haskell, OCaml, or F# is not requi
 On the other hand, this book does assume knowledge of concepts like loops, functions, and data structures that are common to most programming languages.
 While this book is intended to be a good first book on functional programming, it is not a good first book on programming in general. -->
 
-本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマを対象としています．Haskell、OCaml、F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
+本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマを対象としています．Haskell, OCaml, F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
 
 <!-- Mathematicians who are using Lean as a proof assistant will likely need to write custom proof automation tools at some point.
 This book is also for them.
@@ -53,7 +53,7 @@ Lean でプログラムを書いて実行する前に, 自分のコンピュー�
  * `lake` は, `cargo` や `make`, Gradle と同様に, Lean パッケージとその依存関係をビルドします．
  <!-- * `lean` type checks and compiles individual Lean files as well as providing information to programmer tools about files that are currently being written.
    Normally, `lean` is invoked by other tools rather than directly by users. -->
- * `Lean` は、個々の Lean ファイルを型チェックし, コンパイルするだけでなく, プログラマ・ツールに現在書かれているファイルに関する情報を提供します. 通常, Lean はユーザが直接呼び出すのではなく, 他のツールによって呼び出されます.
+ * `Lean` は, 個々の Lean ファイルを型チェックし, コンパイルするだけでなく, プログラマ・ツールに現在書かれているファイルに関する情報を提供します. 通常, Lean はユーザが直接呼び出すのではなく, 他のツールによって呼び出されます.
  <!-- * Plugins for editors, such as Visual Studio Code or Emacs, that communicate with `lean` and present its information conveniently. -->
  * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し, lean の情報を便利に表示することができます.
 
@@ -113,4 +113,4 @@ For example, to enter `α`, type `\alpha`.
 To find out how to type a character in Visual Studio Code, point the mouse at it and look at the tooltip.
 In Emacs, use `C-c C-k` with point on the character in question. -->
 
-デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ(`\`)の後に名前を続けることでこれらの文字を入力することができます. たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合、`C-c C-k` を問題の文字にポイントして使います．
+デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ(`\`)の後に名前を続けることでこれらの文字を入力することができます. たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合, `C-c C-k` を問題の文字にポイントして使います．

@@ -3,7 +3,7 @@
 
 <!-- In Lean, definitions are introduced using the `def` keyword. For instance, to define the name `{{#example_in Examples/Intro.lean helloNameVal}}` to refer to the string `{{#example_out Examples/Intro.lean helloNameVal}}`, write: -->
 
-Lean では，定義は `def` というキーワードを使って導入されます．例えば, 文字列 `{{#example_out Examples/Intro.lean helloNameVal}}` を指す名前として `{{#example_in Examples/Intro.lean helloNameVal}}` を定義するには、こう書きます：
+Lean では，定義は `def` というキーワードを使って導入されます．例えば, 文字列 `{{#example_out Examples/Intro.lean helloNameVal}}` を指す名前として `{{#example_in Examples/Intro.lean helloNameVal}}` を定義するには, こう書きます：
 
 ```lean
 {{#example_decl Examples/Intro.lean hello}}
@@ -74,7 +74,7 @@ Lean で関数を定義するには様々な方法があります．最もシン
 
 <!-- Just as functions are applied to multiple arguments by writing spaces between each argument, functions that accept multiple arguments are defined with spaces between the arguments' names and types. The function `maximum`, whose result is equal to the greatest of its two arguments, takes two `Nat` arguments `n` and `k` and returns a `Nat`. -->
 
-関数が各引数の間にスペースを書くことで複数の引数に適用されるように, 複数の引数を受け付ける関数は, 引数の名前と型の間にスペースを入れることで定義されます．関数 `maximum` は，2つの引数の最大値を返すもので，2つの `Nat` 型引数 `n` と `k` を取り、`Nat` を返します．
+関数が各引数の間にスペースを書くことで複数の引数に適用されるように, 複数の引数を受け付ける関数は, 引数の名前と型の間にスペースを入れることで定義されます．関数 `maximum` は，2つの引数の最大値を返すもので，2つの `Nat` 型引数 `n` と `k` を取り, `Nat` を返します．
 
 ```lean
 {{#example_decl Examples/Intro.lean maximum}}

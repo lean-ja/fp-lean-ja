@@ -77,7 +77,7 @@ provide it directly: -->
 <!-- To check the type of an expression without evaluating it, use `#check`
 instead of `#eval`. For instance: -->
 
-式を評価せずに型を確かめるには、`#eval` の代わりに `#check` を使います．例えば
+式を評価せずに型を確かめるには, `#eval` の代わりに `#check` を使います．例えば
 
 ```lean
 {{#example_in Examples/Intro.lean oneMinusTwoIntType}}
