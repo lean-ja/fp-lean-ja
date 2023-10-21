@@ -66,7 +66,7 @@ The value of the expression is an `IO` action that will write the string and a n
 Having found this value, the next step is to execute it, which causes the string and newline to actually be written to `stdout`.
 Statements that consist only of expressions do not introduce any new variables.
 -->
-ブロックの最初の文，`{{#include ../../../examples/hello-name/HelloName.lean:line3}}` は式から成ります．式を実行するには，まず評価されます．ここでは，`IO.FS.Stream.putStrLn` の型は `IO.FS.Stream → String → IO Unit` です．これは，ストリームと文字列を受け入れて `IO` アクションを返す関数です．この式は関数呼び出しのための [アクセサー表記](../getting-to-know/structures.md#behind-the-scenes) を使用しています．この関数には，標準出力ストリームと文字列，2つの引数が適用されています．この式の値は，文字列と改行文字を出力ストリームに書き込む `IO` アクションです．この値を見つけ，それを実行し，文字列と改行が実際に `stdout` に書き込まれるようにします．式だけから成る文には新しい変数が導入されないことに注意してください．
+ブロックの最初の文，`{{#include ../../../examples/hello-name/HelloName.lean:line3}}` は式から成ります．式を実行するには，まず評価されます．ここでは，`IO.FS.Stream.putStrLn` の型は `IO.FS.Stream → String → IO Unit` です．これは，ストリームと文字列を受け入れて `IO` アクションを返す関数です．この式は関数呼び出しのための [アクセサ表記](../getting-to-know/structures.md#behind-the-scenes) を使用しています．この関数には，標準出力ストリームと文字列，2つの引数が適用されています．この式の値は，文字列と改行文字を出力ストリームに書き込む `IO` アクションです．この値を見つけ，それを実行し，文字列と改行が実際に `stdout` に書き込まれるようにします．式だけから成る文には新しい変数が導入されないことに注意してください．
 
 <!--
 The next statement in the block is `{{#include ../../../examples/hello-name/HelloName.lean:line4}}`.
@@ -77,7 +77,7 @@ Assume the user writes "`David`".
 The resulting line (`"David\n"`) is associated with `input`, where the escape sequence `\n` denotes the newline character.
 -->
 ブロック内の次の文は `{{#include ../../../examples/hello-name/HelloName.lean:line4}}` です．`IO.FS.Stream.getLine` の型は `IO.FS.Stream → IO String` で，これはストリームから文字列を返す `IO` アクションを表す関数です．
-これもまた，アクセサー表記の例です．この `IO` アクションが実行され，プログラムはユーザーが完全な入力行を入力するのを待ちます．ユーザーが `"David"` と入力したとしましょう．生成された行（`"David\n"`）は `input` に関連付けられ，ここでエスケープシーケンス `\n` は改行文字を示します．
+これもまた，アクセサ表記の例です．この `IO` アクションが実行され，プログラムはユーザが完全な入力行を入力するのを待ちます．ユーザが `"David"` と入力したとしましょう．生成された行（`"David\n"`）は `input` に関連付けられ，ここでエスケープシーケンス `\n` は改行文字を示します．
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block5}}
 ```
