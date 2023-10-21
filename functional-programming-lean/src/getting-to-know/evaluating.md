@@ -69,7 +69,7 @@ arguments, Lean simply writes the function next to its
 arguments (e.g. `f x`). Function application is one of the most common operations,
 so it pays to keep it concise. Rather than writing -->
 
-通常の数学的表記法でも, 大半のプログラミング言語でも, 関数をその引数に適用する際には括弧を使います（例：`f(x)`）が、リーンは単に関数をその引数の横に書きます (例：`f x`). 関数の使用は最も一般的な操作のひとつであるため, 簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
+通常の数学的表記法でも, 大半のプログラミング言語でも, 関数をその引数に適用する際には括弧を使います（例：`f(x)`）が、Lean は単に関数をその引数の横に書きます (例：`f x`). 関数の使用は最も一般的な操作のひとつであるため, 簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
 
 ```lean
 #eval String.append("Hello, ", "Lean!")
