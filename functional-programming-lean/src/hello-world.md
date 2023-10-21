@@ -5,7 +5,7 @@ While Lean has been designed to have a rich interactive environment in which pro
 This means that it also has a batch-mode compiler, a build system, a package manager, and all the other tools that are necessary for writing programs.
 -->
 
-Leanは，プログラマーがお気に入りのテキストエディタから出ることなく，多くのフィードバックを得ることができる豊かなインタラクティブ環境を持つよう設計されています．一方で，Leanは実用的なプログラムを記述することができる言語でもあります．つまり，バッチモードのコンパイラ，ビルドシステム，パッケージマネージャ，およびプログラムを書くために必要な他のツールも持っています．
+Leanは，プログラマがお気に入りのテキストエディタから出ることなく，多くのフィードバックを得ることができる豊かなインタラクティブ環境を持つよう設計されています．一方で，Leanは実用的なプログラムを記述することができる言語でもあります．つまり，バッチモードのコンパイラ，ビルドシステム，パッケージマネージャ，およびプログラムを書くために必要な他のツールも持っています．
 
 <!--
 While the [previous chapter](./getting-to-know.md) presented the basics of functional programming in Lean, this chapter explains how to start a programming project, compile it, and run the result.
