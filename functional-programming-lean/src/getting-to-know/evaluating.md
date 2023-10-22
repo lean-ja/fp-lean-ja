@@ -69,7 +69,7 @@ arguments, Lean simply writes the function next to its
 arguments (e.g. `f x`). Function application is one of the most common operations,
 so it pays to keep it concise. Rather than writing -->
 
-通常の数学的表記法でも, 大半のプログラミング言語でも, 関数をその引数に適用する際には括弧を使います（例：`f(x)`）が、リーンは単に関数をその引数の横に書きます (例：`f x`). 関数の使用は最も一般的な操作のひとつであるため, 簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
+通常の数学的表記法でも, 大半のプログラミング言語でも, 関数をその引数に適用する際には括弧を使います（例：`f(x)`）が, Lean は単に関数をその引数の横に書きます (例：`f x`). 関数の使用は最も一般的な操作のひとつであるため, 簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
 
 ```lean
 #eval String.append("Hello, ", "Lean!")
@@ -117,7 +117,7 @@ Because Lean is an expression-oriented functional language, there are no conditi
 They are written using `if`, `then`, and `else`. For
 instance, -->
 
-命令形言語には, しばしば2種類の条件分岐があります：Bool 値に基づいてどの命令を実行するかを決定する条件**文**と，Bool 値に基づいて2つの式のうちどちらを評価するかを決定する条件**式**です．たとえば C や C++ では、条件文は `if` と `else` を使って書かれ，条件式は三項演算子 `?` `:` を使って書かれます．Python では，条件文は `if` で始まりますが，条件式は `if` を真ん中に置きます．Lean はというと式指向の関数型言語ですから，条件文はありません．条件式のみです．条件式は `if`, `then`, `else` を使って書かれます．例えば，
+命令形言語には, しばしば2種類の条件分岐があります：Bool 値に基づいてどの命令を実行するかを決定する条件**文**と，Bool 値に基づいて2つの式のうちどちらを評価するかを決定する条件**式**です．たとえば C や C++ では, 条件文は `if` と `else` を使って書かれ，条件式は三項演算子 `?` `:` を使って書かれます．Python では，条件文は `if` で始まりますが，条件式は `if` を真ん中に置きます．Lean はというと式指向の関数型言語ですから，条件文はありません．条件式のみです．条件式は `if`, `then`, `else` を使って書かれます．例えば，
 
 ``` Lean
 {{#example_eval Examples/Intro.lean stringAppend 0}}

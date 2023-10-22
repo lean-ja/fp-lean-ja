@@ -3,7 +3,7 @@
 
 <!-- In Lean, definitions are introduced using the `def` keyword. For instance, to define the name `{{#example_in Examples/Intro.lean helloNameVal}}` to refer to the string `{{#example_out Examples/Intro.lean helloNameVal}}`, write: -->
 
-Lean では，定義は `def` というキーワードを使って導入されます．例えば, 文字列 `{{#example_out Examples/Intro.lean helloNameVal}}` を指す名前として `{{#example_in Examples/Intro.lean helloNameVal}}` を定義するには、こう書きます：
+Lean では，定義は `def` というキーワードを使って導入されます．例えば, 文字列 `{{#example_out Examples/Intro.lean helloNameVal}}` を指す名前として `{{#example_in Examples/Intro.lean helloNameVal}}` を定義するには, こう書きます：
 
 ```lean
 {{#example_decl Examples/Intro.lean hello}}
@@ -74,7 +74,7 @@ Lean で関数を定義するには様々な方法があります．最もシン
 
 <!-- Just as functions are applied to multiple arguments by writing spaces between each argument, functions that accept multiple arguments are defined with spaces between the arguments' names and types. The function `maximum`, whose result is equal to the greatest of its two arguments, takes two `Nat` arguments `n` and `k` and returns a `Nat`. -->
 
-関数が各引数の間にスペースを書くことで複数の引数に適用されるように, 複数の引数を受け付ける関数は, 引数の名前と型の間にスペースを入れることで定義されます．関数 `maximum` は，2つの引数の最大値を返すもので，2つの `Nat` 型引数 `n` と `k` を取り、`Nat` を返します．
+関数が各引数の間にスペースを書くことで複数の引数に適用されるように, 複数の引数を受け付ける関数は, 引数の名前と型の間にスペースを入れることで定義されます．関数 `maximum` は，2つの引数の最大値を返すもので，2つの `Nat` 型引数 `n` と `k` を取り, `Nat` を返します．
 
 ```lean
 {{#example_decl Examples/Intro.lean maximum}}
@@ -224,4 +224,4 @@ Definitions that are to be unfolded are called _reducible_.
 Control over reducibility is essential to allow Lean to scale: fully unfolding all definitions can result in very large types that are slow for a machine to process and difficult for users to understand.
 Definitions produced with `abbrev` are marked as reducible. -->
 
-舞台裏では, オーバーロードの解決時に, 展開可能(unfoldable)であると内部でマークされる定義もあれば，そうでない定義もあります．展開される定義は *reducible* と呼ばれます．Lean をスケールさせるためには，定義の展開可能性のコントロールが不可欠です：すべての定義を完全に展開すると, 型が非常に大きくなり, 機械が処理するのに時間がかかりますし, ユーザーにとっても理解しづらいものになります．`abbrev` で生成された定義は reducible であるとマークされます．
+舞台裏では, オーバーロードの解決時に, 展開可能(unfoldable)であると内部でマークされる定義もあれば，そうでない定義もあります．展開される定義は *reducible* と呼ばれます．Lean をスケールさせるためには，定義の展開可能性のコントロールが不可欠です：すべての定義を完全に展開すると, 型が非常に大きくなり, 機械が処理するのに時間がかかりますし, ユーザにとっても理解しづらいものになります．`abbrev` で生成された定義は reducible であるとマークされます．
