@@ -1,9 +1,9 @@
 [book]
-authors = ["David Thrane Christiansen"]
-language = "en"
+authors = ["Seasawher"]
+language = "ja"
 multilingual = false
 src = "src"
-title = "Functional Programming in Lean"
+title = "Functional Programming in Lean 日本語訳"
 
 [build]
 
@@ -23,6 +23,7 @@ command = "python -X utf8 scripts/lean-version.py"
 [output.html]
 additional-css = ["custom.css", "pygments.css"]
 mathjax-support = true
+git-repository-url = "https://github.com/lean-ja/fp-lean-ja"
 
 #[output.pandoc]
 #command = "python -X utf8 ../../scripts/one-markdown.py"
