@@ -1,10 +1,10 @@
-<!--
-# Running a Program
+<!-- # Running a Program -->
+# プログラムの実行
 
+<!--
 The simplest way to run a Lean program is to use the `--run` option to the Lean executable.
 Create a file called `Hello.lean` and enter the following contents:
 -->
-# プログラムの実行
 
 Lean プログラムを実行する最も簡単な方法は，Lean の実行ファイルに `--run` オプションを使用することです．`Hello.lean` という名前のファイルを作成し，以下の内容を入力してみましょう．
 
@@ -19,24 +19,24 @@ Then, from the command line, run:
 次に，コマンドラインから以下を実行してください．
 
 ```
-lean --run Hello.lean
+{{#command {simple-hello} {hello} {lean --run Hello.lean} }}
 ```
 
 <!--
 The program displays `{{#command_out {hello} {lean --run Hello.lean} }}` and exits.
 -->
 
-このプログラムは `Hello, world!` を表示して終了します．
+このプログラムは `{{#command_out {hello} {lean --run Hello.lean} }}` を表示して終了します．
+
+<!-- ## Anatomy of a Greeting -->
+## 挨拶の構造
 
 <!--
-## Anatomy of a Greeting
-
 When Lean is invoked with the `--run` option, it invokes the program's `main` definition.
 In programs that do not take command-line arguments, `main` should have type `IO Unit`.
 This means that `main` is not a function, because there are no arrows (`→`) in its type.
 Instead of being a function that has side effects, `main` consists of a description of effects to be carried out.
 -->
-## 挨拶の構造
 
 Lean を `--run` オプション付きで実行すると，プログラムの `main` 定義が呼び出されます．コマンドライン引数を取らないプログラムの場合，`main` の型は `IO Unit` であるべきです．この型には矢印（`→`）が含まれていません．これは `main` が関数でないことを意味します．つまり，`main` は副作用を持つ関数ではなく，実行される作用の説明から成り立っています．
 
@@ -58,15 +58,15 @@ Lean distinguishes between _evaluation_ of expressions, which strictly adheres t
 Because this action doesn't read any interesting information from the environment in the process of emitting the string, `IO.println` has type `String → IO Unit`.
 If it did return something interesting, then that would be indicated by the `IO` action having a type other than `Unit`.
 -->
-`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション** と呼ばれます．これらのプログラムは **IO アクション**　と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IOアクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
+`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション**と呼ばれます．これらのプログラムは **IO アクション**と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IOアクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
+
+<!-- ## Functional Programming vs Effects -->
+## 関数型プログラミングと作用
 
 <!--
-## Functional Programming vs Effects
-
 Lean's model of computation is based on the evaluation of mathematical expressions, in which variables are given exactly one value that does not change over time.
 The result of evaluating an expression does not change, and evaluating the same expression again will always yield the same result.
 -->
-## 関数型プログラミングと作用
 
 Lean の計算モデルは数学的な式の評価に基づいています．変数は正確に1つの値を持ち，時間が経っても変化することはありません．式を評価した結果も変わることがなく，同じ式を評価するたびに常に同じ結果が得られます．
 
@@ -112,9 +112,10 @@ From the external perspective of the program's user, there is a layer of side ef
 -->
 この副作用のモデルは，Lean 言語全体，コンパイラ，およびランタイムシステム（RTS）の総合的な動作方法とかなり類似しています．ランタイムシステム内のプリミティブな部分はCで書かれており，すべての基本的な作用を実装しています．プログラムを実行する際，RTSは `main` アクションを呼び出します．呼び出された `main` アクションは，実行されるべき新しい IO アクションをRTSに返します．RTS はこれらのアクションを実行し，ユーザの Lean コードに計算を実行させます．Lean という内部の視点からは，プログラムに副作用はなく，IO アクションは実行されるべきタスクの説明にすぎません．プログラムのユーザという外部の視点からは，副作用のレイヤが存在していて，プログラムのコアロジックへのインターフェースを形成しているように見えます．
 
-<!--
-## Real-World Functional Programming
+<!-- ## Real-World Functional Programming -->
+## 現実世界の関数型プログラミング
 
+<!--
 The other useful way to think about side effects in Lean is by considering `IO` actions to be functions that take the entire world as an argument and return a value paired with a new world.
 In this case, reading a line of text from standard input _is_ a pure function, because a different world is provided as an argument each time.
 Writing a line of text to standard output is a pure function, because the world that the function returns is different from the one that it began with.
@@ -122,7 +123,6 @@ Programs do need to be careful to never re-use the world, nor to fail to return 
 Careful abstraction boundaries can make this style of programming safe.
 If every primitive `IO` action accepts one world and returns a new one, and they can only be combined with tools that preserve this invariant, then the problem cannot occur.
 -->
-## 現実世界の関数型プログラミング
 
 Lean における副作用について考えるもう一つの有用な方法は，IO アクションを，世界全体を引数として受け取り，値と新しい世界の組を返す関数と考えることです．この場合，標準入力からテキストを読み取ることは純粋な関数です．なぜなら，異なる世界が引数として都度渡されるからです．標準出力にテキストを書き込むことも純粋な関数です．なぜなら，関数が返す世界は実行開始時のものと異なるからです．プログラムは世界を再利用しないように，新しい世界を返し損ねないように，よくよく注意する必要があります．それは結局，タイムトラベルまたは世界の終了を意味するからです．注意深い抽象化で副作用を隔離することにより，Lean は安全なプログラミングスタイルを実現しています．世界が与えられたら常に新しい世界を返すようなプリミティブ `IO` アクションを，その条件を保つツールとだけ組み合わせている限り，問題は発生しないのです．
 
@@ -145,14 +145,14 @@ To enable programs to use multiple effects, there is a sub-language of Lean call
 この副作用のモデルは，Lean 内部で RTS によって実行されるタスクの説明としての `IO` アクションがどのように表現されているかを良く説明しています．実際の世界を変える関数は抽象性の壁の背後に隠れています．しかし，実際のプログラムは通常，1つだけでなく一連の作用から成り立っています．プログラムが複数の作用を利用できるようにするために，Lean には `do` 記法と呼ばれるサブ言語があり，プリミティブな IO アクションを安全に組み合わせて，より大きく有用なプログラムを作ることができます．
 
 
-<!--
-## Combining `IO` Actions
+<!-- ## Combining `IO` Actions -->
+## `IO`アクションの結合
 
+<!--
 Most useful programs accept input in addition to producing output.
 Furthermore, they may take decisions based on input, using the input data as part of a computation.
 The following program, called `HelloName.lean`, asks the user for their name and then greets them:
 -->
-## `IO`アクションの結合
 
 ほとんどの有用なプログラムは，出力を生成するだけでなく，入力を受け付けます．さらに，入力データをもとに計算を行い，決定を下すこともあります．次のプログラム，`HelloName.lean` は，ユーザに名前を尋ね，それから挨拶をします．
 ```lean
@@ -172,16 +172,14 @@ This program can be run in the same manner as the prior program:
 -->
 このプログラムは，前のプログラムと同じ方法で実行できます．
 ```
-lean --run HelloName.lean
+{{#command {hello-name} {hello-name} {./run} {lean --run HelloName.lean}}}
 ```
 <!--
 If the user responds with `David`, a session of interaction with the program reads:
 -->
 ユーザが`David`と応答する場合，プログラムとの対話セッションが次のように表示されます．
 ```
-How would you like to be addressed?
-David
-Hello, David!
+{{#command_out {hello-name} {./run} }}
 ```
 
 <!--
@@ -234,7 +232,7 @@ The definition of `name` uses `:=`, rather than `←`, because `String.dropRight
 Finally, the last line in the program is:
 -->
 最後に，プログラムの最終行は以下のようなものです．
-```
+```lean
 {{#include ../../../examples/hello-name/HelloName.lean:answer}}
 ```
 <!--
