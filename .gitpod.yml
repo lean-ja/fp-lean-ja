@@ -1,0 +1,11 @@
+image:
+  file: ./Dockerfile
+
+vscode:
+  extensions:
+    - leanprover.lean4
+    - yzhang.markdown-all-in-one
+    - pkief.material-icon-theme
+
+tasks:
+  - init: lake exe cache get
