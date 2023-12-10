@@ -8,17 +8,12 @@ In Lean, this is done using _structures_, which are analogous to `struct`s in C 
 
 プログラムを書く最初のステップは，通常，問題領域の概念を確認し，それをコードで適切に表現することです．ドメイン概念は，他のもっと単純な概念の集まりであることがあります．そういったとき，単純な構成要素をひとつの「パッケージ」にまとめ，意味のある名前をつけると便利でしょう．Lean では，それは構造体(structure)によって実現できます．これは Rust や C の `struct`，C# でいう `record` に対応するものです．
 
-<!-- Defining a structure introduces a completely new type to Lean that can't be reduced to any other type.
+Defining a structure introduces a completely new type to Lean that can't be reduced to any other type.
 This is useful because multiple structures might represent different concepts that nonetheless contain the same data.
 For instance, a point might be represented using either Cartesian or polar coordinates, each being a pair of floating-point numbers.
-Defining separate structures prevents API clients from confusing one for another. -->
+Defining separate structures prevents API clients from confusing one for another.
 
-構造体を定義すると, Lean は他のどの型にも簡約できない，全く新しい型を導入します．構造体は，同じデータを含んでいても異なる概念を表している可能性があるため，他の型に簡約できない必要があります．例えば，点はデカルト座標か極座標のどちらかを使って表現しても，それぞれ浮動小数点数の組であることは同じです．別々の構造体を定義することで，APIの使用者が混同しにくくなります．
-
-<!-- Lean's floating-point number type is called `Float`, and floating-point numbers are written in the usual notation. -->
-
-Lean の浮動小数点数型は `Float` と呼ばれます．浮動小数点数は一般的な記法で記述されます．
-
+Lean's floating-point number type is called `Float`, and floating-point numbers are written in the usual notation.
 ```lean
 {{#example_in Examples/Intro.lean onePointTwo}}
 ```
