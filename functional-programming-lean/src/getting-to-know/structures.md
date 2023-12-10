@@ -1,12 +1,9 @@
-<!-- # Structures -->
-# 構造体
+# Structures
 
-<!-- The first step in writing a program is usually to identify the problem domain's concepts, and then find suitable representations for them in code.
+The first step in writing a program is usually to identify the problem domain's concepts, and then find suitable representations for them in code.
 Sometimes, a domain concept is a collection of other, simpler, concepts.
 In that case, it can be convenient to group these simpler components together into a single "package", which can then be given a meaningful name.
-In Lean, this is done using _structures_, which are analogous to `struct`s in C or Rust and `record`s in C#. -->
-
-プログラムを書く最初のステップは，通常，問題領域の概念を確認し，それをコードで適切に表現することです．ドメイン概念は，他のもっと単純な概念の集まりであることがあります．そういったとき，単純な構成要素をひとつの「パッケージ」にまとめ，意味のある名前をつけると便利でしょう．Lean では，それは構造体(structure)によって実現できます．これは Rust や C の `struct`，C# でいう `record` に対応するものです．
+In Lean, this is done using _structures_, which are analogous to `struct`s in C or Rust and `record`s in C#.
 
 Defining a structure introduces a completely new type to Lean that can't be reduced to any other type.
 This is useful because multiple structures might represent different concepts that nonetheless contain the same data.
