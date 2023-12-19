@@ -60,6 +60,8 @@ Lean の浮動小数点数型は `Float` と呼ばれます．浮動小数点数
 A Cartesian point is a structure with two `Float` fields, called `x` and `y`.
 This is declared using the `structure` keyword.
 
+デカルト点(Cartesian point)は, `x` と `y` という2つの `Float` 型のフィールドを持つ構造体です．これは `structure` キーワードを使って宣言されます．
+
 ```lean
 {{#example_decl Examples/Intro.lean Point}}
 ```
