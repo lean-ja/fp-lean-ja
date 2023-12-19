@@ -37,7 +37,11 @@ Lean の浮動小数点数型は `Float` と呼ばれます．浮動小数点数
 ```output info
 {{#example_out Examples/Intro.lean zeroPointZero}}
 ```
-When floating point numbers are written with the decimal point, Lean will infer the type `Float`. If they are written without it, then a type annotation may be necessary.
+
+<!-- When floating point numbers are written with the decimal point, Lean will infer the type `Float`. If they are written without it, then a type annotation may be necessary. -->
+
+浮動小数点数が小数点付きで記述されている場合, Lean は `Float` 型だと推論します．小数点なしで書かれた場合は, 型注釈が必要になることがあります.
+
 ```lean
 {{#example_in Examples/Intro.lean zeroNat}}
 ```
