@@ -12,21 +12,32 @@ on:
     tags:
       - '*'
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  Build:
+  build:
     runs-on: ubuntu-latest
     steps:
-
     - name: Install expect
       run: sudo apt-get install -y expect
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Setup Python
       uses: actions/setup-python@v3
@@ -53,12 +64,6 @@ jobs:
       with:
         mdbook-version: '0.4.17'
 
-    - name: Install mdbook-wordcount
-      uses: baptiste0928/cargo-install@v1
-      with:
-        crate: mdbook-wordcount
-        version: latest
-
     - name: Build example code
       run: |
         cd examples
@@ -69,22 +74,18 @@ jobs:
         cd functional-programming-lean
         mdbook build
 
-    - name: Zip html contents
-      run: |
-        cd functional-programming-lean/book/
-        zip -rq html.zip html/
-
-    - name: Release preview zip if a new tag is pushed
-      uses: softprops/action-gh-release@v1
-      if: ${{ startsWith(github.ref, 'refs/tags/pre-') }}
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        files: functional-programming-lean/book/html.zip
-        token: ${{ secrets.GITHUB_TOKEN }}
+        path: functional-programming-lean/book/html
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/main' }}
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: functional-programming-lean/book/html
-        publish_branch: gh-pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
