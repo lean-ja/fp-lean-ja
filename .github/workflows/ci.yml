@@ -33,7 +33,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
     - name: Install expect
       run: sudo apt-get install -y expect
 
@@ -65,12 +64,6 @@ jobs:
       with:
         mdbook-version: '0.4.17'
 
-    - name: Install mdbook-wordcount
-      uses: baptiste0928/cargo-install@v1
-      with:
-        crate: mdbook-wordcount
-        version: latest
-
     - name: Build example code
       run: |
         cd examples
@@ -84,7 +77,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ./functional-programming-lean/book
+        path: functional-programming-lean/book
 
   deploy:
     environment:
