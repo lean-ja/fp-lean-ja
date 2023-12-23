@@ -56,9 +56,8 @@ Lean の浮動小数点数型は `Float` と呼ばれます．浮動小数点数
 {{#example_out Examples/Intro.lean zeroFloat}}
 ```
 
-
-A Cartesian point is a structure with two `Float` fields, called `x` and `y`.
-This is declared using the `structure` keyword.
+<!-- A Cartesian point is a structure with two `Float` fields, called `x` and `y`.
+This is declared using the `structure` keyword. -->
 
 デカルト点(Cartesian point)は, `x` と `y` という2つの `Float` 型のフィールドを持つ構造体です．これは `structure` キーワードを使って宣言されます．
 
@@ -66,19 +65,26 @@ This is declared using the `structure` keyword.
 {{#example_decl Examples/Intro.lean Point}}
 ```
 
-After this declaration, `Point` is a new structure type.
+<!-- After this declaration, `Point` is a new structure type.
 The final line, which says `deriving Repr`, asks Lean to generate code to display values of type `Point`.
 This code is used by `#eval` to render the result of evaluation for consumption by programmers, analogous to the `repr` function in Python.
-It is also possible to override the compiler's generated display code.
+It is also possible to override the compiler's generated display code. -->
 
-The typical way to create a value of a structure type is to provide values for all of its fields inside of curly braces.
-The origin of a Cartesian plane is where `x` and `y` are both zero:
+この宣言の後, `Point` は新しい構造体型になります．最後の行には `deriving Repr` と書かれていますが，これは Lean に `Point` 型の値を表示するコードを生成するよう指示しています．このコードは `#eval` で使用され，プログラマに評価結果を表示します. Python での `repr` 関数と同様のものです．コンパイラが生成した表示コードを上書きすることも可能です.
+
+<!-- The typical way to create a value of a structure type is to provide values for all of its fields inside of curly braces.
+The origin of a Cartesian plane is where `x` and `y` are both zero: -->
+
+構造体型の値を作る典型的な方法は，中括弧の中にすべてのフィールドの値を指定することです．デカルト平面(Cartesian plane)の原点とは，`x` と `y` がともにゼロとなる場所です：
 
 ```lean
 {{#example_decl Examples/Intro.lean origin}}
 ```
 
-If the `deriving Repr` line in `Point`'s definition were omitted, then attempting `{{#example_in Examples/Intro.lean PointNoRepr}}` would yield an error similar to that which occurs when omitting a function's argument:
+<!-- If the `deriving Repr` line in `Point`'s definition were omitted, then attempting `{{#example_in Examples/Intro.lean PointNoRepr}}` would yield an error similar to that which occurs when omitting a function's argument: -->
+
+`Point` の定義で `deriving Repr` の行を省略すると，`{{#example_in Examples/Intro.lean PointNoRepr}}` を実行しようとしたとき, 関数の引数を省略したときと同様のエラーが発生します：
+
 ```output error
 {{#example_out Examples/Intro.lean PointNoRepr}}
 ```
