@@ -88,15 +88,23 @@ The origin of a Cartesian plane is where `x` and `y` are both zero: -->
 ```output error
 {{#example_out Examples/Intro.lean PointNoRepr}}
 ```
-That message is saying that the evaluation machinery doesn't know how to communicate the result of evaluation back to the user.
 
-Happily, with `deriving Repr`, the result of `{{#example_in Examples/Intro.lean originEval}}` looks very much like the definition of `origin`.
+<!-- That message is saying that the evaluation machinery doesn't know how to communicate the result of evaluation back to the user. -->
+
+このメッセージは, 評価マシンが評価結果をユーザに伝える方法を知らないという意味です．
+
+<!-- Happily, with `deriving Repr`, the result of `{{#example_in Examples/Intro.lean originEval}}` looks very much like the definition of `origin`. -->
+
+喜ばしいことに `deriving Repr` を付け加えれば評価することができ，`origin` の定義とよく似た結果が `{{#example_in Examples/Intro.lean originEval}}` から出力されます．
+
 ```output info
 {{#example_out Examples/Intro.lean originEval}}
 ```
 
-Because structures exist to "bundle up" a collection of data, naming it and treating it as a single unit, it is also important to be able to extract the individual fields of a structure.
-This is done using dot notation, as in C, Python, or Rust.
+<!-- Because structures exist to "bundle up" a collection of data, naming it and treating it as a single unit, it is also important to be able to extract the individual fields of a structure.
+This is done using dot notation, as in C, Python, or Rust. -->
+
+構造体はデータの集まりを「束ね」, 名前を付けて一つの単位として扱うために存在するため，構造体の個々のフィールドを抽出できることも重要です．C 言語や Python, Rust のようにドット記法を用いてこれを行うことができます．
 
 ```lean
 {{#example_in Examples/Intro.lean originx}}
@@ -112,23 +120,37 @@ This is done using dot notation, as in C, Python, or Rust.
 {{#example_out Examples/Intro.lean originy}}
 ```
 
-This can be used to define functions that take structures as arguments.
+<!-- This can be used to define functions that take structures as arguments.
 For instance, addition of points is performed by adding the underlying coordinate values.
-It should be the case that `{{#example_in Examples/Intro.lean addPointsEx}}` yields
+It should be the case that `{{#example_in Examples/Intro.lean addPointsEx}}` yields -->
+
+ドット記法は, 構造体を引数に取る関数を定義するために使用できます．例えば, 各座標の値を加算することによって，点の加算を行うことを考えます．`{{#example_in Examples/Intro.lean addPointsEx}}` の評価結果は次のようになるべきです:
+
 ```output info
 {{#example_out Examples/Intro.lean addPointsEx}}
 ```
-The function itself takes two `Points` as arguments, called `p1` and `p2`.
-The resulting point is based on the `x` and `y` fields of both `p1` and `p2`:
+
+<!-- The function itself takes two `Points` as arguments, called `p1` and `p2`.
+The resulting point is based on the `x` and `y` fields of both `p1` and `p2`: -->
+
+この `addPoints` 関数は, `p1` と `p2` と呼ばれる2つの `Point` 型の項を引数に取ります．そして返される点は, `p1` と `p2` の両方の `x`, `y` 成分に依存しています:
+
 ```lean
 {{#example_decl Examples/Intro.lean addPoints}}
 ```
 
-Similarly, the distance between two points, which is the square root of the sum of the squares of the differences in their `x` and `y` components, can be written:
+<!-- Similarly, the distance between two points, which is the square root of the sum of the squares of the differences in their `x` and `y` components, can be written: -->
+
+同様に, 2点間の距離は, `x` 成分と `y` 成分の差の二乗和の平方根であり, 次のように書くことができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean distance}}
 ```
-For example, the distance between (1, 2) and (5, -1) is 5:
+
+<!-- For example, the distance between (1, 2) and (5, -1) is 5: -->
+
+たとえば，(1, 2) と (5, -1) の距離は 5 です．
+
 ```lean
 {{#example_in Examples/Intro.lean evalDistance}}
 ```
@@ -136,9 +158,11 @@ For example, the distance between (1, 2) and (5, -1) is 5:
 {{#example_out Examples/Intro.lean evalDistance}}
 ```
 
+<!-- Multiple structures may have fields with the same names.
+For instance, a three-dimensional point datatype may share the fields `x` and `y`, and be instantiated with the same field names: -->
 
-Multiple structures may have fields with the same names.
-For instance, a three-dimensional point datatype may share the fields `x` and `y`, and be instantiated with the same field names:
+複数の構造体に同じ名前のフィールドが存在することもありえます．例えば, 3次元の点のデータ型を考えます．フィールド `x` と `y` は2次元のものと同じ名前にできます．更に同じフィールド名でインスタンス化することができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean Point3D}}
 
