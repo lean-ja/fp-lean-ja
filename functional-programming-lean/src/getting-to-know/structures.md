@@ -168,9 +168,12 @@ For instance, a three-dimensional point datatype may share the fields `x` and `y
 
 {{#example_decl Examples/Intro.lean origin3D}}
 ```
-This means that the structure's expected type must be known in order to use the curly-brace syntax.
+<!-- This means that the structure's expected type must be known in order to use the curly-brace syntax.
 If the type is not known, Lean will not be able to instantiate the structure.
-For instance,
+For instance, -->
+
+つまり, 中括弧構文を使うためには, 構造体に期待される型がわかっていなければなりません．型がわからない場合, Lean は構造体をインスタンス化することができません．たとえば
+
 ```lean
 {{#example_in Examples/Intro.lean originNoType}}
 ```
