@@ -177,12 +177,19 @@ For instance, -->
 ```lean
 {{#example_in Examples/Intro.lean originNoType}}
 ```
-leads to the error
+
+<!-- leads to the error -->
+
+は次のようなエラーになります:
+
 ```output error
 {{#example_out Examples/Intro.lean originNoType}}
 ```
 
-As usual, the situation can be remedied by providing a type annotation.
+<!-- As usual, the situation can be remedied by providing a type annotation. -->
+
+いつものように, 型注釈をつけることでこの状況を改善することができます．
+
 ```lean
 {{#example_in Examples/Intro.lean originWithAnnot}}
 ```
@@ -190,7 +197,10 @@ As usual, the situation can be remedied by providing a type annotation.
 {{#example_out Examples/Intro.lean originWithAnnot}}
 ```
 
-To make programs more concise, Lean also allows the structure type annotation inside the curly braces.
+<!-- To make programs more concise, Lean also allows the structure type annotation inside the curly braces. -->
+
+より簡潔な書き方として, Lean では中括弧の中に構造型の注釈を入れることもできます．
+
 ```lean
 {{#example_in Examples/Intro.lean originWithAnnot2}}
 ```
