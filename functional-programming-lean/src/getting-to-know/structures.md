@@ -5,12 +5,17 @@ Sometimes, a domain concept is a collection of other, simpler, concepts.
 In that case, it can be convenient to group these simpler components together into a single "package", which can then be given a meaningful name.
 In Lean, this is done using _structures_, which are analogous to `struct`s in C or Rust and `record`s in C#.
 
-Defining a structure introduces a completely new type to Lean that can't be reduced to any other type.
+<!-- Defining a structure introduces a completely new type to Lean that can't be reduced to any other type.
 This is useful because multiple structures might represent different concepts that nonetheless contain the same data.
 For instance, a point might be represented using either Cartesian or polar coordinates, each being a pair of floating-point numbers.
-Defining separate structures prevents API clients from confusing one for another.
+Defining separate structures prevents API clients from confusing one for another. -->
 
-Lean's floating-point number type is called `Float`, and floating-point numbers are written in the usual notation.
+構造体を定義すると, Lean は他のどの型にも簡約できない，全く新しい型を導入します．構造体は，同じデータを含んでいても異なる概念を表している可能性があるため，他の型に簡約できない必要があります．例えば，点はデカルト座標か極座標のどちらかを使って表現しても，それぞれ浮動小数点数の組であることは同じです．別々の構造体を定義することで，APIの使用者が混同しにくくなります．
+
+<!-- Lean's floating-point number type is called `Float`, and floating-point numbers are written in the usual notation. -->
+
+Lean の浮動小数点数型は `Float` と呼ばれます．浮動小数点数は一般的な記法で記述されます．
+
 ```lean
 {{#example_in Examples/Intro.lean onePointTwo}}
 ```
@@ -29,7 +34,11 @@ Lean's floating-point number type is called `Float`, and floating-point numbers 
 ```output info
 {{#example_out Examples/Intro.lean zeroPointZero}}
 ```
-When floating point numbers are written with the decimal point, Lean will infer the type `Float`. If they are written without it, then a type annotation may be necessary.
+
+<!-- When floating point numbers are written with the decimal point, Lean will infer the type `Float`. If they are written without it, then a type annotation may be necessary. -->
+
+浮動小数点数が小数点付きで記述されている場合, Lean は `Float` 型だと推論します．小数点なしで書かれた場合は, 型注釈が必要になることがあります.
+
 ```lean
 {{#example_in Examples/Intro.lean zeroNat}}
 ```
@@ -44,39 +53,55 @@ When floating point numbers are written with the decimal point, Lean will infer 
 {{#example_out Examples/Intro.lean zeroFloat}}
 ```
 
+<!-- A Cartesian point is a structure with two `Float` fields, called `x` and `y`.
+This is declared using the `structure` keyword. -->
 
-A Cartesian point is a structure with two `Float` fields, called `x` and `y`.
-This is declared using the `structure` keyword.
+デカルト点(Cartesian point)は, `x` と `y` という2つの `Float` 型のフィールドを持つ構造体です．これは `structure` キーワードを使って宣言されます．
 
 ```lean
 {{#example_decl Examples/Intro.lean Point}}
 ```
 
-After this declaration, `Point` is a new structure type.
+<!-- After this declaration, `Point` is a new structure type.
 The final line, which says `deriving Repr`, asks Lean to generate code to display values of type `Point`.
 This code is used by `#eval` to render the result of evaluation for consumption by programmers, analogous to the `repr` function in Python.
-It is also possible to override the compiler's generated display code.
+It is also possible to override the compiler's generated display code. -->
 
-The typical way to create a value of a structure type is to provide values for all of its fields inside of curly braces.
-The origin of a Cartesian plane is where `x` and `y` are both zero:
+この宣言の後, `Point` は新しい構造体型になります．最後の行には `deriving Repr` と書かれていますが，これは Lean に `Point` 型の値を表示するコードを生成するよう指示しています．このコードは `#eval` で使用され，プログラマに評価結果を表示します. Python での `repr` 関数と同様のものです．コンパイラが生成した表示コードを上書きすることも可能です.
+
+<!-- The typical way to create a value of a structure type is to provide values for all of its fields inside of curly braces.
+The origin of a Cartesian plane is where `x` and `y` are both zero: -->
+
+構造体型の値を作る典型的な方法は，中括弧の中にすべてのフィールドの値を指定することです．デカルト平面(Cartesian plane)の原点とは，`x` と `y` がともにゼロとなる場所です：
 
 ```lean
 {{#example_decl Examples/Intro.lean origin}}
 ```
 
-If the `deriving Repr` line in `Point`'s definition were omitted, then attempting `{{#example_in Examples/Intro.lean PointNoRepr}}` would yield an error similar to that which occurs when omitting a function's argument:
+<!-- If the `deriving Repr` line in `Point`'s definition were omitted, then attempting `{{#example_in Examples/Intro.lean PointNoRepr}}` would yield an error similar to that which occurs when omitting a function's argument: -->
+
+`Point` の定義で `deriving Repr` の行を省略すると，`{{#example_in Examples/Intro.lean PointNoRepr}}` を実行しようとしたとき, 関数の引数を省略したときと同様のエラーが発生します：
+
 ```output error
 {{#example_out Examples/Intro.lean PointNoRepr}}
 ```
-That message is saying that the evaluation machinery doesn't know how to communicate the result of evaluation back to the user.
 
-Happily, with `deriving Repr`, the result of `{{#example_in Examples/Intro.lean originEval}}` looks very much like the definition of `origin`.
+<!-- That message is saying that the evaluation machinery doesn't know how to communicate the result of evaluation back to the user. -->
+
+このメッセージは, 評価マシンが評価結果をユーザに伝える方法を知らないという意味です．
+
+<!-- Happily, with `deriving Repr`, the result of `{{#example_in Examples/Intro.lean originEval}}` looks very much like the definition of `origin`. -->
+
+喜ばしいことに `deriving Repr` を付け加えれば評価することができ，`origin` の定義とよく似た結果が `{{#example_in Examples/Intro.lean originEval}}` から出力されます．
+
 ```output info
 {{#example_out Examples/Intro.lean originEval}}
 ```
 
-Because structures exist to "bundle up" a collection of data, naming it and treating it as a single unit, it is also important to be able to extract the individual fields of a structure.
-This is done using dot notation, as in C, Python, or Rust.
+<!-- Because structures exist to "bundle up" a collection of data, naming it and treating it as a single unit, it is also important to be able to extract the individual fields of a structure.
+This is done using dot notation, as in C, Python, or Rust. -->
+
+構造体はデータの集まりを「束ね」, 名前を付けて一つの単位として扱うために存在するため，構造体の個々のフィールドを抽出できることも重要です．C 言語や Python, Rust のようにドット記法を用いてこれを行うことができます．
 
 ```lean
 {{#example_in Examples/Intro.lean originx}}
@@ -92,23 +117,37 @@ This is done using dot notation, as in C, Python, or Rust.
 {{#example_out Examples/Intro.lean originy}}
 ```
 
-This can be used to define functions that take structures as arguments.
+<!-- This can be used to define functions that take structures as arguments.
 For instance, addition of points is performed by adding the underlying coordinate values.
-It should be the case that `{{#example_in Examples/Intro.lean addPointsEx}}` yields
+It should be the case that `{{#example_in Examples/Intro.lean addPointsEx}}` yields -->
+
+ドット記法は, 構造体を引数に取る関数を定義するために使用できます．例えば, 各座標の値を加算することによって，点の加算を行うことを考えます．`{{#example_in Examples/Intro.lean addPointsEx}}` の評価結果は次のようになるべきです:
+
 ```output info
 {{#example_out Examples/Intro.lean addPointsEx}}
 ```
-The function itself takes two `Points` as arguments, called `p1` and `p2`.
-The resulting point is based on the `x` and `y` fields of both `p1` and `p2`:
+
+<!-- The function itself takes two `Points` as arguments, called `p1` and `p2`.
+The resulting point is based on the `x` and `y` fields of both `p1` and `p2`: -->
+
+この `addPoints` 関数は, `p1` と `p2` と呼ばれる2つの `Point` 型の項を引数に取ります．そして返される点は, `p1` と `p2` の両方の `x`, `y` 成分に依存しています:
+
 ```lean
 {{#example_decl Examples/Intro.lean addPoints}}
 ```
 
-Similarly, the distance between two points, which is the square root of the sum of the squares of the differences in their `x` and `y` components, can be written:
+<!-- Similarly, the distance between two points, which is the square root of the sum of the squares of the differences in their `x` and `y` components, can be written: -->
+
+同様に, 2点間の距離は, `x` 成分と `y` 成分の差の二乗和の平方根であり, 次のように書くことができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean distance}}
 ```
-For example, the distance between (1, 2) and (5, -1) is 5:
+
+<!-- For example, the distance between (1, 2) and (5, -1) is 5: -->
+
+たとえば，(1, 2) と (5, -1) の距離は 5 です．
+
 ```lean
 {{#example_in Examples/Intro.lean evalDistance}}
 ```
@@ -116,26 +155,38 @@ For example, the distance between (1, 2) and (5, -1) is 5:
 {{#example_out Examples/Intro.lean evalDistance}}
 ```
 
+<!-- Multiple structures may have fields with the same names.
+For instance, a three-dimensional point datatype may share the fields `x` and `y`, and be instantiated with the same field names: -->
 
-Multiple structures may have fields with the same names.
-For instance, a three-dimensional point datatype may share the fields `x` and `y`, and be instantiated with the same field names:
+複数の構造体に同じ名前のフィールドが存在することもありえます．例えば, 3次元の点のデータ型を考えます．フィールド `x` と `y` は2次元のものと同じ名前にできます．更に同じフィールド名でインスタンス化することができます：
+
 ```lean
 {{#example_decl Examples/Intro.lean Point3D}}
 
 {{#example_decl Examples/Intro.lean origin3D}}
 ```
-This means that the structure's expected type must be known in order to use the curly-brace syntax.
+<!-- This means that the structure's expected type must be known in order to use the curly-brace syntax.
 If the type is not known, Lean will not be able to instantiate the structure.
-For instance,
+For instance, -->
+
+つまり, 中括弧構文を使うためには, 構造体に期待される型がわかっていなければなりません．型がわからない場合, Lean は構造体をインスタンス化することができません．たとえば
+
 ```lean
 {{#example_in Examples/Intro.lean originNoType}}
 ```
-leads to the error
+
+<!-- leads to the error -->
+
+は次のようなエラーになります:
+
 ```output error
 {{#example_out Examples/Intro.lean originNoType}}
 ```
 
-As usual, the situation can be remedied by providing a type annotation.
+<!-- As usual, the situation can be remedied by providing a type annotation. -->
+
+いつものように, 型注釈をつけることでこの状況を改善することができます．
+
 ```lean
 {{#example_in Examples/Intro.lean originWithAnnot}}
 ```
@@ -143,7 +194,10 @@ As usual, the situation can be remedied by providing a type annotation.
 {{#example_out Examples/Intro.lean originWithAnnot}}
 ```
 
-To make programs more concise, Lean also allows the structure type annotation inside the curly braces.
+<!-- To make programs more concise, Lean also allows the structure type annotation inside the curly braces. -->
+
+より簡潔な書き方として, Lean では中括弧の中に構造型の注釈を入れることもできます．
+
 ```lean
 {{#example_in Examples/Intro.lean originWithAnnot2}}
 ```
