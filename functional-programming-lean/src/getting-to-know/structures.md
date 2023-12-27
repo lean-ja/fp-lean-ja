@@ -208,20 +208,27 @@ For instance, -->
 {{#example_out Examples/Intro.lean originWithAnnot2}}
 ```
 
-## Updating Structures
+<!-- ## Updating Structures -->
+## 構造体の更新
 
-Imagine a function `zeroX` that replaces the `x` field of a `Point` with `0.0`.
+<!-- Imagine a function `zeroX` that replaces the `x` field of a `Point` with `0.0`.
 In most programming language communities, this sentence would mean that the memory location pointed to by `x` was to be overwritten with a new value.
 However, Lean does not have mutable state.
 In functional programming communities, what is almost always meant by this kind of statement is that a fresh `Point` is allocated with the `x` field pointing to the new value, and all other fields pointing to the original values from the input.
-One way to write `zeroX` is to follow this description literally, filling out the new value for `x` and manually transferring `y`:
+One way to write `zeroX` is to follow this description literally, filling out the new value for `x` and manually transferring `y`: -->
+
+`Point` のフィールド `x` を `0.0` に置き換える関数 `zeroX` を考えてみてください．だいたいのプログラミング言語では, この操作は `x` が指すメモリロケーションを新しい値で上書きすることを意味します．しかし, Lean は可変(mutable)な状態を持たないのでした．関数型プログラミングの界隈では, ほとんどの場合この種の文が意味するのは, 「`x` フィールドが新しい値を指し, 他のすべてのフィールドが元の値を指す, 新しい `Point` を割り当てる」ということです．`zeroX` の実装法のひとつは, 上記の記述に忠実に, `x` に新しい値を入れて, `y` を手動で移すことです：
+
 ```lean
 {{#example_decl Examples/Intro.lean zeroXBad}}
 ```
-This style of programming has drawbacks, however.
+
+<!-- This style of programming has drawbacks, however.
 First off, if a new field is added to a structure, then every site that updates any field at all must be updated, causing maintenance difficulties.
 Secondly, if the structure contains multiple fields with the same type, then there is a real risk of copy-paste coding leading to field contents being duplicated or switched.
-Finally, the program becomes long and bureaucratic.
+Finally, the program becomes long and bureaucratic. -->
+
+しかし, この実装の仕方には欠点があります．まず, 構造体に新しいフィールドを追加するとき，フィールドを更新しているすべての個所を修正しなければならず，保守が困難になります．第2に, 構造体に同じ型のフィールドが複数含まれている場合，コピー&ペーストのコーディングによってフィールドの内容を重複させてしまったり，入れ替えてしまったりする現実的なリスクがあります．最後に，定型文を書かなければならないのでプログラムが長くなってしまいます．
 
 Lean provides a convenient syntax for replacing some fields in a structure while leaving the others alone.
 This is done by using the `with` keyword in a structure initialization.
