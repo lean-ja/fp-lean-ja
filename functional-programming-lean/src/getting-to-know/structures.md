@@ -208,36 +208,52 @@ For instance, -->
 {{#example_out Examples/Intro.lean originWithAnnot2}}
 ```
 
-## Updating Structures
+<!-- ## Updating Structures -->
+## 構造体の更新
 
-Imagine a function `zeroX` that replaces the `x` field of a `Point` with `0.0`.
+<!-- Imagine a function `zeroX` that replaces the `x` field of a `Point` with `0.0`.
 In most programming language communities, this sentence would mean that the memory location pointed to by `x` was to be overwritten with a new value.
 However, Lean does not have mutable state.
 In functional programming communities, what is almost always meant by this kind of statement is that a fresh `Point` is allocated with the `x` field pointing to the new value, and all other fields pointing to the original values from the input.
-One way to write `zeroX` is to follow this description literally, filling out the new value for `x` and manually transferring `y`:
+One way to write `zeroX` is to follow this description literally, filling out the new value for `x` and manually transferring `y`: -->
+
+`Point` のフィールド `x` を `0.0` に置き換える関数 `zeroX` を考えてみてください．だいたいのプログラミング言語では, この操作は `x` が指すメモリロケーションを新しい値で上書きすることを意味します．しかし, Lean は可変(mutable)な状態を持たないのでした．関数型プログラミングの界隈では, ほとんどの場合この種の文が意味するのは, 「`x` フィールドが新しい値を指し, 他のすべてのフィールドが元の値を指す, 新しい `Point` を割り当てる」ということです．`zeroX` の実装法のひとつは, 上記の記述に忠実に, `x` に新しい値を入れて, `y` を手動で移すことです：
+
 ```lean
 {{#example_decl Examples/Intro.lean zeroXBad}}
 ```
-This style of programming has drawbacks, however.
+
+<!-- This style of programming has drawbacks, however.
 First off, if a new field is added to a structure, then every site that updates any field at all must be updated, causing maintenance difficulties.
 Secondly, if the structure contains multiple fields with the same type, then there is a real risk of copy-paste coding leading to field contents being duplicated or switched.
-Finally, the program becomes long and bureaucratic.
+Finally, the program becomes long and bureaucratic. -->
 
-Lean provides a convenient syntax for replacing some fields in a structure while leaving the others alone.
+しかし, この実装の仕方には欠点があります．まず, 構造体に新しいフィールドを追加するとき，フィールドを更新しているすべての個所を修正しなければならず，保守が困難になります．第2に, 構造体に同じ型のフィールドが複数含まれている場合，コピー&ペーストのコーディングによってフィールドの内容を重複させてしまったり，入れ替えてしまったりする現実的なリスクがあります．最後に，定型文を書かなければならないのでプログラムが長くなってしまいます．
+
+<!-- Lean provides a convenient syntax for replacing some fields in a structure while leaving the others alone.
 This is done by using the `with` keyword in a structure initialization.
 The source of unchanged fields occurs before the `with`, and the new fields occur after.
-For instance, `zeroX` can be written with only the new `x` value:
+For instance, `zeroX` can be written with only the new `x` value: -->
+
+Lean には，構造体の一部のフィールドだけを置換し，他はそのままにするための便利な構文があります．構造体を初期化する際に `with` キーワードを付けることです．`with` の後に現れるフィールドだけが更新されます．例えば `zeroX` を更新対象の `x` の値だけで書くことができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean zeroX}}
 ```
 
-Remember that this structure update syntax does not modify existing values—it creates new values that share some fields with old values.
-For instance, given the point `fourAndThree`:
+<!-- Remember that this structure update syntax does not modify existing values—it creates new values that share some fields with old values.
+For instance, given the point `fourAndThree`: -->
+
+この `with` による構造体を更新する構文は，既存の値は変更しておらず，既存の値とフィールドの一部を共有する新しい値を生成しているということに注意してください．たとえば，`fourAndThree` という点を考えます:
+
 ```lean
 {{#example_decl Examples/Intro.lean fourAndThree}}
 ```
-evaluating it, then evaluating an update of it using `zeroX`, then evaluating it again yields the original value:
+
+<!-- evaluating it, then evaluating an update of it using `zeroX`, then evaluating it again yields the original value: -->
+
+`fourAndThree` を評価し，`zeroX` を使って更新された値を評価し，再び `fourAndThree` を評価してみると，元の値が得られます:
+
 ```lean
 {{#example_in Examples/Intro.lean fourAndThreeEval}}
 ```
@@ -257,11 +273,10 @@ evaluating it, then evaluating an update of it using `zeroX`, then evaluating it
 {{#example_out Examples/Intro.lean fourAndThreeEval}}
 ```
 
-One consequence of the fact that structure updates do not modify the original structure is that it becomes easier to reason about cases where the new value is computed from the old one.
-All references to the old structure continue to refer to the same field values in all of the new values provided.
+<!-- One consequence of the fact that structure updates do not modify the original structure is that it becomes easier to reason about cases where the new value is computed from the old one.
+All references to the old structure continue to refer to the same field values in all of the new values provided. -->
 
-
-
+構造体を更新しても元の値は変更されないので，新しい値を計算することによりコードの理解が難しくなることはありません．古い構造体への参照はすべて，変わらず同じフィールド値を参照し続けます．
 
 ## Behind the Scenes
 
