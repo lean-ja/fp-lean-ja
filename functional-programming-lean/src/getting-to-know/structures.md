@@ -230,21 +230,30 @@ Finally, the program becomes long and bureaucratic. -->
 
 しかし, この実装の仕方には欠点があります．まず, 構造体に新しいフィールドを追加するとき，フィールドを更新しているすべての個所を修正しなければならず，保守が困難になります．第2に, 構造体に同じ型のフィールドが複数含まれている場合，コピー&ペーストのコーディングによってフィールドの内容を重複させてしまったり，入れ替えてしまったりする現実的なリスクがあります．最後に，定型文を書かなければならないのでプログラムが長くなってしまいます．
 
-Lean provides a convenient syntax for replacing some fields in a structure while leaving the others alone.
+<!-- Lean provides a convenient syntax for replacing some fields in a structure while leaving the others alone.
 This is done by using the `with` keyword in a structure initialization.
 The source of unchanged fields occurs before the `with`, and the new fields occur after.
-For instance, `zeroX` can be written with only the new `x` value:
+For instance, `zeroX` can be written with only the new `x` value: -->
+
+Lean には，構造体の一部のフィールドだけを置換し，他はそのままにするための便利な構文があります．構造体を初期化する際に `with` キーワードを付けることです．`with` の後に現れるフィールドだけが更新されます．例えば `zeroX` を更新対象の `x` の値だけで書くことができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean zeroX}}
 ```
 
-Remember that this structure update syntax does not modify existing values—it creates new values that share some fields with old values.
-For instance, given the point `fourAndThree`:
+<!-- Remember that this structure update syntax does not modify existing values—it creates new values that share some fields with old values.
+For instance, given the point `fourAndThree`: -->
+
+この `with` による構造体を更新する構文は，既存の値は変更しておらず，既存の値とフィールドの一部を共有する新しい値を生成しているということに注意してください．たとえば，`fourAndThree` という点を考えます:
+
 ```lean
 {{#example_decl Examples/Intro.lean fourAndThree}}
 ```
-evaluating it, then evaluating an update of it using `zeroX`, then evaluating it again yields the original value:
+
+<!-- evaluating it, then evaluating an update of it using `zeroX`, then evaluating it again yields the original value: -->
+
+`fourAndThree` を評価し，`zeroX` を使って更新された値を評価し，再び `fourAndThree` を評価してみると，元の値が得られます:
+
 ```lean
 {{#example_in Examples/Intro.lean fourAndThreeEval}}
 ```
@@ -264,11 +273,10 @@ evaluating it, then evaluating an update of it using `zeroX`, then evaluating it
 {{#example_out Examples/Intro.lean fourAndThreeEval}}
 ```
 
-One consequence of the fact that structure updates do not modify the original structure is that it becomes easier to reason about cases where the new value is computed from the old one.
-All references to the old structure continue to refer to the same field values in all of the new values provided.
+<!-- One consequence of the fact that structure updates do not modify the original structure is that it becomes easier to reason about cases where the new value is computed from the old one.
+All references to the old structure continue to refer to the same field values in all of the new values provided. -->
 
-
-
+構造体を更新しても元の値は変更されないので，新しい値を計算することによりコードの理解が難しくなることはありません．古い構造体への参照はすべて，変わらず同じフィールド値を参照し続けます．
 
 ## Behind the Scenes
 
