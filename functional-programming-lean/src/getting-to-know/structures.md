@@ -278,44 +278,63 @@ All references to the old structure continue to refer to the same field values i
 
 構造体を更新しても元の値は変更されないので，新しい値を計算することによりコードの理解が難しくなることはありません．古い構造体への参照はすべて，変わらず同じフィールド値を参照し続けます．
 
-## Behind the Scenes
+<!-- ## Behind the Scenes -->
+## 舞台裏
 
-Every structure has a _constructor_.
+<!-- Every structure has a _constructor_.
 Here, the term "constructor" may be a source of confusion.
 Unlike constructors in languages such as Java or Python, constructors in Lean are not arbitrary code to be run when a datatype is initialized.
 Instead, constructors simply gather the data to be stored in the newly-allocated data structure.
 It is not possible to provide a custom constructor that pre-processes data or rejects invalid arguments.
-This is really a case of the word "constructor" having different, but related, meanings in the two contexts.
+This is really a case of the word "constructor" having different, but related, meanings in the two contexts. -->
 
+すべての構造体には **コンストラクタ(constructor)** があります．ここで，「コンストラクタ」という用語は混乱を生むかもしれません．Java や Python におけるコンストラクタとは異なり，Lean のコンストラクタは「データ型の初期化時に実行される任意のコード」ではありません．Lean におけるコンストラクタは，新しく割り当てられたデータ構造にデータを集めて格納するだけです．データを前処理したり，無効な引数を拒否したりするカスタムコンストラクタを作ることはできません．このように「コンストラクタ」という言葉の意味は2つの文脈で異なるのですが，しかし関連はあります．
 
-By default, the constructor for a structure named `S` is named `S.mk`.
+<!-- By default, the constructor for a structure named `S` is named `S.mk`.
 Here, `S` is a namespace qualifier, and `mk` is the name of the constructor itself.
-Instead of using curly-brace initialization syntax, the constructor can also be applied directly.
+Instead of using curly-brace initialization syntax, the constructor can also be applied directly. -->
+
+デフォルトでは `S` という名前の構造体のコンストラクタは `S.mk` という名前になります．ここで,`S` は名前空間修飾子, `mk` はコンストラクタそのものの名前です．中括弧による初期化構文を使う代わりに，コンストラクタを直接使うことができます．
+
 ```lean
 {{#example_in Examples/Intro.lean checkPointMk}}
 ```
-However, this is not generally considered to be good Lean style, and Lean even returns its feedback using the standard structure initializer syntax.
+
+<!-- However, this is not generally considered to be good Lean style, and Lean even returns its feedback using the standard structure initializer syntax. -->
+
+しかし，一般的にこれは Lean のスタイルとして良いものと考えられていません．Lean は標準的な（中括弧を使った）構文でフィードバックを返します．
+
 ```output info
 {{#example_out Examples/Intro.lean checkPointMk}}
 ```
 
-Constructors have function types, which means they can be used anywhere that a function is expected.
-For instance, `Point.mk` is a function that accepts two `Float`s (respectively `x` and `y`) and returns a new `Point`.
+<!-- Constructors have function types, which means they can be used anywhere that a function is expected.
+For instance, `Point.mk` is a function that accepts two `Float`s (respectively `x` and `y`) and returns a new `Point`. -->
+
+コンストラクタは関数型を持っているため，関数が期待される場所であればどこでも使用できます．例えば，`Point.mk` は2つの `Float` の項（それぞれ `x` と `y`）を受け取り, 新しい `Point` を返す関数です．
+
 ```lean
 {{#example_in Examples/Intro.lean Pointmk}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean Pointmk}}
 ```
-To override a structure's constructor name, write it with two colons at the beginning.
-For instance, to use `Point.point` instead of `Point.mk`, write:
+
+<!-- To override a structure's constructor name, write it with two colons at the beginning.
+For instance, to use `Point.point` instead of `Point.mk`, write: -->
+
+構造体のコンストラクタ名を上書きするには，先頭にコロン2つを付けて書きます．例えば，`Point.mk` の代わりに `Point.point` を使うには，次のように書きます：
+
 ```lean
 {{#example_decl Examples/Intro.lean PointCtorName}}
 ```
 
-In addition to the constructor, an accessor function is defined for each field of a structure.
+<!-- In addition to the constructor, an accessor function is defined for each field of a structure.
 These have the same name as the field, in the structure's namespace.
-For `Point`, accessor functions `Point.x` and `Point.y` are generated.
+For `Point`, accessor functions `Point.x` and `Point.y` are generated. -->
+
+コンストラクタに加えて, 構造体の各フィールドに対してアクセサ関数が定義されます．アクセサ関数は構造体の名前空間でフィールドと同じ名前を持っています．`Point` については，アクセサ関数 `Point.x` と `Point.y` が生成されます．
+
 ```lean
 {{#example_in Examples/Intro.lean Pointx}}
 ```
