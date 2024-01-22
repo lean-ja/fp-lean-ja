@@ -8,6 +8,14 @@ def joinStringsWith (s1 : String) (s2 : String) (s3 : String) : String :=
 
 example : joinStringsWith ", " "one" "and another" = "one, and another" := rfl
 
+/- ### 補足: `String.append` と `++` は同じか？ -/
+
+example (s t : String) : s ++ t = String.append s t := rfl
+
+#synth Append String
+
+#check String.instAppendString
+
 /-! ## 2
 `joinStringsWith ": "` の型は何でしょうか？ Lean で答えを確認してください．-/
 
