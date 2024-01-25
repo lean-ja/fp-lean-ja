@@ -278,44 +278,63 @@ All references to the old structure continue to refer to the same field values i
 
 構造体を更新しても元の値は変更されないので，新しい値を計算することによりコードの理解が難しくなることはありません．古い構造体への参照はすべて，変わらず同じフィールド値を参照し続けます．
 
-## Behind the Scenes
+<!-- ## Behind the Scenes -->
+## 舞台裏
 
-Every structure has a _constructor_.
+<!-- Every structure has a _constructor_.
 Here, the term "constructor" may be a source of confusion.
 Unlike constructors in languages such as Java or Python, constructors in Lean are not arbitrary code to be run when a datatype is initialized.
 Instead, constructors simply gather the data to be stored in the newly-allocated data structure.
 It is not possible to provide a custom constructor that pre-processes data or rejects invalid arguments.
-This is really a case of the word "constructor" having different, but related, meanings in the two contexts.
+This is really a case of the word "constructor" having different, but related, meanings in the two contexts. -->
 
+すべての構造体には **コンストラクタ(constructor)** があります．ここで，「コンストラクタ」という用語は混乱を生むかもしれません．Java や Python におけるコンストラクタとは異なり，Lean のコンストラクタは「データ型の初期化時に実行される任意のコード」ではありません．Lean におけるコンストラクタは，新しく割り当てられたデータ構造にデータを集めて格納するだけです．データを前処理したり，無効な引数を拒否したりするカスタムコンストラクタを作ることはできません．このように「コンストラクタ」という言葉の意味は2つの文脈で異なるのですが，しかし関連はあります．
 
-By default, the constructor for a structure named `S` is named `S.mk`.
+<!-- By default, the constructor for a structure named `S` is named `S.mk`.
 Here, `S` is a namespace qualifier, and `mk` is the name of the constructor itself.
-Instead of using curly-brace initialization syntax, the constructor can also be applied directly.
+Instead of using curly-brace initialization syntax, the constructor can also be applied directly. -->
+
+デフォルトでは `S` という名前の構造体のコンストラクタは `S.mk` という名前になります．ここで,`S` は名前空間修飾子, `mk` はコンストラクタそのものの名前です．中括弧による初期化構文を使う代わりに，コンストラクタを直接使うことができます．
+
 ```lean
 {{#example_in Examples/Intro.lean checkPointMk}}
 ```
-However, this is not generally considered to be good Lean style, and Lean even returns its feedback using the standard structure initializer syntax.
+
+<!-- However, this is not generally considered to be good Lean style, and Lean even returns its feedback using the standard structure initializer syntax. -->
+
+しかし，一般的にこれは Lean のスタイルとして良いものと考えられていません．Lean は標準的な（中括弧を使った）構文でフィードバックを返します．
+
 ```output info
 {{#example_out Examples/Intro.lean checkPointMk}}
 ```
 
-Constructors have function types, which means they can be used anywhere that a function is expected.
-For instance, `Point.mk` is a function that accepts two `Float`s (respectively `x` and `y`) and returns a new `Point`.
+<!-- Constructors have function types, which means they can be used anywhere that a function is expected.
+For instance, `Point.mk` is a function that accepts two `Float`s (respectively `x` and `y`) and returns a new `Point`. -->
+
+コンストラクタは関数型を持っているため，関数が期待される場所であればどこでも使用できます．例えば，`Point.mk` は2つの `Float` の項（それぞれ `x` と `y`）を受け取り, 新しい `Point` を返す関数です．
+
 ```lean
 {{#example_in Examples/Intro.lean Pointmk}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean Pointmk}}
 ```
-To override a structure's constructor name, write it with two colons at the beginning.
-For instance, to use `Point.point` instead of `Point.mk`, write:
+
+<!-- To override a structure's constructor name, write it with two colons at the beginning.
+For instance, to use `Point.point` instead of `Point.mk`, write: -->
+
+構造体のコンストラクタ名を上書きするには，先頭にコロン2つを付けて書きます．例えば，`Point.mk` の代わりに `Point.point` を使うには，次のように書きます：
+
 ```lean
 {{#example_decl Examples/Intro.lean PointCtorName}}
 ```
 
-In addition to the constructor, an accessor function is defined for each field of a structure.
+<!-- In addition to the constructor, an accessor function is defined for each field of a structure.
 These have the same name as the field, in the structure's namespace.
-For `Point`, accessor functions `Point.x` and `Point.y` are generated.
+For `Point`, accessor functions `Point.x` and `Point.y` are generated. -->
+
+コンストラクタに加えて, 構造体の各フィールドに対してアクセサ関数が定義されます．アクセサ関数は構造体の名前空間でフィールドと同じ名前を持っています．`Point` については，アクセサ関数 `Point.x` と `Point.y` が生成されます．
+
 ```lean
 {{#example_in Examples/Intro.lean Pointx}}
 ```
@@ -330,47 +349,69 @@ For `Point`, accessor functions `Point.x` and `Point.y` are generated.
 {{#example_out Examples/Intro.lean Pointy}}
 ```
 
-In fact, just as the curly-braced structure construction syntax is converted to a call to the structure's constructor behind the scenes, the syntax `p1.x` in the prior definition of `addPoints` is converted into a call to the `Point.x` accessor.
-That is, `{{#example_in Examples/Intro.lean originx}}` and `{{#example_in Examples/Intro.lean originx1}}` both yield
+<!-- In fact, just as the curly-braced structure construction syntax is converted to a call to the structure's constructor behind the scenes, the syntax `p1.x` in the prior definition of `addPoints` is converted into a call to the `Point.x` accessor.
+That is, `{{#example_in Examples/Intro.lean originx}}` and `{{#example_in Examples/Intro.lean originx1}}` both yield -->
+
+実際，構造体を作る中括弧による構文が舞台裏で構造体のコンストラクタを呼ぶように， 戦術の `addPoints` の定義における `p1.x` は変換されてアクセサ `Point.x` を呼び出します．つまり, `{{#example_in Examples/Intro.lean originx}}` と `{{#example_in Examples/Intro.lean originx1}}` の結果は等しく，次が得られます．
+
 ```output info
 {{#example_out Examples/Intro.lean originx1}}
 ```
 
-Accessor dot notation is usable with more than just structure fields.
+<!-- Accessor dot notation is usable with more than just structure fields.
 It can also be used for functions that take any number of arguments.
 More generally, accessor notation has the form `TARGET.f ARG1 ARG2 ...`.
 If `TARGET` has type `T`, the function named `T.f` is called.
 `TARGET` becomes its leftmost argument of type `T`, which is often but not always the first one, and `ARG1 ARG2 ...` are provided in order as the remaining arguments.
-For instance, `String.append` can be invoked from a string with accessor notation, even though `String` is not a structure with an `append` field.
+For instance, `String.append` can be invoked from a string with accessor notation, even though `String` is not a structure with an `append` field. -->
+
+アクセサドット記法は, 構造体のフィールド以外にも使えます． 任意の数の引数を取る関数にも使用できます． より一般的に，アクセサ記法は `TARGET.f ARG1 ARG2 ...` という形をしています．このとき `TARGET` の型が `T` であれば， `T.f` という関数が呼び出されます．`TARGET` は関数 `T.f` の型 `T` を持つ最初の引数になります． 多くの場合これは最初の引数ですが，常にではありません．`ARG1 ARG2 ...` は順に残りの引数として与えられます．例えば `String.append` は, `String` が `append` フィールドを持つ構造体ではないにもかかわらず，アクセサ記法を使って文字列から呼び出すことができます．
+
 ```lean
 {{#example_in Examples/Intro.lean stringAppendDot}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean stringAppendDot}}
 ```
-In that example, `TARGET` represents `"one string"` and `ARG1` represents `" and another"`.
+<!-- In that example, `TARGET` represents `"one string"` and `ARG1` represents `" and another"`. -->
 
-The function `Point.modifyBoth` (that is, `modifyBoth` defined in the `Point` namespace) applies a function to both fields in a `Point`:
+上記の例では `TARGET` が `"one string"` に当たり，`ARG1` が `" and another"` に当たります．
+
+<!-- The function `Point.modifyBoth` (that is, `modifyBoth` defined in the `Point` namespace) applies a function to both fields in a `Point`: -->
+
+関数 `Point.modifyBoth` (つまり, `Point` 名前空間で定義された `modifyBoth`) は, `Point` の全てのフィールドに関数を適用します：
+
 ```lean
 {{#example_decl Examples/Intro.lean modifyBoth}}
 ```
-Even though the `Point` argument comes after the function argument, it can be used with dot notation as well:
+<!-- Even though the `Point` argument comes after the function argument, it can be used with dot notation as well: -->
+
+`Point` 型の引数は関数型の引数の後に来ていますが，ドット記法でも問題なく使用できます：
+
 ```lean
 {{#example_in Examples/Intro.lean modifyBothTest}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean modifyBothTest}}
 ```
-In this case, `TARGET` represents `fourAndThree`, while `ARG1` is `Float.floor`.
-This is because the target of the accessor notation is used as the first argument in which the type matches, not necessarily the first argument.
+<!-- In this case, `TARGET` represents `fourAndThree`, while `ARG1` is `Float.floor`.
+This is because the target of the accessor notation is used as the first argument in which the type matches, not necessarily the first argument. -->
 
-## Exercises
+この例では `TARGET` は `fourAndThree` に当たり，`ARG1` は `Float.floor` に当たります．これは，アクセサ記法のターゲットが, 型が一致する最初の引数として使われ，必ずしも最初の引数として使われるとは限らないことによるものです．
 
- * Define a structure named `RectangularPrism` that contains the height, width, and depth of a rectangular prism, each as a `Float`.
- * Define a function named `volume : RectangularPrism → Float` that computes the volume of a rectangular prism.
- * Define a structure named `Segment` that represents a line segment by its endpoints, and define a function `length : Segment → Float` that computes the length of a line segment. `Segment` should have at most two fields.
- * Which names are introduced by the declaration of `RectangularPrism`?
- * Which names are introduced by the following declarations of `Hamster` and `Book`? What are their types?
+<!-- ## Exercises -->
+## 演習問題
+
+ <!-- * Define a structure named `RectangularPrism` that contains the height, width, and depth of a rectangular prism, each as a `Float`. -->
+ * `RectangularPrism`(角柱) という名前で，`height`, `width`, `depth` の3つの `Float` 型のフィールドを持つ構造体を定義してください．
+ <!-- * Define a function named `volume : RectangularPrism → Float` that computes the volume of a rectangular prism. -->
+ * 角柱の体積を計算する関数 `volume : RectangularPrism → Float` を定義してください．
+ <!-- * Define a structure named `Segment` that represents a line segment by its endpoints, and define a function `length : Segment → Float` that computes the length of a line segment. `Segment` should have at most two fields. -->
+ * 端点をフィールドとして，線分を表す構造体 `Segment` を定義してください．そして線分の長さを計算する関数 `length : Segment → Float` を定義してください．なお `Segment` のフィールドは2つ以下としてください．
+ <!-- * Which names are introduced by the declaration of `RectangularPrism`? -->
+ * `RectangularPrism` の宣言により，どういう名前が導入されましたか?
+ <!-- * Which names are introduced by the following declarations of `Hamster` and `Book`? What are their types? -->
+ * 以下の `Hamster` と `Book` の宣言により，どういう名前が導入されましたか? またその型はどうなっていますか．
 
 ```lean
 {{#example_decl Examples/Intro.lean Hamster}}
