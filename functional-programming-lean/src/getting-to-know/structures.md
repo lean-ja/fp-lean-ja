@@ -349,47 +349,69 @@ For `Point`, accessor functions `Point.x` and `Point.y` are generated. -->
 {{#example_out Examples/Intro.lean Pointy}}
 ```
 
-In fact, just as the curly-braced structure construction syntax is converted to a call to the structure's constructor behind the scenes, the syntax `p1.x` in the prior definition of `addPoints` is converted into a call to the `Point.x` accessor.
-That is, `{{#example_in Examples/Intro.lean originx}}` and `{{#example_in Examples/Intro.lean originx1}}` both yield
+<!-- In fact, just as the curly-braced structure construction syntax is converted to a call to the structure's constructor behind the scenes, the syntax `p1.x` in the prior definition of `addPoints` is converted into a call to the `Point.x` accessor.
+That is, `{{#example_in Examples/Intro.lean originx}}` and `{{#example_in Examples/Intro.lean originx1}}` both yield -->
+
+実際，構造体を作る中括弧による構文が舞台裏で構造体のコンストラクタを呼ぶように， 戦術の `addPoints` の定義における `p1.x` は変換されてアクセサ `Point.x` を呼び出します．つまり, `{{#example_in Examples/Intro.lean originx}}` と `{{#example_in Examples/Intro.lean originx1}}` の結果は等しく，次が得られます．
+
 ```output info
 {{#example_out Examples/Intro.lean originx1}}
 ```
 
-Accessor dot notation is usable with more than just structure fields.
+<!-- Accessor dot notation is usable with more than just structure fields.
 It can also be used for functions that take any number of arguments.
 More generally, accessor notation has the form `TARGET.f ARG1 ARG2 ...`.
 If `TARGET` has type `T`, the function named `T.f` is called.
 `TARGET` becomes its leftmost argument of type `T`, which is often but not always the first one, and `ARG1 ARG2 ...` are provided in order as the remaining arguments.
-For instance, `String.append` can be invoked from a string with accessor notation, even though `String` is not a structure with an `append` field.
+For instance, `String.append` can be invoked from a string with accessor notation, even though `String` is not a structure with an `append` field. -->
+
+アクセサドット記法は, 構造体のフィールド以外にも使えます． 任意の数の引数を取る関数にも使用できます． より一般的に，アクセサ記法は `TARGET.f ARG1 ARG2 ...` という形をしています．このとき `TARGET` の型が `T` であれば， `T.f` という関数が呼び出されます．`TARGET` は関数 `T.f` の型 `T` を持つ最初の引数になります． 多くの場合これは最初の引数ですが，常にではありません．`ARG1 ARG2 ...` は順に残りの引数として与えられます．例えば `String.append` は, `String` が `append` フィールドを持つ構造体ではないにもかかわらず，アクセサ記法を使って文字列から呼び出すことができます．
+
 ```lean
 {{#example_in Examples/Intro.lean stringAppendDot}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean stringAppendDot}}
 ```
-In that example, `TARGET` represents `"one string"` and `ARG1` represents `" and another"`.
+<!-- In that example, `TARGET` represents `"one string"` and `ARG1` represents `" and another"`. -->
 
-The function `Point.modifyBoth` (that is, `modifyBoth` defined in the `Point` namespace) applies a function to both fields in a `Point`:
+上記の例では `TARGET` が `"one string"` に当たり，`ARG1` が `" and another"` に当たります．
+
+<!-- The function `Point.modifyBoth` (that is, `modifyBoth` defined in the `Point` namespace) applies a function to both fields in a `Point`: -->
+
+関数 `Point.modifyBoth` (つまり, `Point` 名前空間で定義された `modifyBoth`) は, `Point` の全てのフィールドに関数を適用します：
+
 ```lean
 {{#example_decl Examples/Intro.lean modifyBoth}}
 ```
-Even though the `Point` argument comes after the function argument, it can be used with dot notation as well:
+<!-- Even though the `Point` argument comes after the function argument, it can be used with dot notation as well: -->
+
+`Point` 型の引数は関数型の引数の後に来ていますが，ドット記法でも問題なく使用できます：
+
 ```lean
 {{#example_in Examples/Intro.lean modifyBothTest}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean modifyBothTest}}
 ```
-In this case, `TARGET` represents `fourAndThree`, while `ARG1` is `Float.floor`.
-This is because the target of the accessor notation is used as the first argument in which the type matches, not necessarily the first argument.
+<!-- In this case, `TARGET` represents `fourAndThree`, while `ARG1` is `Float.floor`.
+This is because the target of the accessor notation is used as the first argument in which the type matches, not necessarily the first argument. -->
 
-## Exercises
+この例では `TARGET` は `fourAndThree` に当たり，`ARG1` は `Float.floor` に当たります．これは，アクセサ記法のターゲットが, 型が一致する最初の引数として使われ，必ずしも最初の引数として使われるとは限らないことによるものです．
 
- * Define a structure named `RectangularPrism` that contains the height, width, and depth of a rectangular prism, each as a `Float`.
- * Define a function named `volume : RectangularPrism → Float` that computes the volume of a rectangular prism.
- * Define a structure named `Segment` that represents a line segment by its endpoints, and define a function `length : Segment → Float` that computes the length of a line segment. `Segment` should have at most two fields.
- * Which names are introduced by the declaration of `RectangularPrism`?
- * Which names are introduced by the following declarations of `Hamster` and `Book`? What are their types?
+<!-- ## Exercises -->
+## 演習問題
+
+ <!-- * Define a structure named `RectangularPrism` that contains the height, width, and depth of a rectangular prism, each as a `Float`. -->
+ * `RectangularPrism`(角柱) という名前で，`height`, `width`, `depth` の3つの `Float` 型のフィールドを持つ構造体を定義してください．
+ <!-- * Define a function named `volume : RectangularPrism → Float` that computes the volume of a rectangular prism. -->
+ * 角柱の体積を計算する関数 `volume : RectangularPrism → Float` を定義してください．
+ <!-- * Define a structure named `Segment` that represents a line segment by its endpoints, and define a function `length : Segment → Float` that computes the length of a line segment. `Segment` should have at most two fields. -->
+ * 端点をフィールドとして，線分を表す構造体 `Segment` を定義してください．そして線分の長さを計算する関数 `length : Segment → Float` を定義してください．なお `Segment` のフィールドは2つ以下としてください．
+ <!-- * Which names are introduced by the declaration of `RectangularPrism`? -->
+ * `RectangularPrism` の宣言により，どういう名前が導入されましたか?
+ <!-- * Which names are introduced by the following declarations of `Hamster` and `Book`? What are their types? -->
+ * 以下の `Hamster` と `Book` の宣言により，どういう名前が導入されましたか? またその型はどうなっていますか．
 
 ```lean
 {{#example_decl Examples/Intro.lean Hamster}}

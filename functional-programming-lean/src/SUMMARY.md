@@ -8,7 +8,7 @@
   - [式の評価](./getting-to-know/evaluating.md)
   - [型](./getting-to-know/types.md)
   - [関数と定義](./getting-to-know/functions-and-definitions.md)
-  - [Structures](./getting-to-know/structures.md)
+  - [構造体](./getting-to-know/structures.md)
   - [Datatypes, Patterns and Recursion](./getting-to-know/datatypes-and-patterns.md)
   - [Polymorphism](./getting-to-know/polymorphism.md)
   - [Additional Conveniences](./getting-to-know/conveniences.md)
