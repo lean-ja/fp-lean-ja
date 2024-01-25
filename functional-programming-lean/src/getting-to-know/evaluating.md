@@ -169,7 +169,7 @@ Lean cannot display functions to users, and thus returns an error when asked to 
 このメッセージは, 一部の引数のみ与えられた Lean 関数が，残りの引数を待つ新しい関数を返すために発生します．Lean はユーザに関数を表示することができないため，表示するように要求されるとエラーを返すのです．
 
 <!-- ## Exercises -->
-## 演習
+## 演習問題
 
 <!-- What are the values of the following expressions? Work them out by hand,
 then enter them into Lean to check your work. -->
