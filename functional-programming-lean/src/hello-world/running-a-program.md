@@ -226,7 +226,7 @@ The next part of the `do` block is responsible for asking the user for their nam
 The first line writes the question to `stdout`, the second line requests input from `stdin`, and the third line removes the trailing newline (plus any other trailing whitespace) from the input line.
 The definition of `name` uses `:=`, rather than `←`, because `String.dropRightWhile` is an ordinary function on strings, rather than an `IO` action.
 -->
-最初の行は質問を `stdout` に書き込み，2番目の行は `stdin` から入力をリクエストし，3番目の行は入力行から末尾の改行（および末尾の空白）を削除します．`name` の定義では，`String.dropRightWhile` は IO アクションではなく，通常の文字列関数であるため，`:=` ではなく `←` を使用しています．
+最初の行は質問を `stdout` に書き込み，2番目の行は `stdin` から入力をリクエストし，3番目の行は入力行から末尾の改行（および末尾の空白）を削除します．`name` の定義では，`String.dropRightWhile` は IO アクションではなく，通常の文字列関数であるため，`←` ではなく `:=` を使用しています．
 
 <!--
 Finally, the last line in the program is:
