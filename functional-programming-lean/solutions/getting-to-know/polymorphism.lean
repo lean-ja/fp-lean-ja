@@ -6,6 +6,8 @@ Write a function to find the last entry in a list. It should return an `Option`.
 
 variable {α : Type}
 
+namespace Test
+
 def tail (l : List α) : Option α :=
   match l with
   | [] => none
@@ -13,6 +15,14 @@ def tail (l : List α) : Option α :=
     match xs with
     | [] => some x
     | _ => tail xs
+
+end Test
+
+def tail (l : List α) : Option α :=
+  match l with
+  | [] => none
+  | [x] => some x
+  | _ :: xs => tail xs
 
 example : tail [1, 1, 2, 3, 5] = some 5 := rfl
 
