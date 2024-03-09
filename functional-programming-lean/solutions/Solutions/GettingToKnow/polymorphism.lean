@@ -1,5 +1,10 @@
 /- # 1.6 演習問題 -/
 
+structure PPoint (α : Type) where
+  x : α
+  y : α
+deriving Repr
+
 /-! ## 1
 Write a function to find the last entry in a list. It should return an `Option`.
 -/
