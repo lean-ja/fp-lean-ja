@@ -45,6 +45,6 @@ def mapBinTree (f: α → β) : BinTree α → BinTree β
   | BinTree.branch l x r => BinTree.branch (mapBinTree f l) (f x) (mapBinTree f r)
 
 instance : Functor BinTree where
-  map f b := mapBinTree f b
+  map := mapBinTree
 
 #eval  (· + 100) <$> (BinTree.branch (BinTree.branch BinTree.leaf 1 BinTree.leaf) 2 (BinTree.branch BinTree.leaf 3 BinTree.leaf))
