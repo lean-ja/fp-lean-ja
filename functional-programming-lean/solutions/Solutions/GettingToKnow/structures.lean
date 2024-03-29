@@ -43,6 +43,9 @@ Which names are introduced by the declaration of `RectangularPrism`? -/
 
 #check RectangularPrism.depth
 
+-- 実は `.rec` というのもある
+#check RectangularPrism.rec
+
 /-! ## 5
 Which names are introduced by the following declarations of `Hamster` and `Book`? What are their types?-/
 
@@ -57,6 +60,8 @@ structure Book where
   title : String
   author : String
   price : Float
+
+-- `.rec` は省略する
 
 #check (Hamster.mk : String → Bool → Hamster)
 
