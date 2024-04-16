@@ -9,7 +9,7 @@ For instance, an application might need to track user permissions, where some us
 A calculator has a number of binary operators, such as addition, subtraction, and multiplication.
 Structures do not provide an easy way to encode multiple choices. -->
 
-構造体を使用すれば，複数の独立したデータをひとまとまりにしてまったく新しい型をつくることができます．値の集まりをグループ化する構造体のような型は**直積型**(product types)と呼ばれます．ただし，多くのドメイン概念は構造体として自然に表現できません．例えば，アプリケーションによっては，ドキュメントの所有者であるユーザー，ドキュメントを編集できるユーザー，ドキュメントの閲覧しかできないユーザーなどユーザーのアクセス権限を追う必要があるかもしれません．電卓であれば，加算，減算，乗算のような二項演算子があります．構造体で複数の選択肢を表現する簡単な方法はありません
+構造体を使用すれば，複数の独立したデータをひとまとまりにしてまったく新しい型をつくることができます．値の集まりをグループ化する構造体のような型は**直積型**(product types)と呼ばれます．ただし，多くのドメイン概念は構造体として自然に表現できません．例えば，アプリケーションによっては，ドキュメントの所有者であるユーザー，ドキュメントを編集できるユーザー，ドキュメントの閲覧しかできないユーザーなどユーザーのアクセス権限を追う必要があるかもしれません．電卓であれば，加算，減算，乗算のような二項演算子があります．構造体で複数の選択肢を表現する簡単な方法はありません.
 
 <!-- Similarly, while a structure is an excellent way to keep track of a fixed set of fields, many applications require data that may contain an arbitrary number of elements.
 Most classic data structures, such as trees and lists, have a recursive structure, where the tail of a list is itself a list, or where the left and right branches of a binary tree are themselves binary trees.
