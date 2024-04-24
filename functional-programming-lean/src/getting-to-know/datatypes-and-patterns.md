@@ -16,7 +16,7 @@ Most classic data structures, such as trees and lists, have a recursive structur
 In the aforementioned calculator, the structure of expressions themselves is recursive.
 The summands in an addition expression may themselves be multiplication expressions, for instance. -->
 
-同様に，構造体は決まったフィールド値を追跡する優れた方法ですが，多くのアプリケーションでは好きな数の要素を含むデータが必要です．ツリーやリストなどの古典的なデータ構造のほとんどは再帰的な構造を持っており，リストの残りの部分自体がリストになったり，二分木の左右の枝自体が二分木になったりします．例えば，加算式内の足される数自体が乗算式である場合があります．
+同様に，構造体は決まったフィールドの集まりを追跡する優れた方法ですが，多くのアプリケーションでは任意個の要素を含むことができるデータが必要です．ツリーやリストなどの古典的なデータ構造のほとんどは再帰的な構造を持っています．リストの先頭を除いた部分自体がリストになっていますし，二分木の左右の枝自体が二分木です．前述の電卓の例でいえば，式の構造自体が再帰的です．例えば，加算式内の足される式自体が乗算式であることがあります．
 
 <!-- Datatypes that allow choices are called _sum types_ and datatypes that can include instances of themselves are called _recursive datatypes_.
 Recursive sum types are called _inductive datatypes_, because mathematical induction may be used to prove statements about them.
