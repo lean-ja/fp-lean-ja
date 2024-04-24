@@ -22,7 +22,7 @@ The summands in an addition expression may themselves be multiplication expressi
 Recursive sum types are called _inductive datatypes_, because mathematical induction may be used to prove statements about them.
 When programming, inductive datatypes are consumed through pattern matching and recursive functions. -->
 
-選択を許可するデータ型は**直和型**(sum types)と呼ばれ，それ自体のインスタンスを含めることができるデータ型は**再帰データ型**(recursive datatypes)と呼ばれます．再帰直和型は，それらに関する文を証明するために数学的帰納法を使用できるため，**帰納的データ型**(inductive datatypes)と呼ばれます．プログラミングの際，帰納的データ型はパターンマッチングと再帰関数を通じて使用されます．
+選択することができるデータ型は**直和型**(sum types)と呼ばれ，それ自体のインスタンスを含めることができるデータ型は**再帰データ型**(recursive datatypes)と呼ばれます．再帰直和型は，それらに関する文を証明するために数学的帰納法を使用できるため，**帰納的データ型**(inductive datatypes)と呼ばれます．プログラミングの際，帰納的データ型はパターンマッチングと再帰関数を通じて使用されます．
 
 <!-- Many of the built-in types are actually inductive datatypes in the standard library.
 For instance, `Bool` is an inductive datatype: -->
