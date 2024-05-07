@@ -27,7 +27,7 @@ When programming, inductive datatypes are consumed through pattern matching and 
 <!-- Many of the built-in types are actually inductive datatypes in the standard library.
 For instance, `Bool` is an inductive datatype: -->
 
-標準ライブラリでは，組み込み型の多くは実際には帰納的データ型です．例えば，`Bool`は帰納的データ型です．
+標準ライブラリでは，組み込み型の多くは実際には帰納的データ型です．例えば，`Bool` は帰納的データ型です．
 
 ```lean
 {{#example_decl Examples/Intro.lean Bool}}
@@ -40,12 +40,12 @@ Here, there are two constructors, `true` and `false`, and neither takes any argu
 Just as a structure declaration places its names in a namespace named after the declared type, an inductive datatype places the names of its constructors in a namespace.
 In the Lean standard library, `true` and `false` are re-exported from this namespace so that they can be written alone, rather than as `Bool.true` and `Bool.false`, respectively. -->
 
-この定義には2つの主要な部分があります．初めの行は新しい型の名前(`Bool`)を提供し，残りの行はそれぞれコンストラクタを記述します．構造体のコンストラクタと同様，帰納的データ型のコンストラクタは，好きに初期化コードやバリデーションコードを挿入する場所ではなく，何もしない他のデータのレシーバおよびコンテナにすぎません．構造体とは異なり，帰納的データ型には複数のコンストラクタを持つ場合があります．今の例では，`true`と`false`という2つのコンストラクタがあり，どちらも引数を取りません．構造体宣言がそのフィールドの名前を，宣言された型にちなんで名付けられた名前空間に配置するのと同様に，帰納的データ型はそのコンストラクタの名前を名前空間に配置します．Lean標準ライブラリでは，`true`と`false`はこの名前空間から再エクスポートされるため，それぞれ`Bool.true`と`Bool.false`としてではなく，単独で記述できます．
+この定義には2つの主要な部分があります．初めの行は新しい型の名前(`Bool`)を提供し，残りの行はそれぞれコンストラクタを記述します．構造体のコンストラクタと同様，帰納的データ型のコンストラクタは，任意の初期化コードやバリデーションコードを挿入する場所ではなく，単なる他のデータのレシーバおよびコンテナにすぎません．構造体とは異なり，帰納的データ型は複数のコンストラクタを持つ可能性があります．今の例では，`true` と `false` という2つのコンストラクタがあり，どちらも引数を取りません．構造体宣言がそのフィールドの名前を，宣言された型と同名の名前空間に配置するのと同様に，帰納的データ型はそのコンストラクタの名前を名前空間に配置します．Lean 標準ライブラリでは，`true` と `false` はこの名前空間から再エクスポートされるため，それぞれ `Bool.true` と `Bool.false` としてではなく，単独で記述できます．
 
 <!-- From a data modeling perspective, inductive datatypes are used in many of the same contexts where a sealed abstract class might be used in other languages.
 In languages like C# or Java, one might write a similar definition of `Bool`: -->
 
-データモデリングの観点から見ると，帰納的データ型は抽象クラスが他の言語で使用される場合と同じコンテキストの多くで使用されます．C#やJavaのような言語では，同様の`Bool`の定義を書くことができます．
+データモデリングの観点から見ると，帰納的データ型が使用される場面の多くは，他の言語における抽象クラスが使用される場面と同じです．C# や Java のような言語では，同様の `Bool` の定義を書くことができます．
 
 ```C#
 abstract class Bool {}
@@ -55,11 +55,11 @@ class False : Bool {}
 
 <!-- However, the specifics of these representations are fairly different. In particular, each non-abstract class creates both a new type and new ways of allocating data. In the object-oriented example, `True` and `False` are both types that are more specific than `Bool`, while the Lean definition introduces only the new type `Bool`. -->
 
-ただし，これらの表現の詳細はかなり異なります．特に，各非抽象クラスは，新しい型と新しいデータ割り当て方法の両方を作成します．オブジェクト指向の例では，`True`と`False`は両方とも`Bool`よりも具体的な型ですが，Leanでの定義では新しい型`Bool`のみが導入されます．
+ただし，これらの表現の詳細はかなり異なります．特に，各非抽象クラスは，新しい型と新しいデータ割り当て方法の両方を作成します．オブジェクト指向の例では，`True` と `False` は両方とも `Bool` よりも具体的な型ですが，Leanでの定義では新しい型 `Bool` のみが導入されます．
 
 <!-- The type `Nat` of non-negative integers is an inductive datatype: -->
 
-非負整数の型`Nat`は帰納的データ型です．
+非負整数の型 `Nat` は帰納的データ型です．
 
 ```lean
 {{#example_decl Examples/Intro.lean Nat}}
@@ -73,7 +73,7 @@ This definition is almost like the definition of `Bool` with slightly different 
 The only real difference is that `succ` is followed by `(n : Nat)`, which specifies that the constructor `succ` takes an argument of type `Nat` which happens to be named `n`.
 The names `zero` and `succ` are in a namespace named after their type, so they must be referred to as `Nat.zero` and `Nat.succ`, respectively. -->
 
-ここで，`zero`は0を表し，`succ`は他の数値の後続値を表します．`succ`の宣言で言及されている`Nat`は，まさに定義中の`Nat`型です．後続値(_Successor_)は`1つ大きい`を意味するため，5の後続値は6，32,185の後続値は32,186です．この定義を使用すると，`{{#example_eval Examples/Intro.lean four 1}}`は`{{#example_eval Examples/Intro.lean four 0}}`として表されます．この定義は，名前がわずかに異なる`Bool`の定義にほぼ似ています．唯一の本当の違いは，`succ`の後に`(n : Nat)`が続くことです．これは，コンストラクタ`succ`が`n`という名前の`Nat`型の引数を取ることを指定します．名前`zero`と`succ`は，その型にちなんで名付けられた名前空間内にあるため，それぞれ`Nat.zero`と`Nat.succ`として参照する必要があります．
+ここで，`zero` は0を表し，`succ` は他の数値の後続値を表します．`succ` の宣言で言及されている `Nat` は，まさにこれから定義しようとしている `Nat` 型です．後続値(_Successor_)は「1つ大きい」を意味するため，5の後続値は6，32,185の後続値は32,186です．この定義を使用すると，`{{#example_eval Examples/Intro.lean four 1}}`は`{{#example_eval Examples/Intro.lean four 0}}`として表されます．この定義は，名前が異なるだけで `Bool` の定義に似ています．唯一の本当の違いは，`succ` の後に `(n : Nat)` が続くことです．これは，コンストラクタ `succ` が `n` という名前の `Nat` 型の引数を取ることを指定します．名前 `zero` と `succ` は，その型と同名の名前空間内にあるため，それぞれ `Nat.zero` と `Nat.succ` として参照する必要があります．
 
 <!-- Argument names, such as `n`, may occur in Lean's error messages and in feedback provided when writing mathematical proofs.
 Lean also has an optional syntax for providing arguments by name.
