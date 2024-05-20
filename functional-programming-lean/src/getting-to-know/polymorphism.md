@@ -1,60 +1,89 @@
-# Polymorphism
+<!-- # Polymorphism -->
+# 多相性
 
-Just as in most languages, types in Lean can take arguments.
+<!-- Just as in most languages, types in Lean can take arguments.
 For instance, the type `List Nat` describes lists of natural numbers, `List String` describes lists of strings, and `List (List Point)` describes lists of lists of points.
 This is very similar to `List<Nat>`, `List<String>`, or `List<List<Point>>` in a language like C# or Java.
-Just as Lean uses a space to pass an argument to a function, it uses a space to pass an argument to a type.
+Just as Lean uses a space to pass an argument to a function, it uses a space to pass an argument to a type. -->
 
-In functional programming, the term _polymorphism_ typically refers to datatypes and definitions that take types as arguments.
+ほとんどの言語と同じように、Leanの型も引数を取ることができます。例えば、`List.Nat`型は自然数のリストを意味し、`List.String`型は文字列のリストを、`List (List Point)`型は点のリストのリストを意味します。これはC#やJavaのような言語における型の書き方である`List<Nat>`、`List<String>`、`List<List<Point>>`に非常に似ています。Leanが関数に引数を渡すときにスペースを使うように、型に引数を渡すときにもスペースを使います。
+
+<!-- In functional programming, the term _polymorphism_ typically refers to datatypes and definitions that take types as arguments.
 This is different from the object-oriented programming community, where the term typically refers to subclasses that may override some behavior of their superclass.
 In this book, "polymorphism" always refers to the first sense of the word.
-These type arguments can be used in the datatype or definition, which allows the same datatype or definition to be used with any type that results from replacing the arguments' names with some other types.
+These type arguments can be used in the datatype or definition, which allows the same datatype or definition to be used with any type that results from replacing the arguments' names with some other types. -->
 
-The `Point` structure requires that both the `x` and `y` fields are `Float`s.
+関数型プログラミングでは、_polymorphism_(多相性)という用語は通常、引数にとるデータ型や定義を指します。これは多相性をスーパークラスのふるまいをオーバーライドするサブクラスのことを指すオブジェクト指向プログラミングのコミュニティとは異なる点です。本書では、「多相性」は常に最初の意味を指します。これらの型引数はデータ型や定義で使用することができ、引数の名前をほかの型に置き換えることで、同じデータ型や定義を任意の型で使用できるようになります。
+
+<!-- The `Point` structure requires that both the `x` and `y` fields are `Float`s.
 There is, however, nothing about points that require a specific representation for each coordinate.
-A polymorphic version of `Point`, called `PPoint`, can take a type as an argument, and then use that type for both fields:
+A polymorphic version of `Point`, called `PPoint`, can take a type as an argument, and then use that type for both fields: -->
+
+`Point`構造体は`x`と`y`フィールドの両方が`Float`型である必要があります。しかし、点について各座標の表現に特化している必要はありません。`Point`の多相バージョン``PPoint`は、型を引数として受け取り、その型を両方のフィールドに使用することができます:
+
 ```lean
 {{#example_decl Examples/Intro.lean PPoint}}
 ```
-Just as a function definition's arguments are written immediately after the name being defined, a structure's arguments are written immediately after the structure's name.
+<!-- Just as a function definition's arguments are written immediately after the name being defined, a structure's arguments are written immediately after the structure's name.
 It is customary to use Greek letters to name type arguments in Lean when no more specific name suggests itself.
-`Type` is a type that describes other types, so `Nat`, `List String`, and `PPoint Int` all have type `Type`.
+`Type` is a type that describes other types, so `Nat`, `List String`, and `PPoint Int` all have type `Type`. -->
 
-Just like `List`, `PPoint` can be used by providing a specific type as its argument:
+関数定義の引数が定義された関数名の直後に書かれるように、構造体の引数も構造体名の直後に書かれます。引数自体から示唆される具体的な名前がない場合には、Leanの型引数名にはギリシャ文字を使うのが通例です。型`Type`はほかの型を記述する型であるため、`Nat`や`List String`、`Point Int`はすべて`Type`型を持ちます。
+
+<!-- Just like `List`, `PPoint` can be used by providing a specific type as its argument: -->
+
+`List`型のように、`PPoint`も引数に特定の型を指定することで使用できます:
+
 ```lean
 {{#example_decl Examples/Intro.lean natPoint}}
 ```
-In this example, both fields are expected to be `Nat`s.
+<!-- In this example, both fields are expected to be `Nat`s.
 Just as a function is called by replacing its argument variables with its argument values, providing `PPoint` with the type `Nat` as an argument yields a structure in which the fields `x` and `y` have the type `Nat`, because the argument name `α` has been replaced by the argument type `Nat`.
-Types are ordinary expressions in Lean, so passing arguments to polymorphic types (like `PPoint`) doesn't require any special syntax.
+Types are ordinary expressions in Lean, so passing arguments to polymorphic types (like `PPoint`) doesn't require any special syntax. -->
 
-Definitions may also take types as arguments, which makes them polymorphic.
+この例では、両方のフィールドが`Nat`であることが期待されます。関数が引数の変数を引数の値に置き換えて呼び出されるのと同じように、`PPoint`に`Nat`型を引数として与えると、引数名`α`が引数の型`Nat`に置き換えられることでフィールド`x`と`y`が`Nat`型を持つ構造体が生成されます。型はLeanでは普通の式なので、（`PPoint`型のような）多相型に引数を渡すときに特別な構文は必要ありません。
+
+<!-- Definitions may also take types as arguments, which makes them polymorphic.
 The function `replaceX` replaces the `x` field of a `PPoint` with a new value.
 In order to allow `replaceX` to work with _any_ polymorphic point, it must be polymorphic itself.
-This is achieved by having its first argument be the type of the point's fields, with later arguments referring back to the first argument's name.
+This is achieved by having its first argument be the type of the point's fields, with later arguments referring back to the first argument's name. -->
+
+定義は引数として型を取ることもでき、それによって多相なものになります。`replaceX`は`PPoint`の`x`フィールドを新しい値に置き換える関数です。`replaceX`が _任意の_多相な点で動作するようにするには、`replaceX`自身が多相でなければなりません。これは、最初の引数をポイントのフィールドの型とし、それ以降の引数は最初の引数の名前を参照することで実現されます。
+
 ```lean
 {{#example_decl Examples/Intro.lean replaceX}}
 ```
-In other words, when the types of the arguments `point` and `newX` mention `α`, they are referring to _whichever type was provided as the first argument_.
-This is similar to the way that function argument names refer to the values that were provided when they occur in the function's body.
+<!-- In other words, when the types of the arguments `point` and `newX` mention `α`, they are referring to _whichever type was provided as the first argument_.
+This is similar to the way that function argument names refer to the values that were provided when they occur in the function's body. -->
 
-This can be seen by asking Lean to check the type of `replaceX`, and then asking it to check the type of `replaceX Nat`.
+言い換えると、引数`point`と`newX`の型が`α`を参照している場合、それらは_最初の引数として提供されたいずれかの型_を参照していることになります。これは、関数の引数名が関数内に現れたときに、提供された値を参照する方法と似ています。
+
+<!-- This can be seen by asking Lean to check the type of `replaceX`, and then asking it to check the type of `replaceX Nat`. -->
+
+この事実は`replaceX`の型をチェックし、次に`replaceX Nat`の型をチェックすることで確認できます。
+
 ```lean
 {{#example_in Examples/Intro.lean replaceXT}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean replaceXT}}
 ```
-This function type includes the _name_ of the first argument, and later arguments in the type refer back to this name.
+<!-- This function type includes the _name_ of the first argument, and later arguments in the type refer back to this name.
 Just as the value of a function application is found by replacing the argument name with the provided argument value in the function's body, the type of a function application is found by replacing the argument's name with the provided value in the function's return type.
-Providing the first argument, `Nat`, causes all occurrences of `α` in the remainder of the type to be replaced with `Nat`:
+Providing the first argument, `Nat`, causes all occurrences of `α` in the remainder of the type to be replaced with `Nat`: -->
+
+この関数型には最初の引数の_名前_が含まれ、その後に続く引数ではこの名前を参照します。関数適用の値が関数本体の引数名を提供された引数の値に置き換えることで導出されるのと同じように、関数適用の型は、引数名を関数の戻り値の型で与えられる値に置き換えることで導かれます。最初の引数に`Nat`を指定すると、残りの型に含まれるすべての`α`が`Nat`に置き換えられます:
+
 ```lean
 {{#example_in Examples/Intro.lean replaceXNatT}}
 ```
 ```output info
 {{#example_out Examples/Intro.lean replaceXNatT}}
 ```
-Because the remaining arguments are not explicitly named, no further substitution occurs as more arguments are provided:
+<!-- Because the remaining arguments are not explicitly named, no further substitution occurs as more arguments are provided: -->
+
+
+
 ```lean
 {{#example_in Examples/Intro.lean replaceXNatOriginT}}
 ```
