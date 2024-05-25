@@ -58,7 +58,7 @@ Lean distinguishes between _evaluation_ of expressions, which strictly adheres t
 Because this action doesn't read any interesting information from the environment in the process of emitting the string, `IO.println` has type `String → IO Unit`.
 If it did return something interesting, then that would be indicated by the `IO` action having a type other than `Unit`.
 -->
-`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション**と呼ばれます．これらのプログラムは **IO アクション**と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IOアクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
+`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション**と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IOアクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
 
 <!-- ## Functional Programming vs Effects -->
 ## 関数型プログラミングと作用
