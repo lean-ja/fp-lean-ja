@@ -1,48 +1,78 @@
-# Additional Conveniences
+<!-- # Additional Conveniences -->
 
-Lean contains a number of convenience features that make programs much more concise.
+## その他の便利な機能
 
-## Automatic Implicit Arguments
+<!-- Lean contains a number of convenience features that make programs much more concise. -->
 
-When writing polymorphic functions in Lean, it is typically not necessary to list all the implicit arguments.
+Leanにはプログラムをより簡潔にする便利な機能がたくさんあります。
+
+<!-- ## Automatic Implicit Arguments -->
+
+## 自動的な暗黙引数
+
+<!-- When writing polymorphic functions in Lean, it is typically not necessary to list all the implicit arguments.
 Instead, they can simply be mentioned.
 If Lean can determine their type, then they are automatically inserted as implicit arguments.
-In other words, the previous definition of `length`:
+In other words, the previous definition of `length`: -->
+
+Leanで多相関数を書く場合、基本的にすべての暗黙引数を列挙する必要はありません。その代わりに、単にそれらを参照するだけでよいのです。Leanが引数に現れなかった変数の型を決定できる場合、それらは自動的に暗黙の引数として挿入されます。例えば、先ほどの `length` の定義について:
+
 ```lean
 {{#example_decl Examples/Intro.lean lengthImp}}
 ```
-can be written without `{α : Type}`:
+<!-- can be written without `{α : Type}`: -->
+
+`{α : Type}` を書かずに定義できます:
+
 ```lean
 {{#example_decl Examples/Intro.lean lengthImpAuto}}
 ```
-This can greatly simplify highly polymorphic definitions that take many implicit arguments.
+<!-- This can greatly simplify highly polymorphic definitions that take many implicit arguments. -->
 
-## Pattern-Matching Definitions
+これにより、多くの暗黙引数をとるような高度に多相的な定義を大幅に簡略化することができます。
 
-When defining functions with `def`, it is quite common to name an argument and then immediately use it with pattern matching.
+<!-- ## Pattern-Matching Definitions -->
+
+## パターンマッチによる定義
+
+<!-- When defining functions with `def`, it is quite common to name an argument and then immediately use it with pattern matching.
 For instance, in `length`, the argument `xs` is used only in `match`.
-In these situations, the cases of the `match` expression can be written directly, without naming the argument at all.
+In these situations, the cases of the `match` expression can be written directly, without naming the argument at all. -->
 
-The first step is to move the arguments' types to the right of the colon, so the return type is a function type.
+`def` で関数を定義するとき、引数に名前をつけてもすぐにパターンマッチに適用してしまうケースはよくあります。例えば、 `length` では引数 `xs` は `match` でのみ使用されます。このような状況では、引数に名前を付けずに `match` 式のケースを直接書くことができます。
+
+<!-- The first step is to move the arguments' types to the right of the colon, so the return type is a function type.
 For instance, the type of `length` is `List α → Nat`.
-Then, replace the `:=` with each case of the pattern match:
+Then, replace the `:=` with each case of the pattern match: -->
+
+最初のステップは、引数の型をコロンの右側に移動させることです。例えば `length` の型は `List α → Nat` となります。次に、 `:=` をパターンマッチの各ケースで置き換えます:
+
 ```lean
 {{#example_decl Examples/Intro.lean lengthMatchDef}}
 ```
 
-This syntax can also be used to define functions that take more than one argument.
+<!-- This syntax can also be used to define functions that take more than one argument.
 In this case, their patterns are separated by commas.
-For instance, `drop` takes a number \\( n \\) and a list, and returns the list after removing the first \\( n \\) entries.
+For instance, `drop` takes a number \\( n \\) and a list, and returns the list after removing the first \\( n \\) entries. -->
+
+この構文は複数の引数を取る関数を定義するのにも使えます。この場合、パターンはカンマで区切られます。例えば、 `drop` は整数値 \\( n \\) とリストを受け取り、先頭から \\( n \\) 個の要素を取り除いたリストを返します。
+
 ```lean
 {{#example_decl Examples/Intro.lean drop}}
 ```
 
-Named arguments and patterns can also be used in the same definition.
-For instance, a function that takes a default value and an optional value, and returns the default when the optional value is `none`, can be written:
+<!-- Named arguments and patterns can also be used in the same definition.
+For instance, a function that takes a default value and an optional value, and returns the default when the optional value is `none`, can be written: -->
+
+名前の付いた引数とパターンを同じ定義で使用することもできます。例えば、デフォルト値とオプション値を受け取り、オプション値が `none` の場合はデフォルト値を返す関数を書くことができます:
+
 ```lean
 {{#example_decl Examples/Intro.lean fromOption}}
 ```
-This function is called `Option.getD` in the standard library, and can be called with dot notation:
+<!-- This function is called `Option.getD` in the standard library, and can be called with dot notation: -->
+
+この関数は標準ライブラリに `Option.getD` という名前で定義されており、ドット記法で呼び出すことができます:
+
 ```lean
 {{#example_in Examples/Intro.lean getD}}
 ```
@@ -56,29 +86,40 @@ This function is called `Option.getD` in the standard library, and can be called
 {{#example_out Examples/Intro.lean getDNone}}
 ```
 
-## Local Definitions
+<!-- ## Local Definitions -->
 
-It is often useful to name intermediate steps in a computation.
+## ローカル定義
+
+<!-- It is often useful to name intermediate steps in a computation.
 In many cases, intermediate values represent useful concepts all on their own, and naming them explicitly can make the program easier to read.
 In other cases, the intermediate value is used more than once.
-As in most other languages, writing down the same code twice in Lean causes it to be computed twice, while saving the result in a variable leads to the result of the computation being saved and re-used.
+As in most other languages, writing down the same code twice in Lean causes it to be computed twice, while saving the result in a variable leads to the result of the computation being saved and re-used. -->
 
-For instance, `unzip` is a function that transforms a list of pairs into a pair of lists.
+計算の途中のステップに名前を付けると便利なことが多いものです。多くの場合、こうした中間値はそれだけで有用な概念を表しており、明示的に名前をつけることでプログラムを読みやすくすることができます。また中間値が複数回使われる場合もあります。ほかの多くの言語と同じように、Leanにて同じコードを2回書くと2回計算されることになる一方で、結果を変数に保存すると計算結果が保存されて再利用されることになります。
+
+<!-- For instance, `unzip` is a function that transforms a list of pairs into a pair of lists.
 When the list of pairs is empty, then the result of `unzip` is a pair of empty lists.
 When the list of pairs has a pair at its head, then the two fields of the pair are added to the result of unzipping the rest of the list.
-This definition of `unzip` follows that description exactly:
+This definition of `unzip` follows that description exactly: -->
+
+例えば、 `unzip` はペアのリストをリストのペアに変換する関数です。ペアのリストが空の場合、 `unzip` の結果は空のリストのペアになります。ペアのリストの先頭にペアがある場合、そのペアの2つのフィールドが残りのリストを `unzip` した結果に追加されます。この `unzip` の定義を完全に起こすと以下のようになります:
+
 ```lean
 {{#example_decl Examples/Intro.lean unzipBad}}
 ```
-Unfortunately, there is a problem: this code is slower than it needs to be.
+<!-- Unfortunately, there is a problem: this code is slower than it needs to be.
 Each entry in the list of pairs leads to two recursive calls, which makes this function take exponential time.
-However, both recursive calls will have the same result, so there is no reason to make the recursive call twice.
+However, both recursive calls will have the same result, so there is no reason to make the recursive call twice. -->
 
+残念ながら、このコードには問題があります: これは必要以上に遅いのです。ペアのリストの各要素が2回の再帰呼び出しを行うため、この関数には指数関数的な時間がかかります。しかし、どちらの再帰呼び出しも結果は同じであるため、再帰呼び出しを2回行う必要はありません。
 
-In Lean, the result of the recursive call can be named, and thus saved, using `let`.
+<!-- In Lean, the result of the recursive call can be named, and thus saved, using `let`.
 Local definitions with `let` resemble top-level definitions with `def`: it takes a name to be locally defined, arguments if desired, a type signature, and then a body following `:=`.
 After the local definition, the expression in which the local definition is available (called the _body_ of the `let`-expression) must be on a new line, starting at a column in the file that is less than or equal to that of the `let` keyword.
-For instance, `let` can be used in `unzip` like this:
+For instance, `let` can be used in `unzip` like this: -->
+
+Leanでは再帰呼び出しの結果を `let` を使って名前を付け、保存することができます。 `let` によるローカル定義は `def` によるトップレベル定義と似ています: この構文ではローカル定義する名前、必要であれば引数、型シグネチャ、そして `:=` に続く本体を取ります。ローカル定義の後、この定義が使用可能な式（ `let` 式の _ボディ_ とｙ
+
 ```lean
 {{#example_decl Examples/Intro.lean unzip}}
 ```
