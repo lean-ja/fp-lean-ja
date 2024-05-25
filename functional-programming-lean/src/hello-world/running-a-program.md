@@ -47,7 +47,7 @@ Languages in the C tradition have a notion of a `void` function that does not re
 In Lean, all functions take an argument and return a value, and the lack of interesting arguments or return values can be signaled by using the `Unit` type instead.
 If `Bool` represents a single bit of information, `Unit` represents zero bits of information.
 -->
-[前の章](../getting-to-know/polymorphism.md)で議論したように，`Unit` は最も単純な帰納型です．`Unit` のコンストラクタは一つだけで，`unit` という引数を取らない関数です．C言語系のプログラミング言語には，何の値も返さない`void`関数の概念があります．一方 Lean では，すべての関数が引数を取り，値を返します．引数や返り値がないことは，代わりに `Unit` 型を使用して示すことができます．`Bool` が1ビットの情報を表すなら，`Unit` が表すのは0ビットの情報です．
+[前の章](../getting-to-know/polymorphism.md)で議論したように，`Unit` は最も単純な帰納型です．`Unit` のコンストラクタは一つだけで，`unit` という引数を取らない関数です．C言語系のプログラミング言語には，何の値も返さない `void` 関数の概念があります．一方 Lean では，すべての関数が引数を取り，値を返します．引数や返り値がないことは，代わりに `Unit` 型を使用して示すことができます．`Bool` が1ビットの情報を表すなら，`Unit` が表すのは0ビットの情報です．
 
 <!--
 `IO α` is the type of a program that, when executed, will either throw an exception or return a value of type `α`.
@@ -58,7 +58,7 @@ Lean distinguishes between _evaluation_ of expressions, which strictly adheres t
 Because this action doesn't read any interesting information from the environment in the process of emitting the string, `IO.println` has type `String → IO Unit`.
 If it did return something interesting, then that would be indicated by the `IO` action having a type other than `Unit`.
 -->
-`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション**と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IOアクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
+`IO α` は，「実行されると型 `α` の値を返すか，または例外をスローするようなプログラム」の型です．`IO α` 型を持つプログラムは，実行中に副作用を発生させる可能性があり，**IO アクション**と呼ばれます．Lean は，変数への値の代入と副作用のない部分式の簡約という数学的モデルに厳密に従う「式の**評価**」と，外部システムに依存して世界と相互作用する「IO アクションの**実行**」を区別します．`IO.println` は文字列から IO アクションへの関数で，実行すると指定された文字列を標準出力に書き込みます．この IO アクションは文字列を出力する過程で環境から情報を読み取らないため，`IO.println` の型は `String → IO Unit` です．もし何か値を返すなら，返り値の型は `IO Unit` ではなくなります．
 
 <!-- ## Functional Programming vs Effects -->
 ## 関数型プログラミングと作用
@@ -110,7 +110,7 @@ The RTS executes these actions, delegating to the user's Lean code to carry out 
 From the internal perspective of Lean, programs are free of side effects, and `IO` actions are just descriptions of tasks to be carried out.
 From the external perspective of the program's user, there is a layer of side effects that create an interface to the program's core logic.
 -->
-この副作用のモデルは，Lean 言語全体，コンパイラ，およびランタイムシステム（RTS）の総合的な動作方法とかなり類似しています．ランタイムシステム内のプリミティブな部分はCで書かれており，すべての基本的な作用を実装しています．プログラムを実行する際，RTSは `main` アクションを呼び出します．呼び出された `main` アクションは，実行されるべき新しい IO アクションをRTSに返します．RTS はこれらのアクションを実行し，ユーザの Lean コードに計算を実行させます．Lean という内部の視点からは，プログラムに副作用はなく，IO アクションは実行されるべきタスクの説明にすぎません．プログラムのユーザという外部の視点からは，副作用のレイヤが存在していて，プログラムのコアロジックへのインターフェースを形成しているように見えます．
+この副作用のモデルは，Lean 言語全体，コンパイラ，およびランタイムシステム（RTS）の総合的な動作方法とかなり類似しています．ランタイムシステム内のプリミティブな部分はCで書かれており，すべての基本的な作用を実装しています．プログラムを実行する際，RTS は `main` アクションを呼び出します．呼び出された `main` アクションは，実行されるべき新しい IO アクションを RTS に返します．RTS はこれらのアクションを実行し，ユーザの Lean コードに計算を実行させます．Lean という内部の視点からは，プログラムに副作用はなく，IO アクションは実行されるべきタスクの説明にすぎません．プログラムのユーザという外部の視点からは，副作用のレイヤが存在していて，プログラムのコアロジックへのインターフェースを形成しているように見えます．
 
 <!-- ## Real-World Functional Programming -->
 ## 現実世界の関数型プログラミング
@@ -124,7 +124,7 @@ Careful abstraction boundaries can make this style of programming safe.
 If every primitive `IO` action accepts one world and returns a new one, and they can only be combined with tools that preserve this invariant, then the problem cannot occur.
 -->
 
-Lean における副作用について考えるもう一つの有用な方法は，IO アクションを，世界全体を引数として受け取り，値と新しい世界の組を返す関数と考えることです．この場合，標準入力からテキストを読み取ることは純粋な関数です．なぜなら，異なる世界が引数として都度渡されるからです．標準出力にテキストを書き込むことも純粋な関数です．なぜなら，関数が返す世界は実行開始時のものと異なるからです．プログラムは世界を再利用しないように，新しい世界を返し損ねないように，よくよく注意する必要があります．それは結局，タイムトラベルまたは世界の終了を意味するからです．注意深い抽象化で副作用を隔離することにより，Lean は安全なプログラミングスタイルを実現しています．世界が与えられたら常に新しい世界を返すようなプリミティブ `IO` アクションを，その条件を保つツールとだけ組み合わせている限り，問題は発生しないのです．
+Lean における副作用について考えるもう一つの有用な方法は，IO アクションを，世界全体を引数として受け取り，値と新しい世界の組を返す関数と考えることです．この場合，標準入力からテキストを読み取ることは純粋な関数です．なぜなら，異なる世界が引数として都度渡されるからです．標準出力にテキストを書き込むことも純粋な関数です．なぜなら，関数が返す世界は実行開始時のものと異なるからです．プログラムは世界を再利用しないように，新しい世界を返し損ねないように，よくよく注意する必要があります．それは結局，タイムトラベルまたは世界の終了を意味するからです．注意深い抽象化で副作用を隔離することにより，Lean は安全なプログラミングスタイルを実現しています．世界が与えられたら常に新しい世界を返すようなプリミティブ IO アクションを，その条件を保つツールとだけ組み合わせている限り，問題は発生しないのです．
 
 <!--
 This model cannot be implemented.
@@ -142,11 +142,11 @@ The actual functions that transform the real world are behind an abstraction bar
 But real programs typically consist of a sequence of effects, rather than just one.
 To enable programs to use multiple effects, there is a sub-language of Lean called `do` notation that allows these primitive `IO` actions to be safely composed into a larger, useful program.
 -->
-この副作用のモデルは，Lean 内部で RTS によって実行されるタスクの説明としての `IO` アクションがどのように表現されているかを良く説明しています．実際の世界を変える関数は抽象性の壁の背後に隠れています．しかし，実際のプログラムは通常，1つだけでなく一連の作用から成り立っています．プログラムが複数の作用を利用できるようにするために，Lean には `do` 記法と呼ばれるサブ言語があり，プリミティブな IO アクションを安全に組み合わせて，より大きく有用なプログラムを作ることができます．
+この副作用のモデルは，Lean 内部で RTS によって実行されるタスクの説明としての IO アクションがどのように表現されているかを良く説明しています．実際の世界を変える関数は抽象性の壁の背後に隠れています．しかし，実際のプログラムは通常，1つだけでなく一連の作用から成り立っています．プログラムが複数の作用を利用できるようにするために，Lean には `do` 記法と呼ばれるサブ言語があり，プリミティブな IO アクションを安全に組み合わせて，より大きく有用なプログラムを作ることができます．
 
 
 <!-- ## Combining `IO` Actions -->
-## `IO`アクションの結合
+## IO アクションの結合
 
 <!--
 Most useful programs accept input in addition to producing output.
@@ -165,7 +165,7 @@ This block contains a sequence of _statements_, which can be both local variable
 Just as SQL can be thought of as a special-purpose language for interacting with databases, the `do` syntax can be thought of as a special-purpose sub-language within Lean that is dedicated to modeling imperative programs.
 `IO` actions that are built with a `do` block are executed by executing the statements in order.
 -->
-このプログラムでは，`main`アクションは`do`ブロックで構成されています．do ブロックには，一連の**文**(statement)が含まれています．それぞれの文は，`let` によるローカル変数の定義だったり，実行されるアクションであったりします．SQL がデータベースと対話するための特別な目的の言語と考えることができるように， `do` 構文は，Lean 内で命令型プログラムをモデル化するための専用のサブ言語だと考えることができます．`do` ブロックで構築された IO アクションは，文を順番に実行することで実行されます．
+このプログラムでは，`main` アクションは `do` ブロックで構成されています．do ブロックには，一連の**文**(statement)が含まれています．それぞれの文は，`let` によるローカル変数の定義だったり，実行されるアクションであったりします．SQL がデータベースと対話するための特別な目的の言語と考えることができるように， `do` 構文は，Lean 内で命令型プログラムをモデル化するための専用のサブ言語だと考えることができます．`do` ブロックで構築された IO アクションは，文を順番に実行することで実行されます．
 
 <!--
 This program can be run in the same manner as the prior program:
@@ -177,7 +177,7 @@ This program can be run in the same manner as the prior program:
 <!--
 If the user responds with `David`, a session of interaction with the program reads:
 -->
-ユーザが`David`と応答する場合，プログラムとの対話セッションが次のように表示されます．
+ユーザが `David` と応答する場合，プログラムとの対話セッションが次のように表示されます．
 ```
 {{#command_out {hello-name} {./run} }}
 ```
@@ -213,7 +213,7 @@ In other words, if the expression to the right of the arrow has type `IO α`, th
 `IO.getStdin` and `IO.getStdout` are `IO` actions in order to allow `stdin` and `stdout` to be locally overridden in a program, which can be convenient.
 If they were global variables as in C, then there would be no meaningful way to override them, but `IO` actions can return different values each time they are executed.
 -->
-これらの行は，ライブラリアクション `IO.getStdin` および `IO.getStdout` を実行して `stdin` と `stdout` のハンドルを取得します．`do` ブロックの中の `let` は，通常の式の中の `let` とはやや異なる意味を持ちます．通常，`let` で導入されたローカル定義は，すぐにそのローカル定義に続く式でしか使用できません．`do` ブロックでは，`let` によって導入されたローカル束縛は，次の式だけでなく，`do` ブロックの残りのすべての文で使用できます．さらに，通常 `let` は `:=` を使って定義される名前とその定義を結びつけますが，`do` 内部の `let` 束縛においては，代わりに左矢印（`←`または `<-`）を使うことがあります．矢印を使用するということは，式の値が IO アクションであり，そのアクションの実行結果をローカル変数に保存するということを意味します．言い換えれば，矢印の右側の式が型 `IO α` を持つ場合，その変数は `do` ブロックの残りの部分で型 `α` を持ちます．`IO.getStdin` および `IO.getStdout` は `stdin` と `stdout` をプログラム内でローカルに上書きできるようにするための便利な IO アクションです．C 言語のように `stdin` と `stdout` がグローバル変数であったら，（Lean では一度束縛した値は変更できないので）これを上書きすることはできませんが，IO アクションなら実行ごとに異なる値を返すことができます．
+これらの行は，ライブラリアクション `IO.getStdin` および `IO.getStdout` を実行して `stdin` と `stdout` のハンドルを取得します．`do` ブロックの中の `let` は，通常の式の中の `let` とはやや異なる意味を持ちます．通常，`let` で導入されたローカル定義は，すぐにそのローカル定義に続く式でしか使用できません．`do` ブロックでは，`let` によって導入されたローカル束縛は，次の式だけでなく，`do` ブロックの残りのすべての文で使用できます．さらに，通常 `let` は `:=` を使って定義される名前とその定義を結びつけますが，`do` 内部の `let` 束縛においては，代わりに左矢印（`←` または `<-`）を使うことがあります．矢印を使用するということは，式の値が IO アクションであり，そのアクションの実行結果をローカル変数に保存するということを意味します．言い換えれば，矢印の右側の式が型 `IO α` を持つ場合，その変数は `do` ブロックの残りの部分で型 `α` を持ちます．`IO.getStdin` および `IO.getStdout` は `stdin` と `stdout` をプログラム内でローカルに上書きできるようにするための便利な IO アクションです．C 言語のように `stdin` と `stdout` がグローバル変数であったら，（Lean では一度束縛した値は変更できないので）これを上書きすることはできませんが，IO アクションなら実行ごとに異なる値を返すことができます．
 
 <!--
 The next part of the `do` block is responsible for asking the user for their name:
