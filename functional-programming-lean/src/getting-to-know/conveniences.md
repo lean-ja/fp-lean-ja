@@ -39,13 +39,13 @@ Leanで多相関数を書く場合，基本的にすべての暗黙引数を列�
 For instance, in `length`, the argument `xs` is used only in `match`.
 In these situations, the cases of the `match` expression can be written directly, without naming the argument at all. -->
 
-`def` で関数を定義するとき，引数に名前をつけてもすぐにパターンマッチに適用してしまうケースはよくあります．例えば， `length` では引数 `xs` は `match` でのみ使用されます．このような状況では，引数に名前を付けずに `match` 式のケースを直接書くことができます．
+`def` で関数を定義するとき，引数に名前をつけてもすぐにパターンマッチに適用してしまうケースはよくあります．例えば，`length` では引数 `xs` は `match` でのみ使用されます．このような状況では，引数に名前を付けずに `match` 式のケースを直接書くことができます．
 
 <!-- The first step is to move the arguments' types to the right of the colon, so the return type is a function type.
 For instance, the type of `length` is `List α → Nat`.
 Then, replace the `:=` with each case of the pattern match: -->
 
-最初のステップは，引数の型をコロンの右側に移動させることです．例えば `length` の型は `List α → Nat` となります．次に， `:=` をパターンマッチの各ケースで置き換えます:
+最初のステップは，引数の型をコロンの右側に移動させることです．例えば `length` の型は `List α → Nat` となります．次に，`:=` をパターンマッチの各ケースで置き換えます:
 
 ```lean
 {{#example_decl Examples/Intro.lean lengthMatchDef}}
@@ -55,7 +55,7 @@ Then, replace the `:=` with each case of the pattern match: -->
 In this case, their patterns are separated by commas.
 For instance, `drop` takes a number \\( n \\) and a list, and returns the list after removing the first \\( n \\) entries. -->
 
-この構文は複数の引数を取る関数を定義するのにも使えます．この場合，パターンはカンマで区切られます．例えば， `drop` は整数値 \\( n \\) とリストを受け取り，先頭から \\( n \\) 個の要素を取り除いたリストを返します．
+この構文は複数の引数を取る関数を定義するのにも使えます．この場合，パターンはカンマで区切られます．例えば，`drop` は整数値 \\( n \\) とリストを受け取り，先頭から \\( n \\) 個の要素を取り除いたリストを返します．
 
 ```lean
 {{#example_decl Examples/Intro.lean drop}}
@@ -102,7 +102,7 @@ When the list of pairs is empty, then the result of `unzip` is a pair of empty l
 When the list of pairs has a pair at its head, then the two fields of the pair are added to the result of unzipping the rest of the list.
 This definition of `unzip` follows that description exactly: -->
 
-例えば， `unzip` はペアのリストをリストのペアに変換する関数です．ペアのリストが空の場合， `unzip` の結果は空のリストのペアになります．ペアのリストの先頭にペアがある場合，そのペアの2つのフィールドが残りのリストを `unzip` した結果に追加されます．この `unzip` の定義を完全に起こすと以下のようになります:
+例えば，`unzip` はペアのリストをリストのペアに変換する関数です．ペアのリストが空の場合，`unzip` の結果は空のリストのペアになります．ペアのリストの先頭にペアがある場合，そのペアの2つのフィールドが残りのリストを `unzip` した結果に追加されます．この `unzip` の定義を完全に起こすと以下のようになります:
 
 ```lean
 {{#example_decl Examples/Intro.lean unzipBad}}
@@ -118,7 +118,7 @@ Local definitions with `let` resemble top-level definitions with `def`: it takes
 After the local definition, the expression in which the local definition is available (called the _body_ of the `let`-expression) must be on a new line, starting at a column in the file that is less than or equal to that of the `let` keyword.
 For instance, `let` can be used in `unzip` like this: -->
 
-Leanでは再帰呼び出しの結果を `let` を使って名前を付け，保存することができます． `let` によるローカル定義は `def` によるトップレベル定義と似ています: この構文ではローカル定義する名前，必要であれば引数，型シグネチャ，そして `:=` に続く本体を取ります．ローカル定義の後，この定義が使用可能な式（ `let` 式の _本体_ と呼ばれます）は次の行からかつ `let` キーワードが定義された列と同じかそれよりも後ろから始まる必要があります．例えば `let` は `unzip` で次のように使用することができます:
+Leanでは再帰呼び出しの結果を `let` を使って名前を付け，保存することができます．`let` によるローカル定義は `def` によるトップレベル定義と似ています: この構文ではローカル定義する名前，必要であれば引数，型シグネチャ，そして `:=` に続く本体を取ります．ローカル定義の後，この定義が使用可能な式（ `let` 式の _本体_ と呼ばれます）は次の行からかつ `let` キーワードが定義された列と同じかそれよりも後ろから始まる必要があります．例えば `let` は `unzip` で次のように使用することができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean unzip}}
@@ -131,7 +131,7 @@ Leanでは再帰呼び出しの結果を `let` を使って名前を付け，保
 In the case of `unzip`, the result of the recursive call is a pair.
 Because pairs have only a single constructor, the name `unzipped` can be replaced with a pair pattern: -->
 
-`let` を使用したローカル定義では，1つのパターンでデータ型のすべてのケースにマッチする場合であればパターンマッチを使うこともできます． `unzip` の場合，再帰呼び出しの結果はペアになります．ペアは単一のコンストラクタしか持たないので， `unzipped` という名前をペアのパターンに置き換えることができます:
+`let` を使用したローカル定義では，1つのパターンでデータ型のすべてのケースにマッチする場合であればパターンマッチを使うこともできます．`unzip` の場合，再帰呼び出しの結果はペアになります．ペアは単一のコンストラクタしか持たないので，`unzipped` という名前をペアのパターンに置き換えることができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean unzipPat}}
@@ -151,7 +151,7 @@ For instance, one way to reverse a list involves a recursive helper function, as
 <!-- The helper function walks down the input list, moving one entry at a time over to `soFar`.
 When it reaches the end of the input list, `soFar` contains a reversed version of the input. -->
 
-ヘルパー関数は入力リストを下向きに進み，そのたびに1つの要素を `soFar` に移動していきます．入力リストの最後に到達すると， `soFar` には入力されたリストの逆順が格納されます．
+ヘルパー関数は入力リストを下向きに進み，そのたびに1つの要素を `soFar` に移動していきます．入力リストの最後に到達すると，`soFar` には入力されたリストの逆順が格納されます．
 
 <!-- ## Type Inference -->
 
@@ -176,7 +176,7 @@ Definitions that are not functions, like `unzipped` in the example, do not need 
 
 <!-- Omitting the return type for `unzip` is possible when using an explicit `match` expression: -->
 
-明示的な `match` 式を使用する場合， `unzip` の戻り値の型を省略することができます:
+明示的な `match` 式を使用する場合，`unzip` の戻り値の型を省略することができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean unzipNRT}}
@@ -196,7 +196,7 @@ Because Lean's type system is so expressive, there is no "best" or most general 
 This means that even if you get a type, there's no guarantee that it's the _right_ type for a given application.
 For instance, `14` can be a `Nat` or an `Int`: -->
 
-一般論として，型注釈は少なすぎるよりは多すぎる方が良いです．まず，明示的な型は読み手にコードの前提を伝えます．たとえLeanによって型が決定できるものでも，Leanに型情報をいちいち問い合わせることなくコードを読むことができます．第二に，明示的な型はエラーの特定に役立ちます．プログラムが型について明示的であればあるほど，エラーメッセージはより有益なものになります．これはLeanに限らず非常に表現力豊かな型システムを持つ言語では特に重要です．第三に，型が明示されていることによって，そもそもプログラムを書くのが簡単になります．型は仕様であり，コンパイラのフィードバックは仕様を満たすプログラムを書くのに役立つツールになります．最後に，Leanの型推論はベストエフォートなシステムです．Leanの型システムは非常に表現力が豊かであるため，すべての式に対して「最良」な型や最も一般的な型を見つけることができません．つまり，型が得られたとしても，それが与えられたアプリケーションにとって「正しい」型であるという保証はないということです．例えば， `14` は `Nat` にも `Int` にもなり得ます:
+一般論として，型注釈は少なすぎるよりは多すぎる方が良いです．まず，明示的な型は読み手にコードの前提を伝えます．たとえLeanによって型が決定できるものでも，Leanに型情報をいちいち問い合わせることなくコードを読むことができます．第二に，明示的な型はエラーの特定に役立ちます．プログラムが型について明示的であればあるほど，エラーメッセージはより有益なものになります．これはLeanに限らず非常に表現力豊かな型システムを持つ言語では特に重要です．第三に，型が明示されていることによって，そもそもプログラムを書くのが簡単になります．型は仕様であり，コンパイラのフィードバックは仕様を満たすプログラムを書くのに役立つツールになります．最後に，Leanの型推論はベストエフォートなシステムです．Leanの型システムは非常に表現力が豊かであるため，すべての式に対して「最良」な型や最も一般的な型を見つけることができません．つまり，型が得られたとしても，それが与えられたアプリケーションにとって「正しい」型であるという保証はないということです．例えば，`14` は `Nat` にも `Int` にもなり得ます:
 
 ```lean
 {{#example_in Examples/Intro.lean fourteenNat}}
@@ -214,7 +214,7 @@ For instance, `14` can be a `Nat` or an `Int`: -->
 <!-- Missing type annotations can give confusing error messages.
 Omitting all types from the definition of `unzip`: -->
 
-型注釈が欠落すると，エラーメッセージがわかりづらくなります． `unzip` の定義からすべての型を省略すると:
+型注釈が欠落すると，エラーメッセージがわかりづらくなります．`unzip` の定義からすべての型を省略すると:
 
 ```lean
 {{#example_in Examples/Intro.lean unzipNoTypesAtAll}}
@@ -284,7 +284,7 @@ Here is a version of `drop` that uses simultaneous matching: -->
 
 <!-- In the section on [datatypes and patterns](datatypes-and-patterns.md), `even` was defined like this: -->
 
-[「データ型，パターンそして再帰」](datatypes-and-patterns.md)の節において， `even` は次のように定義されていました:
+[「データ型，パターンそして再帰」](datatypes-and-patterns.md)の節において，`even` は次のように定義されていました:
 
 ```lean
 {{#example_decl Examples/Intro.lean even}}
@@ -292,7 +292,7 @@ Here is a version of `drop` that uses simultaneous matching: -->
 <!-- Just as there is special syntax to make list patterns more readable than using `List.cons` and `List.nil` directly, natural numbers can be matched using literal numbers and `+`.
 For instance, `even` can also be defined like this: -->
 
-リストのパターンマッチを `List.cons` や `List.nil` を使うよりも読みやすくするための特別な構文があるように，自然数もリテラル数値と `+` を使ってマッチさせることができます．例えば， `even` は以下のように定義することもできます:
+リストのパターンマッチを `List.cons` や `List.nil` を使うよりも読みやすくするための特別な構文があるように，自然数もリテラル数値と `+` を使ってマッチさせることができます．例えば，`even` は以下のように定義することもできます:
 
 ```lean
 {{#example_decl Examples/Intro.lean evenFancy}}
@@ -302,7 +302,7 @@ For instance, `even` can also be defined like this: -->
 Behind the scenes, the left argument (`n` above) becomes an argument to some number of `Nat.succ` patterns, and the right argument (`1` above) determines how many `Nat.succ`s to wrap around the pattern.
 The explicit patterns in `halve`, which divides a `Nat` by two and drops the remainder: -->
 
-この記法では， `+` パターンの引数は異なる役割を果たします．裏側では，左の引数（上の `n` ）は何かしらの数値の `Nat.succ` パターンの引数になり，右の引数（上の `1` ）はパターンにラップする `Nat.succ` の数を決定します．さて，次に `halve` 関数の明示的なパターンでは `Nat` を2で割って余りを落とします:
+この記法では，`+` パターンの引数は異なる役割を果たします．裏側では，左の引数（上の `n` ）は何かしらの数値の `Nat.succ` パターンの引数になり，右の引数（上の `1` ）はパターンにラップする `Nat.succ` の数を決定します．さて，次に `halve` 関数の明示的なパターンでは `Nat` を2で割って余りを落とします:
 
 ```lean
 {{#example_decl Examples/Intro.lean explicitHalve}}
@@ -317,12 +317,12 @@ The explicit patterns in `halve`, which divides a `Nat` by two and drops the rem
 <!-- Behind the scenes, both definitions are completely equivalent.
 Remember: `halve n + 1` is equivalent to `(halve n) + 1`, not `halve (n + 1)`. -->
 
-この裏側では，上記二つの定義はどちらも完全に等価です．ここで覚えておいてほしいこととして， `halve n + 1` は `(halve n) + 1` と等価であり， `halve (n + 1)` とは等価ではありません．
+この裏側では，上記二つの定義はどちらも完全に等価です．ここで覚えておいてほしいこととして，`halve n + 1` は `(halve n) + 1` と等価であり，`halve (n + 1)` とは等価ではありません．
 
 <!-- When using this syntax, the second argument to `+` should always be a literal `Nat`.
 Even though addition is commutative, flipping the arguments in a pattern can result in errors like the following: -->
 
-この構文を使う場合， `+` の第二引数は常に `Nat` のリテラルでなければなりません．また可算は可換であるにもかかわらず，パターン内の引数を反転させると次のようなエラーになることがあります:
+この構文を使う場合，`+` の第二引数は常に `Nat` のリテラルでなければなりません．また可算は可換であるにもかかわらず，パターン内の引数を反転させると次のようなエラーになることがあります:
 
 ```lean
 {{#example_in Examples/Intro.lean halveFlippedPat}}
@@ -374,7 +374,7 @@ Leanの関数はトップレベルで定義する必要はありません．式�
 <!-- This style of anonymous function expression is often referred to as a _lambda expression_, because the typical notation used in mathematical descriptions of programming languages uses the Greek letter λ (lambda) where Lean has the keyword `fun`.
 Even though Lean does permit `λ` to be used instead of `fun`, it is most common to write `fun`. -->
 
-この無名関数式のスタイルはしばしば _ラムダ式_ と呼ばれます，というのもLeanではキーワード `fun` に対応するプログラミング言語の数学的な記述で使われる典型的な表記法はギリシャ文字のλ（ラムダ）だからです．Leanでも `fun` の代わりに `λ` を使うことができますが， `fun` と書く方が一般的です．
+この無名関数式のスタイルはしばしば _ラムダ式_ と呼ばれます，というのもLeanではキーワード `fun` に対応するプログラミング言語の数学的な記述で使われる典型的な表記法はギリシャ文字のλ（ラムダ）だからです．Leanでも `fun` の代わりに `λ` を使うことができますが，`fun` と書く方が一般的です．
 
 <!-- Anonymous functions also support the multiple-pattern style used in `def`.
 For instance, a function that returns the predecessor of a natural number if it exists can be written: -->
@@ -407,13 +407,13 @@ For these simple cases, Lean provides a shorthand.
 In an expression surrounded by parentheses, a centered dot character `·` can stand for an argument, and the expression inside the parentheses becomes the function's body.
 That particular function can also be written `{{#example_eval Examples/Intro.lean incrSteps 1}}`. -->
 
-無名関数が， `{{#example_eval Examples/Intro.lean incrSteps 0}}` のように非常に単純な場合，関数を作成する構文はかなり冗長になります．この例では，6つの非空白文字が関数の導入に使用され，本体は3つの非空白文字で構成されています．このような単純なケースのために，Leanは省略記法を用意しています．括弧で囲まれた式の中で，中黒点 `·` が引数を表し，括弧の中の式が関数の本体になります．この関数は `{{#example_eval Examples/Intro.lean incrSteps 1}}` と書くこともできます．
+無名関数が，`{{#example_eval Examples/Intro.lean incrSteps 0}}` のように非常に単純な場合，関数を作成する構文はかなり冗長になります．この例では，6つの非空白文字が関数の導入に使用され，本体は3つの非空白文字で構成されています．このような単純なケースのために，Leanは省略記法を用意しています．括弧で囲まれた式の中で，中黒点 `·` が引数を表し，括弧の中の式が関数の本体になります．この関数は `{{#example_eval Examples/Intro.lean incrSteps 1}}` と書くこともできます．
 
 <!-- The centered dot always creates a function out of the _closest_ surrounding set of parentheses.
 For instance, `{{#example_eval Examples/Intro.lean funPair 0}}` is a function that returns a pair of numbers, while `{{#example_eval Examples/Intro.lean pairFun 0}}` is a pair of a function and a number.
 If multiple dots are used, then they become arguments from left to right: -->
 
-中黒点は常に最も近い括弧から関数を生成します．例えば， `{{#example_eval Examples/Intro.lean funPair 0}}` は数字のペアを返す関数で， `{{#example_eval Examples/Intro.lean pairFun 0}}` は関数と数字のペアです．複数の点が使用された場合，それらは左から右の順に複数の引数になります:
+中黒点は常に最も近い括弧から関数を生成します．例えば，`{{#example_eval Examples/Intro.lean funPair 0}}` は数字のペアを返す関数で，`{{#example_eval Examples/Intro.lean pairFun 0}}` は関数と数字のペアです．複数の点が使用された場合，それらは左から右の順に複数の引数になります:
 
 ```lean
 {{#example_eval Examples/Intro.lean twoDots}}
@@ -445,12 +445,12 @@ Names in different namespaces do not conflict with each other, even if they are 
 This means that `List.map` and `Array.map` are different names.
 Namespaces may be nested, so `Project.Frontend.User.loginTime` is the name `loginTime` in the nested namespace `Project.Frontend.User`. -->
 
-Leanの各名前は名前の集まりである _名前空間_ の中に存在します．名前は `.` を使って名前空間に配置されるので， `List.map` は `List` 名前空間の `map` という名前になります．名前空間が異なる名前同士は，たとえ同じ名前であっても衝突することはありません．つまり， `List.map` と `Array.map` は異なる名前です．名前空間は入れ子にすることができるので， `Project.Frontend.User.loginTime` は `Project.Frontend.User` の `loginTime` という名前になります．
+Leanの各名前は名前の集まりである _名前空間_ の中に存在します．名前は `.` を使って名前空間に配置されるので，`List.map` は `List` 名前空間の `map` という名前になります．名前空間が異なる名前同士は，たとえ同じ名前であっても衝突することはありません．つまり，`List.map` と `Array.map` は異なる名前です．名前空間は入れ子にすることができるので，`Project.Frontend.User.loginTime` は `Project.Frontend.User` の `loginTime` という名前になります．
 
 <!-- Names can be directly defined within a namespace.
 For instance, the name `double` can be defined in the `Nat` namespace: -->
 
-名前は名前空間内で直接定義することができます．例えば， `double` という名前は `Nat` 名前空間で定義することができます:
+名前は名前空間内で直接定義することができます．例えば，`double` という名前は `Nat` 名前空間で定義することができます:
 
 ```lean
 {{#example_decl Examples/Intro.lean NatDouble}}
@@ -469,7 +469,7 @@ For instance, the name `double` can be defined in the `Nat` namespace: -->
 <!-- In addition to defining names directly in a namespace, a sequence of declarations can be placed in a namespace using the `namespace` and `end` commands.
 For instance, this defines `triple` and `quadruple` in the namespace `NewNamespace`: -->
 
-名前空間内で直接名前を定義するだけでなく， `namespace` コマンドと `end` コマンドを使用して一連の宣言を名前空間内に配置することができます．例えば，以下では名前空間 `NewNamespace` に `triple` と `quadruple` を定義しています:
+名前空間内で直接名前を定義するだけでなく，`namespace` コマンドと `end` コマンドを使用して一連の宣言を名前空間内に配置することができます．例えば，以下では名前空間 `NewNamespace` に `triple` と `quadruple` を定義しています:
 
 ```lean
 {{#example_decl Examples/Intro.lean NewNamespace}}
@@ -495,7 +495,7 @@ For instance, this defines `triple` and `quadruple` in the namespace `NewNamespa
 Writing `open MyNamespace in` before an expression causes the contents of `MyNamespace` to be available in the expression.
 For example, `timesTwelve` uses both `quadruple` and `triple` after opening `NewNamespace`: -->
 
-名前空間は _開く_ ことができます．これによって名前空間内の名前を明示的に指定することなく使うことができるようになります．式の前に `open MyNamespace in` と書くと，その式で `MyNamespace` の内容が使用できるようになります．以下の例で， `timesTwelve` は `NewNamespace` を開いた後に `quadruple` と `triple` の両方を使用しています:
+名前空間は _開く_ ことができます．これによって名前空間内の名前を明示的に指定することなく使うことができるようになります．式の前に `open MyNamespace in` と書くと，その式で `MyNamespace` の内容が使用できるようになります．以下の例で，`timesTwelve` は `NewNamespace` を開いた後に `quadruple` と `triple` の両方を使用しています:
 
 ```lean
 {{#example_decl Examples/Intro.lean quadrupleOpenDef}}
@@ -537,7 +537,7 @@ For instance, given this type that represents a subset of Markdown inline elemen
 ```
 <!-- An alternative way of writing this function's body uses `if` together with `let`: -->
 
-この関数の本体部分は， `if` を `let` と一緒に使うことでも記述できます:
+この関数の本体部分は，`if` を `let` と一緒に使うことでも記述できます:
 
 ```lean
 {{#example_decl Examples/Intro.lean inlineStringHuh}}
@@ -546,7 +546,7 @@ For instance, given this type that represents a subset of Markdown inline elemen
 The difference is that it can be used with sum types, because a fallback is provided in the `else` case.
 In some contexts, using `if let` instead of `match` can make code easier to read. -->
 
-これはパターンマッチの `let` 構文によく似ています．違いは， `else` の場合にフォールバックするようになるため，直和型で使用できる点です．文脈によっては， `match` の代わりに `if let` を使うとコードが読みやすくなることがあります．
+これはパターンマッチの `let` 構文によく似ています．違いは，`else` の場合にフォールバックするようになるため，直和型で使用できる点です．文脈によっては，`match` の代わりに `if let` を使うとコードが読みやすくなることがあります．
 
 <!-- ## Positional Structure Arguments -->
 
@@ -572,12 +572,12 @@ Be careful!
 Even though they look like the less-than sign `<` and greater-than sign `>`, these brackets are different.
 They can be input using `\<` and `\>`, respectively. -->
 
-文脈によっては，コンストラクタに直接名前を付けずに，名前ではなく位置で引数を渡すと便利な場合があります．例えば，様々な似たような構造体タイプを定義することで，ドメイン概念を分離しておくことができますが，コードを読む際にはそれらを実質的にタプルとして扱う方が自然です．このような文脈では，引数を角括弧 `⟨` と `⟩` で囲むことができます． `Point` は `{{#example_in Examples/Intro.lean pointPos}}` と書くことができます．ここで注意点です！この括弧は小なり記号 `<` と大なり記号 `>` のように見えますが，これらの括弧は違うものです．それぞれ `\<` と `\>` で入力できます．
+文脈によっては，コンストラクタに直接名前を付けずに，名前ではなく位置で引数を渡すと便利な場合があります．例えば，様々な似たような構造体タイプを定義することで，ドメイン概念を分離しておくことができますが，コードを読む際にはそれらを実質的にタプルとして扱う方が自然です．このような文脈では，引数を角括弧 `⟨` と `⟩` で囲むことができます．`Point` は `{{#example_in Examples/Intro.lean pointPos}}` と書くことができます．ここで注意点です！この括弧は小なり記号 `<` と大なり記号 `>` のように見えますが，これらの括弧は違うものです．それぞれ `\<` と `\>` で入力できます．
 
 <!-- Just as with the brace notation for named constructor arguments, this positional syntax can only be used in a context where Lean can determine the structure's type, either from a type annotation or from other type information in the program.
 For instance, `{{#example_in Examples/Intro.lean pointPosEvalNoType}}` yields the following error: -->
 
-名前付きコンストラクタ引数の波括弧表記と同様に，この位置指定構文は，型注釈やプログラム内の他の型情報から，Leanが構造体の型を決定できるコンテキストでのみ使用できます．例えば， `{{#example_in Examples/Intro.lean pointPosEvalNoType}}` は以下のエラーを返します:
+名前付きコンストラクタ引数の波括弧表記と同様に，この位置指定構文は，型注釈やプログラム内の他の型情報から，Leanが構造体の型を決定できるコンテキストでのみ使用できます．例えば，`{{#example_in Examples/Intro.lean pointPosEvalNoType}}` は以下のエラーを返します:
 
 ```output error
 {{#example_out Examples/Intro.lean pointPosEvalNoType}}
@@ -585,7 +585,7 @@ For instance, `{{#example_in Examples/Intro.lean pointPosEvalNoType}}` yields th
 <!-- The metavariable in the error is because there is no type information available.
 Adding an annotation, such as in `{{#example_in Examples/Intro.lean pointPosWithType}}`, solves the problem: -->
 
-エラーのメタ変数は，利用可能な型情報が無いためです．例えば， `{{#example_in Examples/Intro.lean pointPosWithType}}` のような注釈を追加することで問題は解決します:
+エラーのメタ変数は，利用可能な型情報が無いためです．例えば，`{{#example_in Examples/Intro.lean pointPosWithType}}` のような注釈を追加することで問題は解決します:
 
 ```output info
 {{#example_out Examples/Intro.lean pointPosWithType}}
@@ -632,4 +632,4 @@ For instance, attempting to interpolate a function results in an error. -->
 The Lean compiler maintains a table that describes how to convert values of various types into strings, and the message `failed to synthesize instance` means that the Lean compiler didn't find an entry in this table for the given type.
 This uses the same language feature as the `deriving Repr` syntax that was described in the [section on structures](structures.md). -->
 
-これは，関数を文字列に変換する標準的な方法がないからです．Leanコンパイラはさまざまな型の値を文字列に変換する方法を記述したテーブルを保持しており， `failed to synthesize instance` というメッセージはLeanコンパイラがこのテーブルの中から指定された型の要素を見つけられなかったことを意味します．これは[「構造体」の節](structures.md) で説明した `deriving Repr` 構文と同じ言語機能を使用しています．
+これは，関数を文字列に変換する標準的な方法がないからです．Leanコンパイラはさまざまな型の値を文字列に変換する方法を記述したテーブルを保持しており，`failed to synthesize instance` というメッセージはLeanコンパイラがこのテーブルの中から指定された型の要素を見つけられなかったことを意味します．これは[「構造体」の節](structures.md) で説明した `deriving Repr` 構文と同じ言語機能を使用しています．
