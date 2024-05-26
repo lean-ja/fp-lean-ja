@@ -365,7 +365,7 @@ If `TARGET` has type `T`, the function named `T.f` is called.
 `TARGET` becomes its leftmost argument of type `T`, which is often but not always the first one, and `ARG1 ARG2 ...` are provided in order as the remaining arguments.
 For instance, `String.append` can be invoked from a string with accessor notation, even though `String` is not a structure with an `append` field. -->
 
-アクセサドット記法は, 構造体のフィールド以外にも使えます． 任意の数の引数を取る関数にも使用できます． より一般的に，アクセサ記法は `TARGET.f ARG1 ARG2 ...` という形をしています．このとき `TARGET` の型が `T` であれば， `T.f` という関数が呼び出されます．`TARGET` は関数 `T.f` の型 `T` を持つ最初の引数になります． 多くの場合これは最初の引数ですが，常にではありません．`ARG1 ARG2 ...` は順に残りの引数として与えられます．例えば `String.append` は, `String` が `append` フィールドを持つ構造体ではないにもかかわらず，アクセサ記法を使って文字列から呼び出すことができます．
+アクセサドット記法は, 構造体のフィールド以外にも使えます． 任意の数の引数を取る関数にも使用できます． より一般的に，アクセサ記法は `TARGET.f ARG1 ARG2 ...` という形をしています．このとき `TARGET` の型が `T` であれば，`T.f` という関数が呼び出されます．`TARGET` は関数 `T.f` の型 `T` を持つ最初の引数になります． 多くの場合これは最初の引数ですが，常にではありません．`ARG1 ARG2 ...` は順に残りの引数として与えられます．例えば `String.append` は, `String` が `append` フィールドを持つ構造体ではないにもかかわらず，アクセサ記法を使って文字列から呼び出すことができます．
 
 ```lean
 {{#example_in Examples/Intro.lean stringAppendDot}}

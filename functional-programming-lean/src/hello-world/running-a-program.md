@@ -165,7 +165,7 @@ This block contains a sequence of _statements_, which can be both local variable
 Just as SQL can be thought of as a special-purpose language for interacting with databases, the `do` syntax can be thought of as a special-purpose sub-language within Lean that is dedicated to modeling imperative programs.
 `IO` actions that are built with a `do` block are executed by executing the statements in order.
 -->
-このプログラムでは，`main` アクションは `do` ブロックで構成されています．do ブロックには，一連の**文**(statement)が含まれています．それぞれの文は，`let` によるローカル変数の定義だったり，実行されるアクションであったりします．SQL がデータベースと対話するための特別な目的の言語と考えることができるように， `do` 構文は，Lean 内で命令型プログラムをモデル化するための専用のサブ言語だと考えることができます．`do` ブロックで構築された IO アクションは，文を順番に実行することで実行されます．
+このプログラムでは，`main` アクションは `do` ブロックで構成されています．do ブロックには，一連の**文**(statement)が含まれています．それぞれの文は，`let` によるローカル変数の定義だったり，実行されるアクションであったりします．SQL がデータベースと対話するための特別な目的の言語と考えることができるように，`do` 構文は，Lean 内で命令型プログラムをモデル化するための専用のサブ言語だと考えることができます．`do` ブロックで構築された IO アクションは，文を順番に実行することで実行されます．
 
 <!--
 This program can be run in the same manner as the prior program:
