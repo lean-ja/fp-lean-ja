@@ -1,22 +1,34 @@
-# Step By Step
+<!-- # Step By Step -->
 
-A `do` block can be executed one line at a time.
-Start with the program from the prior section:
+# ステップ・バイ・ステップ
+
+<!-- A `do` block can be executed one line at a time.
+Start with the program from the prior section: -->
+
+`do` ブロックは一行ずつ実行できます．前の節のプログラムから始めましょう：
+
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block1}}
 ```
 
-## Standard IO
+<!-- ## Standard IO -->
 
-The first line is `{{#include ../../../examples/hello-name/HelloName.lean:line1}}`, while the remainder is:
+## 標準入出力
+
+<!-- The first line is `{{#include ../../../examples/hello-name/HelloName.lean:line1}}`, while the remainder is: -->
+
+最初の行は `{{#include ../../../examples/hello-name/HelloName.lean:line1}}` で残りの部分は以下の通りです：
+
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block2}}
 ```
-To execute a `let` statement that uses a `←`, start by evaluating the expression to the right of the arrow (in this case, `IO.getStdIn`).
+<!-- To execute a `let` statement that uses a `←`, start by evaluating the expression to the right of the arrow (in this case, `IO.getStdIn`).
 Because this expression is just a variable, its value is looked up.
 The resulting value is a built-in primitive `IO` action.
 The next step is to execute this `IO` action, resulting in a value that represents the standard input stream, which has type `IO.FS.Stream`.
-Standard input is then associated with the name to the left of the arrow (here `stdin`) for the remainder of the `do` block.
+Standard input is then associated with the name to the left of the arrow (here `stdin`) for the remainder of the `do` block. -->
+
+`←` を使った `let` 文を実行するには，まず矢印の右側にある式(この場合は `IO.getStdIn`)を評価します．この式は単なる変数なので，その値が参照されます．結果として得られる値は組み込みのプリミティブな `IO` アクションです．次のステップはこの `IO` アクションを実行し，標準入力ストリームを表す値を得ることです．この値は `IO.FS.Stream` 型です．標準入力はその後，矢印の左側の名前(ここでは `stdin`)に関連付けられ，`do` ブロックの残りの部分で使用されます．
 
 Executing the second line, `{{#include ../../../examples/hello-name/HelloName.lean:line2}}`, proceeds similarly.
 First, the expression `IO.getStdout` is evaluated, yielding an `IO` action that will return the standard output.
