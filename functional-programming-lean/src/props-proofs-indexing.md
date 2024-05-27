@@ -1,4 +1,6 @@
-# Interlude: Propositions, Proofs, and Indexing
+<!-- # Interlude: Propositions, Proofs, and Indexing -->
+
+# 休憩: 命題、証明、そしてリストの添え字アクセス
 
 Like many languages, Lean uses square brackets for indexing into arrays and lists.
 For instance, if `woodlandCritters` is defined as follows:
