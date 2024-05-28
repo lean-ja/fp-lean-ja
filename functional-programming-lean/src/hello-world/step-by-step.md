@@ -30,19 +30,26 @@ Standard input is then associated with the name to the left of the arrow (here `
 
 `←` を使った `let` 文を実行するには，まず矢印の右側にある式(この場合は `IO.getStdIn`)を評価します．この式は単なる変数なので，その値が参照されます．結果として得られる値は組み込みのプリミティブな `IO` アクションです．次のステップはこの `IO` アクションを実行し，標準入力ストリームを表す値を得ることです．この値は `IO.FS.Stream` 型です．標準入力はその後，矢印の左側の名前(ここでは `stdin`)に関連付けられ，`do` ブロックの残りの部分で使用されます．
 
-Executing the second line, `{{#include ../../../examples/hello-name/HelloName.lean:line2}}`, proceeds similarly.
+<!-- Executing the second line, `{{#include ../../../examples/hello-name/HelloName.lean:line2}}`, proceeds similarly.
 First, the expression `IO.getStdout` is evaluated, yielding an `IO` action that will return the standard output.
 Next, this action is executed, actually returning the standard output.
-Finally, this value is associated with the name `stdout` for the remainder of the `do` block.
+Finally, this value is associated with the name `stdout` for the remainder of the `do` block. -->
 
-## Asking a Question
+2行目の `{{#include ../../../examples/hello-name/HelloName.lean:line2}}` の実行も同様に進みます．まず，`IO.getStdout` という式が評価され，標準出力を返す `IO` アクションが得られます．次に，このアクションが実行され，実際に標準出力が返されます．最後に，この値が `stdout` という名前に関連付けられ，`do` ブロックの残りの部分で使用されます．
 
-Now that `stdin` and `stdout` have been found, the remainder of the block consists of a question and an answer:
+<!-- ## Asking a Question -->
+
+## 質問をする
+
+<!-- Now that `stdin` and `stdout` have been found, the remainder of the block consists of a question and an answer: -->
+
+`stdin` と `stdout` が定まったので，ブロックの残りの部分は質問と答えから構成されます：
+
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block3}}
 ```
 
-The first statement in the block, `{{#include ../../../examples/hello-name/HelloName.lean:line3}}`, consists of an expression.
+<!-- The first statement in the block, `{{#include ../../../examples/hello-name/HelloName.lean:line3}}`, consists of an expression.
 To execute an expression, it is first evaluated.
 In this case, `IO.FS.Stream.putStrLn` has type `IO.FS.Stream → String → IO Unit`.
 This means that it is a function that accepts a stream and a string, returning an `IO` action.
@@ -50,7 +57,9 @@ The expression uses [accessor notation](../getting-to-know/structures.md#behind-
 This function is applied to two arguments: the standard output stream and a string.
 The value of the expression is an `IO` action that will write the string and a newline character to the output stream.
 Having found this value, the next step is to execute it, which causes the string and newline to actually be written to `stdout`.
-Statements that consist only of expressions do not introduce any new variables.
+Statements that consist only of expressions do not introduce any new variables. -->
+
+ブロックの最初の文である `{{#include ../../../examples/hello-name/HelloName.lean:line3}}` は式から成り立っています．式を実行するにはまず評価します．今回の場合，`IO.FS.Stream.putStrLn` は `IO.FS.Stream → String → IO Unit` 型を持ちます．これはストリームと文字列を受け取り，`IO` アクションを返す関数であることを意味します．この式は関数呼び出しのために[アクセサ記法](../getting-to-know/structures.md#behind-the-scenes)を使用しています．呼び出された関数には標準出力ストリームと文字列の2つの引数が適用されます．よってこの式の値は文字列と改行文字を出力ストリームに書き込む `IO` アクションです．値が決まった後，次のステップでそれを実行することにより，実際に文字列と改行文字が `stdout` に書き込まれます．式だけで構成される文は新しい変数を導入しません．
 
 The next statement in the block is `{{#include ../../../examples/hello-name/HelloName.lean:line4}}`.
 `IO.FS.Stream.getLine` has type `IO.FS.Stream → IO String`, which means that it is a function from a stream to an `IO` action that will return a string.
