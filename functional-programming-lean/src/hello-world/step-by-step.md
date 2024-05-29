@@ -61,40 +61,54 @@ Statements that consist only of expressions do not introduce any new variables. 
 
 ブロックの最初の文である `{{#include ../../../examples/hello-name/HelloName.lean:line3}}` は式から成り立っています．式を実行するにはまず評価します．今回の場合，`IO.FS.Stream.putStrLn` は `IO.FS.Stream → String → IO Unit` 型を持ちます．これはストリームと文字列を受け取り，`IO` アクションを返す関数であることを意味します．この式は関数呼び出しのために[アクセサ記法](../getting-to-know/structures.md#behind-the-scenes)を使用しています．呼び出された関数には標準出力ストリームと文字列の2つの引数が適用されます．よってこの式の値は文字列と改行文字を出力ストリームに書き込む `IO` アクションです．値が決まった後，次のステップでそれを実行することにより，実際に文字列と改行文字が `stdout` に書き込まれます．式だけで構成される文は新しい変数を導入しません．
 
-The next statement in the block is `{{#include ../../../examples/hello-name/HelloName.lean:line4}}`.
+<!-- The next statement in the block is `{{#include ../../../examples/hello-name/HelloName.lean:line4}}`.
 `IO.FS.Stream.getLine` has type `IO.FS.Stream → IO String`, which means that it is a function from a stream to an `IO` action that will return a string.
 Once again, this is an example of accessor notation.
 This `IO` action is executed, and the program waits until the user has typed a complete line of input.
 Assume the user writes "`David`".
-The resulting line (`"David\n"`) is associated with `input`, where the escape sequence `\n` denotes the newline character.
+The resulting line (`"David\n"`) is associated with `input`, where the escape sequence `\n` denotes the newline character. -->
+
+次の文は `{{#include ../../../examples/hello-name/HelloName.lean:line4}}` です．`IO.FS.Stream.getLine` は `IO.FS.Stream → IO String` 型を持ちます．これはストリームを受け取り，文字列を返す `IO` アクションであることを意味します．これもアクセサ記法の一例です．この `IO` アクションが実行されると，プログラムはユーザが入力を完了するまで待機します．ユーザが "David" と入力したとすると，結果として得られる文字列("David\n")は `input` に関連付けられます(`\n` はエスケープシーケンスでここでは改行文字を表します)．
 
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block5}}
 ```
 
-The next line, `{{#include ../../../examples/hello-name/HelloName.lean:line5}}`, is a `let` statement.
+<!-- The next line, `{{#include ../../../examples/hello-name/HelloName.lean:line5}}`, is a `let` statement.
 Unlike the other `let` statements in this program, it uses `:=` instead of `←`.
 This means that the expression will be evaluated, but the resulting value need not be an `IO` action and will not be executed.
 In this case, `String.dropRightWhile` takes a string and a predicate over characters and returns a new string from which all the characters at the end of the string that satisfy the predicate have been removed.
-For example,
+For example, -->
+
+次の行 `{{#include ../../../examples/hello-name/HelloName.lean:line5}}` は `let` 文です．このプログラムの他の `let` 文とは異なり，`←` ではなく `:=` を使用しています．これは，式が評価されるものの，その結果の値は `IO` アクションである必要はなく，実行されることもないことを意味します．今回の場合，`String.dropRightWhile` は文字列と文字に対する述語を受け取り，述語を満たす文字を末尾から全て削除した新しい文字列を返します．例えば，
+
 ```lean
 {{#example_in Examples/HelloWorld.lean dropBang}}
 ```
-yields
+
+<!-- yields -->
+は次の文字列を返し，
+
 ```output info
 {{#example_out Examples/HelloWorld.lean dropBang}}
 ```
-and
+<!-- and -->
+また，
+
 ```lean
 {{#example_in Examples/HelloWorld.lean dropNonLetter}}
 ```
-yields
+
+<!-- yields -->
+は次の文字列を返します．
+
 ```output info
 {{#example_out Examples/HelloWorld.lean dropNonLetter}}
 ```
-in which all non-alphanumeric characters have been removed from the right side of the string.
-In the current line of the program, whitespace characters (including the newline) are removed from the right side of the input string, resulting in `"David"`, which is associated with `name` for the remainder of the block.
+<!-- in which all non-alphanumeric characters have been removed from the right side of the string.
+In the current line of the program, whitespace characters (including the newline) are removed from the right side of the input string, resulting in `"David"`, which is associated with `name` for the remainder of the block. -->
 
+このように文字列の右側から英数字ではない文字を全て削除します．現在のプログラムの行では，空白文字(空白文字として改行文字も含まれる)が入力文字列の右側から削除され，その結果得られる "David" がこのブロックの残りの部分で `name` に関連付けられます．
 
 ## Greeting the User
 
