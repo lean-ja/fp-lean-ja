@@ -1,4 +1,6 @@
-# Overloading and Type Classes
+<!-- # Overloading and Type Classes -->
+
+# オーバーロードと型クラス
 
 In many languages, the built-in datatypes get special treatment.
 For example, in C and Java, `+` can be used to add `float`s and `int`s, but not arbitrary-precision numbers from a third-party library.
