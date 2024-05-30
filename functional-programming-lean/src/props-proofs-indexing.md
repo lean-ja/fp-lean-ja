@@ -380,7 +380,9 @@ This error message results from having Lean attempt to treat `woodlandCritters` 
 
 スペースを追加すると，Leanは式を関数適用として扱い，インデックスを1つの数値からなるリストとして扱います．このエラーメッセージは，Leanが `woodlandCritters` を関数として扱おうとした結果です．
 
-## Exercises
+<!-- ## Exercises -->
+
+## 演習問題
 
 <!-- * Prove the following theorems using `rfl`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`. What happens if `rfl` is used to prove `5 < 18`? Why? -->
 * 次の定理を `rfl` を使って証明してください．また `5 < 18` に適用したら何が起きるでしょうか？そしてそれは何故でしょうか？
