@@ -1,4 +1,6 @@
-# Positive Numbers
+<!-- # Positive Numbers -->
+
+# 正の整数
 
 In some applications, only positive numbers make sense.
 For example, compilers and interpreters typically use one-indexed line and column numbers for source positions, and a datatype that represents only non-empty lists will never report a length of zero.
