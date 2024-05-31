@@ -87,12 +87,14 @@ For example, -->
 ```
 
 <!-- yields -->
+
 は次の文字列を返し，
 
 ```output info
 {{#example_out Examples/HelloWorld.lean dropBang}}
 ```
 <!-- and -->
+
 また，
 
 ```lean
@@ -100,6 +102,7 @@ For example, -->
 ```
 
 <!-- yields -->
+
 は次の文字列を返します．
 
 ```output info
@@ -110,27 +113,41 @@ In the current line of the program, whitespace characters (including the newline
 
 このように文字列の右側から英数字ではない文字を全て削除します．現在のプログラムの行では，空白文字(空白文字として改行文字も含まれる)が入力文字列の右側から削除され，その結果得られる "David" がこのブロックの残りの部分で `name` に関連付けられます．
 
-## Greeting the User
+<!-- ## Greeting the User -->
 
-All that remains to be executed in the `do` block is a single statement:
+## ユーザへの挨拶
+
+<!-- All that remains to be executed in the `do` block is a single statement: -->
+
+`do` ブロック内で実行される残りの文は以下の1行です：
+
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:line6}}
 ```
-The string argument to `putStrLn` is constructed via string interpolation, yielding the string `"Hello, David!"`.
+<!-- The string argument to `putStrLn` is constructed via string interpolation, yielding the string `"Hello, David!"`.
 Because this statement is an expression, it is evaluated to yield an `IO` action that will print this string with a newline to standard output.
-Once the expression has been evaluated, the resulting `IO` action is executed, resulting in the greeting.
+Once the expression has been evaluated, the resulting `IO` action is executed, resulting in the greeting. -->
 
-## `IO` Actions as Values
+`putStrLn` への文字列引数は文字列補完によって構築され，"Hello, David!" という文字列になります．この文は式なので，評価されると，文字列を改行とともに標準出力に表示する `IO` アクションが得られます．この式が評価されると，結果として得られる `IO` アクションが実行され，挨拶が表示されます．
 
-In the above description, it can be difficult to see why the distinction between evaluating expressions and executing `IO` actions is necessary.
+<!-- ## `IO` Actions as Values -->
+
+## 値として`IO` アクション
+
+<!-- In the above description, it can be difficult to see why the distinction between evaluating expressions and executing `IO` actions is necessary.
 After all, each action is executed immediately after it is produced.
-Why not simply carry out the effects during evaluation, as is done in other languages?
+Why not simply carry out the effects during evaluation, as is done in other languages? -->
 
-The answer is twofold.
+上記の説明では，式の評価と `IO` アクションの実行の区別がなぜ必要なのかわかりにくいかもしれません．結局のところ，各アクションは生成された直後に実行されます．他の言語のように，評価中に作用を実行しないのはなぜでしょうか？
+
+<!-- The answer is twofold.
 First off, separating evaluation from execution means that programs must be explicit about which functions can have side effects.
 Because the parts of the program that do not have effects are much more amenable to mathematical reasoning, whether in the heads of programmers or using Lean's facilities for formal proof, this separation can make it easier to avoid bugs.
 Secondly, not all `IO` actions need be executed at the time that they come into existence.
-The ability to mention an action without carrying it out allows ordinary functions to be used as control structures.
+The ability to mention an action without carrying it out allows ordinary functions to be used as control structures. -->
+
+答えは2つあります．まず，評価と実行を分離することで，プログラムはどの関数が副作用を持つか明示的に示す必要があります．副作用を持たないプログラムの部分は数学的な推論がしやすいため，プログラマが頭の中で考える場合でもLean の形式証明の機能を使う場合でも，この分離はバグを回避しやすくします．次に，すべての `IO` アクションが生成された時点で実行される必要はありません．アクションを実行せずに記述できる機能により，通常の関数を制御構造として使用できるようになります．
+
 
 For instance, the function `twice` takes an `IO` action as its argument, returning a new action that will execute the first one twice.
 ```lean
