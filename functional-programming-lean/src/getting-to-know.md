@@ -4,7 +4,7 @@ console. This simple program ensures that the language tooling is
 installed correctly and that the programmer is able to run the
 compiled code. -->
 
-伝統によれば, プログラミング言語は, コンソールに `"Hello, world!"` と表示するプログラムをコンパイルし, 実行することで導入されるべきです. この単純なプログラムは, 言語ツールが正しくインストールされ, プログラマがコンパイルされたコードを実行できることを保証します.
+伝統によれば，プログラミング言語は，コンソールに `"Hello, world!"` と表示するプログラムをコンパイルし，実行することで導入されるべきです．この単純なプログラムは，言語ツールが正しくインストールされ，プログラマがコンパイルされたコードを実行できることを保証します．
 
 <!-- Since the 1970s, however, programming has changed. Today, compilers
 are typically integrated into text editors, and the programming
@@ -13,7 +13,7 @@ exception: it implements an extended version of the Language Server
 Protocol that allows it to communicate with a text editor and provide
 feedback as the user types. -->
 
-しかし, 1970年代以降, プログラミングは変わりました.今日, コンパイラは一般的にテキストエディタに統合されており，プログラミング環境はプログラムを書く際にフィードバックを提供してくれます．Lean も例外ではありません：Lean は言語サーバープロトコルの拡張版を実装していて，テキストエディタと通信し，ユーザが入力する際にフィードバックを提供することができます．
+しかし，1970年代以降，プログラミングは変わりました．今日，コンパイラは一般的にテキストエディタに統合されており，プログラミング環境はプログラムを書く際にフィードバックを提供してくれます．Lean も例外ではありません：Lean は言語サーバープロトコルの拡張版を実装していて，テキストエディタと通信し，ユーザが入力する際にフィードバックを提供することができます．
 
 <!-- Languages as varied as Python, Haskell, and JavaScript offer a read-eval-print-loop (REPL), also known as an interactive toplevel or a browser console, in which expressions or statements can be entered.
 The language then computes and displays the result of the user's input.

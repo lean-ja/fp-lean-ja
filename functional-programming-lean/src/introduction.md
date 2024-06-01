@@ -45,21 +45,21 @@ It is also useful to explore Lean as you read the book, finding creative new way
 <!-- Before writing and running programs written in Lean, you'll need to set up Lean on your own computer.
 The Lean tooling consists of the following: -->
 
-Lean でプログラムを書いて実行する前に, 自分のコンピュータに Lean をセットアップする必要があります．Lean のツール構成は下記の通りです：
+Lean でプログラムを書いて実行する前に，自分のコンピュータに Lean をセットアップする必要があります．Lean のツール構成は下記の通りです：
 
  <!-- * `elan` manages the Lean compiler toolchains, similarly to `rustup` or `ghcup`. -->
  * `elan` は Lean のツールチェーンのインストーラで，`rustup` や `ghcup` と同様です．
  <!-- * `lake` builds Lean packages and their dependencies, similarly to `cargo`, `make`, or Gradle. -->
- * `lake` は, `cargo` や `make`, Gradle と同様に, Lean パッケージとその依存関係をビルドします．
+ * `lake` は，`cargo` や `make`, Gradle と同様に，Lean パッケージとその依存関係をビルドします．
  <!-- * `lean` type checks and compiles individual Lean files as well as providing information to programmer tools about files that are currently being written.
    Normally, `lean` is invoked by other tools rather than directly by users. -->
- * `Lean` は, 個々の Lean ファイルを型チェックし, コンパイルするだけでなく, プログラマ・ツールに現在書かれているファイルに関する情報を提供します. 通常, Lean はユーザが直接呼び出すのではなく, 他のツールによって呼び出されます.
+ * `Lean` は，個々の Lean ファイルを型チェックし，コンパイルするだけでなく，プログラマ・ツールに現在書かれているファイルに関する情報を提供します．通常，Lean はユーザが直接呼び出すのではなく，他のツールによって呼び出されます．
  <!-- * Plugins for editors, such as Visual Studio Code or Emacs, that communicate with `lean` and present its information conveniently. -->
- * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し, lean の情報を便利に表示することができます.
+ * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し，lean の情報を便利に表示することができます.
 
 <!-- Please refer to the [Lean manual](https://leanprover.github.io/lean4/doc/quickstart.html) for up-to-date instructions for installing Lean. -->
 
-Lean の最新のインストール方法については, [Lean のマニュアル](https://leanprover.github.io/lean4/doc/quickstart.html)を参照してください．
+Lean の最新のインストール方法については，[Lean のマニュアル](https://leanprover.github.io/lean4/doc/quickstart.html)を参照してください．
 
 <!-- # Typographical Conventions -->
 # 表記法
@@ -77,7 +77,7 @@ Lean に入力として提供されるコード例は，このような書式と
 <!-- The last line above (beginning with `#eval`) is a command that instructs Lean to calculate an answer.
 Lean's replies are formatted like this: -->
 
-上の最後の行（`#eval`で始まる行）は, Lean に答えを計算するように指示するコマンドです．Lean の返事は以下のような書式とします：
+上の最後の行（`#eval`で始まる行）は，Lean に答えを計算するように指示するコマンドです．Lean の返事は以下のような書式とします：
 
 ```output info
 {{#example_out Examples/Intro.lean add1_7}}
@@ -106,11 +106,11 @@ declaration uses 'sorry'
 For instance, Greek letters like `α` and `β` and the arrow `→` both occur in the first chapter of this book.
 This allows Lean code to more closely resemble ordinary mathematical notation. -->
 
-慣用的な Lean コードは，ASCII には含まれないさまざまな Unicode 文字を使用します．例えば，ギリシャ文字の `α` や `β`，矢印の `→` が，いずれも本書の第1章に登場します．これにより, Lean のコードは通常の数学表記により近くなります．
+慣用的な Lean コードは，ASCII には含まれないさまざまな Unicode 文字を使用します．例えば，ギリシャ文字の `α` や `β`，矢印の `→` が，いずれも本書の第1章に登場します．これにより，Lean のコードは通常の数学表記により近くなります．
 
 <!-- With the default Lean settings, both Visual Studio Code and Emacs allow these characters to be typed with a backslash (`\`) followed by a name.
 For example, to enter `α`, type `\alpha`.
 To find out how to type a character in Visual Studio Code, point the mouse at it and look at the tooltip.
 In Emacs, use `C-c C-k` with point on the character in question. -->
 
-デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ(`\`)の後に名前を続けることでこれらの文字を入力することができます. たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合, `C-c C-k` を問題の文字にポイントして使います．
+デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ(`\`)の後に名前を続けることでこれらの文字を入力することができます．たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合，`C-c C-k` を問題の文字にポイントして使います．

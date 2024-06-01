@@ -7,8 +7,18 @@
       "backgroundColor": "transparent",
     },
     {
+      "text": ",", // 半角カンマ
+      "color": "red",
+      "backgroundColor": "transparent",
+    },
+    {
       "text": "．", // 全角ピリオド
       "color": "lightgreen",
+      "backgroundColor": "transparent",
+    },
+    {
+      "text": ".", // 半角ピリオド
+      "color": "red",
       "backgroundColor": "transparent",
     },
   ],

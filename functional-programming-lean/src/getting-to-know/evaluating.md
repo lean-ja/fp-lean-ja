@@ -9,7 +9,7 @@ To find the value of the latter expression, 3 + 1 is first replaced by 4, yieldi
 Sometimes, mathematical expressions contain variables: the value of _x_ + 1 cannot be computed until we know what the value of _x_ is.
 In Lean, programs are first and foremost expressions, and the primary way to think about computation is as evaluating expressions to find their values. -->
 
-Lean を学ぶプログラマが理解すべき最も重要なことは，評価の仕組みです．評価とは，算数で行うような式の値を求めるプロセスのことです．例えば，15-6 の値は 9, 2×(3＋1) の値は 8 です．後者の式の値を求めるとき, まず 3＋1 が 4 に置き換えられて 2×4 となります．これは簡約して 8 にできます．数式に変数が含まれることがあります：x+1 の値は, x の値がわかるまで計算できません．Lean では，プログラムはまず第一に式であり，計算を考える第一の方法は，式を評価して値を求めることです．
+Lean を学ぶプログラマが理解すべき最も重要なことは，評価の仕組みです．評価とは，算数で行うような式の値を求めるプロセスのことです．例えば，15-6 の値は 9，2×(3＋1) の値は 8 です．後者の式の値を求めるとき，まず 3＋1 が 4 に置き換えられて 2×4 となります．これは簡約して 8 にできます．数式に変数が含まれることがあります：x+1 の値は，x の値がわかるまで計算できません．Lean では，プログラムはまず第一に式であり，計算を考える第一の方法は，式を評価して値を求めることです．
 
 <!-- Most programming languages are _imperative_, where a program consists
 of a series of statements that should be carried out in order to find
@@ -33,7 +33,7 @@ using Lean in the same way. Thus, this chapter focuses on how to
 evaluate expressions interactively with Lean, while the next chapter
 describes how to write, compile, and run the `Hello, world!` program. -->
 
-しかし Lean では, プログラムは数式と同じように機能します．一度値が与えられた変数は, 再代入できません．式を評価しても副作用はありません．2つの式が同じ値を持つ場合，一方を他方に置き換えても，プログラムが異なる結果を計算することはありません．これは，Lean を使ってコンソールに `Hello, world！` と書くことができないという意味ではありません．しかし I/O の実行は Lean を扱う経験の核心部分ではないとは言えるでしょう．そこで，この章では Lean を使って対話的に式を評価する方法に焦点を当て，次の章で `Hello, world！` プログラムの書き方，コンパイル方法，実行方法について説明します．
+しかし Lean では，プログラムは数式と同じように機能します．一度値が与えられた変数は，再代入できません．式を評価しても副作用はありません．2つの式が同じ値を持つ場合，一方を他方に置き換えても，プログラムが異なる結果を計算することはありません．これは，Lean を使ってコンソールに `Hello, world！` と書くことができないという意味ではありません．しかし I/O の実行は Lean を扱う経験の核心部分ではないとは言えるでしょう．そこで，この章では Lean を使って対話的に式を評価する方法に焦点を当て，次の章で `Hello, world！` プログラムの書き方，コンパイル方法，実行方法について説明します．
 
 <!-- To ask Lean to evaluate an expression, write `#eval` before it in your
 editor, which will then report the result back. Typically, the result
@@ -69,7 +69,7 @@ arguments, Lean simply writes the function next to its
 arguments (e.g. `f x`). Function application is one of the most common operations,
 so it pays to keep it concise. Rather than writing -->
 
-通常の数学的表記法でも, 大半のプログラミング言語でも, 関数をその引数に適用する際には括弧を使います（例：`f(x)`）が, Lean は単に関数をその引数の横に書きます (例：`f x`). 関数の使用は最も一般的な操作のひとつであるため, 簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
+通常の数学的表記法でも，大半のプログラミング言語でも，関数をその引数に適用する際には括弧を使います（例：`f(x)`）が，Lean は単に関数をその引数の横に書きます (例：`f x`)．関数の使用は最も一般的な操作のひとつであるため，簡潔であることが重要なのです．`{{#example_out Examples/Intro.lean stringAppendHello}}` を計算するには，
 
 ```lean
 #eval String.append("Hello, ", "Lean!")
@@ -91,7 +91,7 @@ parentheses in the expression `(1 + 2) * 5`, parentheses are also
 necessary when a function's argument is to be computed via another
 function call. For instance, parentheses are required in -->
 
-算術の演算順序規則で，`(1 + 2) * 5` という式に括弧が必要なように, 関数の引数を別の関数呼び出しで計算する場合にも括弧が必要です．例えば次の式では括弧が必要です．
+算術の演算順序規則で，`(1 + 2) * 5` という式に括弧が必要なように，関数の引数を別の関数呼び出しで計算する場合にも括弧が必要です．例えば次の式では括弧が必要です．
 
 ``` Lean
 {{#example_in Examples/Intro.lean stringAppendNested}}
@@ -102,7 +102,7 @@ an argument to the first, rather than as a function being passed
 call must be found first, after which it can be appended to `"great "`,
 yielding the final value `{{#example_out Examples/Intro.lean stringAppendNested}}`. -->
 
-そうしないと, 2番目の `String.append` は, `"oak "` と `"tree "` を引数として渡された関数としてではなく, 最初の `String.append` の引数として解釈されてしまうからです．最初に `String.append` の内部呼び出しの値が評価され, その値を `"great "` に追加することで，最終的な値 `"great oak tree "` を得ることができます．
+そうしないと，2番目の `String.append` は，`"oak "` と `"tree "` を引数として渡された関数としてではなく，最初の `String.append` の引数として解釈されてしまうからです．最初に `String.append` の内部呼び出しの値が評価され，その値を `"great "` に追加することで，最終的な値 `"great oak tree "` を得ることができます．
 
 <!-- Imperative languages often have two kinds of conditional: a
 conditional _statement_ that determines which instructions to carry
@@ -117,7 +117,7 @@ Because Lean is an expression-oriented functional language, there are no conditi
 They are written using `if`, `then`, and `else`. For
 instance, -->
 
-命令形言語には, しばしば2種類の条件分岐があります：Bool 値に基づいてどの命令を実行するかを決定する条件**文**と，Bool 値に基づいて2つの式のうちどちらを評価するかを決定する条件**式**です．たとえば C や C++ では, 条件文は `if` と `else` を使って書かれ，条件式は三項演算子 `?` `:` を使って書かれます．Python では，条件文は `if` で始まりますが，条件式は `if` を真ん中に置きます．Lean はというと式指向の関数型言語ですから，条件文はありません．条件式のみです．条件式は `if`, `then`, `else` を使って書かれます．例えば，
+命令形言語には，しばしば2種類の条件分岐があります：Bool 値に基づいてどの命令を実行するかを決定する条件**文**と，Bool 値に基づいて2つの式のうちどちらを評価するかを決定する条件**式**です．たとえば C や C++ では，条件文は `if` と `else` を使って書かれ，条件式は三項演算子 `?` `:` を使って書かれます．Python では，条件文は `if` で始まりますが，条件式は `if` を真ん中に置きます．Lean はというと式指向の関数型言語ですから，条件文はありません．条件式のみです．条件式は `if`，`then`，`else` を使って書かれます．例えば，
 
 ``` Lean
 {{#example_eval Examples/Intro.lean stringAppend 0}}
@@ -138,7 +138,7 @@ instance, -->
 
 <!-- For the sake of brevity, a series of evaluation steps like this will sometimes be written with arrows between them: -->
 
-簡潔にするために, このような一連の評価ステップを矢印で区切って書くことがあります：
+簡潔にするために，このような一連の評価ステップを矢印で区切って書くことがあります：
 
 ```lean
 {{#example_eval Examples/Intro.lean stringAppend}}
@@ -150,7 +150,7 @@ instance, -->
 <!-- Asking Lean to evaluate a function application that is missing an argument will lead to an error message.
 In particular, the example -->
 
-Lean に引数のない関数適用の評価を依頼すると, エラーメッセージが表示されます．たとえば，特に
+Lean に引数のない関数適用の評価を依頼すると，エラーメッセージが表示されます．たとえば，特に
 
 ```lean
 {{#example_in Examples/Intro.lean stringAppendReprFunction}}
@@ -166,7 +166,7 @@ Lean に引数のない関数適用の評価を依頼すると, エラーメッ�
 <!-- This message occurs because Lean functions that are applied to only some of their arguments return new functions that are waiting for the rest of the arguments.
 Lean cannot display functions to users, and thus returns an error when asked to do so. -->
 
-このメッセージは, 一部の引数のみ与えられた Lean 関数が，残りの引数を待つ新しい関数を返すために発生します．Lean はユーザに関数を表示することができないため，表示するように要求されるとエラーを返すのです．
+このメッセージは，一部の引数のみ与えられた Lean 関数が，残りの引数を待つ新しい関数を返すために発生します．Lean はユーザに関数を表示することができないため，表示するように要求されるとエラーを返すのです．
 
 <!-- ## Exercises -->
 ## 演習問題
