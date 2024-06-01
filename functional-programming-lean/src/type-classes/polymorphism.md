@@ -1,4 +1,6 @@
-# Type Classes and Polymorphism
+<!-- # Type Classes and Polymorphism -->
+
+# 型クラスと多相性
 
 It can be useful to write functions that work for _any_ overloading of a given function.
 For instance, `IO.println` works for any type that has an instance of `ToString`.
