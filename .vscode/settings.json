@@ -1,0 +1,15 @@
+{
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "todohighlight.keywords": [
+    {
+      "text": "，", // 全角カンマ
+      "color": "lightgreen",
+      "backgroundColor": "transparent",
+    },
+    {
+      "text": "．", // 全角ピリオド
+      "color": "lightgreen",
+      "backgroundColor": "transparent",
+    },
+  ],
+}
