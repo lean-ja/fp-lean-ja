@@ -1,4 +1,6 @@
-# Controlling Instance Search
+<!-- # Controlling Instance Search -->
+
+# インスタンス探索の制御
 
 An instance of the `Add` class is sufficient to allow two expressions with type `Pos` to be conveniently added, producing another `Pos`.
 However, in many cases, it can be useful to be more flexible and allow _heterogeneous_ operator overloading, where the arguments may have different types.
