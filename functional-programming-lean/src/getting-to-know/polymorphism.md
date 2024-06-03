@@ -19,7 +19,7 @@ These type arguments can be used in the datatype or definition, which allows the
 There is, however, nothing about points that require a specific representation for each coordinate.
 A polymorphic version of `Point`, called `PPoint`, can take a type as an argument, and then use that type for both fields: -->
 
-`Point` 構造体は `x` と `y` フィールドの両方が `Float` 型である必要があります．しかし，点について各座標の表現に特化している必要はありません．`Point` の多相バージョン `PPoint` は，型を引数として受け取り，その型を両方のフィールドに使用することができます:
+`Point` 構造体は `x` と `y` フィールドの両方が `Float` 型である必要があります．しかし，点について各座標の表現に特化している必要はありません．`Point` の多相バージョン `PPoint` は，型を引数として受け取り，その型を両方のフィールドに使用することができます：
 
 ```lean
 {{#example_decl Examples/Intro.lean PPoint}}
@@ -32,7 +32,7 @@ It is customary to use Greek letters to name type arguments in Lean when no more
 
 <!-- Just like `List`, `PPoint` can be used by providing a specific type as its argument: -->
 
-`List` 型のように，`PPoint` も引数に特定の型を指定することで使用できます:
+`List` 型のように，`PPoint` も引数に特定の型を指定することで使用できます：
 
 ```lean
 {{#example_decl Examples/Intro.lean natPoint}}
@@ -48,7 +48,7 @@ The function `replaceX` replaces the `x` field of a `PPoint` with a new value.
 In order to allow `replaceX` to work with _any_ polymorphic point, it must be polymorphic itself.
 This is achieved by having its first argument be the type of the point's fields, with later arguments referring back to the first argument's name. -->
 
-定義は引数として型を取ることもでき，それによって多相なものになります．`replaceX` は `PPoint` の `x` フィールドを新しい値に置き換える関数です．`replaceX` が _任意の_ 多相な点で動作するようにするには，`replaceX` 自身が多相でなければなりません．これは，最初の引数をポイントのフィールドの型とし，それ以降の引数は最初の引数の名前を参照することで実現されます．
+定義は引数として型を取ることもでき，それによって多相なものになります．`replaceX` は `PPoint` の `x` フィールドを新しい値に置き換える関数です．`replaceX` が **任意の** 多相な点で動作するようにするには，`replaceX` 自身が多相でなければなりません．これは，最初の引数をポイントのフィールドの型とし，それ以降の引数は最初の引数の名前を参照することで実現されます．
 
 ```lean
 {{#example_decl Examples/Intro.lean replaceX}}
@@ -56,7 +56,7 @@ This is achieved by having its first argument be the type of the point's fields,
 <!-- In other words, when the types of the arguments `point` and `newX` mention `α`, they are referring to _whichever type was provided as the first argument_.
 This is similar to the way that function argument names refer to the values that were provided when they occur in the function's body. -->
 
-言い換えると，引数 `point` と `newX` の型が `α` を参照している場合，それらは_最初の引数として提供されたいずれかの型_を参照していることになります．これは，関数の引数名が関数内に現れたときに，提供された値を参照する方法と似ています．
+言い換えると，引数 `point` と `newX` の型が `α` を参照している場合，それらは **最初の引数として提供されたいずれかの型** を参照していることになります．これは，関数の引数名が関数内に現れたときに，提供された値を参照する方法と似ています．
 
 <!-- This can be seen by asking Lean to check the type of `replaceX`, and then asking it to check the type of `replaceX Nat`. -->
 
@@ -72,7 +72,7 @@ This is similar to the way that function argument names refer to the values that
 Just as the value of a function application is found by replacing the argument name with the provided argument value in the function's body, the type of a function application is found by replacing the argument's name with the provided value in the function's return type.
 Providing the first argument, `Nat`, causes all occurrences of `α` in the remainder of the type to be replaced with `Nat`: -->
 
-この関数型には最初の引数の_名前_が含まれ，その後に続く引数ではこの名前を参照します．関数適用の値が関数本体の引数名を提供された引数の値に置き換えることで導出されるのと同じように，関数適用の型は，引数名を関数の戻り値の型で与えられる値に置き換えることで導かれます．最初の引数に `Nat` を指定すると，残りの型に含まれるすべての `α` が `Nat` に置き換えられます:
+この関数型には最初の引数の **名前** が含まれ，その後に続く引数ではこの名前を参照します．関数適用の値が関数本体の引数名を提供された引数の値に置き換えることで導出されるのと同じように，関数適用の型は，引数名を関数の戻り値の型で与えられる値に置き換えることで導かれます．最初の引数に `Nat` を指定すると，残りの型に含まれるすべての `α` が `Nat` に置き換えられます：
 
 ```lean
 {{#example_in Examples/Intro.lean replaceXNatT}}
@@ -82,7 +82,7 @@ Providing the first argument, `Nat`, causes all occurrences of `α` in the remai
 ```
 <!-- Because the remaining arguments are not explicitly named, no further substitution occurs as more arguments are provided: -->
 
-`α`以降の残りの引数には明示的に名前が付けられていないので，引数が増えてもそれ以上の置換は起きません:
+`α`以降の残りの引数には明示的に名前が付けられていないので，引数が増えてもそれ以上の置換は起きません：
 
 ```lean
 {{#example_in Examples/Intro.lean replaceXNatOriginT}}
@@ -111,7 +111,7 @@ Providing the first argument, `Nat`, causes all occurrences of `α` in the remai
 However, there's nothing special about type arguments that allows them to be named.
 Given a datatype that represents positive or negative signs: -->
 
-多相関数は名前付きの型引数を取り，その後の引数の型が当該の引数の名前を参照することで機能します．しかし，型引数について名前を付けられたことによる特別なことは何もありません．例えば正負の符号を表すデータ型が与えられたとします:
+多相関数は名前付きの型引数を取り，その後の引数の型が当該の引数の名前を参照することで機能します．しかし，型引数について名前を付けられたことによる特別なことは何もありません．例えば正負の符号を表すデータ型が与えられたとします：
 
 ```lean
 {{#example_decl Examples/Intro.lean Sign}}
@@ -119,7 +119,7 @@ Given a datatype that represents positive or negative signs: -->
 <!-- it is possible to write a function whose argument is a sign.
 If the argument is positive, the function returns a `Nat`, while if it's negative, it returns an `Int`: -->
 
-ここで引数が符号である関数を書くことができます．もし引数が正なら，この関数は `Nat` を返し，負なら `Int` を返します:
+ここで引数が符号である関数を書くことができます．もし引数が正なら，この関数は `Nat` を返し，負なら `Int` を返します：
 
 ```lean
 {{#example_decl Examples/Intro.lean posOrNegThree}}
@@ -132,7 +132,7 @@ When Lean is checking this function, it uses the fact that the `match`-expressio
 <!-- Applying `posOrNegThree` to `Sign.pos` results in the argument name `s` in both the body of the function and its return type being replaced by `Sign.pos`.
 Evaluation can occur both in the expression and its type: -->
 
-`posOrNegThree` を `Sign.pos` に適用すると，関数本体と戻り値の型の両方の引数名 `s` が `Sign.pos` に置き換えられます．評価は式と型の両方で行われます:
+`posOrNegThree` を `Sign.pos` に適用すると，関数本体と戻り値の型の両方の引数名 `s` が `Sign.pos` に置き換えられます．評価は式と型の両方で行われます：
 
 ```lean
 {{#example_eval Examples/Intro.lean posOrNegThreePos}}
@@ -146,7 +146,7 @@ Evaluation can occur both in the expression and its type: -->
 Lists are written in square brackets.
 For instance, a list that contains the prime numbers less than 10 can be written: -->
 
-Leanの標準ライブラリには，`List` と呼ばれる標準的な連結リストのデータ型と，それをより便利に使うための特別な構文が含まれています．リストを記述するには角括弧を使います．例えば10未満の素数が格納されたリストは次のように書くことができます:
+Leanの標準ライブラリには，`List` と呼ばれる標準的な連結リストのデータ型と，それをより便利に使うための特別な構文が含まれています．リストを記述するには角括弧を使います．例えば10未満の素数が格納されたリストは次のように書くことができます：
 
 ```lean
 {{#example_decl Examples/Intro.lean primesUnder10}}
@@ -154,7 +154,7 @@ Leanの標準ライブラリには，`List` と呼ばれる標準的な連結リ
 
 <!-- Behind the scenes, `List` is an inductive datatype, defined like this: -->
 
-この裏側では，`List` は帰納的データ型として次のような感じで定義されています:
+この裏側では，`List` は帰納的データ型として次のような感じで定義されています：
 
 ```lean
 {{#example_decl Examples/Intro.lean List}}
@@ -187,7 +187,7 @@ Just as `replaceX` took the type of the fields of the point as an argument, `len
 For example, if the list contains strings, then the first argument is `String`: `{{#example_eval Examples/Intro.lean length1EvalSummary 0}}`.
 It should compute like this: -->
 
-`List` を受け付けるような関数は `Nat` を取る関数と同じように定義することができます．実際，連結リストは，各 `succ` コンストラクタに余分なデータフィールドがぶら下がったような `Nat` と考えることもできます．この観点からすると，リストの長さを計算することは，各 `cons` を `succ` に置き換え，最後の `nil` を `zero` に置き換える処理です．`replaceX` が点のフィールドの型を引数に取ったように，`length` はリストの要素の型を引数に取ります．例えば，リストに文字列が含まれている場合，最初の引数は `String`: `{{#example_eval Examples/Intro.lean length1EvalSummary 0}}` です．これは次のように計算されます:
+`List` を受け付けるような関数は `Nat` を取る関数と同じように定義することができます．実際，連結リストは，各 `succ` コンストラクタに余分なデータフィールドがぶら下がったような `Nat` と考えることもできます．この観点からすると，リストの長さを計算することは，各 `cons` を `succ` に置き換え，最後の `nil` を `zero` に置き換える処理です．`replaceX` が点のフィールドの型を引数に取ったように，`length` はリストの要素の型を引数に取ります．例えば，リストに文字列が含まれている場合，最初の引数は `String`: `{{#example_eval Examples/Intro.lean length1EvalSummary 0}}` です．これは次のように計算されます：
 
 ```
 {{#example_eval Examples/Intro.lean length1EvalSummary}}
@@ -196,7 +196,7 @@ It should compute like this: -->
 <!-- The definition of `length` is both polymorphic (because it takes the list entry type as an argument) and recursive (because it refers to itself).
 Generally, functions follow the shape of the data: recursive datatypes lead to recursive functions, and polymorphic datatypes lead to polymorphic functions. -->
 
-`length` の定義は多相的であり（リストの要素の型を引数にとるため），また再帰的です（自分自身を参照するため）．一般的に，関数はデータの形に従います: 再帰的なデータ型は再帰的な関数を導き，多相的なデータ型は多相的な関数を導きます．
+`length` の定義は多相的であり（リストの要素の型を引数にとるため），また再帰的です（自分自身を参照するため）．一般的に，関数はデータの形に従います：再帰的なデータ型は再帰的な関数を導き，多相的なデータ型は多相的な関数を導きます．
 
 ```lean
 {{#example_decl Examples/Intro.lean length1}}
@@ -225,14 +225,14 @@ This is also the case in Lean.
 Arguments can be declared _implicit_ by wrapping them in curly braces instead of parentheses when defining a function.
 For instance, a version of `replaceX` with an implicit type argument looks like this: -->
 
-`replaceX` と `length` はどちらも使うにはややお役所的です，というのも型引数は一般的にその後の引数の値で一意に決まるからです．実際，たいていの言語では，コンパイラが型引数を自分で決定する完璧な能力を備えており，ユーザの助けが必要になることはまれです．これはLeanでも同様です．関数を定義するときに，丸括弧の代わりに波括弧で囲むことで引数を _暗黙的に_ 宣言することができます．例えば，暗黙の型引数を持つバージョンの `replaceX` は次のようになります:
+`replaceX` と `length` はどちらも使うにはややお役所的です，というのも型引数は一般的にその後の引数の値で一意に決まるからです．実際，たいていの言語では，コンパイラが型引数を自分で決定する完璧な能力を備えており，ユーザの助けが必要になることはまれです．これはLeanでも同様です．関数を定義するときに，丸括弧の代わりに波括弧で囲むことで引数を **暗黙的に** （implicit）宣言することができます．例えば，暗黙の型引数を持つバージョンの `replaceX` は次のようになります：
 
 ```lean
 {{#example_decl Examples/Intro.lean replaceXImp}}
 ```
 <!-- It can be used with `natOrigin` without providing `Nat` explicitly, because Lean can _infer_ the value of `α` from the later arguments: -->
 
-この関数は `natOrigin` に用いる際に `Nat` を明示的に渡すことなく使えます，なぜならLeanは後の引数から `α` の値を _推測_ することができるからです:
+この関数は `natOrigin` に用いる際に `Nat` を明示的に渡すことなく使えます，なぜならLeanは後の引数から `α` の値を **推測** することができるからです：
 
 ```lean
 {{#example_in Examples/Intro.lean replaceXImpNat}}
@@ -243,14 +243,14 @@ For instance, a version of `replaceX` with an implicit type argument looks like 
 
 <!-- Similarly, `length` can be redefined to take the entry type implicitly: -->
 
-同様に，`length` も暗黙的に要素の型を取るように再定義できます:
+同様に，`length` も暗黙的に要素の型を取るように再定義できます：
 
 ```lean
 {{#example_decl Examples/Intro.lean lengthImp}}
 ```
 <!-- This `length` function can be applied directly to `primesUnder10`: -->
 
-この `length` 関数は `primesUnder10` に直接適用できます:
+この `length` 関数は `primesUnder10` に直接適用できます：
 
 ```lean
 {{#example_in Examples/Intro.lean lengthImpPrimes}}
@@ -261,7 +261,7 @@ For instance, a version of `replaceX` with an implicit type argument looks like 
 
 <!-- In the standard library, Lean calls this function `List.length`, which means that the dot syntax that is used for structure field access can also be used to find the length of a list: -->
 
-標準ライブラリにて，この関数は `List.length` と呼ばれています．つまり，構造体フィールドへのアクセスに使われるドット構文がリストの長さを求めるのにも使えるということです:
+標準ライブラリにて，この関数は `List.length` と呼ばれています．つまり，構造体フィールドへのアクセスに使われるドット構文がリストの長さを求めるのにも使えるということです：
 
 ```lean
 {{#example_in Examples/Intro.lean lengthDotPrimes}}
@@ -275,7 +275,7 @@ For instance, a version of `replaceX` with an implicit type argument looks like 
 In these cases, they can be provided using their names.
 For instance, a version of `List.length` that only works for lists of integers can be specified by setting `α` to `Int`: -->
 
-C#やJavaなどにおいて時折，型引数を明示的に提供することを要求するように，Leanが暗黙の引数がなんであるかわかるとは限りません．このような場合，引数をその名前を使って指定することができます．例えば，`List.length` を整数のリストに対してのみ動作するようにするには，`α` に `Int` を設定します:
+C#やJavaなどにおいて時折，型引数を明示的に提供することを要求するように，Leanが暗黙の引数がなんであるかわかるとは限りません．このような場合，引数をその名前を使って指定することができます．例えば，`List.length` を整数のリストに対してのみ動作するようにするには，`α` に `Int` を設定します：
 
 ```lean
 {{#example_in Examples/Intro.lean lengthExpNat}}
@@ -310,7 +310,7 @@ Introducing a new type to represent nullability means that the type system ensur
 <!-- `Option` has two constructors, called `some` and `none`, that respectively represent the non-null and null versions of the underlying type.
 The non-null constructor, `some`, contains the underlying value, while `none` takes no arguments: -->
 
-`Option` には `some` と `none` という2つのコンストラクタがあり，それぞれベースとなる型の非null版とnull版を表します．非null版のコンストラクタ `some` にはベースとなる値が格納され，`none` には引数は渡されません:
+`Option` には `some` と `none` という2つのコンストラクタがあり，それぞれベースとなる型の非null版とnull版を表します．非null版のコンストラクタ `some` にはベースとなる値が格納され，`none` には引数は渡されません：
 
 ```lean
 {{#example_decl Examples/Intro.lean Option}}
@@ -345,7 +345,7 @@ Leanの命名規則として失敗する可能性のある操作について，`
 
 <!-- Because `head?` is defined in the `List` namespace, it can be used with accessor notation: -->
 
-`head?` は `List` 名前空間で定義されているため，アクセサ記法を使うことができます:
+`head?` は `List` 名前空間で定義されているため，アクセサ記法を使うことができます：
 
 ```lean
 {{#example_in Examples/Intro.lean headSome}}
@@ -355,7 +355,7 @@ Leanの命名規則として失敗する可能性のある操作について，`
 ```
 <!-- However, attempting to test it on the empty list leads to two errors: -->
 
-しかし，これを空リストで試そうとすると，以下の2つのエラーを出します:
+しかし，これを空リストで試そうとすると，以下の2つのエラーを出します：
 
 ```lean
 {{#example_in Examples/Intro.lean headNoneBad}}
@@ -372,7 +372,7 @@ These unknown parts are called _metavariables_, and they occur in some error mes
 In order to evaluate an expression, Lean needs to be able to find its type, and the type was unavailable because the empty list does not have any entries from which the type can be found.
 Explicitly providing a type allows Lean to proceed: -->
 
-これはLeanが式の型を完全に決定できなかったためです．特に，`List.head?` の暗黙の型引数だけでなく，`List.nil` の暗黙の型引数も見つけることができていません．Leanの出力での `?m.XYZ` は推論できなかったプログラムの一部を表しています．これらの未知の部分は _メタ変数_ と呼ばれ，エラーメッセージに時折現れます．式を評価するために，Leanはその型を見つけられる必要がありますが，空リストは1つも要素を持たないことから型が見つからないため，上記の式の型を得ることができません．型を明示的に指定することで，Leanは処理を進めることができます:
+これはLeanが式の型を完全に決定できなかったためです．特に，`List.head?` の暗黙の型引数だけでなく，`List.nil` の暗黙の型引数も見つけることができていません．Leanの出力での `?m.XYZ` は推論できなかったプログラムの一部を表しています．これらの未知の部分は **メタ変数** （metavariables）と呼ばれ，エラーメッセージに時折現れます．式を評価するために，Leanはその型を見つけられる必要がありますが，空リストは1つも要素を持たないことから型が見つからないため，上記の式の型を得ることができません．型を明示的に指定することで，Leanは処理を進めることができます：
 
 ```lean
 {{#example_in Examples/Intro.lean headNone}}
@@ -393,7 +393,7 @@ Explicitly providing a type allows Lean to proceed: -->
 <!-- The error messages provide a useful clue.
 Both messages use the _same_ metavariable to describe the missing implicit argument, which means that Lean has determined that the two missing pieces will share a solution, even though it was unable to determine the actual value of the solution. -->
 
-エラーメッセージは有用な手がかりを与えてくれます．どちらのメッセージも，足りない暗黙の引数を記述するために， _同じ_ メタ変数を使用しています．これはLeanが解の実際の値を決定できなかったにもかかわらず，2つの足りない部分が解を共有するだろうと判断したことを意味します．
+エラーメッセージは有用な手がかりを与えてくれます．どちらのメッセージも，足りない暗黙の引数を記述するために， **同じ** メタ変数を使用しています．これはLeanが解の実際の値を決定できなかったにもかかわらず，2つの足りない部分が解を共有するだろうと判断したことを意味します．
 
 ### `Prod`
 
@@ -425,7 +425,7 @@ The type `Prod α β` is typically written `α × β`, mirroring the usual notat
 Similarly, the usual mathematical notation for pairs is available for `Prod`.
 In other words, instead of writing: -->
 
-リストは頻繁に使われるため，読みやすくなる特別な構文があります．同じ理由で，積の型とコンストラクタも特別な構文を持っています．`Prod α β` 型は通常 `α × β` と表記されます．これは集合のデカルト積の通常の表記を反映したものです．同様に，ペアを表す通常の数学的記法が `Prod` でも利用できます．つまり，以下のように書く代わりに:
+リストは頻繁に使われるため，読みやすくなる特別な構文があります．同じ理由で，積の型とコンストラクタも特別な構文を持っています．`Prod α β` 型は通常 `α × β` と表記されます．これは集合のデカルト積の通常の表記を反映したものです．同様に，ペアを表す通常の数学的記法が `Prod` でも利用できます．つまり，以下のように書く代わりに：
 
 ```lean
 {{#example_decl Examples/Intro.lean fivesStruct}}
@@ -463,7 +463,7 @@ In most situations, it is more readable and maintainable to use a custom inducti
 
 <!-- Values of type `Sum α β` are either the constructor `inl` applied to a value of type `α` or the constructor `inr` applied to a value of type `β`: -->
 
-`Sum α β` 型の値は，コンストラクタ `inl` を `α` 型の値に適用したものか，コンストラクタ `inr` を `β` 型の値に適用したかのどちらかです:
+`Sum α β` 型の値は，コンストラクタ `inl` を `α` 型の値に適用したものか，コンストラクタ `inr` を `β` 型の値に適用したかのどちらかです：
 
 ```lean
 {{#example_decl Examples/Intro.lean Sum}}
@@ -485,7 +485,7 @@ There is no special syntax for `Sum.inl` and `Sum.inr`. -->
 Here, `Sum.inl` is to be used for dog names, and `Sum.inr` is to be used for cat names.
 These constructors can be used to write a list of animal names: -->
 
-実際のプログラムでは通常，このような目的のためには情報量の多いコンストラクタ名でカスタムの帰納的データ型を定義する方がよいでしょう．ここでは犬の名前には `Sum.inl` を，猫の名前には `Sum.inr` を使用します．これらのコンストラクタを使用して，動物の名前のリストを書くことができます:
+実際のプログラムでは通常，このような目的のためには情報量の多いコンストラクタ名でカスタムの帰納的データ型を定義する方がよいでしょう．ここでは犬の名前には `Sum.inl` を，猫の名前には `Sum.inr` を使用します．これらのコンストラクタを使用して，動物の名前のリストを書くことができます：
 
 ```lean
 {{#example_decl Examples/Intro.lean animals}}
@@ -493,7 +493,7 @@ These constructors can be used to write a list of animal names: -->
 <!-- Pattern matching can be used to distinguish between the two constructors.
 For instance, a function that counts the number of dogs in a list of animal names (that is, the number of `Sum.inl` constructors) looks like this: -->
 
-2つのコンストラクタを区別するために，パターンマッチを使うことができます．例えば，動物の名前のリストに含まれる犬の数（つまり，`Sum.inl` コンストラクタの数）を数える関数は次のようになります:
+2つのコンストラクタを区別するために，パターンマッチを使うことができます．例えば，動物の名前のリストに含まれる犬の数（つまり，`Sum.inl` コンストラクタの数）を数える関数は次のようになります：
 
 ```lean
 {{#example_decl Examples/Intro.lean howManyDogs}}
@@ -509,7 +509,7 @@ As expected, `{{#example_in Examples/Intro.lean dogCount}}` yields `{{#example_o
 In other words, it describes only a single value, which consists of said constructor applied to no arguments whatsoever.
 `Unit` is defined as follows: -->
 
-`Unit` は `unit` と呼ばれる引数のないコンストラクタを1つだけもつ型です．つまり，引数のないコンストラクタを適用した単一の値のみを記述します．`Unit` は以下のように定義されます:
+`Unit` は `unit` と呼ばれる引数のないコンストラクタを1つだけもつ型です．つまり，引数のないコンストラクタを適用した単一の値のみを記述します．`Unit` は以下のように定義されます：
 
 ```lean
 {{#example_decl Examples/Intro.lean Unit}}
@@ -519,7 +519,7 @@ In other words, it describes only a single value, which consists of said constru
 However, in polymorphic code, it can be used as a placeholder for data that is missing.
 For instance, the following inductive datatype represents arithmetic expressions: -->
 
-単体では `Unit` は特に役に立ちません．しかし，多相なプログラムでは，足りないデータのプレースホルダとして使用することができます．例えば，以下の帰納的データ型は算術式を表します:
+単体では `Unit` は特に役に立ちません．しかし，多相なプログラムでは，足りないデータのプレースホルダとして使用することができます．例えば，以下の帰納的データ型は算術式を表します：
 
 ```lean
 {{#example_decl Examples/Intro.lean ArithExpr}}
@@ -536,7 +536,7 @@ In the C family, a function that returns `void` will return control to its calle
 By being an intentionally uninteresting value, `Unit` allows this to be expressed without requiring a special-purpose `void` feature in the type system.
 Unit's constructor can be written as empty parentheses: `{{#example_in Examples/Intro.lean unitParens}} : {{#example_out Examples/Intro.lean unitParens}}`. -->
 
-さらに，すべてのLeanでの関数は引数を持つので，ほかの言語での引数が無い関数は，Leanでは `Unit` 引数を取る関数として表すことができます．戻り値の観点では，`Unit` 型はC言語から派生した言語での `void` 型に似ています．C言語ファミリーでは，`void` を返す関数は呼び出し元に制御を返すが，興味深い値を返すことはありません．`Unit` は意図的に興味のない値であることで，型システムの中に特別な目的の `void` 機能を必要とすることなく，これを表現することができます．`Unit` のコンストラクタは空の括弧で書くことができます: `{{#example_in Examples/Intro.lean unitParens}} : {{#example_out Examples/Intro.lean unitParens}}`
+さらに，すべてのLeanでの関数は引数を持つので，ほかの言語での引数が無い関数は，Leanでは `Unit` 引数を取る関数として表すことができます．戻り値の観点では，`Unit` 型はC言語から派生した言語での `void` 型に似ています．C言語ファミリーでは，`void` を返す関数は呼び出し元に制御を返すが，興味深い値を返すことはありません．`Unit` は意図的に興味のない値であることで，型システムの中に特別な目的の `void` 機能を必要とすることなく，これを表現することができます．`Unit` のコンストラクタは空の括弧で書くことができます：`{{#example_in Examples/Intro.lean unitParens}} : {{#example_out Examples/Intro.lean unitParens}}`
 
 ### `Empty`
 
@@ -566,7 +566,7 @@ For instance, `Bool` has two values: `true` and `false`, and `Unit` has one valu
 The product `Bool × Unit` has the two values `(true, Unit.unit)` and `(false, Unit.unit)`, and the sum `Bool ⊕ Unit` has the three values `Sum.inl true`, `Sum.inl false`, and `Sum.inr unit`.
 Similarly, \\( 2 \times 1 = 2 \\), and \\( 2 + 1 = 3 \\). -->
 
-一般的に，複数のコンストラクタを持つ型は _直和型_ と呼ばれ，単一のコンストラクタが複数の引数を取る型は _直積型_ と呼ばれます．これらの用語は，通常の算術で使われる和と積に関連しています．この関係は，関係する型が有限個の値を含む場合に最もわかりやすいでしょう．`α` と `β` がそれぞれ \\( n \\) 個と \\( k \\) 個の異なる値を含む型だとすると，`α ⊕ β` は \\( n + k \\) 個の異なる値を含み，`α × β` は \\( n \times k \\) 個の異なる値を含みます．たとえば `Bool` は `true` と `false` の2つの値を持ち，`Unit` には `Unit.unit` という1つの値があります．積 `Bool × Unit` は2つの値 `(true, Unit.unit)` と `(false, Unit.unit)` を持ち，和 `Bool ⊕ Unit` は3つの値 `Sum.inl true` と `Sum.inl false` ，`Sum.inr unit` を持ちます．これと同様に， \\( 2 \times 1 = 2 \\) と \\( 2 + 1 = 3 \\) となります．
+一般的に，複数のコンストラクタを持つ型は **直和型** （sum type）と呼ばれ，単一のコンストラクタが複数の引数を取る型は **直積型** （product type）と呼ばれます．これらの用語は，通常の算術で使われる和と積に関連しています．この関係は，関係する型が有限個の値を含む場合に最もわかりやすいでしょう．`α` と `β` がそれぞれ \\( n \\) 個と \\( k \\) 個の異なる値を含む型だとすると，`α ⊕ β` は \\( n + k \\) 個の異なる値を含み，`α × β` は \\( n \times k \\) 個の異なる値を含みます．たとえば `Bool` は `true` と `false` の2つの値を持ち，`Unit` には `Unit.unit` という1つの値があります．積 `Bool × Unit` は2つの値 `(true, Unit.unit)` と `(false, Unit.unit)` を持ち，和 `Bool ⊕ Unit` は3つの値 `Sum.inl true` と `Sum.inl false` ，`Sum.inr unit` を持ちます．これと同様に， \\( 2 \times 1 = 2 \\) と \\( 2 + 1 = 3 \\) となります．
 
 <!-- ## Messages You May Meet -->
 
@@ -577,14 +577,14 @@ In particular, if a constructor takes an arbitrary type as an argument, then the
 These errors usually state something about "universe levels".
 For example, for this inductive type: -->
 
-すべての定義可能な構造体や帰納的型が `Type` 型を持つわけではありません．特に，コンストラクタが引数として任意の型を取る場合，帰納的型は異なる型を持たなければなりません．これらのエラーは通常，「universe levels」について述べています．例えば，この帰納的型について:
+すべての定義可能な構造体や帰納的型が `Type` 型を持つわけではありません．特に，コンストラクタが引数として任意の型を取る場合，帰納的型は異なる型を持たなければなりません．これらのエラーは通常，「universe levels」について述べています．例えば，この帰納的型について：
 
 ```lean
 {{#example_in Examples/Intro.lean TypeInType}}
 ```
 <!-- Lean gives the following error: -->
 
-Leanは以下のエラーを出します:
+Leanは以下のエラーを出します：
 
 ```output error
 {{#example_out Examples/Intro.lean TypeInType}}
@@ -597,14 +597,14 @@ For now, try making the type an argument to the inductive type as a whole, rathe
 <!-- Similarly, if a constructor's argument is a function that takes the datatype being defined as an argument, then the definition is rejected.
 For example: -->
 
-同様に，コンストラクタの引数が定義されているデータ型を引数とする関数である場合，その定義は却下されます．例えば以下の定義について:
+同様に，コンストラクタの引数が定義されているデータ型を引数とする関数である場合，その定義は却下されます．例えば以下の定義について：
 
 ```lean
 {{#example_in Examples/Intro.lean Positivity}}
 ```
 <!-- yields the message: -->
 
-このようなメッセージが出力されます:
+このようなメッセージが出力されます：
 
 ```output error
 {{#example_out Examples/Intro.lean Positivity}}
@@ -616,7 +616,7 @@ For example: -->
 <!-- Forgetting an argument to an inductive type can also yield a confusing message.
 For example, when the argument `α` is not passed to `MyType` in `ctor`'s type: -->
 
-帰納的な型の引数を忘れると，混乱を招くメッセージになることもあります．例えば，`ctor` の型の `MyType` に引数 `α` が渡されていない場合です:
+帰納的な型の引数を忘れると，混乱を招くメッセージになることもあります．例えば，`ctor` の型の `MyType` に引数 `α` が渡されていない場合です：
 
 ```lean
 {{#example_in Examples/Intro.lean MissingTypeArg}}
@@ -635,7 +635,7 @@ Leanはこれに対して以下のエラーを返します:
 
 <!-- The same message can appear when type arguments are omitted in other contexts, such as in a type signature for a definition: -->
 
-定義の型シグネチャなど，ほかのコンテキストで型引数が省略された場合にも，同じメッセージが表示されることがあります:
+定義の型シグネチャなど，ほかのコンテキストで型引数が省略された場合にも，同じメッセージが表示されることがあります：
 
 ```lean
 {{#example_decl Examples/Intro.lean MyTypeDef}}
