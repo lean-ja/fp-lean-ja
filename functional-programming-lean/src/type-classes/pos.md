@@ -67,7 +67,7 @@ In object-oriented programming, a method is essentially a function that is conne
 Objects are interacted with via their methods.
 In Lean, the term "method" refers to an operation that has been declared to be overloadable, with no special connection to objects or values or private fields. -->
 
-型クラスの構成要素は名前，いくつかのパラメータ，そして _メソッド_ の集まりです．パラメータはオーバーロード可能な演算の対象となる型を，メソッドはオーバーロード可能な演算の名前と型シグネチャを表します．ここでもまたオブジェクト指向言語との用語の衝突があります．オブジェクト指向プログラミングでは，メソッドは基本的にメモリ上の特定のオブジェクトに接続され，そのオブジェクトのプライベート状態に特別にアクセスできる関数のことです．オブジェクトの操作はこうしたメソッドを通じて行われます．一方Leanでは，「メソッド」という用語はオーバーロード可能なものとして宣言された演算を指します．そこにはオブジェクトや値，プライベートのフィールドへの特別な接続は関係しません．
+型クラスの構成要素は名前，いくつかのパラメータ，そして **メソッド** （method）の集まりです．パラメータはオーバーロード可能な演算の対象となる型を，メソッドはオーバーロード可能な演算の名前と型シグネチャを表します．ここでもまたオブジェクト指向言語との用語の衝突があります．オブジェクト指向プログラミングでは，メソッドは基本的にメモリ上の特定のオブジェクトに接続され，そのオブジェクトのプライベート状態に特別にアクセスできる関数のことです．オブジェクトの操作はこうしたメソッドを通じて行われます．一方Leanでは，「メソッド」という用語はオーバーロード可能なものとして宣言された演算を指します．そこにはオブジェクトや値，プライベートのフィールドへの特別な接続は関係しません．
 
 <!-- One way to overload addition is to define a type class named `Plus`, with an addition method named `plus`.
 Once an instance of `Plus` for `Nat` has been defined, it becomes possible to add two `Nat`s using `Plus.plus`: -->
@@ -341,7 +341,7 @@ Another way to phrase this is to say that for all natural numbers `n`, the insta
 Just as names like `α` automatically become implicit arguments to functions that Lean fills out on its own, instances can take automatic implicit arguments.
 In this instance, the argument `n` stands for any `Nat`, and the instance is defined for a `Nat` that's one greater: -->
 
-`Pos` の場合，`OfNat`インスタンスは `Nat.zero` 以外の _すべての_ `Nat` に対して動作する必要があります．別の言い方をすると，すべての自然数 `n` に対して，インスタンスは `n + 1` に対して動作する必要があります．`α` のような名前が自動的に関数の暗黙の引数になり，Leanがそれを埋めてくれるように，インスタンスも自動的に暗黙の引数を取ることができます．このインスタンスでは，引数 `n` は任意の `Nat` を表し，インスタンスは1つ大きい `Nat` に対して定義されます：
+`Pos` の場合，`OfNat`インスタンスは `Nat.zero` 以外の **すべての** `Nat` に対して動作する必要があります．別の言い方をすると，すべての自然数 `n` に対して，インスタンスは `n + 1` に対して動作する必要があります．`α` のような名前が自動的に関数の暗黙の引数になり，Leanがそれを埋めてくれるように，インスタンスも自動的に暗黙の引数を取ることができます．このインスタンスでは，引数 `n` は任意の `Nat` を表し，インスタンスは1つ大きい `Nat` に対して定義されます：
 
 ```lean
 {{#example_decl Examples/Classes.lean OfNatPos}}
