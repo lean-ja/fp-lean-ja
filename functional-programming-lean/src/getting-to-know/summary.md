@@ -10,7 +10,7 @@
 This follows the usual rules of mathematical expressions: sub-expressions are replaced by their values following the usual order of operations, until the entire expression has become a value.
 When evaluating an `if` or a `match`, the expressions in the branches are not evaluated until the value of the condition or the match subject has been found. -->
 
-Leanでは，式が評価されるときに計算も行われます．これは数式の通常のルールに従って行われます: 式全体が値になるまで，通常の演算順序に従って部分式が値で置き換えられます．`if` や `match` を評価する場合，条件の値やマッチの対象が見つかるまでは枝の中の式は評価されません．
+Leanでは，式が評価されるときに計算も行われます．これは数式の通常のルールに従って行われます：式全体が値になるまで，通常の演算順序に従って部分式が値で置き換えられます．`if` や `match` を評価する場合，条件の値やマッチの対象が見つかるまでは枝の中の式は評価されません．
 
 <!-- Once they have been given a value, variables never change.
 Similarly to mathematics but unlike most programming languages, Lean variables are simply placeholders for values, rather than addresses to which new values can be written.
@@ -31,7 +31,7 @@ Leanにおいて関数は第一級です．つまり，関数をほかの関数�
 
 <!-- There are three primary ways of creating functions: -->
 
-関数の実装方法は主に以下の3つがあります:
+関数の実装方法は主に以下の3つがあります：
 
 <!-- 1. Anonymous functions are written using `fun`.
    For instance, a function that swaps the fields of a `Point` can be written `{{#example_in Examples/Intro.lean swapLambda}}` -->
@@ -75,7 +75,7 @@ Polymorphism allows programs such as one that calculates the length of a list wi
 Because types are first class in Lean, polymorphism does not require any special syntax, so types are passed just like other arguments.
 Giving an argument a name in a function type allows later types to mention that argument, and the type of applying that function to an argument is found by replacing the argument's name with the argument's value. -->
 
-関数やデータ型の中には，型を引数に取るものがあります．これは _多相性_ と呼ばれます．多相性によって，リストの要素がどの型を持っているかを気にせずにリストの長さを計算するようなプログラムが可能になります．型はLeanにおいて第一級であるため，多相性は特別な構文を必要とせず，型はほかの引数と同じように渡されます．関数型において型引数に名前を与えることで，後の型がその引数に言及できるようになり，その関数を引数に適用した型は引数の名前を引数の値に置き換えることで求められます．
+関数やデータ型の中には，型を引数に取るものがあります．これは **多相性** （polymorphic）と呼ばれます．多相性によって，リストの要素がどの型を持っているかを気にせずにリストの長さを計算するようなプログラムが可能になります．型はLeanにおいて第一級であるため，多相性は特別な構文を必要とせず，型はほかの引数と同じように渡されます．関数型において型引数に名前を与えることで，後の型がその引数に言及できるようになり，その関数を引数に適用した型は引数の名前を引数の値に置き換えることで求められます．
 
 <!-- ## Structures and Inductive Types -->
 
@@ -86,7 +86,7 @@ These new types are not considered to be equivalent to any other type, even if t
 Datatypes have _constructors_ that explain the ways in which their values can be constructed, and each constructor takes some number of arguments.
 Constructors in Lean are not the same as constructors in object-oriented languages: Lean's constructors are inert holders of data, rather than active code that initializes an allocated object. -->
 
-Leanでは `structure` や `inductive` の機能を使って，全く新しいデータ型を導入することができます．これらの新しいデータ型はたとえ定義が同じであったとしても他のデータ型と同じであるとはみなされません．データ型はその値を構築する方法を説明する _コンストラクタ_ を持ち，各コンストラクタはいくつかの引数を取ります．Leanのコンストラクタはオブジェクト指向言語のコンストラクタとは異なります: Leanのコンストラクタは，割り当てられたオブジェクトを初期化するアクティブなコードではなく，データを保持する不活性なものです．
+Leanでは `structure` や `inductive` の機能を使って，全く新しいデータ型を導入することができます．これらの新しいデータ型はたとえ定義が同じであったとしても他のデータ型と同じであるとはみなされません．データ型はその値を構築する方法を説明する **コンストラクタ** （constructor）を持ち，各コンストラクタはいくつかの引数を取ります．Leanのコンストラクタはオブジェクト指向言語のコンストラクタとは異なります：Leanのコンストラクタは，割り当てられたオブジェクトを初期化するアクティブなコードではなく，データを保持する不活性なものです．
 
 <!-- Typically, `structure` is used to introduce a product type (that is, a type with just one constructor that takes any number of arguments), while `inductive` is used to introduce a sum type (that is, a type with many distinct constructors).
 Datatypes defined with `structure` are provided with one accessor function for each of the constructor's arguments.
@@ -109,7 +109,7 @@ In Lean's logical side, circular definitions could lead to logical inconsistency
 In practice, this means either that recursive calls are all performed on a structurally-smaller piece of the input, which ensures that there is always progress towards a base case, or that users must provide some other evidence that the function always terminates.
 Similarly, recursive inductive types are not allowed to have a constructor that takes a function _from_ the type as an argument, because this would make it possible to encode non-terminating functions. -->
 
-再帰的定義がLeanの論理的側面を損なわないようにするために，Leanは再帰関数がどのような引数で呼び出されたとしても，すべての再帰関数が終了することを証明できなければなりません．実用としては，これは①再帰的な呼び出しがすべて入力の構造的に小さい部分で実行され，常にその構造の基底のケースに向かって進むことを保証するか，②ユーザが関数が常に終了するという他の証拠を提供する必要があること，のどちらかを意味します．同様に，再帰的帰納型はその型を引数として _受け取る_ 関数を取るコンストラクタを持つことはできません．なぜならこれは終了しない関数の実装を可能にするからです．
+再帰的定義がLeanの論理的側面を損なわないようにするために，Leanは再帰関数がどのような引数で呼び出されたとしても，すべての再帰関数が終了することを証明できなければなりません．実用としては，これは①再帰的な呼び出しがすべて入力の構造的に小さい部分で実行され，常にその構造の基底のケースに向かって進むことを保証するか，②ユーザが関数が常に終了するという他の証拠を提供する必要があること，のどちらかを意味します．同様に，再帰的帰納型はその型を引数として **受け取る** 関数を取るコンストラクタを持つことはできません．なぜならこれは終了しない関数の実装を可能にするからです．
 
 
 [^1]: 日本語訳はhttps://aconite-ac.github.io/theorem_proving_in_lean4_ja/
