@@ -8,7 +8,7 @@ This is indicated using square brackets around the required instance: the type o
 This type says that `IO.println` accepts an argument of type `α`, which Lean should determine automatically, and that there must be a `ToString` instance available for `α`.
 It returns an `IO` action. -->
 
-与えられた関数の _任意の_ オーバーロードされた関数でも動作するような関数を書くと便利です．例えば，`IO.println` は `ToString` のインスタンスを持つすべての型に対して動作します．これを実現するには対象のインスタンスを角括弧で囲むことが必要とされ，実際に `IO.println` の型は `{{#example_out Examples/Classes.lean printlnType}}` となっています．この型は `IO.println` が受け取る `α` 型の引数をLeanによって自動的に決定され，`α` に対して利用可能な `ToString` インスタンスがなければならないことを表しています．この関数は `IO` アクションを返します．
+与えられた関数の **任意の** オーバーロードされた関数でも動作するような関数を書くと便利です．例えば，`IO.println` は `ToString` のインスタンスを持つすべての型に対して動作します．これを実現するには対象のインスタンスを角括弧で囲むことが必要とされ，実際に `IO.println` の型は `{{#example_out Examples/Classes.lean printlnType}}` となっています．この型は `IO.println` が受け取る `α` 型の引数をLeanによって自動的に決定され，`α` に対して利用可能な `ToString` インスタンスがなければならないことを表しています．この関数は `IO` アクションを返します．
 
 <!-- ## Checking Polymorphic Functions' Types -->
 
@@ -91,7 +91,7 @@ In the case of ordinary implicit arguments, Lean uses a technique called _unific
 This process relies only on the specific types involved in the function's definition and the call site.
 For instance implicits, Lean instead consults a built-in table of instance values. -->
 
-角括弧で囲まれた必須なインスタンスの指定は _暗黙のインスタンス(instance implicit)_ と呼ばれます．裏側では，すべての型クラスはオーバーロードされた演算ごとのフィールドを持つ構造体として定義されています．インスタンスはその構造体の値であり，各フィールドには具体的な実装が含まれています．呼び出し先では，Leanが各暗黙引数のインスタンスに渡す値を見つける責任を負います．通常の暗黙引数と暗黙のインスタンス引数の最も重要な違いは，Leanが引数の値を見つけるために使用する戦略です．通常の暗黙引数の場合，Leanは _ユニフィケーション(unification)_ と呼ばれるテクニックを使って，プログラムが型チェッカをパスできるような一意の引数の値を見つけます．このプロセスは関数の定義と呼び出しにかかわる特定の型にのみ依存します．暗黙のインスタンスの場合，Leanはこの代わりにインスタンスの値の組み込みテーブルを参照します．
+角括弧で囲まれた必須なインスタンスの指定は **暗黙のインスタンス** （instance implicit）と呼ばれます．裏側では，すべての型クラスはオーバーロードされた演算ごとのフィールドを持つ構造体として定義されています．インスタンスはその構造体の値であり，各フィールドには具体的な実装が含まれています．呼び出し先では，Leanが各暗黙引数のインスタンスに渡す値を見つける責任を負います．通常の暗黙引数と暗黙のインスタンス引数の最も重要な違いは，Leanが引数の値を見つけるために使用する戦略です．通常の暗黙引数の場合，Leanは **ユニフィケーション** （unification）と呼ばれるテクニックを使って，プログラムが型チェッカをパスできるような一意の引数の値を見つけます．このプロセスは関数の定義と呼び出しにかかわる特定の型にのみ依存します．暗黙のインスタンスの場合，Leanはこの代わりにインスタンスの値の組み込みテーブルを参照します．
 
 <!-- Just as the `OfNat` instance for `Pos` took a natural number `n` as an automatic implicit argument, instances may also take instance implicit arguments themselves.
 The [section on polymorphism](../getting-to-know/polymorphism.md) presented a polymorphic point type: -->
