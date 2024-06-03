@@ -193,7 +193,7 @@ The type signature line is just like the one for `Hello.lean`:
 The only difference is that it ends with the keyword `do`, which initiates a sequence of commands.
 Each indented line following the keyword `do` is part of the same sequence of commands.
 -->
-唯一の違いは，キーワード `do` で終わることです．`do` はコマンドのシーケンスを開始します．キーワード `do` に続くインデントされた各行は, 同じ一連のコマンドの一部です．
+唯一の違いは，キーワード `do` で終わることです．`do` はコマンドのシーケンスを開始します．キーワード `do` に続くインデントされた各行は，同じ一連のコマンドの一部です．
 
 <!--
 The first two lines, which read:
@@ -238,4 +238,4 @@ Finally, the last line in the program is:
 <!--
 It uses [string interpolation](../getting-to-know/conveniences.md#string-interpolation) to insert the provided name into a greeting string, writing the result to `stdout`.
 -->
-ここでは[文字列補間](../getting-to-know/conveniences.md#string-interpolation)を使って, 与えられた名前を挨拶の文字列に挿入し，その結果を `stdout` に書き込んでいます．
+ここでは[文字列補間](../getting-to-know/conveniences.md#string-interpolation)を使って，与えられた名前を挨拶の文字列に挿入し，その結果を `stdout` に書き込んでいます．

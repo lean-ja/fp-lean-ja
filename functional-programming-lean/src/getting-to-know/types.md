@@ -54,7 +54,7 @@ In C, unsigned integers underflow to the largest representable numbers when subt
 Thus, subtraction on `Nat` returns `0` when the answer would have otherwise been negative.
 For instance, -->
 
-ここで `Nat` は自然数の型で, 任意精度の符号なし整数です．Lean では，`Nat` は非負整数リテラルのデフォルト型です．このデフォルトの型は必ずしも最良の選択ではありません．C 言語では，符号なし整数は，引き算の結果が0未満になる場合，表現可能な最大の数までアンダーフローします．しかし `Nat` 型は任意の大きさの符号なし整数を表現できますから，アンダーフローすべき最大の数が存在しません．したがって，`Nat` の引き算は，そうでなければ答えが負になるはずのときに0を返します．例えば
+ここで `Nat` は自然数の型で，任意精度の符号なし整数です．Lean では，`Nat` は非負整数リテラルのデフォルト型です．このデフォルトの型は必ずしも最良の選択ではありません．C 言語では，符号なし整数は，引き算の結果が0未満になる場合，表現可能な最大の数までアンダーフローします．しかし `Nat` 型は任意の大きさの符号なし整数を表現できますから，アンダーフローすべき最大の数が存在しません．したがって，`Nat` の引き算は，そうでなければ答えが負になるはずのときに0を返します．例えば
 
 ```lean
 #eval {{#example_in Examples/Intro.lean oneMinusTwo}}
@@ -64,7 +64,7 @@ For instance, -->
 than `-1`. To use a type that can represent the negative integers,
 provide it directly: -->
 
-は `-1` ではなく `{{#example_out Examples/Intro.lean oneMinusTwo}}` を返します．負の整数を表現できる型を使うには, 型を直接指定します：
+は `-1` ではなく `{{#example_out Examples/Intro.lean oneMinusTwo}}` を返します．負の整数を表現できる型を使うには，型を直接指定します：
 
 ```lean
 #eval {{#example_in Examples/Intro.lean oneMinusTwoInt}}
@@ -77,7 +77,7 @@ provide it directly: -->
 <!-- To check the type of an expression without evaluating it, use `#check`
 instead of `#eval`. For instance: -->
 
-式を評価せずに型を確かめるには, `#eval` の代わりに `#check` を使います．例えば
+式を評価せずに型を確かめるには，`#eval` の代わりに `#check` を使います．例えば
 
 ```lean
 {{#example_in Examples/Intro.lean oneMinusTwoIntType}}
@@ -85,7 +85,7 @@ instead of `#eval`. For instance: -->
 
 <!-- reports `{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` without actually performing the subtraction. -->
 
-は, 実際の引き算は実行せず，`{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` を報告します．
+は，実際の引き算は実行せず，`{{#example_out Examples/Intro.lean oneMinusTwoIntType}}` を報告します．
 
 <!-- When a program can't be given a type, an error is returned from both
 `#check` and `#eval`. For instance: -->
