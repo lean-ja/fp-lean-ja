@@ -1,4 +1,6 @@
-# Arrays and Indexing
+<!-- # Arrays and Indexing -->
+
+# 配列と添え字アクセス
 
 The [Interlude](../props-proofs-indexing.md) describes how to use indexing notation in order to look up entries in a list by their position.
 This syntax is also governed by a type class, and it can be used for a variety of different types.
