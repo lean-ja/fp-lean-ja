@@ -1,6 +1,6 @@
 ---
-name: GLOSSARY_proposal
-about: 対訳表への変更提案にお使いください．
+name: 対訳表への変更提案
+about: 訳語の追加や修正など、対訳表への変更の提案にお使いください．
 title: "[GLOSSARY]"
 labels: ''
 assignees: ''
