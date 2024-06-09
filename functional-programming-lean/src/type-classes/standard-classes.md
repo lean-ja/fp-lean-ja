@@ -1,4 +1,6 @@
-# Standard Classes
+<!-- # Standard Classes -->
+
+# 標準クラス
 
 This section presents a variety of operators and functions that can be overloaded using type classes in Lean.
 Each operator or function corresponds to a method of a type class.
