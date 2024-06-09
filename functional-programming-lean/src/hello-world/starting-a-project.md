@@ -1,13 +1,17 @@
-# Starting a Project
+<!-- # Starting a Project -->
 
-As a program written in Lean becomes more serious, an ahead-of-time compiler-based workflow that results in an executable becomes more attractive.
+# プロジェクトの開始
+
+<!-- As a program written in Lean becomes more serious, an ahead-of-time compiler-based workflow that results in an executable becomes more attractive.
 Like other languages, Lean has tools for building multiple-file packages and managing dependencies.
 The standard Lean build tool is called Lake (short for "Lean Make"), and it is configured in Lean.
 Just as Lean contains a special-purpose language for writing programs with effects (the `do` language), Lake contains a special-purpose language for configuring builds.
 These languages are referred to as _embedded domain-specific languages_ (or sometimes _domain-specific embedded languages_, abbreviated EDSL or DSEL).
 They are _domain-specific_ in the sense that they are used for a particular purpose, with concepts from some sub-domain, and they are typically not suitable for general-purpose programming.
 They are _embedded_ because they occur inside another language's syntax.
-While Lean contains rich facilities for creating EDSLs, they are beyond the scope of this book.
+While Lean contains rich facilities for creating EDSLs, they are beyond the scope of this book. -->
+
+Lean で書かれたプログラムが本格的になるにつれて，Ahead-Of-Time コンパイラベースのワークフローが魅力的になってきます．ほかの言語と同様に，Lean にも複数ファイルのパッケージのビルドと依存関係の管理のためのツールがあります．Lean の標準的なビルドツールは Lake（Lean Make の略）と呼ばれ，Lean で設定されます．Lean には `do` 記法のように副作用を持つプログラムを書くための特別な言語があるように，Lake にもビルドを設定するための特別な言語があります．これらの言語は**埋め込みドメイン固有言語**（または**ドメイン固有言語**，EDSL や DSL とも略します）と呼ばれます．EDSL は，あるサブドメインの概念を用いて特定の目的のために使用されるという意味で**ドメイン固有**であり，一般的に汎用プログラミングには適していません．また，**埋め込み**とはほかの言語の構文の内部で使用されることに由来します．Lean には EDSL を作成するための豊富な機能がありますが，それは本書の範囲外です．
 
 ## First steps
 
