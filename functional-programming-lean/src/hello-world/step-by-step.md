@@ -149,43 +149,68 @@ The ability to mention an action without carrying it out allows ordinary functio
 答えは2つあります．まず，評価と実行を分離することで，プログラムはどの関数が副作用を持つか明示的に示す必要があります．副作用を持たないプログラムの部分は数学的な推論がしやすいため，プログラマが頭の中で考える場合でもLean の形式証明の機能を使う場合でも，この分離はバグを回避しやすくします．次に，すべての `IO` アクションが生成された時点で実行される必要はありません．アクションを実行せずに記述できる機能により，通常の関数を制御構造として使用できるようになります．
 
 
-For instance, the function `twice` takes an `IO` action as its argument, returning a new action that will execute the first one twice.
+<!-- For instance, the function `twice` takes an `IO` action as its argument, returning a new action that will execute the first one twice. -->
+
+例えば，`twice` 関数は `IO` アクションを引数にとり，最初のアクションを2回実行する新しいアクションを返します．
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean twice}}
 ```
-For instance, executing
+<!-- For instance, executing -->
+
+例えば，以下を実行すると，
+
 ```lean
 {{#example_in Examples/HelloWorld.lean twiceShy}}
 ```
-results in
+<!-- results in -->
+
+結果は，
+
 ```output info
 {{#example_out Examples/HelloWorld.lean twiceShy}}
 ```
-being printed.
-This can be generalized to a version that runs the underlying action any number of times:
+<!-- being printed.
+This can be generalized to a version that runs the underlying action any number of times: -->
+
+のように出力されます．これは，基礎となるアクションを任意の回数実行するバージョンに一般化できます：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean nTimes}}
 ```
-In the base case for `Nat.zero`, the result is `pure ()`.
+<!-- In the base case for `Nat.zero`, the result is `pure ()`.
 The function `pure` creates an `IO` action that has no side effects, but returns `pure`'s argument, which in this case is the constructor for `Unit`.
 As an action that does nothing and returns nothing interesting, `pure ()` is at the same time utterly boring and very useful.
 In the recursive step, a `do` block is used to create an action that first executes `action` and then executes the result of the recursive call.
-Executing `{{#example_in Examples/HelloWorld.lean nTimes3}}` causes the following output:
+Executing `{{#example_in Examples/HelloWorld.lean nTimes3}}` causes the following output: -->
+
+基底ケースである `Nat.zero` では，結果は `pure()` です．`pure` 関数は副作用のない `IO` アクションを作成し，引数（この場合 `Unit` のコンストラクタ）を返します．何もせず何も興味深いものを返さないアクションである `pure()` はとても退屈であると同時に非常に便利です．再帰的なステップでは，`do` ブロックを使って，最初に `action` を実行した後にその再帰呼び出しの結果を実行するアクションを作成します．
+
 ```output info
 {{#example_out Examples/HelloWorld.lean nTimes3}}
 ```
 
-In addition to using functions as control structures, the fact that `IO` actions are first-class values means that they can be saved in data structures for later execution.
-For instance, the function `countdown` takes a `Nat` and returns a list of unexecuted `IO` actions, one for each `Nat`:
+<!-- In addition to using functions as control structures, the fact that `IO` actions are first-class values means that they can be saved in data structures for later execution.
+For instance, the function `countdown` takes a `Nat` and returns a list of unexecuted `IO` actions, one for each `Nat`: -->
+
+制御構造として関数を使うことに加えて，`IO` アクションが第一級の値であるということは，後で実行するためにその値をデータ構造として保存できることを意味します．例えば，`countdown` 関数は `Nat` を引数にとり，未実行の `Nat` ごとの `IO` アクションのリストを返します：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean countdown}}
 ```
-This function has no side effects, and does not print anything.
-For example, it can be applied to an argument, and the length of the resulting list of actions can be checked:
+<!-- This function has no side effects, and does not print anything.
+For example, it can be applied to an argument, and the length of the resulting list of actions can be checked: -->
+
+この関数は副作用がなく，何も出力しません．
+例えば，引数にこの関数を適用して，結果として得られるアクションのリストの長さを確認することができます：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean from5}}
 ```
-This list contains six elements (one for each number, plus a `"Blast off!"` action for zero):
+<!-- This list contains six elements (one for each number, plus a `"Blast off!"` action for zero): -->
+
+このリストは6つの要素を含みます（各数値ごとのアクションに加えて，ゼロのときの `"Blast off!"`）：
+
 ```lean
 {{#example_in Examples/HelloWorld.lean from5length}}
 ```
@@ -193,36 +218,57 @@ This list contains six elements (one for each number, plus a `"Blast off!"` acti
 {{#example_out Examples/HelloWorld.lean from5length}}
 ```
 
-The function `runActions` takes a list of actions and constructs a single action that runs them all in order:
+<!-- The function `runActions` takes a list of actions and constructs a single action that runs them all in order: -->
+
+`runActions` 関数はアクションのリストを受け取り，それらを順番に実行する一つのアクションを構築します：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean runActions}}
 ```
-Its structure is essentially the same as that of `nTimes`, except instead of having one action that is executed for each `Nat.succ`, the action under each `List.cons` is to be executed.
+<!-- Its structure is essentially the same as that of `nTimes`, except instead of having one action that is executed for each `Nat.succ`, the action under each `List.cons` is to be executed.
 Similarly, `runActions` does not itself run the actions.
-It creates a new action that will run them, and that action must be placed in a position where it will be executed as a part of `main`:
+It creates a new action that will run them, and that action must be placed in a position where it will be executed as a part of `main`: -->
+
+これは `nTimes` と同じ構造ですが，`Nat.succ` ごとに実行されるアクションが1つずつあるのではなく，`List.cons` ごとに実行されるアクションがあります．同様に，`runActions` はそれ自体ではアクションを実行しません．アクションを実行する新しいアクションを作成し，そのアクションは `main` の一部として実行される位置に置かなければいけません：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean main}}
 ```
-Running this program results in the following output:
+<!-- Running this program results in the following output: -->
+
+このプログラムを実行すると，以下のような出力が得られます：
+
 ```output info
 {{#example_out Examples/HelloWorld.lean countdown5}}
 ```
 
-What happens when this program is run?
-The first step is to evaluate `main`. That occurs as follows:
+<!-- What happens when this program is run?
+The first step is to evaluate `main`. That occurs as follows: -->
+
+プログラムを実行したとき何が起こっているのでしょうか？最初のステップは `main` の評価です．以下のように実行されます：
+
 ```lean
 {{#example_eval Examples/HelloWorld.lean evalMain}}
 ```
-The resulting `IO` action is a `do` block.
+<!-- The resulting `IO` action is a `do` block.
 Each step of the `do` block is then executed, one at a time, yielding the expected output.
-The final step, `pure ()`, does not have any effects, and it is only present because the definition of `runActions` needs a base case.
+The final step, `pure ()`, does not have any effects, and it is only present because the definition of `runActions` needs a base case. -->
 
-## Exercise
+`IO` アクションの結果は `do` ブロックです．`do` ブロックの各ステップが1つずつ実行され，期待する出力が得られます．最後のステップである `pure()` は何の作用もなく，`runActions` の定義として基底ケースが必要なため存在しています．
 
-Step through the execution of the following program on a piece of paper:
+<!-- ## Exercise -->
+
+## 演習問題
+
+<!-- Step through the execution of the following program on a piece of paper: -->
+
+次のプログラムの実行を，紙の上でステップ実行してください：
+
 ```lean
 {{#example_decl Examples/HelloWorld.lean ExMain}}
 ```
-While stepping through the program's execution, identify when an expression is being evaluated and when an `IO` action is being executed.
+<!-- While stepping through the program's execution, identify when an expression is being evaluated and when an `IO` action is being executed.
 When executing an `IO` action results in a side effect, write it down.
-After doing this, run the program with Lean and double-check that your predictions about the side effects were correct.
+After doing this, run the program with Lean and double-check that your predictions about the side effects were correct. -->
+
+プログラムをステップ実行しながら，いつ式が評価されて，いつ `IO` アクションが実行されるかを確認してください．`IO` アクションを実行した結果，副作用が発生したときは，それを書き留めます．紙の上での実行が終わった後，Lean を使ってプログラムを実行し，副作用に関するあなたの予想が正しかったかを再確認してください．
