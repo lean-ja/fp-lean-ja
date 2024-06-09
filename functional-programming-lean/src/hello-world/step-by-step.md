@@ -28,7 +28,7 @@ The resulting value is a built-in primitive `IO` action.
 The next step is to execute this `IO` action, resulting in a value that represents the standard input stream, which has type `IO.FS.Stream`.
 Standard input is then associated with the name to the left of the arrow (here `stdin`) for the remainder of the `do` block. -->
 
-`←` を使った `let` 文を実行するには，まず矢印の右側にある式(この場合は `IO.getStdIn`)を評価します．この式は単なる変数なので，その値が参照されます．結果として得られる値は組み込みのプリミティブな `IO` アクションです．次のステップはこの `IO` アクションを実行し，標準入力ストリームを表す値を得ることです．この値は `IO.FS.Stream` 型です．標準入力はその後，矢印の左側の名前(ここでは `stdin`)に関連付けられ，`do` ブロックの残りの部分で使用されます．
+`←` を使った `let` 文を実行するには，まず矢印の右側にある式（この場合は `IO.getStdIn`）を評価します．この式は単なる変数なので，その値が参照されます．結果として得られる値は組み込みのプリミティブな `IO` アクションです．次のステップはこの `IO` アクションを実行し，標準入力ストリームを表す値を得ることです．この値は `IO.FS.Stream` 型です．標準入力はその後，矢印の左側の名前（ここでは `stdin`）に関連付けられ，`do` ブロックの残りの部分で使用されます．
 
 <!-- Executing the second line, `{{#include ../../../examples/hello-name/HelloName.lean:line2}}`, proceeds similarly.
 First, the expression `IO.getStdout` is evaluated, yielding an `IO` action that will return the standard output.
@@ -68,7 +68,7 @@ This `IO` action is executed, and the program waits until the user has typed a c
 Assume the user writes "`David`".
 The resulting line (`"David\n"`) is associated with `input`, where the escape sequence `\n` denotes the newline character. -->
 
-次の文は `{{#include ../../../examples/hello-name/HelloName.lean:line4}}` です．`IO.FS.Stream.getLine` は `IO.FS.Stream → IO String` 型を持ちます．これはストリームを受け取り，文字列を返す `IO` アクションであることを意味します．これもアクセサ記法の一例です．この `IO` アクションが実行されると，プログラムはユーザが入力を完了するまで待機します．ユーザが "David" と入力したとすると，結果として得られる文字列("David\n")は `input` に関連付けられます(`\n` はエスケープシーケンスでここでは改行文字を表します)．
+次の文は `{{#include ../../../examples/hello-name/HelloName.lean:line4}}` です．`IO.FS.Stream.getLine` は `IO.FS.Stream → IO String` 型を持ちます．これはストリームを受け取り，文字列を返す `IO` アクションであることを意味します．これもアクセサ記法の一例です．この `IO` アクションが実行されると，プログラムはユーザが入力を完了するまで待機します．ユーザが `"David"` と入力したとすると，結果として得られる文字列（`"David\n"`）は `input` に関連付けられます（`\n` はエスケープシーケンスでここでは改行文字を表します）．
 
 ```lean
 {{#include ../../../examples/hello-name/HelloName.lean:block5}}
@@ -80,7 +80,7 @@ This means that the expression will be evaluated, but the resulting value need n
 In this case, `String.dropRightWhile` takes a string and a predicate over characters and returns a new string from which all the characters at the end of the string that satisfy the predicate have been removed.
 For example, -->
 
-次の行 `{{#include ../../../examples/hello-name/HelloName.lean:line5}}` は `let` 文です．このプログラムの他の `let` 文とは異なり，`←` ではなく `:=` を使用しています．これは，式が評価されるものの，その結果の値は `IO` アクションである必要はなく，実行されることもないことを意味します．今回の場合，`String.dropRightWhile` は文字列と文字に対する述語を受け取り，述語を満たす文字を末尾から全て削除した新しい文字列を返します．例えば，
+次の行 `{{#include ../../../examples/hello-name/HelloName.lean:line5}}` は `let` 文です．このプログラムの他の `let` 文とは異なり，`←` ではなく `:=` を使用しています．これは，式が評価されるものの，その結果の値は `IO` アクションである必要はなく，実行もされないことを意味します．今回の場合，`String.dropRightWhile` は文字列と文字に対する述語を受け取り，述語を満たす文字を末尾から全て削除した新しい文字列を返します．例えば，
 
 ```lean
 {{#example_in Examples/HelloWorld.lean dropBang}}
@@ -111,7 +111,7 @@ For example, -->
 <!-- in which all non-alphanumeric characters have been removed from the right side of the string.
 In the current line of the program, whitespace characters (including the newline) are removed from the right side of the input string, resulting in `"David"`, which is associated with `name` for the remainder of the block. -->
 
-このように文字列の右側から英数字ではない文字を全て削除します．現在のプログラムの行では，空白文字(空白文字として改行文字も含まれる)が入力文字列の右側から削除され，その結果得られる "David" がこのブロックの残りの部分で `name` に関連付けられます．
+このように文字列の右側から英数字ではない文字を全て削除します．現在のプログラムの行では，空白文字（空白文字として改行文字も含まれる）が入力文字列の右側から削除され，その結果得られる `"David"` がこのブロックの残りの部分で `name` に関連付けられます．
 
 <!-- ## Greeting the User -->
 
@@ -128,11 +128,11 @@ In the current line of the program, whitespace characters (including the newline
 Because this statement is an expression, it is evaluated to yield an `IO` action that will print this string with a newline to standard output.
 Once the expression has been evaluated, the resulting `IO` action is executed, resulting in the greeting. -->
 
-`putStrLn` への文字列引数は文字列補完によって構築され，"Hello, David!" という文字列になります．この文は式なので，評価されると，文字列を改行とともに標準出力に表示する `IO` アクションが得られます．この式が評価されると，結果として得られる `IO` アクションが実行され，挨拶が表示されます．
+`putStrLn` への文字列引数は文字列補完によって構築され，`"Hello, David!"` という文字列になります．この文は式なので，評価されると，文字列を改行とともに標準出力に表示する `IO` アクションが得られます．この式が評価されると，結果として得られる `IO` アクションが実行され，挨拶が表示されます．
 
 <!-- ## `IO` Actions as Values -->
 
-## 値として`IO` アクション
+## 値としての `IO` アクション
 
 <!-- In the above description, it can be difficult to see why the distinction between evaluating expressions and executing `IO` actions is necessary.
 After all, each action is executed immediately after it is produced.
@@ -146,7 +146,7 @@ Because the parts of the program that do not have effects are much more amenable
 Secondly, not all `IO` actions need be executed at the time that they come into existence.
 The ability to mention an action without carrying it out allows ordinary functions to be used as control structures. -->
 
-答えは2つあります．まず，評価と実行を分離することで，プログラムはどの関数が副作用を持つか明示的に示す必要があります．副作用を持たないプログラムの部分は数学的な推論がしやすいため，プログラマが頭の中で考える場合でもLean の形式証明の機能を使う場合でも，この分離はバグを回避しやすくします．次に，すべての `IO` アクションが生成された時点で実行される必要はありません．アクションを実行せずに記述できる機能により，通常の関数を制御構造として使用できるようになります．
+答えは2つあります．まず，評価と実行を分離することで，プログラムはどの関数が副作用を持つか明示的に示す必要があります．副作用を持たないプログラムの部分は数学的な推論がしやすいため，プログラマが頭の中で考える場合でも Lean の形式証明の機能を使う場合でも，この分離はバグを回避しやすくします．次に，すべての `IO` アクションが生成された時点で実行される必要はありません．アクションを実行せずに記述できる機能により，通常の関数を制御構造として使用できるようになります．
 
 
 <!-- For instance, the function `twice` takes an `IO` action as its argument, returning a new action that will execute the first one twice. -->
@@ -184,7 +184,7 @@ As an action that does nothing and returns nothing interesting, `pure ()` is at 
 In the recursive step, a `do` block is used to create an action that first executes `action` and then executes the result of the recursive call.
 Executing `{{#example_in Examples/HelloWorld.lean nTimes3}}` causes the following output: -->
 
-基底ケースである `Nat.zero` では，結果は `pure()` です．`pure` 関数は副作用のない `IO` アクションを作成し，引数（この場合 `Unit` のコンストラクタ）を返します．何もせず何も興味深いものを返さないアクションである `pure()` はとても退屈であると同時に非常に便利です．再帰的なステップでは，`do` ブロックを使って，最初に `action` を実行した後にその再帰呼び出しの結果を実行するアクションを作成します．
+基底ケースである `Nat.zero` では，結果は `pure()` です．`pure` 関数は副作用のない `IO` アクションを作成し，引数（この場合 `Unit` のコンストラクタ）を返します．何もせず何の興味深いものも返さないアクションである `pure()` はとても退屈であると同時に非常に便利です．再帰的なステップでは，`do` ブロックを使って，最初に `action` を実行した後にその再帰呼び出しの結果を実行するアクションを作成します．
 
 ```output info
 {{#example_out Examples/HelloWorld.lean nTimes3}}
@@ -245,7 +245,7 @@ It creates a new action that will run them, and that action must be placed in a 
 <!-- What happens when this program is run?
 The first step is to evaluate `main`. That occurs as follows: -->
 
-プログラムを実行したとき何が起こっているのでしょうか？最初のステップは `main` の評価です．以下のように実行されます：
+プログラムを実行したときに何が起こっているのでしょうか？最初のステップは `main` の評価です．以下のように実行されます：
 
 ```lean
 {{#example_eval Examples/HelloWorld.lean evalMain}}
