@@ -1,4 +1,6 @@
-# Coercions
+<!-- # Coercions -->
+
+# 型強制
 
 In mathematics, it is common to use the same symbol to stand for different aspects of some object in different contexts.
 For example, if a ring is referred to in a context where a set is expected, then it is understood that the ring's underlying set is what's intended.
