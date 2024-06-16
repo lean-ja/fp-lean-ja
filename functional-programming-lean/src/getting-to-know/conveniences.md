@@ -1,6 +1,6 @@
 <!-- # Additional Conveniences -->
 
-## その他の便利な機能
+# その他の便利な機能
 
 <!-- Lean contains a number of convenience features that make programs much more concise. -->
 
