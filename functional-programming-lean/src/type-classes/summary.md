@@ -1,4 +1,6 @@
-# Summary
+<!-- # Summary -->
+
+# まとめ
 
 ## Type Classes and Overloading
 
