@@ -1,4 +1,6 @@
-# Monads
+<!-- # Monads -->
+
+# モナド
 
 In C# and Kotlin, the `?.` operator is a way to look up a property or call a method on a potentially-null value.
 If the receiver is `null`, the whole expression is null.
