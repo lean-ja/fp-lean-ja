@@ -1,39 +1,58 @@
-# Worked Example: `cat`
+<!-- # Worked Example: `cat` -->
 
-The standard Unix utility `cat` takes a number of command-line options, followed by zero or more input files.
+# 実例：`cat`
+
+<!-- The standard Unix utility `cat` takes a number of command-line options, followed by zero or more input files.
 If no files are provided, or if one of them is a dash (`-`), then it takes the standard input as the corresponding input instead of reading a file.
 The contents of the inputs are written, one after the other, to the standard output.
 If a specified input file does not exist, this is noted on standard error, but `cat` continues concatenating the remaining inputs.
-A non-zero exit code is returned if any of the input files do not exist.
+A non-zero exit code is returned if any of the input files do not exist. -->
 
-This section describes a simplified version of `cat`, called `feline`.
+Unix の標準ユーティリティである `cat` はいくつかのコマンドラインオプションと，それに続く0個以上の入力ファイルを受け付けます．ファイルが指定されないか，指定したファイルのうち1つがダッシュ（`-`）の場合，ファイルを読む代わりに標準入力を対応する入力として受け付けます．入力の内容は次々に標準出力に書き出されます．指定した入力ファイルが存在しない場合，そのことが標準エラー出力に表示されますが，`cat` は入力を連結し続けます．存在しない入力ファイルがあったとき，0以外の終了コードが返されます．
+
+<!-- This section describes a simplified version of `cat`, called `feline`.
 Unlike commonly-used versions of `cat`, `feline` has no command-line options for features such as numbering lines, indicating non-printing characters, or displaying help text.
-Furthermore, it cannot read more than once from a standard input that's associated with a terminal device.
+Furthermore, it cannot read more than once from a standard input that's associated with a terminal device. -->
 
-To get the most benefit from this section, follow along yourself.
+この節では，`feline` と呼ばれる `cat` の簡易版について説明します．一般的なバージョンの `cat` と異なり，`feline` は行番号表示や非印字文字の表示，ヘルプテキストの表示といった機能のコマンドラインオプションはありません．さらに，端末デバイスに関連付けられた標準入力から複数回読み込むこともできません．
+
+<!-- To get the most benefit from this section, follow along yourself.
 It's OK to copy-paste the code examples, but it's even better to type them in by hand.
-This makes it easier to learn the mechanical process of typing in code, recovering from mistakes, and interpreting feedback from the compiler.
+This makes it easier to learn the mechanical process of typing in code, recovering from mistakes, and interpreting feedback from the compiler. -->
 
-## Getting started
+この節で最大限の効果を得るには，自分自身でコードを書いてください．コード例をコピーペーストしてもかまいませんが，手書きで入力することを推奨します．そうすることで，コードを入力し，ミスから回復し，コンパイラからのフィードバックを解釈するという機械的なプロセスを学びやすくなります．
 
-The first step in implementing `feline` is to create a package and decide how to organize the code.
+<!-- ## Getting started -->
+
+## はじめる
+
+<!-- The first step in implementing `feline` is to create a package and decide how to organize the code.
 In this case, because the program is so simple, all the code will be placed in `Main.lean`.
 The first step is to run `lake new feline`.
 Edit the Lakefile to remove the library, and delete the generated library code and the reference to it from `Main.lean`.
-Once this has been done, `lakefile.lean` should contain:
+Once this has been done, `lakefile.lean` should contain: -->
+
+`feline` 実装の最初のステップは，パッケージを作成し，コードをどのように整理するかを決めることです．今回の場合，プログラムは非常に簡単なので，すべてのコードは `Main.lean` に書きます．最初のステップは `lake new feline` を実行することです．Lakefile を編集してライブラリを削除し，生成されたライブラリコードとその参照を `Main.lean` も削除します．
+これが完了すると，`lakefile.lean` は次のようになります：
 
 ```lean
 {{#include ../../../examples/feline/1/lakefile.lean}}
 ```
 
-and `Main.lean` should contain something like:
+<!-- and `Main.lean` should contain something like: -->
+
+そして `Main.lean` も次のようになります：
+
 ```lean
 {{#include ../../../examples/feline/1/Main.lean}}
 ```
-Alternatively, running `lake new feline exe` instructs `lake` to use a template that does not include a library section, making it unnecessary to edit the file.
+<!-- Alternatively, running `lake new feline exe` instructs `lake` to use a template that does not include a library section, making it unnecessary to edit the file. -->
 
-Ensure that the code can be built by running `{{#command {feline/1} {feline/1} {lake build} }}`.
+あるいは，`lake new feline exe` を実行すると `lake` にライブラリセクションを含まないテンプレートを使用するように指示されるため，ファイルを編集する必要がなくなります．
 
+<!-- Ensure that the code can be built by running `{{#command {feline/1} {feline/1} {lake build} }}`. -->
+
+`{{#command {feline/1} {feline/1} {lake build} }}` を実行してコードがビルドできることを確認してください．
 
 ## Concatenating Streams
 
