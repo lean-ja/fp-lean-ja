@@ -1,4 +1,6 @@
-# The Monad Type Class
+<!-- # The Monad Type Class -->
+
+# モナド型クラス
 
 Rather than having to import an operator like `ok` or `andThen` for each type that is a monad, the Lean standard library contains a type class that allow them to be overloaded, so that the same operators can be used for _any_ monad.
 Monads have two operations, which are the equivalent of `ok` and `andThen`:
