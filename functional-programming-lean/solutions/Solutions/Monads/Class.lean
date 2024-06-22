@@ -5,6 +5,7 @@ Define a function `BinTree.mapM`. By analogy to `mapM` for lists, this function 
 
 `def BinTree.mapM [Monad m] (f : α → m β) : BinTree α → m (BinTree β)`
 -/
+namespace Class
 
 inductive BinTree (α : Type) where
   | leaf : BinTree α
@@ -61,7 +62,6 @@ instance instLawfulMonadOption : LawfulMonad Option where
     rfl
   pure_bind := by
     intro α β x f
-    dsimp [Bind.bind]
     rfl
   bind_pure_comp := by
     intro α x f y
@@ -104,3 +104,5 @@ instance : LawfulMonad Option where
     intro α β γ x f g
     cases x <;> rfl
   bind_map := by sorry
+
+end Class
