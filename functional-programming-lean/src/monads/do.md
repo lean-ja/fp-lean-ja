@@ -1,4 +1,6 @@
-# `do`-Notation for Monads
+<!-- # `do`-Notation for Monads -->
+
+# モナドのための `do` 記法
 
 While APIs based on monads are very powerful, the explicit use of `>>=` with anonymous functions is still somewhat noisy.
 Just as infix operators are used instead of explicit calls to `HAdd.hAdd`, Lean provides a syntax for monads called _`do`-notation_ that can make programs that use monads easier to read and write.
