@@ -1,4 +1,6 @@
-## Example: Arithmetic in Monads
+<!-- ## Example: Arithmetic in Monads -->
+
+## 例：モナドにおける算術
 
 Monads are a way of encoding programs with side effects into a language that does not have them.
 It would be easy to read this as a sort of admission that pure functional programs are missing something important, requiring programmers to jump through hoops just to write a normal program.
