@@ -54,16 +54,23 @@ Once this has been done, `lakefile.lean` should contain: -->
 
 `{{#command {feline/1} {feline/1} {lake build} }}` を実行してコードがビルドできることを確認してください．
 
-## Concatenating Streams
+<!-- ## Concatenating Streams -->
 
-Now that the basic skeleton of the program has been built, it's time to actually enter the code.
+## ストリームの連結
+
+<!-- Now that the basic skeleton of the program has been built, it's time to actually enter the code.
 A proper implementation of `cat` can be used with infinite IO streams, such as `/dev/random`, which means that it can't read its input into memory before outputting it.
 Furthermore, it should not work one character at a time, as this leads to frustratingly slow performance.
-Instead, it's better to read contiguous blocks of data all at once, directing the data to the standard output one block at a time.
+Instead, it's better to read contiguous blocks of data all at once, directing the data to the standard output one block at a time. -->
 
-The first step is to decide how big of a block to read.
+プログラムの基本的な骨組みができたので，実際にコードを入力するときがきました．`cat` の適切な実装は `/dev/random` のような無限の IO ストリームに使うことができます。これは出力する前に入力をメモリに読み込むことができないことを意味します．さらに，`cat` は一度に1文字ずつ処理すべきではありません．これは非常に遅いパフォーマンスにつながるためです．代わりに，一度に連続したデータブロックを読み取り，そのデータを標準出力に1ブロックずつ送るのがよいでしょう．
+
+<!-- The first step is to decide how big of a block to read.
 For the sake of simplicity, this implementation uses a conservative 20 kilobyte block.
-`USize` is analogous to `size_t` in C—it's an unsigned integer type that is big enough to represent all valid array sizes.
+`USize` is analogous to `size_t` in C—it's an unsigned integer type that is big enough to represent all valid array sizes. -->
+
+最初のステップはどのくらいの大きさのブロックを読み取るかを決めることです．簡単にするため，この実装では控えめに20キロバイトのブロックを使用します．`USize` は C 言語の `size_t` に類似しており，すべての有効な配列サイズを表すのに十分な大きさの符号なし整数型です．
+
 ```lean
 {{#include ../../../examples/feline/2/Main.lean:bufsize}}
 ```
