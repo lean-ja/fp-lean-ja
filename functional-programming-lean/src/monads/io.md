@@ -1,4 +1,6 @@
-# The IO Monad
+<!-- # The IO Monad -->
+
+# IOモナド
 
 `IO` as a monad can be understood from two perspectives, which were described in the section on [running programs](../hello-world/running-a-program.md).
 Each can help to understand the meanings of `pure` and `bind` for `IO`.
