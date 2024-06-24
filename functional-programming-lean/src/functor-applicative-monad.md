@@ -1,4 +1,6 @@
-# Functors, Applicative Functors, and Monads
+<!-- # Functors, Applicative Functors, and Monads -->
+
+# 関手とアプリカティブ関手、そしてモナド
 
 `Functor` and `Monad` both describe operations for types that are still waiting for a type argument.
 One way to understand them is that `Functor` describes containers in which the contained data can be transformed, and `Monad` describes an encoding of programs with side effects.
