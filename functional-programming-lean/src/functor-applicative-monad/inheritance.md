@@ -1,4 +1,6 @@
-# Structures and Inheritance
+<!-- # Structures and Inheritance -->
+
+# 構造体と継承
 
 In order to understand the full definitions of `Functor`, `Applicative`, and `Monad`, another Lean feature is necessary: structure inheritance.
 Structure inheritance allows one structure type to provide the interface of another, along with additional fields.
