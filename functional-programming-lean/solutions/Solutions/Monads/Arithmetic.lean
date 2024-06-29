@@ -1,4 +1,5 @@
-/- Check the monad contract for `State σ` and `Except ε`. -/
+/- ## Checking Contracts
+Check the monad contract for `State σ` and `Except ε`. -/
 set_option autoImplicit false
 
 section Textbook
@@ -57,7 +58,10 @@ section
     bind_map := by intros; rfl
     pure_bind := by intros; rfl
 end
-/- Adapt the reader monad example so that it can also indicate failure when the custom operator is not defined, rather than just returning zero. In other words, given these definitions:
+
+/- ## Readers with Failure
+
+Adapt the reader monad example so that it can also indicate failure when the custom operator is not defined, rather than just returning zero. In other words, given these definitions:
 
 `def ReaderOption (ρ : Type) (α : Type) : Type := ρ → Option α
 
@@ -203,5 +207,82 @@ def applyPrimReader (op : String) (x : Int) (y : Int) : ReaderOption Env Int := 
     | some z => pure z
 
 #eval evaluateM applyPrimReader (Expr.prim (Prim.other "div") «5+4» «0») exampleEnv
+
+end
+
+/- ## A Tracing Evaluator
+The `WithLog` type can be used with the evaluator to add optional tracing of some operations. In particular, the type `ToTrace` can serve as a signal to trace a given operator:
+
+```
+inductive ToTrace (α : Type) : Type where
+  | trace : α → ToTrace α
+```
+
+For the tracing evaluator, expressions should have type `Expr (Prim (ToTrace (Prim Empty)))`. This says that the operators in the expression consist of addition, subtraction, and multiplication, augmented with traced versions of each. The innermost argument is `Empty` to signal that there are no further special operators inside of `trace`, only the three basic ones.
+
+Do the following:
+
+1. Implement a `Monad (WithLog logged)` instance
+2. Write an `applyTraced` function to apply traced operators to their arguments, logging both the operator and the arguments, with type `ToTrace (Prim Empty) → Int → Int → WithLog (Prim Empty × Int × Int) Int`
+
+If the exercise has been completed correctly, then
+
+```
+open Expr Prim ToTrace in
+#eval evaluateM applyTraced (prim (other (trace times)) (prim (other (trace plus)) (const 1) (const 2)) (prim (other (trace minus)) (const 3) (const 4)))
+```
+
+should result in
+
+```
+{ log := [(Prim.plus, 1, 2), (Prim.minus, 3, 4), (Prim.times, 3, -1)], val := -3 }
+```
+
+Hint: values of type `Prim Empty` will appear in the resulting log. In order to display them as a result of `#eval`, the following instances are required:
+
+```
+deriving instance Repr for WithLog
+deriving instance Repr for Empty
+deriving instance Repr for Prim
+```
+-/
+section
+
+structure WithLog (logged : Type) (α : Type) where
+  log : List logged
+  val : α
+
+variable (logged : Type)
+
+instance : Monad (WithLog logged) where
+  pure x := {log := [], val := x}
+  bind result next :=
+    let {log := thisOut, val := thisRes} := result
+    let {log := nextOut, val := nextRes} := next thisRes
+    {log := thisOut ++ nextOut, val := nextRes}
+
+inductive ToTrace (α : Type) : Type where
+  | trace : α → ToTrace α
+
+def applyTraced (trace : ToTrace (Prim Empty)) (x y : Int) : WithLog (Prim Empty × Int × Int) Int :=
+  let ⟨a⟩ := trace
+  match h : a with
+  | .plus =>
+    { log := [(Prim.plus, x, y)], val := x + y }
+  | .minus =>
+    { log := [(Prim.minus, x, y)], val := x - y }
+  | .times =>
+    { log := [(Prim.times, x, y)], val := x * y }
+  | .other _op => by contradiction
+
+deriving instance Repr, DecidableEq for WithLog
+deriving instance Repr, DecidableEq for Empty
+deriving instance Repr, DecidableEq for Prim
+
+open Expr Prim ToTrace
+
+#eval evaluateM applyTraced (prim (other (trace times)) (prim (other (trace plus)) (const 1) (const 2)) (prim (other (trace minus)) (const 3) (const 4)))
+
+#guard evaluateM applyTraced (prim (other (trace times)) (prim (other (trace plus)) (const 1) (const 2)) (prim (other (trace minus)) (const 3) (const 4))) = { log := [(Prim.plus, 1, 2), (Prim.minus, 3, 4), (Prim.times, 3, -1)], val := -3 }
 
 end
