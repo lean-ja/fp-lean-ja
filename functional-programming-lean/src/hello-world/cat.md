@@ -75,26 +75,38 @@ For the sake of simplicity, this implementation uses a conservative 20 kilobyte 
 {{#include ../../../examples/feline/2/Main.lean:bufsize}}
 ```
 
-### Streams
+<!-- ### Streams -->
 
-The main work of `feline` is done by `dump`, which reads input one block at a time, dumping the result to standard output, until the end of the input has been reached:
+### ストリーム
+
+<!-- The main work of `feline` is done by `dump`, which reads input one block at a time, dumping the result to standard output, until the end of the input has been reached: -->
+
+`feline` の主な処理は `dump` によって行われます．`dump` は一度に1ブロックずつ入力を読み込み，その結果を標準出力に出力し，入力の終わりに達するまでこれを繰り返します．
+
 ```lean
 {{#include ../../../examples/feline/2/Main.lean:dump}}
 ```
-The `dump` function is declared `partial`, because it calls itself recursively on input that is not immediately smaller than an argument.
+<!-- The `dump` function is declared `partial`, because it calls itself recursively on input that is not immediately smaller than an argument.
 When a function is declared to be partial, Lean does not require a proof that it terminates.
 On the other hand, partial functions are also much less amenable to proofs of correctness, because allowing infinite loops in Lean's logic would make it unsound.
 However, there is no way to prove that `dump` terminates, because infinite input (such as from `/dev/random`) would mean that it does not, in fact, terminate.
-In cases like this, there is no alternative to declaring the function `partial`.
+In cases like this, there is no alternative to declaring the function `partial`. -->
 
-The type `IO.FS.Stream` represents a POSIX stream.
+`dump` 関数は `partial` 関数（部分関数）として宣言されています．これは，引数が即座に小さくならない入力に対して再帰的に自分自身を呼び出すためです．関数が部分関数として定義されると，Lean はその終了を証明する必要がなくなります．一方で，部分関数は無限ループを許容するため，Lean の論理が不健全になる可能性があり，正しさの証明が非常に困難になります．しかし，`dump` が終了することを証明する方法はありません．なぜなら，無限の入力（例えば `/dev/random` からの入力）は実際に終了しないからです．このような場合，関数を `partial` 関数として宣言する以外の選択肢はありません．
+
+<!-- The type `IO.FS.Stream` represents a POSIX stream.
 Behind the scenes, it is represented as a structure that has one field for each POSIX stream operation.
-Each operation is represented as an IO action that provides the corresponding operation:
+Each operation is represented as an IO action that provides the corresponding operation: -->
+
+`IO.FS.Stream` 型は POSIX ストリームを返します．内部的には，各 POSIX ストリーム操作のフィールドを持つ構造体です．各操作は対応する操作を提供する IO アクションとして表現されます．
+
 ```lean
 {{#example_decl Examples/Cat.lean Stream}}
 ```
-The Lean compiler contains `IO` actions (such as `IO.getStdout`, which is called in `dump`) to get streams that represent standard input, standard output, and standard error.
-These are `IO` actions rather than ordinary definitions because Lean allows these standard POSIX streams to be replaced in a process, which makes it easier to do things like capturing the output from a program into a string by writing a custom `IO.FS.Stream`.
+<!-- The Lean compiler contains `IO` actions (such as `IO.getStdout`, which is called in `dump`) to get streams that represent standard input, standard output, and standard error.
+These are `IO` actions rather than ordinary definitions because Lean allows these standard POSIX streams to be replaced in a process, which makes it easier to do things like capturing the output from a program into a string by writing a custom `IO.FS.Stream`. -->
+
+Lean コンパイラには，標準入力，標準出力，標準エラー出力を表すストリームを取得するための IO アクションが含まれています（例えば `dump` で呼び出される `IO.getStdout`）．これらは通常の定義ではなく `IO` アクションである理由は，Lean がプロセス内でこれらの標準 POSIX ストリームを置き換えることを許可しているためです．これにより，カスタムの `IO.FS.Stream` を作成してプログラムの出力を文字列にキャプチャするなどの操作が容易になります．
 
 The control flow in `dump` is essentially a `while` loop.
 When `dump` is called, if the stream has reached the end of the file, `pure ()` terminates the function by returning the constructor for `Unit`.
