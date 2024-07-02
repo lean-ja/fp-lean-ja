@@ -1,4 +1,6 @@
-# Applicative Functors
+<!-- # Applicative Functors -->
+
+# アプリカティブ関手
 
 An _applicative functor_ is a functor that has two additional operations available: `pure` and `seq`.
 `pure` is the same operator used in `Monad`, because `Monad` in fact inherits from `Applicative`.
