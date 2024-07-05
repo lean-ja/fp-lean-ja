@@ -1,5 +1,6 @@
-# Alternatives
+<!-- # Alternatives -->
 
+# オルタナティブ
 
 ## Recovery from Failure
 
