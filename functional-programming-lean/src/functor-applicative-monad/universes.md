@@ -1,4 +1,6 @@
-# Universes
+<!-- # Universes -->
+
+# 宇宙
 
 In the interests of simplicity, this book has thus far papered over an important feature of Lean: _universes_.
 A universe is a type that classifies other types.
