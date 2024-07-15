@@ -1,11 +1,9 @@
-
-
 <!-- Lean is an interactive theorem prover developed at Microsoft Research, based on dependent type theory.
 Dependent type theory unites the worlds of programs and proofs; thus, Lean is also a programming language.
 Lean takes its dual nature seriously, and it is designed to be suitable for use as a general-purpose programming language—Lean is even implemented in itself.
 This book is about writing programs in Lean. -->
 
-Leanはマイクロソフト・リサーチで開発された，dependent type theory (従属型理論) に基づく対話型証明支援系です．従属型理論はプログラムと証明の世界を結びつけます：したがって，Lean はプログラミング言語でもあります．Lean はその両面を重視していて，汎用プログラミング言語として使用できるように設計されています．ーー Lean は Lean 自身で実装されています．本書は，Lean でプログラムを書くことをテーマにしています．
+Lean はマイクロソフトリサーチで開発された，**従属型理論**（dependent type theory）に基づく対話型証明支援系です．従属型理論はプログラムと証明の世界を結びつけます：したがって，Lean はプログラミング言語でもあります．Lean はその両面を重視していて，汎用プログラミング言語として使用できるように設計されています．ーー Lean は Lean 自身で実装されています．本書は，Lean でプログラムを書くことをテーマにしています．
 
 <!-- When viewed as a programming language, Lean is a strict pure functional language with dependent types.
 A large part of learning to program with Lean consists of learning how each of these attributes affects the way programs are written, and how to think like a functional programmer.
@@ -14,14 +12,14 @@ _Purity_ means that Lean programs cannot have side effects such as modifying loc
 Lean is a _functional_ language in the sense that functions are first-class values like any other and that the execution model is inspired by the evaluation of mathematical expressions.
 _Dependent types_, which are the most unusual feature of Lean, make types into a first-class part of the language, allowing types to contain programs and programs to compute types. -->
 
-プログラミング言語として見た場合，Lean は従属型を持つ strict (正格)な純粋関数型言語です．Lean でのプログラミングを学ぶには，これらの特徴がそれぞれプログラムの書き方にどのような影響を与えるか，そして関数型プログラマがどのように考えるかを学ぶ必要があります．正格性は，Lean における関数呼び出しが，ほとんどの言語と同様に機能することを意味します：つまり，関数本体の実行が始まる前に，引数が完全に計算されます．純粋性は，型で明記されていない限り，Lean のプログラムがメモリ内で場所を変更したり，電子メールを送信したり，ファイルを削除したりといった副作用を起こさないことを意味します．Lean は関数型言語であり，ほかの関数型言語と同様，関数は第一級の値であり，数学的な式の評価から実行モデルの着想を得ています．依存型は Lean の最も珍しい特徴であり，型を言語の第一級の部分にすることで，型がプログラムを含み，プログラムが型を計算することを可能にします．
+プログラミング言語として見た場合，Lean は従属型を持つ正格（strict）な純粋関数型言語です．Lean でのプログラミングを学ぶには，これらの特徴がそれぞれプログラムの書き方にどのような影響を与えるか，そして関数型プログラマがどのように考えるかを学ぶ必要があります．**正格性**（strictness）は，Lean における関数呼び出しが，ほとんどの言語と同様に機能することを意味します：つまり，関数本体の実行が始まる前に，引数が完全に計算されます．**純粋性**（purity）は，型で明記されていない限り，Lean のプログラムがメモリ内で場所を変更したり，電子メールを送信したり，ファイルを削除したりといった副作用を起こさないことを意味します．Lean は**関数型**言語であり，ほかの関数型言語と同様，関数は第一級の値であり，数学的な式の評価から実行モデルの着想を得ています．**依存型**（dependent types）は Lean の最も珍しい特徴であり，型を言語の第一級の部分にすることで，型がプログラムを含み，プログラムが型を計算することを可能にします．
 
 <!-- This book is intended for programmers who want to learn Lean, but who have not necessarily used a functional programming language before.
 Familiarity with functional languages such as Haskell, OCaml, or F# is not required.
 On the other hand, this book does assume knowledge of concepts like loops, functions, and data structures that are common to most programming languages.
 While this book is intended to be a good first book on functional programming, it is not a good first book on programming in general. -->
 
-本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマを対象としています．Haskell, OCaml, F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
+本書は，Lean を学びたいが，必ずしも関数型言語を使ったことがないプログラマを対象としています．Haskell・OCaml・F# などの関数型言語に精通していることは必須ではありません．一方，本書はループ・関数・データ構造など，ほとんどのプログラミング言語に共通する概念の知識を前提としています．本書は関数型プログラミングの最初の一冊としては好適ですが，プログラミング全般の最初の一冊としては不適切です．
 
 <!-- Mathematicians who are using Lean as a proof assistant will likely need to write custom proof automation tools at some point.
 This book is also for them.
@@ -50,12 +48,12 @@ Lean でプログラムを書いて実行する前に，自分のコンピュー
  <!-- * `elan` manages the Lean compiler toolchains, similarly to `rustup` or `ghcup`. -->
  * `elan` は Lean のツールチェーンのインストーラで，`rustup` や `ghcup` と同様です．
  <!-- * `lake` builds Lean packages and their dependencies, similarly to `cargo`, `make`, or Gradle. -->
- * `lake` は，`cargo` や `make`, Gradle と同様に，Lean パッケージとその依存関係をビルドします．
+ * `lake` は，`cargo`・`make`・Gradle と同様に，Lean パッケージとその依存関係をビルドします．
  <!-- * `lean` type checks and compiles individual Lean files as well as providing information to programmer tools about files that are currently being written.
    Normally, `lean` is invoked by other tools rather than directly by users. -->
- * `Lean` は，個々の Lean ファイルを型チェックし，コンパイルするだけでなく，プログラマ・ツールに現在書かれているファイルに関する情報を提供します．通常，Lean はユーザが直接呼び出すのではなく，他のツールによって呼び出されます．
+ * `Lean` は，個々の Lean ファイルを型チェックし，コンパイルするだけでなく，プログラマツールに現在書かれているファイルに関する情報を提供します．通常，Lean はユーザが直接呼び出すのではなく，他のツールによって呼び出されます．
  <!-- * Plugins for editors, such as Visual Studio Code or Emacs, that communicate with `lean` and present its information conveniently. -->
- * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し，lean の情報を便利に表示することができます.
+ * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し，lean の情報を便利に表示することができます．
 
 <!-- Please refer to the [Lean manual](https://leanprover.github.io/lean4/doc/quickstart.html) for up-to-date instructions for installing Lean. -->
 
@@ -77,7 +75,7 @@ Lean に入力として提供されるコード例は，このような書式と
 <!-- The last line above (beginning with `#eval`) is a command that instructs Lean to calculate an answer.
 Lean's replies are formatted like this: -->
 
-上の最後の行（`#eval`で始まる行）は，Lean に答えを計算するように指示するコマンドです．Lean の返事は以下のような書式とします：
+上の最後の行（`#eval` で始まる行）は，Lean に答えを計算するように指示するコマンドです．Lean の返事は以下のような書式とします：
 
 ```output info
 {{#example_out Examples/Intro.lean add1_7}}
@@ -113,4 +111,4 @@ For example, to enter `α`, type `\alpha`.
 To find out how to type a character in Visual Studio Code, point the mouse at it and look at the tooltip.
 In Emacs, use `C-c C-k` with point on the character in question. -->
 
-デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ(`\`)の後に名前を続けることでこれらの文字を入力することができます．たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合，`C-c C-k` を問題の文字にポイントして使います．
+デフォルトの Lean の設定では，Visual Studio Code も Emacs も，バックスラッシュ（`\`）の後に名前を続けることでこれらの文字を入力することができます．たとえば `α` と入力するには `\alpha` とタイプします．Visual Studio Code で文字の入力方法を調べるには，マウスをその文字に向けてツールチップを見ればよいです．Emacs の場合，`C-c C-k` を問題の文字にポイントして使います．
