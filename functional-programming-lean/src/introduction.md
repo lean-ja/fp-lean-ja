@@ -38,7 +38,6 @@ It is also useful to explore Lean as you read the book, finding creative new way
 本書は最初から最後まで，直線的に読むことを意図しています．概念は1つずつ導入され，後の節は前の節を理解していることを前提としています．時には，先の章では簡単にしか触れなかったトピックについて，後の章で深く掘り下げることもあります．本書のいくつかのセクションには演習問題が含まれています．演習問題は，その節の理解を深めるために取り組む価値があります．また，本を読みながら Lean を探求し，学んだことを使う創造的な新しい方法を見つけることも有効です．
 
 <!-- # Getting Lean -->
-
 # Lean のインストール
 
 <!-- Before writing and running programs written in Lean, you'll need to set up Lean on your own computer.
@@ -52,7 +51,7 @@ Lean でプログラムを書いて実行する前に，自分のコンピュー
  * `lake` は，`cargo`・`make`・Gradle と同様に，Lean パッケージとその依存関係をビルドします．
  <!-- * `lean` type checks and compiles individual Lean files as well as providing information to programmer tools about files that are currently being written.
    Normally, `lean` is invoked by other tools rather than directly by users. -->
- * `Lean` は，個々の Lean ファイルを型検査し，コンパイルするだけでなく，プログラマツールに現在書かれているファイルに関する情報を提供します．通常，Lean はユーザが直接呼び出すのではなく，他のツールによって呼び出されます．
+ * `lean`（シェルコマンド） は，個々の Lean ファイルを型検査し，コンパイルするだけでなく，プログラマツールに現在書かれているファイルに関する情報を提供します．通常，Lean はユーザが直接呼び出すのではなく，他のツールによって呼び出されます．
  <!-- * Plugins for editors, such as Visual Studio Code or Emacs, that communicate with `lean` and present its information conveniently. -->
  * Visual Studio Code や Emacs などのエディタ用のプラグインで，`lean` と通信し，lean の情報を便利に表示することができます．
 
@@ -61,12 +60,11 @@ Lean でプログラムを書いて実行する前に，自分のコンピュー
 Lean の最新のインストール方法については，[Lean のマニュアル](https://leanprover.github.io/lean4/doc/quickstart.html)を参照してください．
 
 <!-- # Typographical Conventions -->
-
-# 表記法
+# 本書の書式
 
 <!-- Code examples that are provided to Lean as _input_ are formatted like this: -->
 
-Lean に**入力**（inpout）として提供されるコード例は，このような書式とします：
+Lean に**入力**（input）として提供されるコード例は，このような書式とします：
 
 ```lean
 {{#example_decl Examples/Intro.lean add1}}
@@ -100,7 +98,6 @@ declaration uses 'sorry'
 ```
 
 <!-- # Unicode -->
-
 # Unicode
 
 <!-- Idiomatic Lean code makes use of a variety of Unicode characters that are not part of ASCII.
