@@ -1,4 +1,6 @@
-# The Complete Definitions
+<!-- # The Complete Definitions -->
+
+# 完全な定義
 
 Now that all the relevant language features have been presented, this section describes the complete, honest definitions of `Functor`, `Applicative`, and `Monad` as they occur in the Lean standard library.
 For the sake of understanding, no details are omitted.
