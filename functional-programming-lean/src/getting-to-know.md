@@ -20,7 +20,7 @@ The language then computes and displays the result of the user's input.
 Lean, on the other hand, integrates these features into the interaction with the editor, providing commands that cause the text editor to display feedback integrated into the program text itself.
 This chapter provides a short introduction to interacting with Lean in an editor, while [Hello, World!]() describes how to use Lean traditionally from the command line in batch mode. -->
 
-Python，Haskell，JavaScript などさまざまな言語が，式やステートメントを入力できる REPL（read-eval-print-loop）を提供しています．REPL は対話的なトップレベル，ブラウザ・コンソールとしても知られています．そしてプログラミング言語はユーザの入力結果を計算し，表示します．一方 Lean は，これらの機能をエディタとのインタラクションに統合し，テキストエディタにプログラムテキスト自体に統合されたフィードバックを表示させるコマンドを提供します．この章では，エディタで Lean を操作する方法を簡単に紹介します．[Hello, World！](hello-world.md)ではバッチモードでコマンドラインから Lean を使用する伝統的な方法を説明します．
+Python・Haskell・JavaScript などさまざまな言語が，式やステートメントを入力できる REPL（read-eval-print-loop）を提供しています．REPL は対話的なトップレベル，ブラウザコンソールとしても知られています．そしてプログラミング言語はユーザの入力結果を計算し，表示します．一方 Lean は，これらの機能をエディタとのインタラクションに統合し，テキストエディタにプログラムテキスト自体に統合されたフィードバックを表示させるコマンドを提供します．この章では，エディタで Lean を操作する方法を簡単に紹介します．[Hello, World!](hello-world.md)ではバッチモードでコマンドラインから Lean を使用する伝統的な方法を説明します．
 
 <!-- It is best if you read this book with Lean open in your editor,
 following along and typing in each example. Please play with the
