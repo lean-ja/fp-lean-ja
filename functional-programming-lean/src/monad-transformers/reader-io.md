@@ -1,4 +1,6 @@
-# Combining IO and Reader
+<!-- # Combining IO and Reader -->
+
+# IOとReaderを組み合わせる
 
 One case where a reader monad can be useful is when there is some notion of the "current configuration" of the application that is passed through many recursive calls.
 An example of such a program is `tree`, which recursively prints the files in the current directory and its subdirectories, indicating their tree structure using characters.
