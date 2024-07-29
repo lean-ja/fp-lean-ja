@@ -1,4 +1,6 @@
-# A Monad Construction Kit
+<!-- # A Monad Construction Kit -->
+
+# モナド組み立てキット
 
 `ReaderT` is far from the only useful monad transformer.
 This section describes a number of additional transformers.
