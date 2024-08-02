@@ -1,4 +1,6 @@
-# Ordering Monad Transformers
+<!-- # Ordering Monad Transformers -->
+
+# モナド変換子の順序
 
 When composing a monad from a stack of monad transformers, it's important to be aware that the order in which the monad transformers are layered matters.
 Different orderings of the same set of transformers result in different monads.
