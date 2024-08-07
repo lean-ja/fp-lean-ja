@@ -23,7 +23,7 @@ For instance, `countLetters` contains a check for vowels or consonants, and lett
 This is captured by having the `else` branch evaluate to `pure ()`, which has no effects:
 -->
 
-モナドを扱うときによくあるパターンはある条件が真である場合にのみ副作用を実行することです。例えば、`countLetters` は母音か子音かのチェックを含んでおり、どちらでもない文字は状態に影響を与えません。これは `else` ブランチが `pure ()` に評価されることで捕捉される：
+モナドを扱うときによくあるパターンはある条件が真である場合にのみ副作用を実行することです。例えば、`countLetters` は母音か子音かのチェックを含んでおり、どちらでもない文字は状態に影響を与えません。これは `else` ブランチが `pure ()` に評価されることで捕捉されます：
 
 ```lean
 {{#example_decl Examples/MonadTransformers/Defs.lean countLettersModify}}
