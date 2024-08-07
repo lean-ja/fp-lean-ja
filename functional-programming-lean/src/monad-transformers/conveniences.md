@@ -1,4 +1,6 @@
-# Additional Conveniences
+<!-- # Additional Conveniences -->
+
+# その他の便利な機能
 
 ## Pipe Operators
 
