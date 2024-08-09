@@ -1,4 +1,6 @@
-# Programming with Dependent Types
+<!-- # Programming with Dependent Types -->
+
+# 依存型によるプログラミング
 
 In most statically-typed programming languages, there is a hermetic seal between the world of types and the world of programs.
 Types and programs have different grammars and they are used at different times.
