@@ -1,4 +1,6 @@
-# Indexed Families
+<!-- # Indexed Families -->
+
+# 添え字付きの族
 
 Polymorphic inductive types take type arguments.
 For instance, `List` takes an argument that determines the type of the entries in the list, and `Except` takes arguments that determine the types of the exceptions or values.
