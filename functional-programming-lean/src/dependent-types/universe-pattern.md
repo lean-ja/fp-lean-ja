@@ -1,4 +1,6 @@
-# The Universe Design Pattern
+<!-- # The Universe Design Pattern -->
+
+# ユニバースによるデザインパターン
 
 In Lean, types such as `Type`, `Type 3`, and `Prop` that classify other types are known as universes.
 However, the term _universe_ is also used for a design pattern in which a datatype is used to represent a subset of Lean's types, and a function converts the datatype's constructors into actual types.
