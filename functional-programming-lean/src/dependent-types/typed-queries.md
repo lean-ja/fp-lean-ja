@@ -1,4 +1,6 @@
-# Worked Example: Typed Queries
+<!-- # Worked Example: Typed Queries -->
+
+# 使用事例：型付きクエリ
 
 Indexed families are very useful when building an API that is supposed to resemble some other language.
 They can be used to write a library of HTML constructors that don't permit generating invalid HTML, to encode the specific rules of a configuration file format, or to model complicated business constraints.
