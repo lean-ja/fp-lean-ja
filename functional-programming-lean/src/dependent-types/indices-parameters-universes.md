@@ -1,4 +1,6 @@
-# Indices, Parameters, and Universe Levels
+<!-- # Indices, Parameters, and Universe Levels -->
+
+# 添字、パラメータ、宇宙レベル
 
 The distinction between indices and parameters of an inductive type is more than just a way to describe arguments to the type that either vary or do not between the constructors.
 Whether an argument to an inductive type is a parameter or an index also matters when it comes time to determine the relationships between their universe levels.
