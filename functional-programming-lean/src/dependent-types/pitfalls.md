@@ -1,4 +1,6 @@
-# Pitfalls of Programming with Dependent Types
+<!-- # Pitfalls of Programming with Dependent Types -->
+
+# 依存型プログラミングの落とし穴
 
 The flexibility of dependent types allows more useful programs to be accepted by a type checker, because the language of types is expressive enough to describe variations that less-expressive type systems cannot.
 At the same time, the ability of dependent types to express very fine-grained specifications allows more buggy programs to be rejected by a type checker.
