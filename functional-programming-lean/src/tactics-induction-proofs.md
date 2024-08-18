@@ -1,4 +1,6 @@
-# Interlude: Tactics, Induction, and Proofs
+<!-- # Interlude: Tactics, Induction, and Proofs -->
+
+# 休憩：タクティクと帰納法、証明
 
 ## A Note on Proofs and User Interfaces
 
