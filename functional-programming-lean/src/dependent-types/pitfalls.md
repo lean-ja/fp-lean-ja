@@ -19,7 +19,7 @@ Functions can be rewritten to use more efficient algorithms and data structures,
 When the function is used in a type, however, the internals of the function's implementation become part of the type, and thus part of the _interface_ to another program.
 -->
 
-`Row` のような型を返す関数の内部と、その関数が生成する型との間の蜜結合などはより大きな困難の一例です：関数のインタフェースと実装の区別は関数が型の中で使われると崩れ始めます。通常、関数の型シグネチャや入出力の動作を変更しない限り、すべてのリファクタリングが有効です。クライアントコードを壊すことなく、関数はより効率的なアルゴリズムやデータ構造を使用するように書き換え、バグを修正し、ソースコードの明瞭性を向上させることができます。しかし、関数が型の中で使用されると、関数の実装内部は型の一部となり、したがって他のプログラムへの **インタフェース** の一部となります。
+`Row` のような型を返す関数の内部と、その関数が生成する型との間の密結合などはより大きな困難の一例です：関数のインタフェースと実装の区別は関数が型の中で使われると崩れ始めます。通常、関数の型シグネチャや入出力の動作を変更しない限り、すべてのリファクタリングが有効です。クライアントコードを壊すことなく、関数はより効率的なアルゴリズムやデータ構造を使用するように書き換え、バグを修正し、ソースコードの明瞭性を向上させることができます。しかし、関数が型の中で使用されると、関数の実装内部は型の一部となり、したがって他のプログラムへの **インタフェース** の一部となります。
 
 <!--
 As an example, take the following two implementations of addition on `Nat`.
