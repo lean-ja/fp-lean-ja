@@ -11,7 +11,7 @@
   - [構造体](./getting-to-know/structures.md)
   - [Datatypes, Patterns and Recursion](./getting-to-know/datatypes-and-patterns.md)
   - [Polymorphism](./getting-to-know/polymorphism.md)
-  - [Additional Conveniences](./getting-to-know/conveniences.md)
+  - [その他の便利な機能](./getting-to-know/conveniences.md)
   - [Summary](./getting-to-know/summary.md)
 - [ハローワールド!](./hello-world.md)
   - [プログラムの実行](./hello-world/running-a-program.md)
