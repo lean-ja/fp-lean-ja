@@ -15,7 +15,7 @@
   - [まとめ](./getting-to-know/summary.md)
 - [ハローワールド!](./hello-world.md)
   - [プログラムの実行](./hello-world/running-a-program.md)
-  - [Step By Step](./hello-world/step-by-step.md)
+  - [ステップ・バイ・ステップ](./hello-world/step-by-step.md)
   - [Starting a Project](./hello-world/starting-a-project.md)
   - [Worked Example: `cat`](./hello-world/cat.md)
   - [Additional Conveniences](./hello-world/conveniences.md)
