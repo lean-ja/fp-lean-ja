@@ -2,7 +2,7 @@
 # Interlude: Propositions, Proofs, and Indexing
 -->
 
-# 休憩: 命題・証明・リストの添え字アクセス
+# 休憩：命題・証明・リストの添え字アクセス
 
 <!--
 Like many languages, Lean uses square brackets for indexing into arrays and lists.
@@ -61,27 +61,21 @@ All of the following are propositions:
 
 **命題** （proposition）とは、真にも偽にもなりうる文のことです。以下はすべて命題です：
 
+ <!--
  * 1 + 1 = 2
- <!--
  * Addition is commutative
--->
- * 足し算は可換である
- <!--
  * There are infinitely many prime numbers
--->
- * 素数は無限に存在する
  * 1 + 1 = 15
- <!--
  * Paris is the capital of France
--->
- * パリはフランスの首都である
- <!--
  * Buenos Aires is the capital of South Korea
--->
- * ブエノスアイレスは韓国の首都である
- <!--
  * All birds can fly
 -->
+ * 1 + 1 = 2
+ * 足し算は可換である
+ * 素数は無限に存在する
+ * 1 + 1 = 15
+ * パリはフランスの首都である
+ * ブエノスアイレスは韓国の首都である
  * すべての鳥は飛ぶことができる
 
 <!--
@@ -93,15 +87,11 @@ None of the following are propositions:
 
  <!--
  * 1 + green = ice cream
--->
- * 1 + 緑 = アイスクリーム
- <!--
  * All capital cities are prime numbers
--->
- * すべての首都は素数である
- <!--
  * At least one gorg is a fleep
 -->
+ * 1 + 緑 = アイスクリーム
+ * すべての首都は素数である
  * 少なくとも1つのホゲはフガである
 
 <!--
@@ -231,15 +221,11 @@ Tactics are useful for a number of reasons:
 タクティクは多くの理由から便利です：
  <!--
  1. Many proofs are complicated and tedious when written out down to the smallest detail, and tactics can automate these uninteresting parts.
--->
- 1. 多くの証明は細部に至るまで書き出すと複雑で面倒になりますが、タクティクはこうした面白くない部分を自動化してくれます。
- <!--
  2. Proofs written with tactics are easier to maintain over time, because flexible automation can paper over small changes to definitions.
--->
- 2. タクティクで書かれた証明は柔軟な自動化によって定義の小さな変更を吸収することができるため、長期にわたるメンテナンスが容易です。
- <!--
  3. Because a single tactic can prove many different theorems, Lean can use tactics behind the scenes to free users from writing proofs by hand. For instance, an array lookup requires a proof that the index is in bounds, and a tactic can typically construct that proof without the user needing to worry about it.
 -->
+ 1. 多くの証明は細部に至るまで書き出すと複雑で面倒になりますが、タクティクはこうした面白くない部分を自動化してくれます。
+ 2. タクティクで書かれた証明は柔軟な自動化によって定義の小さな変更を吸収することができるため、長期にわたるメンテナンスが容易です。
  3. 1つのタクティクで多くの異なる定理を証明することができるため、Leanが裏でタクティクを使うことでユーザが手で証明を書く手間を省くことができます。例えば、配列のルックアップにはインデックスが添え字の上限内にあることの証明が必要ですが、タクティクは通常ユーザの気を煩わすことなくその証明を構築することができます。
 
 <!--
@@ -505,16 +491,15 @@ This error message results from having Lean attempt to treat `woodlandCritters` 
 
 <!--
  * Prove the following theorems using `rfl`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`. What happens if `rfl` is used to prove `5 < 18`? Why?
+ * Prove the following theorems using `by simp`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`, `5 < 18`.
+ * Write a function that looks up the fifth entry in a list. Pass the evidence that this lookup is safe as an argument to the function.
 -->
  * 次の定理を `rfl` を使って証明してください。また `5 < 18` に適用したら何が起きるでしょうか？そしてそれは何故でしょうか？
     * `2 + 3 = 5`
     * `15 - 8 = 7`
     * `"Hello, ".append "world" = "Hello, world"`
-<!--
- * Prove the following theorems using `by simp`: `2 + 3 = 5`, `15 - 8 = 7`, `"Hello, ".append "world" = "Hello, world"`, `5 < 18`.
--->
- * 上記の命題を `by simp` で証明してください。
-<!--
- * Write a function that looks up the fifth entry in a list. Pass the evidence that this lookup is safe as an argument to the function.
--->
+ * 次の定理を `by simp` で証明してください。
+    * `2 + 3 = 5`
+    * `15 - 8 = 7`
+    * `"Hello, ".append "world" = "Hello, world"`
  * リストの5番目の要素をルックアップする関数を書いてください。この関数の引数にはルックアップが安全であるという根拠を渡すようにしてください。
