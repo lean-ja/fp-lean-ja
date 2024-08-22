@@ -7,3 +7,4 @@ package «solutions» where
 @[default_target]
 lean_lib «Solutions» where
   -- add library configuration options here
+  globs := #[.submodules `Solutions]
