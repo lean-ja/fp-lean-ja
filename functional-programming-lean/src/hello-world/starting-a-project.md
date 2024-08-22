@@ -17,7 +17,8 @@ Lean で書かれたプログラムが本格的になるにつれて，Ahead-Of-
 
 ## 最初のステップ
 
-<!-- To get started with a project that uses Lake, use the command `{{#command {first-lake} {lake} {lake new greeting} }}` in a directory that does not already contain a file or directory called `greeting`.
+<!-- CI失敗対策のために #command {first-lake} {lake} {lake new greeting} から{{}}を外した -->
+<!-- To get started with a project that uses Lake, use the command `_#command {first-lake} {lake} {lake new greeting}_` in a directory that does not already contain a file or directory called `greeting`.
 This creates a directory called `greeting` that contains the following files: -->
 
 Lake を使用するプロジェクトを開始するには，`greeting` というファイルやディレクトリがまだ存在しないディレクトリで `{{#command {first-lake} {lake} {lake new greeting} }}` コマンドを使用します．
