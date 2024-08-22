@@ -20,7 +20,7 @@
   - [Worked Example: `cat`](./hello-world/cat.md)
   - [Additional Conveniences](./hello-world/conveniences.md)
   - [Summary](./hello-world/summary.md)
-- [Interlude: Propositions, Proofs, and Indexing](props-proofs-indexing.md)
+- [休憩: 命題，証明，そしてリストの添え字アクセス](props-proofs-indexing.md)
 - [Overloading and Type Classes](type-classes.md)
   - [Positive Numbers](type-classes/pos.md)
   - [Type Classes and Polymorphism](type-classes/polymorphism.md)
