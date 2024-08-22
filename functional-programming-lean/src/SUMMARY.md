@@ -21,7 +21,7 @@
   - [Additional Conveniences](./hello-world/conveniences.md)
   - [Summary](./hello-world/summary.md)
 - [休憩：命題・証明・リストの添え字アクセス](props-proofs-indexing.md)
-- [Overloading and Type Classes](type-classes.md)
+- [オーバーロードと型クラス](type-classes.md)
   - [Positive Numbers](type-classes/pos.md)
   - [Type Classes and Polymorphism](type-classes/polymorphism.md)
   - [Controlling Instance Search](type-classes/out-params.md)
