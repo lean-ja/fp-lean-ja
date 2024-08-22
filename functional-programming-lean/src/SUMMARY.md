@@ -22,7 +22,7 @@
   - [Summary](./hello-world/summary.md)
 - [休憩：命題・証明・リストの添え字アクセス](props-proofs-indexing.md)
 - [オーバーロードと型クラス](type-classes.md)
-  - [Positive Numbers](type-classes/pos.md)
+  - [正の整数](type-classes/pos.md)
   - [Type Classes and Polymorphism](type-classes/polymorphism.md)
   - [Controlling Instance Search](type-classes/out-params.md)
   - [Arrays and Indexing](type-classes/indexing.md)
