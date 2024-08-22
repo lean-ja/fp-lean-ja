@@ -502,4 +502,5 @@ This error message results from having Lean attempt to treat `woodlandCritters` 
     * `2 + 3 = 5`
     * `15 - 8 = 7`
     * `"Hello, ".append "world" = "Hello, world"`
+    * `5 < 18`
  * リストの5番目の要素をルックアップする関数を書いてください。この関数の引数にはルックアップが安全であるという根拠を渡すようにしてください。
