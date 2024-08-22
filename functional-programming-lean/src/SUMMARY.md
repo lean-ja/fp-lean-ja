@@ -10,7 +10,7 @@
   - [関数と定義](./getting-to-know/functions-and-definitions.md)
   - [構造体](./getting-to-know/structures.md)
   - [データ型・パターン・再帰](./getting-to-know/datatypes-and-patterns.md)
-  - [Polymorphism](./getting-to-know/polymorphism.md)
+  - [多相性](./getting-to-know/polymorphism.md)
   - [Additional Conveniences](./getting-to-know/conveniences.md)
   - [Summary](./getting-to-know/summary.md)
 - [ハローワールド!](./hello-world.md)
