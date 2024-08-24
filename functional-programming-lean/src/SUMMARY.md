@@ -30,7 +30,7 @@
   - [型強制](type-classes/coercion.md)
   - [その他の便利な機能](type-classes/conveniences.md)
   - [まとめ](type-classes/summary.md)
-- [Monads](./monads.md)
+- [モナド](./monads.md)
   - [The Monad Type Class](./monads/class.md)
   - [Example: Arithmetic in Monads](./monads/arithmetic.md)
   - [`do`-Notation for Monads](./monads/do.md)
