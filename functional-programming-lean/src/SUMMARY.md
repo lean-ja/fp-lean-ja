@@ -38,7 +38,7 @@
   - [その他の便利な機能](monads/conveniences.md)
   - [まとめ](monads/summary.md)
 - [関手・アプリカティブ関手・モナド](functor-applicative-monad.md)
-  - [Structures and Inheritance](functor-applicative-monad/inheritance.md)
+  - [構造体と継承](functor-applicative-monad/inheritance.md)
   - [Applicative Functors](functor-applicative-monad/applicative.md)
   - [The Applicative Contract](functor-applicative-monad/applicative-contract.md)
   - [Alternatives](functor-applicative-monad/alternative.md)
