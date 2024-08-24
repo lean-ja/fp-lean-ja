@@ -29,7 +29,7 @@
   - [標準クラス](type-classes/standard-classes.md)
   - [型強制](type-classes/coercion.md)
   - [その他の便利な機能](type-classes/conveniences.md)
-  - [Summary](type-classes/summary.md)
+  - [まとめ](type-classes/summary.md)
 - [Monads](./monads.md)
   - [The Monad Type Class](./monads/class.md)
   - [Example: Arithmetic in Monads](./monads/arithmetic.md)
