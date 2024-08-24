@@ -45,7 +45,7 @@
   - [宇宙](functor-applicative-monad/universes.md)
   - [完全な定義](functor-applicative-monad/complete.md)
   - [まとめ](functor-applicative-monad/summary.md)
-- [Monad Transformers](monad-transformers.md)
+- [モナド変換子](monad-transformers.md)
   - [Combining IO and Reader](monad-transformers/reader-io.md)
   - [A Monad Construction Kit](monad-transformers/transformers.md)
   - [Ordering Monad Transformers](monad-transformers/order.md)
