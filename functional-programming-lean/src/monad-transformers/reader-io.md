@@ -10,7 +10,7 @@ An example of such a program is `tree`, which recursively prints the files in th
 The version of `tree` in this chapter, called `doug` after the mighty Douglas Fir tree that adorns the west coast of North America, provides the option of Unicode box-drawing characters or their ASCII equivalents when indicating directory structure.
 -->
 
-リーダーモナドが有用なケースの1つに、深い再帰呼び出しを通して渡されるアプリケーションの「現在の設定値」の概念があります。このようなプログラムの例は `tree` で、カレントディレクトリとサブディレクトリにあるファイルを再帰的に表示し、その木構造を文字で示します。この章で登場する `tree` は、北米の西海岸を彩る強大な米松（Douglas Fir）にちなんで `doug` と呼ぶことにし、ディレクトリ構造を示すときにUnicodeの罫線素片、もしくはそれに相当するASCII文字のどちらかを選べるオプションを提供します。
+リーダモナドが有用なケースの1つに、深い再帰呼び出しを通して渡されるアプリケーションの「現在の設定値」の概念があります。このようなプログラムの例は `tree` で、これはカレントディレクトリとサブディレクトリにあるファイルを再帰的に表示し、その木構造を文字で示します。この章で登場する `tree` は、北米の西海岸を彩る強大な米松（Douglas Fir）にちなんで `doug` と呼ぶことにし、ディレクトリ構造を示すときにUnicodeの罫線素片、もしくはそれに相当するASCII文字のどちらかを選べるオプションを提供します。
 
 <!--
 For example, the following commands create a directory structure and some empty files in a directory called `doug-demo`:
@@ -127,7 +127,7 @@ If the last component is a special navigation file (`.` or `..`), then the file 
 Otherwise, directories and files are wrapped in the corresponding constructors.
 -->
 
-`System.FilePath.components` はパスを、パスの区切り文字で分割した要素のリストに変換します。リストに最後の要素が無い（リストが空である）場合は、そのパスはルートディレクトリとなります。リストの最後の要素が特別なナビゲーションファイル（`.` や `..` ）である場合、このファイルは除外するべきです。それ以外の場合、ディレクトリとファイルは対応するコンストラクタでラップされます。
+`System.FilePath.components` はパスを、パスの区切り文字で分割した要素のリストに変換します。リストに最後の要素が無い（訳注：リストが空である）場合は、そのパスはルートディレクトリとなります。リストの最後の要素が特別なナビゲーションファイル（`.` や `..` ）である場合、このファイルは除外するべきです。それ以外の場合、ディレクトリとファイルは対応するコンストラクタでラップされます。
 
 <!--
 Lean's logic has no way to know that directory trees are finite.
@@ -162,7 +162,7 @@ Showing the names of files and directories is achieved with `showFileName` and `
 Both of these helpers delegate to functions on `Config` that take the ASCII vs Unicode setting into account:
 -->
 
-これらの補助関数はどちらもASCIIかUnicodeの設定を考慮する `Config` の関数に委譲しています：
+これらの補助関数はどちらもASCIIかUnicodeの設定を考慮する `Config` 上の関数に委譲しています：
 
 ```lean
 {{#example_decl Examples/MonadTransformers.lean filenames}}
@@ -201,13 +201,13 @@ The type system will not catch it if the wrong configuration is passed downwards
 A reader effect ensures that the same configuration is passed to all recursive calls, unless it is manually overridden, and it helps make the code less verbose.
 -->
 
-この実装で `doug` は動作してくれますが、手動で設定値を渡すのは冗長でエラーになりやすいです。例えば、間違った設定値が `doug` に渡され、ディレクトリを掘りながら設定値が伝播してしまうことを型システムは捕捉してくれません。リーダーモナドの作用によって、手動で上書きしない限り同じ設定値がすべての再帰呼び出しに渡されることが保証されます。これによってコードの冗長性が緩和されます。
+この実装で `doug` は動作してくれますが、手動で設定値を渡すのは冗長でエラーになりやすいです。例えば、間違った設定値が `doug` に渡され、ディレクトリを掘りながら設定値が伝播してしまうことを型システムは捕捉してくれません。リーダモナドの作用によって、手動で上書きしない限り同じ設定値がすべての再帰呼び出しに渡されることが保証されます。これによってコードの冗長性が緩和されます。
 
 <!--
 To create a version of `IO` that is also a reader of `Config`, first define the type and its `Monad` instance, following the recipe from [the evaluator example](../monads/arithmetic.md#custom-environments):
 -->
 
-`Config` についてのリーダーでもある `IO` モナドを作成するには、まず [評価器の例](../monads/arithmetic.md#custom-environments) のレシピに従って型とその `Monad` インスタンスを定義します：
+`Config` についてのリーダでもある `IO` モナドを作成するには、まず [評価器の例](../monads/arithmetic.md#custom-environments) のレシピに従って型とその `Monad` インスタンスを定義します：
 
 ```lean
 {{#example_decl Examples/MonadTransformers.lean ConfigIO}}
@@ -307,15 +307,11 @@ This custom monad has a number of advantages over passing configurations manuall
 
  <!--
  1. It is easier to ensure that configurations are passed down unchanged, except when changes are desired
--->
- 1. 変更が必要な場合を除き、設定が変更されずに受け渡されることを保証するのが容易
- <!--
  2. The concern of passing the configuration onwards is more clearly separated from the concern of printing directory contents
--->
- 2. 設定値を引き継ぐことと、ディレクトリの内容を表示することの関心事がより明確に分離される
- <!--
  3. As the program grows, there will be more and more intermediate layers that do nothing with configurations except propagate them, and these layers don't need to be rewritten as the configuration logic changes
 -->
+ 1. 変更が必要な場合を除き、設定が変更されずに受け渡されることを保証するのが容易
+ 2. 設定値を引き継ぐことと、ディレクトリの内容を表示することの関心事がより明確に分離される
  3. プログラムが巨大化するにつれて、設定値を伝播する以外は何もしない中間層がどんどん増えていくが、設定値のロジックの変更があってもこれらのレイヤに対して修正を行う必要がない
 
 <!--
@@ -326,16 +322,12 @@ However, there are also some clear downsides:
 
  <!--
  1. As the program evolves and the monad requires more features, each of the basic operators such as `locally` and `currentConfig` will need to be updated
--->
- 1. プログラムを改良し、モナドがより多くの機能を必要とするようになると、`locally` や `currentConfig` などの基本的な演算子それぞれを更新する必要がある
- <!--
  2. Wrapping ordinary `IO` actions in `runIO` is noisy and distracts from the flow of the program
--->
- 2. 通常の `IO` アクションを `runIO` でラップするのは視認性が悪く、プログラムの流れを乱してしまう
- <!--
  3. Writing monads instances by hand is repetitive, and the technique for adding a reader effect to another monad is a design pattern that requires documentation and communication overhead
 -->
- 3. 手動でモナドのインスタンスを書くのは同じことの繰り返しであり、リーダーの作用を別のモナドに追加するテクニックは余分な文書化とコミュニケーションを要するデザインパターンである
+ 1. プログラムを改良し、モナドがより多くの機能を必要とするようになると、`locally` や `currentConfig` などの基本的な演算子それぞれを更新する必要がある
+ 2. 通常の `IO` アクションを `runIO` でラップするのは視認性が悪く、プログラムの流れを乱してしまう
+ 3. 手動でモナドのインスタンスを書くのは同じことの繰り返しであり、リーダの作用を別のモナドに追加するテクニックは余分な文書化とコミュニケーションを要するデザインパターンである
 
 <!--
 Using a technique called _monad transformers_, all of these downsides can be addressed.
@@ -347,29 +339,25 @@ Monad transformers consist of:
 
  <!--
  1. A definition of the transformer itself, which is typically a function from types to types
--->
- 1. このモナド変換子自体の定義、これは通常型から型への関数
- <!--
  2. A `Monad` instance that assumes the inner type is already a monad
--->
- 2. 内部の型がすでにモナドであると仮定した `Monad` インスタンス
- <!--
  3. An operator to "lift" an action from the inner monad to the transformed monad, akin to `runIO`
 -->
+ 1. このモナド変換子自体の定義、これは通常型から型への関数
+ 2. 内部の型がすでにモナドであると仮定した `Monad` インスタンス
  3. 内側のモナドから変換後のモナドにアクションを「持ち上げる」演算子、これは `runIO` に似ている
 
 <!--
 ## Adding a Reader to Any Monad
 -->
 
-## リーダーを任意のモナドに付与する
+## リーダを任意のモナドに付与する
 
 <!--
 Adding a reader effect to `IO` was accomplished in `ConfigIO` by wrapping `IO α` in a function type.
 The Lean standard library contains a function that can do this to _any_ polymorphic type, called `ReaderT`:
 -->
 
-`ConfigIO` にてリーダーの作用を `IO` に追加するのは `IO α` を関数型で包むことで実現しました。Leanの標準ライブラリにはこれを **どんな** 多相型に対しても行うことのできる関数を備えており、`ReaderT` と呼ばれています：
+`ConfigIO` にてリーダの作用を `IO` に追加するのは `IO α` を関数型で包むことで実現しました。Leanの標準ライブラリにはこれを **どんな** 多相型に対しても行うことのできる関数を備えており、`ReaderT` と呼ばれています：
 
 ```lean
 {{#example_decl Examples/MonadTransformers.lean MyReaderT}}
@@ -382,15 +370,11 @@ Its arguments are as follows:
 
  <!--
  * `ρ` is the environment that is accessible to the reader
--->
- * `ρ` はリーダーから参照される環境
- <!--
  * `m` is the monad that is being transformed, such as `IO`
--->
- * `m` は変換対象のモナドで、例えば `IO` などが入る
- <!--
  * `α` is the type of values being returned by the monadic computation
 -->
+ * `ρ` はリーダから参照される環境
+ * `m` は変換対象のモナドで、例えば `IO` などが入る
  * `α` はモナドの計算で返される値の型
 <!--
 Both `α` and `ρ` are in the same universe because the operator that retrieves the environment in the monad will have type `m ρ`.
@@ -419,7 +403,7 @@ The manually-written `currentConfig` obtained the environment out of the reader.
 This effect can be defined in a generic form for all uses of `ReaderT`, under the name `read`:
 -->
 
-手動で書いた `currentConfig` はリーダーから環境を取得していました。この作用は `ReaderT` のあらゆる用途に対して `read` という名前で汎用的に定義することができます：
+手動で書いた `currentConfig` はリーダから環境を取得していました。この作用は `ReaderT` のあらゆる用途に対して `read` という名前で汎用的に定義することができます：
 
 ```lean
 {{#example_decl Examples/MonadTransformers.lean MyReaderTread}}
@@ -429,7 +413,7 @@ However, not every monad that provides a reader effect is built with `ReaderT`.
 The type class `MonadReader` allows any monad to provide a `read` operator:
 -->
 
-しかし、リーダーの作用を提供するすべてのモナドが `ReaderT` で構築されているわけではありません。型クラス `MonadReader` を使えばどのモナドでも `read` 演算子を使えるようになります：
+しかし、リーダの作用を提供するすべてのモナドが `ReaderT` で構築されているわけではありません。型クラス `MonadReader` を使えばどのモナドでも `read` 演算子を使えるようになります：
 
 ```lean
 {{#example_decl Examples/MonadTransformers.lean MonadReader}}
@@ -438,7 +422,7 @@ The type class `MonadReader` allows any monad to provide a `read` operator:
 The type `ρ` is an output parameter because any given monad typically only provides a single type of environment through a reader, so automatically selecting it when the monad is known makes programs more convenient to write.
 -->
 
-型 `ρ` は出力パラメータです。なぜなら、与えられた任意のモナドは通常リーダーを通して単一の型の環境しか提供しないため、モナドがわかっている際に自動的に型 `ρ` を選択することでプログラムをより書きやすくなるからです。
+型 `ρ` は出力パラメータです。なぜなら、与えられた任意のモナドは通常リーダを通して単一の型の環境しか提供しないため、モナドがわかっている際に自動的に型 `ρ` を選択することでプログラムをより書きやすくなるからです。
 
 <!--
 The `Monad` instance for `ReaderT` is essentially the same as the `Monad` instance for `ConfigIO`, except `IO` has been replaced by some arbitrary monad argument `m`:
