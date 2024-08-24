@@ -22,15 +22,11 @@ For example:
 
  <!--
  * Mutable state is encoded with a function parameter and a return value that have the same type
- -->
- * 可変状態はパラメータと戻り値の型が同じ関数としてエンコードされます
- <!--
  * Error handling is encoded by having a return type that is similar to `Except`, with constructors for success and failure
- -->
- * エラー処理は `Except` に似た成功と失敗から構成される型を戻り値に持つものとしてエンコードされます
- <!--
  * Logging is encoded by pairing the return value with the log
  -->
+ * 可変状態はパラメータと戻り値の型が同じ関数としてエンコードされます
+ * エラー処理は `Except` に似た成功と失敗から構成される型を戻り値に持つものとしてエンコードされます
  * ロギングは戻り値とログのペアとしてエンコードされます
  
 <!--
