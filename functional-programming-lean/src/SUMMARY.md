@@ -25,7 +25,7 @@
   - [正の整数](type-classes/pos.md)
   - [型クラスと多相性](type-classes/polymorphism.md)
   - [インスタンス探索の制御](type-classes/out-params.md)
-  - [Arrays and Indexing](type-classes/indexing.md)
+  - [配列と添え字アクセス](type-classes/indexing.md)
   - [Standard Classes](type-classes/standard-classes.md)
   - [Coercions](type-classes/coercion.md)
   - [Additional Conveniences](type-classes/conveniences.md)
