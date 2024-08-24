@@ -265,7 +265,9 @@ Hashing a `NonEmptyList α` is only possible when `α` can be hashed:
 ```lean
 {{#example_decl Examples/Classes.lean HashableNonEmptyList}}
 ```
+<!--
 Binary trees use both recursion and recursive instance search in the implementations of `BEq` and `Hashable`:
+-->
 
 二分木は再帰と `BEq` と `Hashable` の実装に対するインスタンスの再帰的な検索の両方を利用します：
 
