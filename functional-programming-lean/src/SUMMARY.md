@@ -43,7 +43,7 @@
   - [アプリカティブ関手の約定](functor-applicative-monad/applicative-contract.md)
   - [オルタナティブ](functor-applicative-monad/alternative.md)
   - [宇宙](functor-applicative-monad/universes.md)
-  - [The Complete Definitions](functor-applicative-monad/complete.md)
+  - [完全な定義](functor-applicative-monad/complete.md)
   - [Summary](functor-applicative-monad/summary.md)
 - [Monad Transformers](monad-transformers.md)
   - [Combining IO and Reader](monad-transformers/reader-io.md)
