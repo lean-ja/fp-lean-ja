@@ -46,7 +46,7 @@
   - [完全な定義](functor-applicative-monad/complete.md)
   - [まとめ](functor-applicative-monad/summary.md)
 - [モナド変換子](monad-transformers.md)
-  - [Combining IO and Reader](monad-transformers/reader-io.md)
+  - [IOとReaderを組み合わせる](monad-transformers/reader-io.md)
   - [A Monad Construction Kit](monad-transformers/transformers.md)
   - [Ordering Monad Transformers](monad-transformers/order.md)
   - [More `do` Features](monad-transformers/do.md)
