@@ -41,7 +41,7 @@ Because type classes are just structures with some additional automation applied
 Together with default methods, this can be used to create a fine-grained hierarchy of interfaces that nonetheless does not impose a large burden on clients, because the small classes that the large classes inherit from can be automatically implemented.
 -->
 
-型クラスは単に構造愛にいくつかの自動化が施されたものであるため、これらのすべての機能は型クラスで利用できます。デフォルトメソッドと組み合わせることで、きめ細かいインタフェースの階層を作ることができます。これはクライアントに実装にあたっての負荷を軽減します。というのも、大きなクラスが継承するデフォルトメソッドを含むような小さなクラスは自動的に実装されるからです。
+型クラスは単に構造体にいくつかの自動化が施されたものであるため、これらのすべての機能は型クラスで利用できます。デフォルトメソッドと組み合わせることで、きめ細かいインタフェースの階層を作ることができます。これはクライアントに実装にあたっての負荷を軽減します。というのも、大きなクラスが継承するデフォルトメソッドを含むような小さなクラスは自動的に実装されるからです。
 
 <!--
 ## Applicative Functors
@@ -57,11 +57,9 @@ An applicative functor is a functor with two additional operations:
 
  <!--
  * `pure`, which is the same operator as that for `Monad`
--->
- * `pure` 、これは `Monad` の演算子と同じものです
- <!--
  * `seq`, which allows a function to be applied in the context of the functor.
 -->
+ * `pure` 、これは `Monad` の演算子と同じものです
  * `seq` は関手のコンテキストのもとで関数をできるようにします
  
 <!--
@@ -80,7 +78,7 @@ This maximizes code re-use.
 The more powerful type classes extend the less powerful ones, which means that an implementation of `Monad` provides implementations of `Functor` and `Applicative` for free.
 -->
 
-実は、型クラス `Functor` 、`Applicative` 、`Monad` は階層を構成しています。`Functor` から `Monad` へと階層が上がるにつれてより強力なプログラムを書けるようになりますが、より強力なクラスを実装できる型は限られてきます。多相なプログラムはできるだけ弱い抽象を使うように書くべきであり、データ型はできるだけ強力なインスタンスを与えるべきです。これはコードの再利用を最大化します。より強力な空クラスはより強力でない型を継承します。つまり、`Monad` の実装は `Functor` と `Applicative` の実装をタダで提供します。
+実は、型クラス `Functor` ・`Applicative` ・`Monad` は階層を構成しています。`Functor` から `Monad` へと階層が上がるにつれてより強力なプログラムを書けるようになりますが、より強力なクラスを実装できる型は限られてきます。多相なプログラムはできるだけ弱い抽象を使うように書くべきであり、データ型はできるだけ強力なインスタンスを与えるべきです。これはコードの再利用を最大化します。より強力な空クラスはより強力でない型を継承します。つまり、`Monad` の実装は `Functor` と `Applicative` の実装をタダで提供します。
 
 <!--
 Each class has a set of methods to be implemented and a corresponding contract that specifies additional rules for the methods.
@@ -111,7 +109,7 @@ These types describe other types—just as `0` and `17` are described by `Nat`, 
 The type of functions that take a type as an argument must be a larger universe than the argument's universe.
 -->
 
-このようなパラドックスを排除するための制約の1つに、すべての型が **宇宙** に割り当てられているというものがあります。宇宙とは `Prop` 、`Type` 、`Type 1` 、`Type 2` などの型のことです。これらの型はほかの型を記述します。ちょうど `0` と `17` が `Nat` によって記述されるように、`Nat` 自身が `Type` に、`Type` が `Type 1` によって記述されます。型を引数に取る関数の型は引数の型よりも大きな宇宙でなければなりません。
+このようなパラドックスを排除するための制約の1つに、すべての型が **宇宙** に割り当てられているというものがあります。宇宙とは `Prop` ・`Type` ・`Type 1` ・`Type 2` などの型のことです。これらの型はほかの型を記述します。ちょうど `0` と `17` が `Nat` によって記述されるように、`Nat` 自身が `Type` に、`Type` が `Type 1` によって記述されます。型を引数に取る関数の型は引数の型よりも大きな宇宙でなければなりません。
 
 <!--
 Because each declared datatype has a universe, writing code that uses types like data would quickly become annoying, requiring each polymorphic type to be copy-pasted to take arguments from `Type 1`.
