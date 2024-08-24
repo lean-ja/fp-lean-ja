@@ -42,7 +42,7 @@
   - [アプリカティブ関手](functor-applicative-monad/applicative.md)
   - [アプリカティブ関手の約定](functor-applicative-monad/applicative-contract.md)
   - [オルタナティブ](functor-applicative-monad/alternative.md)
-  - [Universes](functor-applicative-monad/universes.md)
+  - [宇宙](functor-applicative-monad/universes.md)
   - [The Complete Definitions](functor-applicative-monad/complete.md)
   - [Summary](functor-applicative-monad/summary.md)
 - [Monad Transformers](monad-transformers.md)
