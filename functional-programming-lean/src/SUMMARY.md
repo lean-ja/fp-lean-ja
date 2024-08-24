@@ -26,7 +26,7 @@
   - [型クラスと多相性](type-classes/polymorphism.md)
   - [インスタンス探索の制御](type-classes/out-params.md)
   - [配列と添え字アクセス](type-classes/indexing.md)
-  - [Standard Classes](type-classes/standard-classes.md)
+  - [標準クラス](type-classes/standard-classes.md)
   - [Coercions](type-classes/coercion.md)
   - [Additional Conveniences](type-classes/conveniences.md)
   - [Summary](type-classes/summary.md)
