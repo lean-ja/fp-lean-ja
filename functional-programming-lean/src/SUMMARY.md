@@ -33,7 +33,7 @@
 - [モナド](./monads.md)
   - [モナド型クラス](./monads/class.md)
   - [例：モナドにおける算術](./monads/arithmetic.md)
-  - [`do`-Notation for Monads](./monads/do.md)
+  - [モナドのための `do` 記法](./monads/do.md)
   - [The `IO` Monad](./monads/io.md)
   - [Additional Conveniences](monads/conveniences.md)
   - [Summary](monads/summary.md)
