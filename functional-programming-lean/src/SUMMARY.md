@@ -31,7 +31,7 @@
   - [その他の便利な機能](type-classes/conveniences.md)
   - [まとめ](type-classes/summary.md)
 - [モナド](./monads.md)
-  - [The Monad Type Class](./monads/class.md)
+  - [モナド型クラス](./monads/class.md)
   - [Example: Arithmetic in Monads](./monads/arithmetic.md)
   - [`do`-Notation for Monads](./monads/do.md)
   - [The `IO` Monad](./monads/io.md)
