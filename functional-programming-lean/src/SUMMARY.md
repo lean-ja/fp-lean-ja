@@ -40,7 +40,7 @@
 - [関手・アプリカティブ関手・モナド](functor-applicative-monad.md)
   - [構造体と継承](functor-applicative-monad/inheritance.md)
   - [アプリカティブ関手](functor-applicative-monad/applicative.md)
-  - [The Applicative Contract](functor-applicative-monad/applicative-contract.md)
+  - [アプリカティブ関手の約定](functor-applicative-monad/applicative-contract.md)
   - [Alternatives](functor-applicative-monad/alternative.md)
   - [Universes](functor-applicative-monad/universes.md)
   - [The Complete Definitions](functor-applicative-monad/complete.md)
