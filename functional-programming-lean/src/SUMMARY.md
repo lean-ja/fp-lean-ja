@@ -27,7 +27,7 @@
   - [インスタンス探索の制御](type-classes/out-params.md)
   - [配列と添え字アクセス](type-classes/indexing.md)
   - [標準クラス](type-classes/standard-classes.md)
-  - [Coercions](type-classes/coercion.md)
+  - [型強制](type-classes/coercion.md)
   - [Additional Conveniences](type-classes/conveniences.md)
   - [Summary](type-classes/summary.md)
 - [Monads](./monads.md)
