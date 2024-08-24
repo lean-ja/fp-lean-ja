@@ -34,7 +34,7 @@
   - [モナド型クラス](./monads/class.md)
   - [例：モナドにおける算術](./monads/arithmetic.md)
   - [モナドのための `do` 記法](./monads/do.md)
-  - [The `IO` Monad](./monads/io.md)
+  - [`IO` モナド](./monads/io.md)
   - [Additional Conveniences](monads/conveniences.md)
   - [Summary](monads/summary.md)
 - [Functors, Applicative Functors, and Monads](functor-applicative-monad.md)
