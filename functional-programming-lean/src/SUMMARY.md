@@ -36,7 +36,7 @@
   - [モナドのための `do` 記法](./monads/do.md)
   - [`IO` モナド](./monads/io.md)
   - [その他の便利な機能](monads/conveniences.md)
-  - [Summary](monads/summary.md)
+  - [まとめ](monads/summary.md)
 - [Functors, Applicative Functors, and Monads](functor-applicative-monad.md)
   - [Structures and Inheritance](functor-applicative-monad/inheritance.md)
   - [Applicative Functors](functor-applicative-monad/applicative.md)
