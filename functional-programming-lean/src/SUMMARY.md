@@ -54,7 +54,7 @@
   - [まとめ](monad-transformers/summary.md)
 - [依存型によるプログラミング](dependent-types.md)
   - [添字族](dependent-types/indexed-families.md)
-  - [The Universe Design Pattern](dependent-types/universe-pattern.md)
+  - [ユニバースによるデザインパターン](dependent-types/universe-pattern.md)
   - [Worked Example: Typed Queries](dependent-types/typed-queries.md)
   - [Indices, Parameters, and Universe Levels](dependent-types/indices-parameters-universes.md)
   - [Pitfalls of Programming with Dependent Types](dependent-types/pitfalls.md)
