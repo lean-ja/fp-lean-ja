@@ -57,14 +57,14 @@ In some sense, an indexed family is not a type; rather, it is a collection of re
 Choosing the index `5` for `Vect` means that only the constructor `cons` is available, and choosing the index `0` means that only `nil` is available.
 -->
 
-添字族は異なる添え字の値によって使用できるコンストラクタを変えることができることから、型の **族** と呼ばれます。ある意味では、添字族は型ではありません；むしろ、関連した型のあつまりであり、添え字の選択によってそのあつまりから型を選ばれます。 `Vect` において添え字 `5` を選ぶことによってコンストラクタは `const` のみ、また添え字 `0` を選ぶことによって `nil` のみがそれぞれ利用可能となります。
+添字族は異なる添字の値によって使用できるコンストラクタを変えることができることから、型の **族** と呼ばれます。ある意味では、添字族は型ではありません；むしろ、関連した型のあつまりであり、添字の選択によってそのあつまりから型を選びます。 `Vect` において添字 `5` を選ぶことによってコンストラクタは `const` のみ、また添字 `0` を選ぶことによって `nil` のみがそれぞれ利用可能となります。
 
 <!--
 If the index is not yet known (e.g. because it is a variable), then no constructor can be used until it becomes known.
 Using `n` for the length allows neither `Vect.nil` nor `Vect.cons`, because there's no way to know whether the variable `n` should stand for a `Nat` that matches `0` or `n + 1`:
 -->
 
-添え字が不明である場合（例えば変数である等）、それが明らかになるまではどのコンストラクタも利用できません。長さとして `n` を用いると `Vect.nil` と `Vect.cons` のどちらも使用できません。というのも `n` が `0` と `n + 1` のどちらにマッチする `Nat` を表すのかを知るすべがないからです：
+添字が不明である場合（例えば変数である等）、それが明らかになるまではどのコンストラクタも利用できません。長さとして `n` を用いると `Vect.nil` と `Vect.cons` のどちらも使用できません。というのも `n` が `0` と `n + 1` のどちらにマッチする `Nat` を表すのかを知るすべがないからです：
 
 ```lean
 {{#example_in Examples/DependentTypes.lean nilNotLengthN}}

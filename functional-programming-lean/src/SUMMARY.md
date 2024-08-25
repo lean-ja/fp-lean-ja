@@ -53,7 +53,7 @@
   - [その他の便利な機能](monad-transformers/conveniences.md)
   - [まとめ](monad-transformers/summary.md)
 - [依存型によるプログラミング](dependent-types.md)
-  - [Indexed Families](dependent-types/indexed-families.md)
+  - [添字族](dependent-types/indexed-families.md)
   - [The Universe Design Pattern](dependent-types/universe-pattern.md)
   - [Worked Example: Typed Queries](dependent-types/typed-queries.md)
   - [Indices, Parameters, and Universe Levels](dependent-types/indices-parameters-universes.md)
