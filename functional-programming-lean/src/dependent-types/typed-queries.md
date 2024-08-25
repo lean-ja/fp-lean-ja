@@ -79,7 +79,7 @@ In this version of the function, `x` and `y` have types `Int`, `String`, and `Bo
 The definition of `dbEq` can be used to define a `BEq` instance for the types that are coded for by `DBType`:
 -->
 
-このバージョンの関数では、`x` と `y` はそれぞれ `Int` 、`String` 、`Bool` 型を持ち、これらの型すべてが `BEq` インスタンスを持っています。`dbEq` の定義では、`DBType` でコード化された型に対して `BEq` インスタンスを定義することができます：
+このバージョンの関数では、`x` と `y` はそれぞれ `Int` ・`String` ・`Bool` 型を持ち、これらの型すべてが `BEq` インスタンスを持っています。`dbEq` の定義では、`DBType` でコード化された型に対して `BEq` インスタンスを定義することができます：
 
 ```lean
 {{#example_decl Examples/DependentTypes/DB.lean BEqDBType}}
@@ -106,7 +106,7 @@ The method of the `Repr` class is called `reprPrec` because it is designed to ta
 Refining the type through dependent pattern matching allows the `reprPrec` methods from the `Repr` instances for `Int`, `String`, and `Bool` to be used:
 -->
 
-同じ手法で `Repr` インスタンスも書くことができます。`Repr` クラスのメソッドは値を表示する際に演算子の優先順位なども考慮にいれるよう設計されていることから `reprPrec` と呼ばれます。依存パターンマッチによって型を絞り込むことで、`Int` 、`String` 、`Bool` の `Repr` インスタンスから `reprPrec` メソッドを利用することができます：
+同じ手法で `Repr` インスタンスも書くことができます。`Repr` クラスのメソッドは値を表示する際に演算子の優先順位なども考慮にいれるよう設計されていることから `reprPrec` と呼ばれます。依存パターンマッチによって型を絞り込むことで、`Int` ・`String` ・`Bool` の `Repr` インスタンスから `reprPrec` メソッドを利用することができます：
 
 ```lean
 {{#example_decl Examples/DependentTypes/DB.lean ReprAsType}}
@@ -143,7 +143,7 @@ As described in [the initial section on product types](../getting-to-know/polymo
 This means that nested pairs are equivalent to ordinary flat tuples.
 -->
 
-[直積型の最初の節](../getting-to-know/polymorphism.md#Prod) で説明したように、Leanの直積型とタプルは右結合です。つまり、入れ子になったペアは通常のフラットなタプルと等価です。
+[直積型についての最初の節](../getting-to-know/polymorphism.md#Prod) で説明したように、Leanの直積型とタプルは右結合です。つまり、入れ子になったペアは通常のフラットなタプルと等価です。
 
 <!--
 A table is a list of rows that share a schema:
@@ -236,7 +236,7 @@ For example, a query that returns mountains with an elevation greater than 1000 
 One way to indicate that a column is contained in a schema is to provide a pointer directly to it, and defining the pointer as an indexed family makes it possible to rule out invalid pointers.
 -->
 
-クエリの中にはスキーマが特定のカラムを含んでいる場合にの意味を為すものがあります。例えば、標高が1000mを超える山を返すクエリは、整数からなるカラム `"elevation"` を持つスキーマでのみ意味を持ちます。あるカラムがスキーマに含まれていることを示す1つの方法は、そのカラムへのポインタを直接提供し、無効なポインタを除外するような添字族としてポインタを定義することです。
+クエリの中にはスキーマが特定のカラムを含んでいる場合にのみ意味を為すものがあります。例えば、標高が1000mを超える山を返すクエリは、整数からなるカラム `"elevation"` を持つスキーマでのみ意味を持ちます。あるカラムがスキーマに含まれていることを示す1つの方法は、そのカラムへのポインタを直接提供し、無効なポインタを除外するような添字族としてポインタを定義することです。
 
 <!--
 There are two ways that a column can be present in a schema: either it is at the beginning of the schema, or it is somewhere later in the schema.
@@ -317,7 +317,7 @@ In the second role, the constructors are used like `Nat`s to find data in a coll
 Programming with indexed families often requires the ability to switch fluently between both perspectives.
 -->
 
-1つ目の役割である根拠は命題の使われ方と似ています。添字族 `HasCol` の定義は与えられたカラムが存在する根拠としてのキモの指定として読むことができます。しかし、命題とは異なり、`HasCol` のどのコンストラクタが使われたかは重要です。2つ目の役割として、コンストラクタは `Nat` のようにコレクション内のデータを見つけるために使用されます。添字族を使用したプログラミングでは、両方の視点を流暢に切り替える能力が必要である場合がよくあります。
+1つ目の役割である根拠は命題の使われ方と似ています。添字族 `HasCol` の定義は与えられたカラムが存在する根拠としての要点の指定として読むことができます。しかし、命題とは異なり、`HasCol` のどのコンストラクタが使われたかは重要です。2つ目の役割として、コンストラクタは `Nat` のようにコレクション内のデータを見つけるために使用されます。添字族を使用したプログラミングでは、両方の視点を流暢に切り替える能力が必要である場合がよくあります。
 
 <!--
 ### Subschemas
@@ -388,11 +388,9 @@ In this context, two tactics are useful:
 
  <!--
  * The `constructor` tactic instructs Lean to solve the problem using the constructor of a datatype.
- -->
- * `constructor` タクティクは、データ型のコンストラクタを使って問題を解決するようLeanに指示します。
- <!--
  * The `repeat` tactic instructs Lean to repeat a tactic over and over until it either fails or the proof is finished.
  -->
+ * `constructor` タクティクは、データ型のコンストラクタを使って問題を解決するようLeanに指示します。
  * `repeat` タクティクは受け取ったタクティクを失敗するか証明が完了するまで何度も繰り返すよう指示します。
 
 <!--
@@ -681,31 +679,19 @@ In addition to tables, it includes the following operators:
 
  <!--
  1. The union of two expressions that have the same schema combines the rows that result from two queries
- -->
- 1. 2つのクエリの結果を結合する2つの式の和
- <!--
  2. The difference of two expressions that have the same schema removes rows found in the second result from the rows in the first result
- -->
- 2. 同じスキーマを持つ2つの式において、最初の結果から2番目の結果の行を削除する差
- <!--
  3. Selection by some criterion filters the result of a query according to an expression
- -->
- 3. 何らかの基準で式に従ってクエリの結果をフィルタリングする選択
- <!--
  4. Projection into a subschema, removing columns from the result of a query
- -->
- 4. クエリの結果からカラムを取り除く副スキーマへの射影
- <!--
  5. Cartesian product, combining every row from one query with every row from another
- -->
- 5. 直積、あるクエリのすべての行と別のクエリのすべての行を結合します
- <!--
  6. Renaming a column in the result of a query, which modifies its schema
- -->
- 6. クエリ結果のカラム名の属性名変更、これはカラムのスキーマを変更します
- <!--
  7. Prefixing all columns in a query with a name
  -->
+ 1. 2つのクエリの結果を結合する2つの式の和
+ 2. 同じスキーマを持つ2つの式において、最初の結果から2番目の結果の行を削除する差
+ 3. 何らかの基準で式に従ってクエリの結果をフィルタリングする選択
+ 4. クエリの結果からカラムを取り除く副スキーマへの射影
+ 5. 直積、あるクエリのすべての行と別のクエリのすべての行を結合します
+ 6. クエリ結果のカラム名の属性名変更、これはカラムのスキーマを変更します
  7. クエリ内のすべてのカラムに名前を前置する
  
 <!--
