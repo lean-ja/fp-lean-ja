@@ -51,7 +51,7 @@
   - [モナド変換子の順序](monad-transformers/order.md)
   - [さらなる `do` の機能](monad-transformers/do.md)
   - [その他の便利な機能](monad-transformers/conveniences.md)
-  - [Summary](monad-transformers/summary.md)
+  - [まとめ](monad-transformers/summary.md)
 - [Programming with Dependent Types](dependent-types.md)
   - [Indexed Families](dependent-types/indexed-families.md)
   - [The Universe Design Pattern](dependent-types/universe-pattern.md)
