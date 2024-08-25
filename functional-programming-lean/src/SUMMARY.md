@@ -48,7 +48,7 @@
 - [モナド変換子](monad-transformers.md)
   - [IOとReaderを組み合わせる](monad-transformers/reader-io.md)
   - [モナド組み立てキット](monad-transformers/transformers.md)
-  - [Ordering Monad Transformers](monad-transformers/order.md)
+  - [モナド変換子の順序](monad-transformers/order.md)
   - [More `do` Features](monad-transformers/do.md)
   - [Additional Conveniences](monad-transformers/conveniences.md)
   - [Summary](monad-transformers/summary.md)
