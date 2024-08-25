@@ -62,7 +62,7 @@ For example, if a concrete proof were desired for the number 3, then it could be
 Thus, it proves the statement for all natural numbers.
 -->
 
-その文を **すべての** 自然数についてチェックすることは不可能であるため、帰納法は原理的にはどのような自然数にも拡張できる証明を書く手段を提供します。例えば、3という値について具体的な証明が必要な場合、まず基本ケースを使い、次に帰納法のステップを3回使うことで、0・1・2、そして最後に3について証明することができます。こうして、すべての自然数についての証明ができます。
+ある文を **すべての** 自然数についてチェックすることは不可能であるため、帰納法は原理的にはどのような自然数にも拡張できる証明を書く手段を提供します。例えば、3という値について具体的な証明が必要な場合、まず基本ケースを使い、次に帰納法のステップを3回使うことで、0・1・2、そして最後に3について証明することができます。こうして、すべての自然数についての証明ができます。
 
 <!--
 ## The Induction Tactic
@@ -78,7 +78,7 @@ Lean provides an induction _tactic_ that can carry out an entire proof by induct
 Behind the scenes, Lean constructs the recursive function that corresponds the use of induction.
 -->
 
-`congrArg` のような補助関数を使用する再帰関数として帰納法による証明を書くことは、証明の背後にある意図を表現するにあたっては必ずしも良い仕事ではありません。再帰関数は確かに帰納法の構造を持っていますが、これは証明を **エンコード** したものと見なすべきでしょう。さらに、Leanのタクティクシステムは、再帰関数を明示的に記述する時には利用できない、証明の構築を自動化する多くの機会を提供します。Leanは1つのタクティクブロックで帰納法による証明全体を実行できる **induction** タクティクを提供しています。裏では、Leanは帰納法の使用に対応する再帰関数を構築しています。
+`congrArg` のような補助関数を使用する再帰関数として帰納法による証明を書くことは、証明の背後にある意図を表現するにあたっては必ずしも良い仕事ではありません。再帰関数は確かに帰納法の構造を持っていますが、これは証明を **エンコード** したものと見なすべきでしょう。さらに、Leanのタクティクシステムは、再帰関数を明示的に記述する時には利用できない、証明の構築を自動化する多くの機会を提供します。Leanは1つのタクティクブロックで帰納法による証明全体を実行できる帰納法用の **タクティク** を提供しています。裏では、Leanは帰納法の使用に対応する再帰関数を構築しています。
 
 <!--
 To prove `plusR_zero_left` with the induction tactic, begin by writing its signature (using `theorem`, because this really is a proof).
