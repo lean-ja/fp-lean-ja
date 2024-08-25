@@ -2,7 +2,7 @@
 # Indices, Parameters, and Universe Levels
 -->
 
-# 添字、パラメータ、宇宙レベル
+# 添字・パラメータ・宇宙レベル
 
 <!--
 The distinction between indices and parameters of an inductive type is more than just a way to describe arguments to the type that either vary or do not between the constructors.
@@ -161,19 +161,13 @@ The rules of parameters and indices are as follows:
 
  <!--
  1. Parameters must be used identically in each constructor's type.
- -->
- 1. パラメータは各コンストラクタの型で同じものを使用しなければなりません。
- <!--
  2. All parameters must come before all indices.
- -->
- 2. すべてのパラメータはすべての添字より前に来なければなりません。
- <!--
  3. The universe level of the datatype being defined must be at least as large as the largest parameter, and strictly larger than the largest index.
- -->
- 3. 定義されるデータ型の宇宙レベルは最も低くても最大のパラメータのものと同じ大きさでなければならず、最大の添字より大きくなければなりません。
- <!--
  4. Named arguments written before the colon are always parameters, while arguments after the colon are typically indices. Lean may determine that the usage of arguments after the colon makes them into parameters if they are used consistently in all constructors and don't come after any indices.
  -->
+ 1. パラメータは各コンストラクタの型で同じものを使用しなければなりません。
+ 2. すべてのパラメータはすべての添字より前に来なければなりません。
+ 3. 定義されるデータ型の宇宙レベルは最も低くても最大のパラメータのものと同じ大きさでなければならず、最大の添字より大きくなければなりません。
  4. コロンの前に書かれた名前付きの引数は常にパラメータであり、コロンの後ろに書かれた引数は通常は添字です。コロンの後ろにある引数が一貫して使われ、かつ添字より後ろに来ないように使われている場合、それらをパラメータに変更するよう判断できます。
 
 <!--
