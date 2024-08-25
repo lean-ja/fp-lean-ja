@@ -52,7 +52,7 @@
   - [さらなる `do` の機能](monad-transformers/do.md)
   - [その他の便利な機能](monad-transformers/conveniences.md)
   - [まとめ](monad-transformers/summary.md)
-- [Programming with Dependent Types](dependent-types.md)
+- [依存型によるプログラミング](dependent-types.md)
   - [Indexed Families](dependent-types/indexed-families.md)
   - [The Universe Design Pattern](dependent-types/universe-pattern.md)
   - [Worked Example: Typed Queries](dependent-types/typed-queries.md)

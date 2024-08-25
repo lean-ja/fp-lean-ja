@@ -13,7 +13,7 @@ When the two interact, it is usually in the form of a type-case operator like an
 In other words, the interaction consists of types being inserted into the world of programs, gaining some limited run-time meaning.
 -->
 
-ほとんどの静的型付けプログラミングでは、型の世界とプログラミングの世界の間には気密防止のためのハーメチックシールが貼られています。型とプログラミングでは異なる文法が用いられ、異なるタイミングで使用されます。型は通常、コンパイル時に用いられ、プログラムが特定の不変量にしたがうかどうかをチェックします。プログラムは実行時に用いられ、実際に計算を実行します。この2つを相互に作用させる場合、通常は `instance-of` チェックのような型ケース演算子や、キャスティング演算子などを用いる形で行われます。これらは実行時に検証するために型チェッカに他の方法で得られなかった情報を提供してくれます。言い換えれば、この相互作用は型がプログラムの世界に挿入され、実行時に限定された意味を持つようになるということです。
+ほとんどの静的型付けプログラミングでは、型の世界とプログラミングの世界の間にはハーメチックシール（訳注：気密防水のためのシールのこと）が貼られています。型とプログラミングでは異なる文法が用いられ、異なるタイミングで使用されます。型は通常、コンパイル時に用いられ、プログラムが特定の不変量にしたがうかどうかをチェックします。プログラムは実行時に用いられ、実際に計算を実行します。この2つを相互に作用させる場合、通常は `instance-of` チェックのような型ケース演算子や、キャスティング演算子などを用いる形で行われます。これらは実行時に検証するために型チェッカに他の方法で得られなかった情報を提供してくれます。言い換えれば、この相互作用は型がプログラムの世界に挿入され、実行時に限定された意味を持つようになるということです。
 
 <!--
 Lean does not impose this strict separation.
@@ -43,23 +43,15 @@ Further examples of dependent types include:
 
  <!--
  * [The introductory section on polymorphism](getting-to-know/polymorphism.md) contains `posOrNegThree`, in which the function's return type depends on the value of the argument.
- -->
- * [多相性について導入した節](getting-to-know/polymorphism.md) で定義した `posOrNegThree` はその引数の値に戻り値の型が依存します。
- <!--
  * [The `OfNat` type class](type-classes/pos.md#literal-numbers) depends on the specific natural number literal being used.
- -->
- * [`OfNat` 型クラス](type-classes/pos.md#literal-numbers) はインスタンス化の際に使われた特定の数値リテラルに依存します。
- <!--
  * [The `CheckedInput` structure](functor-applicative-monad/applicative.md#validated-input) used in the example of validators depends on the year in which validation occurred.
- -->
- * バリデータの例にて用いられた [`CheckedInput` 構造体](functor-applicative-monad/applicative.md#validated-input) はバリデーション時に渡される年の値に依存します。
- <!--
  * [Subtypes](functor-applicative-monad/applicative.md#subtypes) contain propositions that refer to particular values.
- -->
- * [部分型](functor-applicative-monad/applicative.md#subtypes) は特定の値を参照する命題を含みます。
- <!--
  * Essentially all interesting propositions, including those that determine the validity of [array indexing notation](props-proofs-indexing.md), are types that contain values and are thus dependent types.
  -->
+ * [多相性について導入した節](getting-to-know/polymorphism.md) で定義した `posOrNegThree` はその引数の値に戻り値の型が依存します。
+ * [`OfNat` 型クラス](type-classes/pos.md#literal-numbers) はインスタンス化の際に使われた特定の数値リテラルに依存します。
+ * バリデータの例にて用いられた [`CheckedInput` 構造体](functor-applicative-monad/applicative.md#validated-input) はバリデーション時に渡される年の値に依存します。
+ * [部分型](functor-applicative-monad/applicative.md#subtypes) は特定の値を参照する命題を含みます。
  * [配列の添え字表記](props-proofs-indexing.md) の妥当性決定を含め、本質的に興味深い名地あはすべて値を含む型であり、したがって依存型です。
 
 <!--
