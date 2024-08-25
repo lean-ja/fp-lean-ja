@@ -215,7 +215,7 @@ After all, the program consults the entries in order until a satisfactory one is
 If the loop terminates without having returned, the answer is `none`.
 -->
 
-可変状態を扱うような全てのプログラムは状態を引数として受け取るプログラムとして書けるように、すべての繰り返しは再帰関数として書くことができます。その観点で言えば、`List.find?` はまさに再帰関数として見ることができます。結論から言うと、その場合の定義はリストの構造を反映したものになっています：もし先頭がチェックを通過すればその要素が返されます；さもなくば後続のリストを見に行きます。もしリストに要素が1つも無ければ、結果は `none` になります。一方で見方を変えれば、`List.find?` は繰り返し処理の関数として見ることができます。この関数はとどのつまり、チェックを満たすものが見つかるまで順番に要素を調べ、見つかった時点で終了するものだからです。ループが戻らずに終了した場合、結果は `none` になります。
+可変状態を扱うような全てのプログラムが状態を引数として受け取るプログラムとして書けるように、すべての繰り返しは再帰関数として書くことができます。その観点で言えば、`List.find?` はまさに再帰関数として見ることができます。結論から言うと、その場合の定義はリストの構造を反映したものになっています：もし先頭がチェックを通過すればその要素が返されます；さもなくば後続のリストを見に行きます。もしリストに要素が1つも無ければ、結果は `none` になります。一方で見方を変えれば、`List.find?` は繰り返し処理の関数として見ることができます。この関数はとどのつまり、チェックを満たすものが見つかるまで順番に要素を調べ、見つかった時点で終了するものだからです。ループが戻らずに終了した場合、結果は `none` になります。
 
 <!--
 ### Looping with ForM
@@ -422,7 +422,7 @@ In the meantime, an adapter is provided that converts a `ForM` instance into a `
 To enable `for` loops based on a `ForM` instance, add something like the following, with appropriate replacements for `AllLessThan` and `Nat`:
 -->
 
-この文章を書いているタイミングでは、構文 `for ... in ... do ...` は `ForIn` という型クラスを使用したものに脱糖されます。このクラスは状態と早期リターンを担保した `ForM` をより複雑にしたものです。しかし、`for` ループをリファクタリングして、よりシンプルな `ForM` を使うようにする計画があります。それまでの間、`ForM.forIn` という `ForM` インスタンスを `ForIn` インスタンスに変換するアダプタが用意されています。`ForM` インスタンスに基づく `for` ループを使えるようにするには、以下のように `AllLessThan` と `Nat` を適切に置き換えて追加します：
+この文章を書いている時点では、構文 `for ... in ... do ...` は `ForIn` という型クラスを使用したものに脱糖されます。このクラスは状態と早期リターンを担保した `ForM` をより複雑にしたものです。しかし、`for` ループをリファクタリングして、よりシンプルな `ForM` を使うようにする計画があります。それまでの間、`ForM.forIn` という `ForM` インスタンスを `ForIn` インスタンスに変換するアダプタが用意されています。`ForM` インスタンスに基づく `for` ループを使えるようにするには、以下のように `AllLessThan` と `Nat` を適切に置き換えて追加します：
 
 ```lean
 {{#example_decl Examples/MonadTransformers/Do.lean ForInIOAllLessThan}}
