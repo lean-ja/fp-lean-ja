@@ -56,7 +56,7 @@
   - [添字族](dependent-types/indexed-families.md)
   - [ユニバースによるデザインパターン](dependent-types/universe-pattern.md)
   - [使用事例：型付きクエリ](dependent-types/typed-queries.md)
-  - [Indices, Parameters, and Universe Levels](dependent-types/indices-parameters-universes.md)
+  - [添字・パラメータ・宇宙レベル](dependent-types/indices-parameters-universes.md)
   - [Pitfalls of Programming with Dependent Types](dependent-types/pitfalls.md)
   - [Summary](./dependent-types/summary.md)
 - [Interlude: Tactics, Induction, and Proofs](./tactics-induction-proofs.md)
