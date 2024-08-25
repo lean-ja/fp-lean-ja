@@ -58,7 +58,7 @@
   - [使用事例：型付きクエリ](dependent-types/typed-queries.md)
   - [添字・パラメータ・宇宙レベル](dependent-types/indices-parameters-universes.md)
   - [依存型プログラミングの落とし穴](dependent-types/pitfalls.md)
-  - [Summary](./dependent-types/summary.md)
+  - [まとめ](./dependent-types/summary.md)
 - [Interlude: Tactics, Induction, and Proofs](./tactics-induction-proofs.md)
 - [Programming, Proving, and Performance](programs-proofs.md)
   - [Tail Recursion](programs-proofs/tail-recursion.md)

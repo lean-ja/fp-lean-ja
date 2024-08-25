@@ -49,7 +49,7 @@ A domain-specific subset of the type system can be defined by first defining a d
 The constructors are referred to as _codes_ for the types in question, and the entire pattern is sometimes referred to as a _universe à la Tarski_, or just as a _universe_ when context makes it clear that universes such as `Type 3` or `Prop` are not what's meant.
 -->
 
-依存型を使う際によくあるパターンは、型システムのサブセットを切り出すことです。例えば、データベースのクエリライブラリは可変長の文字列や固定長の文字列、特定の範囲の数値を返すかもしれませんが、関数やユーザ定義のデータ型、`IO` アクションなどは決して返しません。型システムのドメイン固有のサブセットの定義は、まず希望する型の構造にマッチするコンストラクタを持つデータ型を定義し、次にこのデータ型からの値を正真正銘の型に解釈する関数を定義することで行えます。コンストラクタは問題の対象の型の **コード** と呼ばれ、パターン全体は **Tarski流ユニバース** と呼ばれたり、文脈から `Type 3` や `Prop` のような宇宙を意味するものではないことが明らかな場合は単に **ユニバース** と呼ばれたりします。
+依存型を使う際によくあるパターンは、型システムのサブセットを切り出すことです。例えば、データベースのクエリライブラリは可変長の文字列や固定長の文字列、特定の範囲の数値を返すかもしれませんが、関数やユーザ定義のデータ型、`IO` アクションなどは決して返しません。型システムのドメイン固有のサブセットの定義は、まず希望する型の構造にマッチするコンストラクタを持つデータ型を定義し、次にこのデータ型からの値を正真正銘の型に解釈する関数を定義することで行えます。コンストラクタは問題の対象の型の **コード** と呼ばれ、パターン全体は **Tarski風ユニバース** と呼ばれたり、文脈から `Type 3` や `Prop` のような宇宙を意味するものではないことが明らかな場合は単に **ユニバース** と呼ばれたりします。
 
 <!--
 Custom universes are an alternative to defining a type class with instances for each type of interest.
@@ -61,15 +61,11 @@ Defining a custom universe has a number of advantages over using the types direc
 
  <!--
  * Generic operations that work for _any_ type in the universe, such as equality testing and serialization, can be implemented by recursion on codes.
- -->
- * 等値性の検査や直列化など、宇宙の **あらゆる** 型に対して機能する汎用的な操作はコードの再帰によって実装することができます。
- <!--
  * The types accepted by external systems can be represented precisely, and the definition of the code datatype serves to document what can be expected.
- -->
- * 外部システムが受け入れる型を正確に表現することができ、コードによるデータ型の定義は何が期待されるかを文書化する役割を果たします。
- <!--
  * Lean's pattern matching completeness checker ensures that no codes are forgotten, while solutions based on type classes defer missing instance errors to client code.
  -->
+ * 等値性の検査や直列化など、宇宙の **あらゆる** 型に対して機能する汎用的な操作はコードの再帰によって実装することができます。
+ * 外部システムが受け入れる型を正確に表現することができ、コードによるデータ型の定義は何が期待されるかを文書化する役割を果たします。
  * Leanのパターンマッチの完全性についてのチェッカはコードの取り忘れがないことを保証しますが、一方で型クラスによる解決策ではインスタンスが無いことによるエラーはクライアントコードに先送りにされます。
 
 
