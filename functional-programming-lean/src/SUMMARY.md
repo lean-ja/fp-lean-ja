@@ -55,7 +55,7 @@
 - [依存型によるプログラミング](dependent-types.md)
   - [添字族](dependent-types/indexed-families.md)
   - [ユニバースによるデザインパターン](dependent-types/universe-pattern.md)
-  - [Worked Example: Typed Queries](dependent-types/typed-queries.md)
+  - [使用事例：型付きクエリ](dependent-types/typed-queries.md)
   - [Indices, Parameters, and Universe Levels](dependent-types/indices-parameters-universes.md)
   - [Pitfalls of Programming with Dependent Types](dependent-types/pitfalls.md)
   - [Summary](./dependent-types/summary.md)
