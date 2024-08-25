@@ -28,11 +28,9 @@ At a minimum, a monad transformer should provide the following instances:
 
  <!--
  1. A `Monad` instance that assumes the inner type is already a monad
- -->
- 1. 内側の型がすでにモナドであると仮定する `Monad` インスタンス
- <!--
  2. A `MonadLift` instance to translate an action from the inner monad to the transformed monad
  -->
+ 1. 内側の型がすでにモナドであると仮定する `Monad` インスタンス
  2. 内側のモナドから変換後のモナドにアクションを変換する `MonadLift` インスタンス
  
 <!--
