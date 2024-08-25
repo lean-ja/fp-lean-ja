@@ -15,15 +15,11 @@ Each monad transformer consists of the following:
  <!--
  1. A definition or datatype `T` that takes a monad as an argument.
     It should have a type like `(Type u → Type v) → Type u → Type v`, though it may accept additional arguments prior to the monad.
--->
- 1. モナドを引数に取る定義もしくはデータ型 `T` 。これは `(Type u → Type v) → Type u → Type v` のような型を持ちますが、モナドの前に別で引数を受け取ることもできます。
- <!--
  2. A `Monad` instance for `T m` that relies on an instance of `Monad m`. This enables the transformed monad to be used as a monad.
--->
- 2. `Monad m` のインスタンスに依存した `T m` の `Monad` インスタンス。これにより変換されたモナドをモナドとして使うことができます。
- <!--
  3. A `MonadLift` instance that translates actions of type `m α` into actions of type `T m α`, for arbitrary monads `m`. This enables actions from the underlying monad to be used in the transformed monad.
 -->
+ 1. モナドを引数に取る定義もしくはデータ型 `T` 。これは `(Type u → Type v) → Type u → Type v` のような型を持ちますが、モナドの前に別で引数を受け取ることもできます。
+ 2. `Monad m` のインスタンスに依存した `T m` の `Monad` インスタンス。これにより変換されたモナドをモナドとして使うことができます。
  3. 任意のモナド `m` に対して `m α` 型のアクションを `T m α` 型のアクションに変換する `MonadLift` インスタンス。これにより、変換後のモナドでベースとなったモナドのアクションを使用できるようになります。
 
 <!--
@@ -31,7 +27,7 @@ Furthermore, the `Monad` instance for the transformer should obey the contract f
 In addition, `monadLift (pure x)` should be equivalent to `pure x` in the transformed monad, and `monadLift` should distribute over `bind` so that `monadLift (x >>= f)` is the same as `monadLift x >>= fun y => monadLift (f y)`.
 -->
 
-さらに、変換子の `Monad` インスタンスはベースとなった `Monad` インスタンスがモナドの約定に従うのであれば `Monad` の約定に従わなければなりません。加えて、`monadLift (pure x)` は変換後のモナドでは `pure x` と等価、`monadLift` は `monadLift (x >>= f)` が `monadLift x >>= fun y => monadLift (f y)` と同じになるように `bind` に対して分配されるべきです。
+さらに、ベースとなった `Monad` インスタンスがモナドの約定に従うのであれば、変換子の `Monad` インスタンスは `Monad` の約定に従わなければなりません。加えて、`monadLift (pure x)` は変換後のモナドでは `pure x` と等価になるべき、また `monadLift` は `monadLift (x >>= f)` が `monadLift x >>= fun y => monadLift (f y)` と同じになるように `bind` に対して分配されるべきです。
 
 <!--
 Many monad transformers additionally define type classes in the style of `MonadReader` that describe the actual effects available in the monad.
@@ -321,7 +317,7 @@ This means that it is reasonable to lift `Except ε` actions into `ExceptT ε m`
 Lifting `Except` actions into `ExceptT` actions is done by wrapping them in `m`'s `pure`, because an action that only has exception effects cannot have any effects from the monad `m`:
 -->
 
-`Option` とは異なり、`Except` データ型は通常、データ構造として使用されることはありません。いつも `Monad` インスタンスを持った制御構造として使用されます。このことから、`Except ε` のアクションを `ExceptT ε m` に持ち上げてベースのモナド `m` のアクションのようにするのは合理的でしょう。例外の作用しか持たないアクションはモナド `m` からの作用を持つことができないため、`Except` のアクションを `ExceptT` のアクションに持ち上げるには `m` の `pure` で包みます：
+`Option` とは異なり、`Except` データ型は通常、データ構造として使用されることはありません。いつも `Monad` インスタンスを持った制御構造として使用されます。このことから、`Except ε` のアクションを `ExceptT ε m` に持ち上げてベースのモナド `m` のアクションのようにすることは合理的でしょう。例外の作用しか持たないアクションはモナド `m` からの作用を持つことができないため、`Except` のアクションを `ExceptT` のアクションに持ち上げるには `m` の `pure` で包みます：
 
 ```lean
 {{#example_decl Examples/MonadTransformers/Defs.lean ExceptTLiftExcept}}
@@ -527,7 +523,7 @@ As monads grow in complexity, however, they may involve multiple states or error
 In this case, the use of an output parameter makes it impossible to target both states in the same `do`-block.
 -->
 
-ここまで見てきた、`MonadExcept` の例外の型や、`MonadState` の状態の型のように追加の情報を受け取るモナドの型クラスはすべてこの追加情報の型を出力パラメータとして保持していました。単純なプログラムであれば、`StateT` 、`ReaderT` 、`ExceptT` からどれか1つを組み合わせたモナドは状態の型、環境の型、例外の型のうちどれか1つしか持たないため一般的に利用しやすいです。しかし。モナドが複雑になってくると複数の状態やエラーの型を含むようになります。この場合、出力パラメータを用いると同じ `do` ブロックで両方の状態をターゲットにすることができなくなります。
+ここまで見てきた、`MonadExcept` の例外の型や、`MonadState` の状態の型のように追加の情報を受け取るモナドの型クラスはすべてこの追加情報の型を出力パラメータとして保持していました。単純なプログラムであれば、`StateT` ・`ReaderT` ・`ExceptT` からどれか1つを組み合わせたモナドは状態の型、環境の型、例外の型のうちどれか1つしか持たないため一般的に利用しやすいです。しかし、モナドが複雑になってくると複数の状態やエラーの型を含むようになります。この場合、出力パラメータを用いると同じ `do` ブロックで両方の状態をターゲットにすることができなくなります。
 
 <!--
 For these cases, there are additional type classes in which the extra information is not an output parameter.
