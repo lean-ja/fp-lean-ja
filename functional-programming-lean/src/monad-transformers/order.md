@@ -195,17 +195,11 @@ With great expressive power comes the responsibility to check that what's being 
 
  <!--
  * Check that `ReaderT` and `StateT` commute by expanding their definitions and reasoning about the resulting types.
--->
- * `ReaderT` と `StateT` の定義を展開し、その結果の型を推論して `ReaderT` と `StateT` が可換であることを確認してください。
- <!--
  * Do `ReaderT` and `ExceptT` commute? Check your answer by expanding their definitions and reasoning about the resulting types.
--->
- * `ReaderT` と `ExceptT` は可換になるでしょうか？定義を展開し、結果の型を推論して答えを確認してください。
- <!--
  * Construct a monad transformer `ManyT` based on the definition of `Many`, with a suitable `Alternative` instance. Check that it satisfies the `Monad` contract.
--->
- * モナド変換子 `ManyT` を`Many` の定義と適切な `Alternative` インスタンスに基づいて構築してください。そしてそれが `Monad` の約定を満たすことを確認してください。
- <!--
  * Does `ManyT` commute with `StateT`? If so, check your answer by expanding definitions and reasoning about the resulting types. If not, write a program in `ManyT (StateT σ Id)` and a program in `StateT σ (ManyT Id)`. Each program should be one that makes more sense for the given ordering of monad transformers.
 -->
+ * `ReaderT` と `StateT` の定義を展開し、その結果の型を推論して `ReaderT` と `StateT` が可換であることを確認してください。
+ * `ReaderT` と `ExceptT` は可換になるでしょうか？定義を展開し、結果の型を推論して答えを確認してください。
+ * モナド変換子 `ManyT` を`Many` の定義と適切な `Alternative` インスタンスに基づいて構築してください。そしてそれが `Monad` の約定を満たすことを確認してください。
  * `ManyT` は　`StateT` と可換になるでしょうか？もしそうなら、定義を展開し、結果の型を推論して答えを確認してください。もしそうでないなら、`ManyT (StateT σ Id)` と `StateT σ (ManyT Id)` のプログラムを書いてください。それぞれのプログラムはモナド変換子の順序に対してより理にかなったものにしてください。
