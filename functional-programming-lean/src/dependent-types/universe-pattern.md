@@ -113,15 +113,11 @@ This is useful in a few situations:
 
  <!--
  * When a function should act very differently depending on which type it is passed—it is impossible to pattern match on types themselves, but pattern matching on codes for types is allowed
- -->
- * どの型が渡されるかによって関数の動作が大きく異なる場合。この場合、型そのものに対するパターンマッチは不可能ですが、型に対応したコードに対するパターンマッチは可能です
- <!--
  * When an external system inherently limits the types of data that may be provided, and extra flexibility is not desired
- -->
- * 外部システムが本質的に提供可能なデータの種類を制限しており、余分な柔軟性が望まれない場合
- <!--
  * When additional properties of a type are required over and above the implementation of some operations
  -->
+ * どの型が渡されるかによって関数の動作が大きく異なる場合。この場合、型そのものに対するパターンマッチは不可能ですが、型に対応したコードに対するパターンマッチは可能です
+ * 外部システムが本質的に提供可能なデータの種類を制限しており、余分な柔軟性が望まれない場合
  * ある操作の実装以上に型へのプロパティ追加が必要な場合
 
 <!--
@@ -222,7 +218,7 @@ It can even compare functions built using tools such as function composition:
 This is because the `Finite` universe codes for Lean's _actual_ function type, not a special analogue created by the library.
 -->
 
-これは `Finite` ユニバースのコードがライブラリが作成した特別に用意された類似物などではなく、Leanの **実際の** 関数型を示すしているからです。
+これは `Finite` ユニバースのコードがライブラリによって作成される特別に用意された類似物などではなく、Leanの **実際の** 関数型を示すしているからです。
 
 <!--
 The implementation of `enumerate` is also by recursion on the codes from `Finite`.
@@ -313,19 +309,13 @@ This suggests a means of constructing the higher-order functions:
 
  <!--
  * Begin with a list of all possible arguments to the function that is itself an argument.
- -->
- * 関数の引数として考えられるすべての引数のリストから始めます。
- <!--
  * For each possible argument, construct all possible behaviors that can result from the observation of applying the argument function to the possible argument. This can be done using `Finite.functions` and recursion over the rest of the possible arguments, because the result of the recursion represents the functions based on the observations of the rest of the possible arguments. `Finite.functions` constructs all the ways of achieving these based on the observation for the current argument.
- -->
- * 各ありうる引数について、それらに引数の関数を適用することの観察から生じる可能な挙動すべてを構築します。これは `Finite.functions` と残りの可能な引数に対する再帰を使用して行うことができます。というのも再帰の結果は残りの可能な引数の関数に基づく関数を表すからです。
- <!--
  * For potential behavior in response to these observations, construct a higher-order function that applies the argument function to the current possible argument. The result of this is then passed to the observation behavior.
- -->
- * これらの観察に応答する潜在的な挙動に対して、引数の関数を現在の可能な引数に適用する高階関数を構築します。そしてその結果を観察の挙動に渡します。
- <!--
  * The base case of the recursion is a higher-order function that observes nothing for each result value—it ignores the argument function and simply returns the result value.
  -->
+ * 関数の引数として考えられるすべての引数のリストから始めます。
+ * 各ありうる引数について、それらに引数の関数を適用することの観察から生じる可能な挙動すべてを構築します。これは `Finite.functions` と残りの可能な引数に対する再帰を使用して行うことができます。というのも再帰の結果は残りの可能な引数の関数に基づく関数を表すからです。
+ * これらの観察に応答する潜在的な挙動に対して、引数の関数を現在の可能な引数に適用する高階関数を構築します。そしてその結果を観察の挙動に渡します。
  * 再帰のベースのケースは各結果の値に対して何も観察しない高階関数です。これは引数関数を無視し、ただ結果の値を返します。
 
 <!--
@@ -437,14 +427,10 @@ Nested exponentials grow quickly, and there are many higher-order functions.
 
  <!--
  * Write a function that converts any value from a type coded for by `Finite` into a string. Functions should be represented as their tables.
- -->
- * `Finite` でコード化された型の任意の値を文字列に変換する関数を書いてください。関数はそれらの表として表現されなければなりません。
- <!--
  * Add the empty type `Empty` to `Finite` and `Finite.beq`.
- -->
- * 空の型 `Empty` を `Finite` と `Finite.beq` に追加してください。
- <!--
  * Add `Option` to `Finite` and `Finite.beq`.
  -->
+ * `Finite` でコード化された型の任意の値を文字列に変換する関数を書いてください。関数はそれらの表として表現されなければなりません。
+ * 空の型 `Empty` を `Finite` と `Finite.beq` に追加してください。
  * `Option` を `Finite` と `Finite.beq` に追加してください。
 
