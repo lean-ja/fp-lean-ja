@@ -35,7 +35,7 @@ As an example, take the following two implementations of addition on `Nat`.
 `Nat.plusR`, on the other hand, is recursive on its second argument:
 -->
 
-一方、`Nat.plusR` は第二引数に対して再帰的です：
+一方、`Nat.plusR` は第2引数に対して再帰的です：
 
 ```lean
 {{#example_decl Examples/DependentTypes/Pitfalls.lean plusR}}
@@ -98,7 +98,7 @@ Similarly, `plusL` contains a pattern case `n + 1, k => plusN n k + 1`.
 This means that the type of the second underscore can be equivalently written `Vect α (plusL n✝ k + 1)`.
 -->
 
-`plusL` の定義には `0, k => k` のパターンのケースがあります。これは最初のプレースホルダで使用されている長さに適用されるため、アンダースコアの型 `Vect α (Nat.plusL 0 k)` は `Vect α k` と別の書き方ができます。同様に、`plusL` は `n + 1, k => plusN n k + 1` というパターンのケースを含んでいます。つまり、2つ目のアンダースコアの型は `Vect α (plusL n✝ k + 1)` と書くのと等価です。
+`plusL` の定義には `0, k => k` のパターンのケースがあります。これは最初のプレースホルダで使用されている長さに適用されるため、アンダースコアの型 `Vect α (Nat.plusL 0 k)` は `Vect α k` と別の書き方ができます。同様に、`plusL` は `n + 1, k => plusN n k + 1` というパターンのケースを含んでいます。つまり、2つ目のアンダースコアの型は `Vect α (plusL n✝ k + 1)` と書くことと等価です。
 
 <!--
 To expose what is going on behind the scenes, the first step is to write the `Nat` arguments explicitly, which also results in daggerless error messages because the names are now written explicitly in the program:
@@ -171,7 +171,7 @@ Because types can contain ordinary data, definitional equality must also describ
 Uses of the same constructors are equal, so `0` equals `0` and `[5, 3, 1]` equals `[5, 3, 1]`.
 -->
 
-当たり前ですが、同じように書かれた2つの型は定義上等価です。例えば、`Nat` は `Nat` と、`List String` は `List String` と等しいと見なされるべきです。異なるデータ型から構築された任意の2つの具体的な型は等しくありません。そのため `List Nat` は `Int` と等しくありません。さらに、内部的な名前の変更だけが異なる型は等しいです。そのため、`(n : Nat) → Vect String n` は `(k : Nat) → Vect String k` と同じです。型は通常のデータを含むことができるため、定義上の等価性はデータが等しい場合についても記述しなければなりません。同じコンストラクタの使用は等しいです。そのため、`0` は `0` と、`[5, 3, 1]` は `[5, 3, 1]` と等しくなります。
+当たり前ですが、同じように書かれた2つの型は定義上同値です。例えば、`Nat` は `Nat` と、`List String` は `List String` と等しいと見なされるべきです。異なるデータ型から構築された任意の2つの具体的な型は等しくありません。そのため `List Nat` は `Int` と等しくありません。さらに、内部的な名前の変更だけが異なる型は等しいです。そのため、`(n : Nat) → Vect String n` は `(k : Nat) → Vect String k` と同じです。型は通常のデータを含むことができるため、定義上の同値はデータが等しい場合についても記述しなければなりません。同じコンストラクタの使用は等しいです。そのため、`0` は `0` と、`[5, 3, 1]` は `[5, 3, 1]` と等しくなります。
 
 <!--
 Types contain more than just function arrows, datatypes, and constructors, however.
@@ -319,7 +319,7 @@ Its pattern matching occurs on the _second_ argument, not the first argument, wh
 `Nat.add` in Lean's standard library is equivalent to `plusR`, not `plusL`, so attempting to use it in this definition results in precisely the same difficulties:
 -->
 
-このパターンマッチは第一引数ではなく **第二** 引数に対して行われるため、その位置に変数 `k` が存在すると簡約をすることができません。Leanの標準ライブラリにある `Nat.add` は `plusL` ではなく `plusR` と等価であるため、この定義で `Nat.add` を使おうとすると全く同じ問題が起こります：
+このパターンマッチは第1引数ではなく **第二** 引数に対して行われるため、その位置に変数 `k` が存在すると簡約をすることができません。Leanの標準ライブラリにある `Nat.add` は `plusL` ではなく `plusR` と等価であるため、この定義で `Nat.add` を使おうとすると全く同じ問題が起こります：
 
 ```lean
 {{#example_in Examples/DependentTypes/Pitfalls.lean appendR4}}
@@ -356,7 +356,7 @@ The split between definitional and propositional equality represents a division 
 Similarly, definitional equality is invoked automatically by the type checker, while propositional equality must be specifically appealed to.
 -->
 
-定義上の同値がこのように限定されている理由は、アルゴリズムによるチェックを可能にするためです。命題の同値はより機能が豊かですが、証明と称されるものが実際に証明であることを検証できたとしても、コンピュータは一般的に2つの式が命題的に等しいかどうかをチェックすることができません。定義上の同値と命題の同値の断絶は人間と機械の間の労働の区別を表現しています：退屈極まりない等式は定義上の同値の一部として自動的にチェックされ、人間の頭脳は命題の同値で利用される興味深い問題に向けることができます。同様に、定義上の同値は型チェッカによって自動的に呼び出されますが、命題の同値は明確に呼びかけなければなりません。
+定義上の同値がこのように限定されている理由は、アルゴリズムによるチェックを可能にするためです。命題の同値はより機能が豊かですが、証明と称されるものが実際に証明であることを検証できたとしても、コンピュータは一般的に2つの式が命題的に等しいかどうかをチェックすることができません。定義上の同値と命題の同値の断絶は人間と機械の間の分業を表現しています：退屈極まりない等式は定義上の同値の一部として自動的にチェックされ、人間の頭脳は命題の同値で利用される興味深い問題に向けることができます。同様に、定義上の同値は型チェッカによって自動的に呼び出されますが、命題の同値は明確に呼びかけなければなりません。
 
 <!--
 In [Propositions, Proofs, and Indexing](../props-proofs-indexing.md), some equality statements are proved using `simp`.
@@ -367,7 +367,7 @@ A simpler tactic called `rfl` specifically uses definitional equality to prove p
 The name `rfl` is short for _reflexivity_, which is the property of equality that states that everything equals itself.
 -->
 
-[命題，証明，そしてリストの添え字アクセス](../props-proofs-indexing.md) にて、いくつかの同値についての文が `simp` を使って証明されました。これらの等式はすべて、命題の同値がすでに定義上の同値になっているものです。一般的に、命題の同値についての文を証明するには、まずそれらを定義上の同値か既存の証明済みの等式に近い形にし、`simp` のようなツールを使って単純化されたケースを処理します。`simp` タクティクは非常に強力です：裏では、高速で自動化された多くのツールを使って証明を構築します。これよりはシンプルな `rfl` と呼ばれるタクティクは命題の同値を証明するために定義上の同値を使用します。`rfl` という名前は **反射律** （reflexivity）の略であり、すべてのものはそれ自身に等しいという同値についての性質です。
+[「命題・証明・リストの添え字アクセス」](../props-proofs-indexing.md) にて、いくつかの同値についての文が `simp` を使って証明されました。これらの等式はすべて、命題の同値がすでに定義上の同値になっているものです。一般的に、命題の同値についての文を証明するには、まずそれらを定義上の同値か既存の証明済みの等式に近い形にし、`simp` のようなツールを使って単純化されたケースを処理します。`simp` タクティクは非常に強力です：裏では、高速で自動化された多くのツールを使って証明を構築します。これよりはシンプルな `rfl` と呼ばれるタクティクは命題の同値を証明するために定義上の同値を使用します。`rfl` という名前は **反射律** （reflexivity）の略であり、すべてのものはそれ自身に等しいという同値についての性質です。
 
 <!--
 Unsticking `appendR` requires a proof that `k = Nat.plusR 0 k`, which is not a definitional equality because `plusR` is stuck on the variable in its second argument.
@@ -375,7 +375,7 @@ To get it to compute, the `k` must become a concrete constructor.
 This is a job for pattern matching.
 -->
 
-`appendR` の詰まりを解消するには、`k = Nat.plusR 0 k` という証明が必要ですが、これは `plusR` が第二引数の変数に着目しているため定義上の同値ではないのでした。これを計算させるためには `k` を具体的なコンストラクタにしなければなりません。これはパターンマッチの仕事です。
+`appendR` の詰まりを解消するには、`k = Nat.plusR 0 k` という証明が必要ですが、これは `plusR` が第2引数の変数に着目しているため定義上の同値ではないのでした。これを計算させるためには `k` を具体的なコンストラクタにしなければなりません。これはパターンマッチの仕事です。
 
 <!--
 In particular, because `k` could be _any_ `Nat`, this task requires a function that can return evidence that `k = Nat.plusR 0 k` for _any_ `k` whatsoever.
@@ -441,7 +441,7 @@ Given an equality proof as its first argument and some other expression as its s
 In other words, the following definition contains no type errors:
 -->
 
-命題の同値は右向きの三角形の演算子 `▸` を使ってプログラムに導入することができます。同値の証明を第一引数に、他の式を第二引数に与えることで、この演算子は第二引数の型において等式の左辺のインスタンスを右辺の等式に置き換えます。つまり、以下の定義には型エラーがありません：
+命題の同値は右向きの三角形の演算子 `▸` を使ってプログラムに導入することができます。同値の証明を第1引数に、他の式を第2引数に与えることで、この演算子は第2引数の型において等式の左辺のインスタンスを右辺の等式に置き換えます。つまり、以下の定義には型エラーがありません：
 
 ```lean
 {{#example_in Examples/DependentTypes/Pitfalls.lean appendRsubst}}
@@ -486,7 +486,7 @@ This is because `plusR` itself pattern matches on its second argument, so the pr
 The skeleton of the proof is very similar to that of `plusR_zero_left`:
 -->
 
-この証明は `plusR` への第二引数、つまり `k` へのパターンマッチを行う再帰関数です。これは `plusR` 自身が第二引数でパターンマッチを行うためであり、証明はパターンマッチによって `plusR` を「解消」し、計算の挙動を明らかにすることができます。この証明の骨格は `plusR_zero_left` のものと非常によく似ています：
+この証明は `plusR` への第2引数、つまり `k` へのパターンマッチを行う再帰関数です。これは `plusR` 自身が第2引数でパターンマッチを行うためであり、証明はパターンマッチによって `plusR` を「解消」し、計算の挙動を明らかにすることができます。この証明の骨格は `plusR_zero_left` のものと非常によく似ています：
 
 ```lean
 {{#example_in Examples/DependentTypes/Pitfalls.lean plusR_succ_left_0}}
@@ -590,10 +590,8 @@ Fluency in their use is an important part of knowing when to use them.
 
  <!--
  * Using a recursive function in the style of `plusR_succ_left`, prove that for all `Nat`s `n` and `k`, `n.plusR k = n + k`.
- -->
- * `plusR_succ_left` のスタイルの再帰関数を使って、すべての `n` と `k` に対して `n.plusR k = n + k` であることを証明してください。
- <!--
  * Write a function on `Vect` for which `plusR` is more natural than `plusL`, where `plusL` would require proofs to be used in the definition.
  -->
+ * `plusR_succ_left` のスタイルの再帰関数を使って、すべての `n` と `k` に対して `n.plusR k = n + k` であることを証明してください。
  * `Vect` 上の関数で `plusL` よりも `plusR` の方が自然であるものを書いてください。つまり `plusL` ではその定義を用いた証明が必要となるようなものです。
 

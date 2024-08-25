@@ -57,7 +57,7 @@
   - [ユニバースによるデザインパターン](dependent-types/universe-pattern.md)
   - [使用事例：型付きクエリ](dependent-types/typed-queries.md)
   - [添字・パラメータ・宇宙レベル](dependent-types/indices-parameters-universes.md)
-  - [Pitfalls of Programming with Dependent Types](dependent-types/pitfalls.md)
+  - [依存型プログラミングの落とし穴](dependent-types/pitfalls.md)
   - [Summary](./dependent-types/summary.md)
 - [Interlude: Tactics, Induction, and Proofs](./tactics-induction-proofs.md)
 - [Programming, Proving, and Performance](programs-proofs.md)
