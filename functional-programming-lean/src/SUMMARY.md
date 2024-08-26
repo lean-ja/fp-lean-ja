@@ -62,7 +62,7 @@
 - [休憩：タクティク・帰納法・証明](./tactics-induction-proofs.md)
 - [プログラミング・証明・パフォーマンス](programs-proofs.md)
   - [末尾再帰](programs-proofs/tail-recursion.md)
-  - [Proving Equivalence](programs-proofs/tail-recursion-proofs.md)
+  - [同値の証明](programs-proofs/tail-recursion-proofs.md)
   - [Arrays and Termination](programs-proofs/arrays-termination.md)
   - [More Inequalities](programs-proofs/inequalities.md)
   - [Safe Array Indices](programs-proofs/fin.md)
