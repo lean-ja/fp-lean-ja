@@ -10,7 +10,7 @@ In most programming languages, recursive functions have a key disadvantage with 
 Stack space is typically limited, and it is often necessary to take algorithms that are naturally expressed as recursive functions and rewrite them as loops paired with an explicit mutable heap-allocated stack.
 -->
 
-Leanの `do` 記法によって `for` や `while` などの伝統的な繰り返し構文が使えるようになりますが、裏ではこれらの構文は再帰関数の呼び出しに変換されています。ほとんどのプログラミング言語では、ループに対して重要な欠点を持っています：ループはスタック上の領域を消費しませんが、再帰関数は再帰呼び出しの数に比例してスタック領域を消費します。スタック領域は一般的に限られているため、再帰関数として自然に表現されるアルゴリズムを、明示的に可変で割り当てられたヒープ領域でのループに書き直す必要がしばしばあります。
+Leanの `do` 記法によって `for` や `while` などの伝統的な繰り返し構文が使えるようになりますが、裏ではこれらの構文は再帰関数の呼び出しに変換されています。ほとんどのプログラミング言語では、再帰関数はループに対して重要な欠点を持っています：ループはスタック上の領域を消費しませんが、再帰関数は再帰呼び出しの数に比例してスタック領域を消費します。スタック領域は一般的に限られているため、再帰関数として自然に表現されるアルゴリズムを、明示的に可変で割り当てられたヒープ領域でのループに書き直す必要がしばしばあります。
 
 <!--
 In functional programming, the opposite is typically true.
@@ -65,7 +65,7 @@ It is not - the tail is itself a list with `2` at its head.
 The resulting step is waiting for the return of `NonTail.sum [3]`:
 -->
 
-しかし、リストの後続の和を計算するためには、プログラムはそれが空かどうかをチェックしなければなりません。そしてこれは空ではなく、後続のリストの先頭は `2` です。この結果のステップでは `NonTail.sum [3]` が変えることを待ちます：
+しかし、リストの後続の和を計算するためには、プログラムはそれが空かどうかをチェックしなければなりません。そしてこれは空ではなく、後続のリストの先頭は `2` です。上記の結果のステップでは `NonTail.sum [3]` の結果が返ることを待ちます：
 
 ```lean
 {{#example_eval Examples/ProgramsProofs/TCO.lean NonTailSumOneTwoThree 2}}
@@ -103,7 +103,7 @@ In other words, a single stack frame can be re-used for each recursive invocatio
 Tail-call elimination is exactly this re-use of the stack frame, and `Tail.sumHelper` is referred to as a _tail-recursive function_.
 -->
 
-内部の補助関数は自分自身を再帰的に呼び出しますが、最終的な結果を計算するために何も覚えておく必要はありません。`Tail.sumHelper` の中華に呼び出しは再帰呼び出しの結果をそのまま返すだけであるため、`Tail.sumHelper` が基本ケースに到達すると制御を直接 `Tail.sum` に戻すことができます。つまり、`Tail.sumHelper` を再帰的に呼び出すたびに1つのスタックフレームを再利用することができます。末尾呼び出しの除去とはまさにこのスタックフレームの再利用のことであり、`Tail.sumHelper` は **末尾再帰関数** と呼ばれます。
+内部の補助関数は自分自身を再帰的に呼び出しますが、最終的な結果を計算するために何も覚えておく必要はありません。`Tail.sumHelper` の中間呼び出しは再帰呼び出しの結果をそのまま返すだけであるため、`Tail.sumHelper` が基本ケースに到達すると制御を直接 `Tail.sum` に戻すことができます。つまり、`Tail.sumHelper` を再帰的に呼び出すたびに1つのスタックフレームを再利用することができます。末尾呼び出しの除去とはまさにこのスタックフレームの再利用のことであり、`Tail.sumHelper` は **末尾再帰関数** と呼ばれます。
 
 <!--
 The first argument to `Tail.sumHelper` contains all of the information that would otherwise need to be tracked in the call stack—namely, the sum of the numbers encountered so far.
@@ -210,7 +210,7 @@ Each "remembered" piece of context is executed in last-in, first-out order.
 On the other hand, the accumulator-passing version modifies the accumulator beginning from the first entry in the list, rather than the original base case, as can be seen in the series of reduction steps:
 -->
 
-これは `NonTail.reverse` で計算している間に各スタックフレームに保存されたコンテキストが基本ケースから適用されるためです。コンテキストの各「記憶された」断片は、後入れ先出しの順に実行されます。一方で、アキュムレータ渡し版では、以下の簡約ステップの流れからわかるように、元の基本ケースではなくリストの最初の要素からアキュムレータを更新します：
+これは `NonTail.reverse` で計算している間に各スタックフレームに保存されたコンテキストが基本ケースに至って初めて適用されるためです。コンテキストの各「記憶された」断片は、後入れ先出しの順に実行されます。一方で、アキュムレータ渡し版では、以下の簡約ステップの流れからわかるように、元の基本ケースではなくリストの最初の要素からアキュムレータを更新します：
 
 ```lean
 {{#example_eval Examples/ProgramsProofs/TCO.lean TailReverseSteps}}
@@ -229,7 +229,7 @@ Appending lists is not commutative, so care must be taken to find an operation t
 Appending `[x]` after the result of the recursion in `NonTail.reverse` is analogous to adding `x` to the beginning of the list when the result is built in the opposite order.
 -->
 
-加算は可換であるため、`Tail.sum` ではこの点を考慮する必要はありません。リストの結合は可換ではないため、逆方向に実行しても同じ効果を持つ演算を見つけるように注意しなければなりません。`NonTail.reverse` の再帰の結果の後に `[x]` を追加することは、結果を逆の順序で構築する時にリストの先頭に `x` を追加することに似ています。
+加算は可換であるため、`Tail.sum` ではこの点を考慮する必要はありません。リストの結合は可換ではないため、逆方向に実行しても同じ効果を持つ演算を見つけるように注意しなければなりません。`NonTail.reverse` の再帰の結果の後に `[x]` を追加することは、反転されたリストの先頭に `x` を追加することに似ています。
 
 <!--
 ## Multiple Recursive Calls
@@ -251,7 +251,7 @@ Just as imperative languages would typically use a while loop for functions like
 This function cannot be straightforwardly rewritten to be tail recursive using accumulator-passing style.
 -->
 
-命令型言語が `reverse` や `sum` のような関数にwhileループを使うように、この種の走査には再帰関数を使うことが一般的です。この関数は安直にアキュムレータを渡すスタイルを使って末尾再帰的に書き換えることはできません。
+命令型言語が `reverse` や `sum` のような関数にwhileループを使うように、この種の走査には再帰関数を使うことが一般的です。この関数はアキュムレータを渡すスタイルを使って末尾再帰的に書き換えることは簡単にはできません。
 
 <!--
 Typically, if more than one recursive call is required for each recursive step, then it will be difficult to use accumulator-passing style.
