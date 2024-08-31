@@ -63,7 +63,7 @@
 - [プログラミング・証明・パフォーマンス](programs-proofs.md)
   - [末尾再帰](programs-proofs/tail-recursion.md)
   - [同値の証明](programs-proofs/tail-recursion-proofs.md)
-  - [Arrays and Termination](programs-proofs/arrays-termination.md)
+  - [配列と関数の停止](programs-proofs/arrays-termination.md)
   - [More Inequalities](programs-proofs/inequalities.md)
   - [Safe Array Indices](programs-proofs/fin.md)
   - [Insertion Sort and Array Mutation](programs-proofs/insertion-sort.md)
