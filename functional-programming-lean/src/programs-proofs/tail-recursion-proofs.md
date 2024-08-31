@@ -328,7 +328,7 @@ There are two ways in which it does not match:
 -->
 
  * この等式の左辺は `n + (y + NonTail.sum ys)` ですが、帰納法の仮定では左辺は `NonTail.sum ys` に何かしらの数値を足した数であることが求められています。言い換えれば、このゴールは `(n + y) + NonTail.sum ys` と書き直されるべきで、これは自然数の足し算が結合的であることから成り立ちます。
- * 左辺を `(y + n) + NonTail.sum ys` と書き換えた場合、右辺のアキュムレータの引数は `y + n` ではなく `n + y` とする必要があります。足し算は可換でもあるため、この書き換えも成り立ちます。
+ * 左辺を `(n + y) + NonTail.sum ys` と書き換えた[^1]場合、右辺のアキュムレータの引数は `y + n` ではなく `n + y` とする必要があります。足し算は可換でもあるため、この書き換えも成り立ちます。
 
 <!--
 The associativity and commutativity of addition have already been proved in Lean's standard library.
@@ -418,7 +418,7 @@ Applying this function to `NonTail.sum xs` results in an expression with type `{
 -->
 
 
-こうすることで、型はほとんど一致します。しかし、補助定義では左辺に追加で加算を行っています。言い換えると、証明のゴールは `NonTail.sum xs = Tail.sumHelper 0 xs` ですが、`non_tail_sum_eq_helper_accum` を `xs` と `0` に適用すると `0 + NonTail.sum xs = Tail.sumHelper 0 xs` という型が得られます。ここで標準ライブラリには `{{#example_out Examples/ProgramsProofs/TCO.lean NatZeroAdd}}` という型を持つ `{{#example_in Examples/ProgramsProofs/TCO.lean NatZeroAdd}}` という証明があります。この関数を `NonTail.sum xs` に適用すると式は `{{#example_out Examples/ProgramsProofs/TCO.lean NatZeroAddApplied}}` という型になり、これで右辺から左辺への書き換えによって望みの型が得られます：
+こうすることで、型はほとんど一致します。しかし、補助定理では左辺に追加で加算を行っています。言い換えると、証明のゴールは `NonTail.sum xs = Tail.sumHelper 0 xs` ですが、`non_tail_sum_eq_helper_accum` を `xs` と `0` に適用すると `0 + NonTail.sum xs = Tail.sumHelper 0 xs` という型が得られます。ここで標準ライブラリには `{{#example_out Examples/ProgramsProofs/TCO.lean NatZeroAdd}}` という型を持つ `{{#example_in Examples/ProgramsProofs/TCO.lean NatZeroAdd}}` という証明があります。この関数を `NonTail.sum xs` に適用すると式は `{{#example_out Examples/ProgramsProofs/TCO.lean NatZeroAddApplied}}` という型になり、これで右辺から左辺への書き換えによって望みの型が得られます：
 
 ```leantac
 {{#example_in Examples/ProgramsProofs/TCO.lean nonTailEqReal2}}
@@ -430,7 +430,7 @@ Applying this function to `NonTail.sum xs` results in an expression with type `{
 Finally, the helper can be used to complete the proof:
 -->
 
-最終的に、この補助定義によって証明が完成します：
+最終的に、この補助定理によって証明が完成します：
 
 ```leantac
 {{#example_decl Examples/ProgramsProofs/TCO.lean nonTailEqRealDone}}
@@ -519,3 +519,5 @@ Prove that `NonTail.factorial` from the exercises in the previous section is equ
 -->
 
 アキュムレータと結果の関係を見つけ、適切な補助定理を証明することによって、前の節の練習問題で出てきた `NonTail.factorial` が読者の末尾再帰版の解答と等しいことを証明してください。
+
+[^1]: 原文では`(y + n) + NonTail.sum ys`となっているが、おそらく`y`と`n`の位置が逆になっている
