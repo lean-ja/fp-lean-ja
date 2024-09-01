@@ -346,7 +346,7 @@ Each `step` constructor adds one to its index argument, so \\( d \\) `step` cons
 For example, evidence that four is less than or equal to seven consists of three `step`s around a `refl`:
 -->
 
-根拠の観点からすると、 \\( n \leq k \\) の証明は \\( n + d = m \\) となるような \\( d \\) である数を見つけることから構成されます。Leanでは、この証明は `Nat.le.step` の \\( d \\) についてのインスタンスでラップされた `Nat.le.refl` コンストラクタから構成されます。各 `step` コンストラクタはその添字引数に1を加えるため、 \\( d \\) 回の `step` コンストラクタは大きい数に \\( d \\) を加算します。例えば、4が7以下である根拠は `refl` を囲む3つの `step` で構成されます：
+根拠の観点からすると、 \\( n \leq k \\) の証明は \\( n + d = k \\) [^1]となるような \\( d \\) である数を見つけることから構成されます。Leanでは、この証明は `Nat.le.step` の \\( d \\) についてのインスタンスでラップされた `Nat.le.refl` コンストラクタから構成されます。各 `step` コンストラクタはその添字引数に1を加えるため、 \\( d \\) 回の `step` コンストラクタは大きい数に \\( d \\) を加算します。例えば、4が7以下である根拠は `refl` を囲む3つの `step` で構成されます：
 
 ```lean
 {{#example_decl Examples/ProgramsProofs/Arrays.lean four_le_seven}}
@@ -504,3 +504,5 @@ Sometimes, creativity can be required in order to figure out just why a function
  * `termination_by` を **必要としない** 末尾再帰のアキュムレータを渡す関数を使用して配列を反転させる関数を実装してください。
  * 恒等モナドの `for ... in ...` ループを使って `Array.map` ・`Array.find` ・`ForM` インスタンスを再実装し、結果のコードを比較してください。
  * 配列の反転を恒等モナドの `for ... in ...` ループを使って再実装してください。またそれを末尾再帰版と比較してください。
+
+[^1]: 原文では \\( n + d = m \\) となっていたが、mとkの書き間違いと思われる。
