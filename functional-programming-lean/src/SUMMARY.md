@@ -64,7 +64,7 @@
   - [末尾再帰](programs-proofs/tail-recursion.md)
   - [同値の証明](programs-proofs/tail-recursion-proofs.md)
   - [配列と関数の停止](programs-proofs/arrays-termination.md)
-  - [More Inequalities](programs-proofs/inequalities.md)
+  - [その他の不等式](programs-proofs/inequalities.md)
   - [Safe Array Indices](programs-proofs/fin.md)
   - [Insertion Sort and Array Mutation](programs-proofs/insertion-sort.md)
   - [Special Types](programs-proofs/special-types.md)
