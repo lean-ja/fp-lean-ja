@@ -67,7 +67,7 @@
   - [その他の不等式](programs-proofs/inequalities.md)
   - [安全な配列のインデックス](programs-proofs/fin.md)
   - [挿入ソートと配列の更新](programs-proofs/insertion-sort.md)
-  - [Special Types](programs-proofs/special-types.md)
+  - [特別な型](programs-proofs/special-types.md)
   - [Summary](programs-proofs/summary.md)
 
 [Next Steps](next-steps.md)
