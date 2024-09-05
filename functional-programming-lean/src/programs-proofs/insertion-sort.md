@@ -55,7 +55,7 @@ Circular references result either from uncontrolled recursion or from mutable re
 Because Lean supports neither, it is impossible to construct circular references.
 -->
 
-参照カウンタはガベージコレクションの追跡に対して1つの大きな欠点があります：循環参照によるメモリーリークです。あるオブジェクト \\( A \\) がオブジェクト \\( B \\) を参照し、オブジェクト \\( B \\) がオブジェクト \\( A \\) を参照している場合、たとえそのプログラム内で \\( A \\) と \\( B \\) に対して参照が無くてもこれらは決して解放されません。循環参照は制御されていない再帰か、変更可能な参照のどちらかに起因します。Leanはどちらもサポートしていないため、循環参照を構築することは不可能です。
+参照カウントはガベージコレクションの追跡に対して1つの大きな欠点があります：循環参照によるメモリーリークです。あるオブジェクト \\( A \\) がオブジェクト \\( B \\) を参照し、オブジェクト \\( B \\) がオブジェクト \\( A \\) を参照している場合、たとえそのプログラム内で \\( A \\) と \\( B \\) に対して他に参照が無くてもこれらは決して解放されません。循環参照は制御されていない再帰か、変更可能な参照のどちらかに起因します。Leanはどちらもサポートしていないため、循環参照を構築することは不可能です。
 
 <!--
 Reference counting means that the Lean runtime system's primitives for allocating and deallocating data structures can check whether a reference count is about to fall to zero, and re-use an existing object instead of allocating a new one.
@@ -116,7 +116,7 @@ The inner loop takes the element pointed to by the pointer and moves it to the l
 In other words, each iteration inserts the next element of the array into the appropriate location in the sorted region.
 -->
 
-挿入ソートは2つのループから構成されます。外側のループはポインタをソート対象の配列を左から右に動かします。各繰り返しの後に、配列内のポインタの左側はソートされる一方で右側は未ソートとなります。内側のループはポインタが指す要素を受け取り、それを適切な場所が見つかりループの不変条件が復元するまで左へと移動させます。言い換えると、各繰り返しは配列の次の要素をソート済み領域の適切な位置に挿入します。
+挿入ソートは2つのループから構成されます。外側のループはポインタをソート対象の配列中で左から右に動かします。各繰り返しの後に、配列内のポインタの左側はソートされる一方で右側は未ソートとなります。内側のループはポインタが指す要素を受け取り、それを適切な場所が見つかりループの不変条件が復元するまで左へと移動させます。言い換えると、各繰り返しは配列の次の要素をソート済み領域の適切な位置に挿入します。
 
 <!--
 ## The Inner Loop
@@ -242,7 +242,7 @@ Once again, the function terminates because the difference between the index and
 This time, however, Lean does not accept the `termination_by`:
 -->
 
-ここでもまた、インデックスと配列のサイズの差が各再帰呼び出しのたびに小さくなっていくため関数は終了します。しかし、今回Leanはこの `termination_by` を受理しません：
+ここでもまた、インデックスと配列のサイズの差が各再帰呼び出しのたびに小さくなっていくため関数は停止します。しかし、今回Leanはこの `termination_by` を受理しません：
 
 ```lean
 {{#example_in Examples/ProgramsProofs/InsertionSort.lean insertionSortLoopProof1}}
@@ -256,7 +256,7 @@ In order to prove that `insertionSortLoop` terminates, it is necessary to first 
 Copying the unproved termination condition from the error message to the function and "proving" it with `sorry` allows the function to be temporarily accepted:
 -->
 
-問題はLeanが `insertSorted` が渡された配列と同じサイズの配列を返すことを知る方法がないことです。`insertionSortLoop` が終了することを証明するには、まず `insertSorted` が配列のサイズを変更しないことを証明する必要があります。エラーメッセージから証明されていない終了条件を関数にコピーし、`sorry` で「証明」することで、この関数を一時的に受け入れることができます：
+問題はLeanが `insertSorted` が渡された配列と同じサイズの配列を返すことを知る方法がないことです。`insertionSortLoop` が停止することを証明するには、まず `insertSorted` が配列のサイズを変更しないことを証明する必要があります。エラーメッセージから証明されていない停止条件を関数にコピーし、`sorry` で「証明」することで、この関数を一時的に受け入れることができます：
 
 ```leantac
 {{#example_in Examples/ProgramsProofs/InsertionSort.lean insertionSortLoopSorry}}
@@ -362,7 +362,7 @@ It's much easier, however, to carefully reformulate the theorem statement such t
 The reformulated statement reads:
 -->
 
-しかし、この証明全体は手に負えなくなってきました。次のステップは置換結果の長さを表す変数を導入し、それが `arr.size` と等しいことを示し、この変数が再帰呼び出しの結果得られる配列の長さとも等しいことを示すことです。これらの等式を連鎖させて、ゴールを証明することができます。しかし、帰納法の仮定が自動的に十分強く、変数もすでに導入されるように定理文を注意深く再定式化する方がはるかに簡単です。再定式化された文は次のようになります：
+しかし、この証明全体は手に負えなくなっていきます。次のステップは置換結果の長さを表す変数を導入し、それが `arr.size` と等しいことを示し、この変数が再帰呼び出しの結果得られる配列の長さとも等しいことを示すことです。これらの等式を連鎖させて、ゴールを証明することができます。しかし、帰納法の仮定が自動的に十分強く、変数もすでに導入されるように定理文を注意深く再定式化する方がはるかに簡単です。再定式化された文は次のようになります：
 
 ```leantac
 {{#example_in Examples/ProgramsProofs/InsertionSort.lean insert_sorted_size_eq_redo_0}}
@@ -589,7 +589,7 @@ In these cases, the array primitives mutate the array in place.
 What other parts of the program don't know can't hurt them.
 -->
 
-`Array.set` や `Array.swap` などのLeanの配列操作は対象の配列の参照カウンタが1より大きいかどうかをチェックします。もし大きければ、その配列はコードの複数の個所から見えることになり、コピーしなければならないことになります。そうでなければLeanはもはや純粋関数型言語ではなくなってしまいます。しかし、参照カウンタがちょうど1の場合、その値に対する潜在的な観測者はほかに存在しません。このような場合、配列のプリミティブはその場で配列を変更します。ここ以外のプログラムが知り得ないことはそれ等自身を傷つけることはありません。
+`Array.set` や `Array.swap` などのLeanの配列操作は対象の配列の参照カウントが1より大きいかどうかをチェックします。もし大きければ、その配列はコードの複数の個所から見えることになり、コピーしなければならないことになります。そうでなければLeanはもはや純粋関数型言語ではなくなってしまいます。しかし、参照カウントがちょうど1の場合、その値に対する潜在的な観測者はほかに存在しません。このような場合、配列のプリミティブはその場で配列を変更します。ここ以外のプログラムが知り得ないことはそれ等自身を傷つけることはありません。
 
 <!--
 Lean's proof logic works at the level of pure functional programs, not the underlying implementation.
@@ -606,7 +606,7 @@ However, this change to the program changes the proofs as well, because now ther
 Because `dbgTraceIfShared` returns its second argument directly, adding it to the calls to `simp` is enough to fix the proofs.
 -->
 
-挿入ソートは変更ではなくコピーをしてしまう恐れある箇所がまさに一か所あります：`Array.swap`の呼び出しです。`arr.swap ⟨i', by assumption⟩ i` を `((dbgTraceIfShared "array to swap" arr).swap ⟨i', by assumption⟩ i)` に置き換えることで、プログラムはプログラムを変更できない時は必ず `shared RC array to swap` を出力するようになります。しかし、追加の関数呼び出しが加わることの変化によって証明も変わってしまいます。`dbgTraceIfShared` は第2引数を直接返すため、`simp` の呼び出しに追加するだけで証明は修正されます。
+挿入ソートは変更ではなくコピーをしてしまう恐れのある箇所がまさに一か所あります：`Array.swap`の呼び出しです。`arr.swap ⟨i', by assumption⟩ i` を `((dbgTraceIfShared "array to swap" arr).swap ⟨i', by assumption⟩ i)` に置き換えることで、プログラムはプログラムを変更できない時は必ず `shared RC array to swap` を出力するようになります。しかし、追加の関数呼び出しが加わることの変化によって証明も変わってしまいます。`dbgTraceIfShared` は第2引数を直接返すため、`simp` の呼び出しに追加するだけで証明は修正されます。
 
 <!--
 The complete instrumented code for insertion sort is:
@@ -734,7 +734,7 @@ This means, for instance, that `List.map` will mutate a linked list in place, at
 One of the most important steps in optimizing hot loops in Lean code is making sure that the data being modified is not referred to from multiple locations.
 -->
 
-参照が一意である場合にコピーの代わりに更新を使用するのは配列更新演算子に限ったことではありません。Leanは参照カウンタが0になりそうなコンストラクタを「リサイクル」し、新しいデータを割り当てる代わりに再利用しようとします。これは例えば、`Let.map` が連結リストをその場で更新することを意味します。Leanのコードでホット・ループを最適化する最も重要なステップの1つは、変更されるデータが複数の場所から参照されないようにすることです。
+参照が一意である場合にコピーの代わりに更新を使用するのは配列更新演算子に限ったことではありません。Leanは参照カウントが0になりそうなコンストラクタを「リサイクル」し、新しいデータを割り当てる代わりに再利用しようとします。これは例えば、`Let.map` が連結リストをその場で更新することを意味します。Leanのコードでホット・ループを最適化する最も重要なステップの1つは、変更されるデータが複数の場所から参照されないようにすることです。
 
 <!--
 ## Exercises
@@ -746,7 +746,7 @@ One of the most important steps in optimizing hot loops in Lean code is making s
  * Write a function that reverses arrays. Test that if the input array has a reference count of one, then your function does not allocate a new array.
 -->
 
- * 配列を反転させる関数を書いてください。入力配列の参照カウンタが1の場合、関数が新しい配列を確保しないことをテストしてください。
+ * 配列を反転させる関数を書いてください。入力配列の参照カウントが1の場合、関数が新しい配列を確保しないことをテストしてください。
 
 <!--
 * Implement either merge sort or quicksort for arrays. Prove that your implementation terminates, and test that it doesn't allocate more arrays than expected. This is a challenging exercise!
