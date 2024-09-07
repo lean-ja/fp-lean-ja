@@ -68,6 +68,6 @@
   - [安全な配列のインデックス](programs-proofs/fin.md)
   - [挿入ソートと配列の更新](programs-proofs/insertion-sort.md)
   - [特別な型](programs-proofs/special-types.md)
-  - [Summary](programs-proofs/summary.md)
+  - [まとめ](programs-proofs/summary.md)
 
 [Next Steps](next-steps.md)
