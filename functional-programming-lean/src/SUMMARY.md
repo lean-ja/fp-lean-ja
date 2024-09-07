@@ -70,4 +70,4 @@
   - [特別な型](programs-proofs/special-types.md)
   - [まとめ](programs-proofs/summary.md)
 
-[Next Steps](next-steps.md)
+[次のステップ](next-steps.md)
