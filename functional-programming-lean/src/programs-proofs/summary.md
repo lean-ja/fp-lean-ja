@@ -54,7 +54,7 @@ Additionally, array operations such as `Array.set` and `Array.swap` will mutate 
 If `Array.swap` holds the only reference to an array, then no other part of the program can tell that it was mutated rather than copied.
 -->
 
-新しいオブジェクトを割り当てるよう要求されると、Leanのランタイムシステムは参照カウントが0になってしまった既存のオブジェクトを再利用することができます。さらに、`Array.set` や `Array.swap` などの配列操作は参照カウントが1であれば、変更されたコピーを割り当てるのではなく、配列を更新します。もし `Array.swap` が配列への唯一の参照を保持している場合、プログラムの他の部分からは配列がコピーされたのではなく、変更されたことはわかりません。
+新しいオブジェクトを割り当てるよう要求されると、Leanのランタイムシステムは参照カウントが0になってしまった既存のオブジェクトを再利用することができます。さらに、`Array.set` や `Array.swap` などの配列操作は参照カウントが1であれば、変更されたコピーを割り当てるのではなく、配列を更新します。もし `Array.swap` が配列への唯一の参照を保持している場合プログラムの他の部分からは、その配列がコピーされずに変更されたことを認識できません。
 
 <!--
 Writing efficient code in Lean requires the use of tail recursion and being careful to ensure that large arrays are used uniquely.
@@ -62,7 +62,7 @@ While tail calls can be identified by inspecting the function's definition, unde
 The debugging helper `dbgTraceIfShared` can be used at key locations in the program to check that a value is not shared.
 -->
 
-Leanにおいて効率的なコードを書くには、末尾再帰を利用し、大きな配列が一意に使用されるように注意を払う必要があります。末尾呼び出しは関数の定義を調べることで識別できますが、値が一意に参照されているかどうかを理解するには、プログラム全体を読む必要がある可能性があります。デバッグ用の補助関数 `dbgTraceIfShared` をプログラムの重要な場所で使用すると、値が共有されていないことを確認できます。
+Leanにおいて効率的なコードを書くには末尾再帰を利用し、大きな配列が一意に使用されるように注意を払う必要があります。末尾呼び出しは関数の定義を調べることで識別できますが、値が一意に参照されているかどうかを理解するには、プログラム全体を読む必要がある可能性があります。デバッグ用の補助関数 `dbgTraceIfShared` をプログラムの重要な場所で使用すると、値が共有されていないことを確認できます。
 
 <!--
 ## Proving Programs Correct
@@ -87,7 +87,7 @@ Fixing this problem usually requires thought about how to construct a more gener
 In particular, to prove that a function is equivalent to an accumulator-passing version, a theorem statement that relates arbitrary initial accumulator values to the final result of the original function is needed.
 -->
 
-通常、2つの関証明等しいことを証明するためには、関数の外延性（`funext` タクティク）を用います。これは2つの関数がすべての入力に対して同じ値を返すなら等しいという原則です。もし関数が再帰的であれば、その出力が同じであることの証明には帰納法を用いることがたいてい良いでしょう。通常、関数の再帰的定義はある特定の引数に対して再帰的な呼び出しを行います；このような引数が帰納法の格好の対象になります。場合によっては帰納法の仮定が十分に強くないこともあります。この問題を解決するには通常、十分に強い帰納法の仮定を提供する定理文に対してより一般的なバージョンを構築する方法を考える必要があります。特に、ある関数がアキュムレータを渡すバージョンと等価であることを証明するには、任意の初期アキュムレータ値と元の関数の最終結果と関連していることを示す定理文が必要です。
+通常、2つの関数が等しいことを証明するためには、関数の外延性（`funext` タクティク）を用います。これは2つの関数がすべての入力に対して同じ値を返すなら等しいという原則です。もし関数が再帰的であれば、その出力が同じであることの証明には帰納法を用いることが大抵良いでしょう。通常、関数の再帰的定義はある特定の引数に対して再帰的な呼び出しを行います；このような引数が帰納法の格好の対象になります。場合によっては帰納法の仮定が十分に強くないこともあります。この問題を解決するには通常、十分に強い帰納法の仮定を提供する定理文に対してより一般的なバージョンを構築する方法を考える必要があります。特に、ある関数がアキュムレータを渡すバージョンと等価であることを証明するには、任意の初期アキュムレータ値と元の関数の最終結果と関連していることを示す定理文が必要です。
 
 <!--
 ## Safe Array Indices
