@@ -32,7 +32,7 @@ Lean4そのものについては以下のリソースで記述されています
  * [Functional Programming in Lean](https://leanprover.github.io/functional_programming_in_lean/) may be interesting to readers who enjoy jokes about recursion.
 -->
 
- * [Theorem Proving in Lean 4](https://leanprover.github.io/theorem_proving_in_lean4/) はLeanで証明を書くためのチュートリアルです。[^1]
+ * [Theorem Proving in Lean 4](https://leanprover.github.io/theorem_proving_in_lean4/) はLeanで証明を書くためのチュートリアルです。[^fn1]
  * [The Lean 4 Manual](https://leanprover.github.io/lean4/doc/) はLean言語とその機能のリファレンスを提供しています。本書執筆時点ではまだ不完全ですが、本書よりもLeanの多くの側面が詳細に記述されています。
  * [How To Prove It With Lean](https://djvelleman.github.io/HTPIwL/) は [_How To Prove It_](https://www.cambridge.org/highereducation/books/how-to-prove-it/6D2965D625C6836CD4A785A2C843B3DA#overview) という定評のある教科書のLeanベースの付録であり、紙と鉛筆で数学的証明を書くための入門書です。
  * [Metaprogramming in Lean 4](https://github.com/arthurpaulino/lean4-metaprogramming-book) は中置演算子や記法などからマクロ・カスタムのタクティク・完全にカスタムな組み込み言語まで、Leanの拡張メカニズムの概要を提供しています。
@@ -69,7 +69,7 @@ require std from git
 ```
 -->
 
-[batteries](https://github.com/leanprover-community/batteries) [^2] は現在進行形で開発されている標準ライブラリであり、Leanのコンパイラ自体のスコープから外れた多くのデータ構造・タクティク・型クラスのインスタンス・関数を保持しています。`batteries` を使用するにはまず、使用しているLean4のバージョンと互換性のあるコミットを探します（つまり、`lean-toolchain` ファイルが読者のプロジェクトのものと一致するものです）。次に、`lakefile.lean` のトップレベルに以下を追加します。ここで `COMMIT_HASH` は適切なバージョンを指します：
+[batteries](https://github.com/leanprover-community/batteries) [^fn2] は現在進行形で開発されている標準ライブラリであり、Leanのコンパイラ自体のスコープから外れた多くのデータ構造・タクティク・型クラスのインスタンス・関数を保持しています。`batteries` を使用するにはまず、使用しているLean4のバージョンと互換性のあるコミットを探します（つまり、`lean-toolchain` ファイルが読者のプロジェクトのものと一致するものです）。次に、`lakefile.lean` のトップレベルに以下を追加します。ここで `COMMIT_HASH` は適切なバージョンを指します：
 ```lean
 require batteries from git
   "https://github.com/leanprover-community/batteries" @ "COMMIT_HASH"
@@ -132,5 +132,6 @@ Disclaimer: the author of _Functional Programming in Lean_ is also an author of 
 
 [_The Little Typer_](https://thelittletyper.com/) は論理学やプログラミング言語の理論を正式に学んだことはないが、依存型理論の核となる考え方について理解を深めたいと考えているプログラマのための本です。上記のすべてのリソースが可能な限り実用的であることを目指しているのに対し、_The Little Typer_ はプログラミングの概念のみを用いて0から基本を構築する依存型理論へのアプローチを提示しています。免責事項：_Functional Programming in Lean_ の著者は _The Little Typer_ の著者でもあります。
 
-[^1]: 日本語訳は https://aconite-ac.github.io/theorem_proving_in_lean4_ja/
-[^2]: 原文が書かれた当時は `std4` という名前でしたが、改名されたことに合わせて日本語訳の文章を修正しています。
+[^fn1]: 日本語訳は https://aconite-ac.github.io/theorem_proving_in_lean4_ja/
+
+[^fn2]: 原文が書かれた当時は `std4` という名前でしたが、改名されたことに合わせて日本語訳の文章を修正しています。
