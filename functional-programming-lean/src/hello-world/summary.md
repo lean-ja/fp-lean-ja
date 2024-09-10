@@ -58,7 +58,7 @@ These base `IO` actions are composed into larger `IO` actions using `do` notatio
 A `do` expression contains a sequence of _statements_, which may be:
 -->
 
-Leanの標準ライブラリは、ファイルからの読み込みや書き込み、標準入出力とのやり取りなどの作用を表す基本的な `IO` アクションを数多く提供しています。これらの基本的な `IO` アクションは、副作用を持つプログラムを書くための組み込みドメイン固有言語である `do` 記法を使ってより翁 `IO` アクションにまとめることができます。`do` 記法は以下のような一連の **文** を含んでいます：
+Leanの標準ライブラリは、ファイルからの読み込みや書き込み、標準入出力とのやり取りなどの作用を表す基本的な `IO` アクションを数多く提供しています。これらの基本的な `IO` アクションは、副作用を持つプログラムを書くための組み込みドメイン固有言語である `do` 記法を使ってより大きな `IO` アクションにまとめることができます。`do` 記法は以下のような一連の **文** を含んでいます：
 
  <!--
  * expressions that represent `IO` actions,
@@ -67,14 +67,14 @@ Leanの標準ライブラリは、ファイルからの読み込みや書き込�
 -->
 
  * `IO` アクションを表す式
- * `let` と `:=` を使った通常のローカル定義で、定義された名前は渡された式の値を指します。
- * `let` と `←` を使ったローカル定義で、定義された名前は渡された式の値を実行した結果を指します。
+ * `let` と `:=` を使った通常のローカル定義、定義された名前は渡された式の値を指します。
+ * `let` と `←` を使ったローカル定義、定義された名前は渡された式の値を実行した結果を指します。
 
 <!--
 `IO` actions that are written with `do` are executed one statement at a time.
 -->
 
-`do` で記述された `IO` 一度に1文ずつ実行されます。
+`do` で記述された `IO` アクションは一度に1文ずつ実行されます。
  
 <!--
 Furthermore, `if` and `match` expressions that occur immediately under a `do` are implicitly considered to have their own `do` in each branch.
