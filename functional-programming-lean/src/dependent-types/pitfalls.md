@@ -319,7 +319,7 @@ Its pattern matching occurs on the _second_ argument, not the first argument, wh
 `Nat.add` in Lean's standard library is equivalent to `plusR`, not `plusL`, so attempting to use it in this definition results in precisely the same difficulties:
 -->
 
-このパターンマッチは第1引数ではなく **第二** 引数に対して行われるため、その位置に変数 `k` が存在すると簡約をすることができません。Leanの標準ライブラリにある `Nat.add` は `plusL` ではなく `plusR` と等価であるため、この定義で `Nat.add` を使おうとすると全く同じ問題が起こります：
+このパターンマッチは第1引数ではなく **第2** 引数に対して行われるため、その位置に変数 `k` が存在すると簡約をすることができません。Leanの標準ライブラリにある `Nat.add` は `plusL` ではなく `plusR` と等価であるため、この定義で `Nat.add` を使おうとすると全く同じ問題が起こります：
 
 ```lean
 {{#example_in Examples/DependentTypes/Pitfalls.lean appendR4}}
