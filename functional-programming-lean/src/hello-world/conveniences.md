@@ -138,7 +138,7 @@ In some rare contexts, however, manual control over whitespace and indentation m
 In these cases, newlines can be replaced with a semicolon and indentation can be replaced with curly braces.
 -->
 
-Leanでは `do` 式は空白に対して敏感です。`do` の各 `IO` アクションや局所的な束縛はそれぞれ独立した行で始まり、インデントも同じでなければなりません。ほとんどすべての `do` はこのように書くべきです。しかしまれに空白やインデントを手動で制御する必要や、複数の小さなアクションを1行に書くと便利な場合があります。このような場合、改行はセミコロンに、インデントは波括弧に置き換えることができます。
+Leanにおいて、`do` 式は空白に対して敏感です。`do` の各 `IO` アクションや局所的な束縛はそれぞれ独立した行で始まり、インデントも同じでなければなりません。ほとんどすべての `do` はこのように書くべきです。しかしまれに空白やインデントを手動で制御する必要や、複数の小さなアクションを1行に書くと便利な場合があります。このような場合、改行はセミコロンに、インデントは波括弧に置き換えることができます。
 
 <!--
 For instance, all of the following programs are equivalent:
@@ -198,7 +198,7 @@ This is the output produced by running the `IO` action, rather than some opaque 
 In other words, for `IO` actions, `#eval` both _evaluates_ the provided expression and _executes_ the resulting action value.
 -->
 
-これは `IO` アクションを実行することによって生成される出力であり、アクション自体の不透明な表現ではありません。言い換えれば、`IO` アクションに対して `#eval` は指定された式を **実行** し、結果のアクションの値を **実行** します。
+これは `IO` アクションを実行することによって生成される出力であり、アクション自体の不透明な表現ではありません。言い換えれば、`IO` アクションに対して `#eval` は指定された式の **評価** と、結果のアクションの値の **実行** をどちらも行います。
 
 <!--
 Quickly testing `IO` actions with `#eval` can be much more convenient that compiling and running whole programs.
