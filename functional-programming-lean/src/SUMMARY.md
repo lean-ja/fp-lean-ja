@@ -18,7 +18,7 @@
   - [ステップ・バイ・ステップ](./hello-world/step-by-step.md)
   - [プロジェクトの開始](./hello-world/starting-a-project.md)
   - [Worked Example: `cat`](./hello-world/cat.md)
-  - [Additional Conveniences](./hello-world/conveniences.md)
+  - [その他の便利機能](./hello-world/conveniences.md)
   - [まとめ](./hello-world/summary.md)
 - [休憩：命題・証明・リストの添え字アクセス](props-proofs-indexing.md)
 - [オーバーロードと型クラス](type-classes.md)
