@@ -23,7 +23,7 @@ Arrays, however, have two drawbacks relative to lists:
  2. A loop that processes an entire array from left to right is a tail-recursive function, but it does not have an argument that decreases on each call.
 -->
  
- 1. 配列はパタンマッチではなくインデックスによってアクセスされます。これにあたっては安全性を維持するために [証明の義務](../props-proofs-indexing.md) が課せられます。
+ 1. 配列はパターンマッチではなくインデックスによってアクセスされます。これにあたっては安全性を維持するために [証明の義務](../props-proofs-indexing.md) が課せられます。
  2. 配列全体を左から右に処理するループは末尾再帰関数ですが、呼び出すたびに減少する引数を持ちません。
 
 <!--
