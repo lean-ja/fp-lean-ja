@@ -184,7 +184,7 @@ When it makes sense to do so, natural number literals can be used for new types,
 This is part of Lean's mission of making it convenient to represent mathematics, and different branches of mathematics use number notation for very different purposes.
 The specific feature that allows this overloading does not replace all defined names with their definitions before looking for overloading, which is what leads to the error message above. -->
 
-このエラーは、Lean が数値リテラルの **オーバーロード**（overload）を許可しているために発生します。ある型に対して数値リテラルのオーバーロードを適切に設定することで、自然数リテラルはあたかもその型がシステムに組み込まれているかのように、新しい型に使用することができます。これは、数学の表現を便利にするという Lean の使命の一部です。数学でも分野によって、数字をまったく異なる概念を表すのに使っています。このオーバーロードを可能にするための機能は、定義された名前をすべてその定義に置き換える前に、オーバーロードを探します。それが上のエラーメッセージを引き起こします。
+このエラーは、Lean が数値リテラルの**オーバーロード**（overload）を許可しているために発生します。ある型に対して数値リテラルのオーバーロードを適切に設定することで、自然数リテラルはあたかもその型がシステムに組み込まれているかのように、新しい型に使用することができます。これは、数学の表現を便利にするという Lean の使命の一部です。数学でも分野によって、数字をまったく異なる概念を表すのに使っています。このオーバーロードを可能にするための機能は、定義された名前をすべてその定義に置き換える前に、オーバーロードを探します。それが上のエラーメッセージを引き起こします。 [^fn1]
 
 <!-- One way to work around this limitation is by providing the type `Nat` on the right-hand side of the definition, causing `Nat`'s overloading rules to be used for `38`: -->
 
@@ -224,4 +224,6 @@ Definitions that are to be unfolded are called _reducible_.
 Control over reducibility is essential to allow Lean to scale: fully unfolding all definitions can result in very large types that are slow for a machine to process and difficult for users to understand.
 Definitions produced with `abbrev` are marked as reducible. -->
 
-舞台裏では、オーバーロードの解決時に、展開可能(unfoldable)であると内部でマークされる定義もあれば、そうでない定義もあります。展開される定義は *reducible* (簡約可能)と呼ばれます。Lean をスケールさせるためには、定義の展開可能性のコントロールが不可欠です：すべての定義を完全に展開すると、型が非常に大きくなり、機械が処理するのに時間がかかりますし、ユーザにとっても理解しづらいものになります。`abbrev` で生成された定義は reducible であるとマークされます。
+舞台裏では、オーバーロードの解決時に、**展開可能**（unfoldable）であると内部でマークされる定義もあれば、そうでない定義もあります。展開される定義は**簡約可能**（reducible）と呼ばれます。Lean をスケールさせるためには、定義の展開可能性のコントロールが不可欠です：すべての定義を完全に展開すると、型が非常に大きくなり、機械が処理するのに時間がかかりますし、ユーザにとっても理解しづらいものになります。`abbrev` で生成された定義は reducible であるとマークされます。
+
+[^fn1]: 訳注：この機能は[後の章](https://lean-ja.github.io/fp-lean-ja/type-classes/pos.html#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB)で詳しく解説されます。
