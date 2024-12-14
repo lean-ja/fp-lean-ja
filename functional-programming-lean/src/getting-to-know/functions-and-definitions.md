@@ -184,7 +184,7 @@ When it makes sense to do so, natural number literals can be used for new types,
 This is part of Lean's mission of making it convenient to represent mathematics, and different branches of mathematics use number notation for very different purposes.
 The specific feature that allows this overloading does not replace all defined names with their definitions before looking for overloading, which is what leads to the error message above. -->
 
-このエラーは、Lean が数値リテラルのオーバーロード(overload)を許可しているために発生します。自然数リテラルは、あたかもその型がシステムに組み込まれているかのように、新しい型に使用することができます。これは、数学の表現を便利にするという Lean の使命の一部です。数学でも分野によって、数字をまったく異なる概念を表すのに使っています。このオーバーロードを可能にするための機能は、定義された名前をすべてその定義に置き換える前に、オーバーロードを探します。それが上のエラーメッセージを引き起こします。
+このエラーは、Lean が数値リテラルの **オーバーロード**（overload）を許可しているために発生します。ある型に対して数値リテラルのオーバーロードを適切に設定することで、自然数リテラルはあたかもその型がシステムに組み込まれているかのように、新しい型に使用することができます。これは、数学の表現を便利にするという Lean の使命の一部です。数学でも分野によって、数字をまったく異なる概念を表すのに使っています。このオーバーロードを可能にするための機能は、定義された名前をすべてその定義に置き換える前に、オーバーロードを探します。それが上のエラーメッセージを引き起こします。
 
 <!-- One way to work around this limitation is by providing the type `Nat` on the right-hand side of the definition, causing `Nat`'s overloading rules to be used for `38`: -->
 
